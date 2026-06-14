@@ -50,6 +50,40 @@ export function Reveal({
   );
 }
 
+/**
+ * Mask-reveal: the child rises up from behind a clipped edge (no fade). Used for
+ * the oversized hero wordmark. Each instance masks its own line.
+ */
+export function Rise({
+  children,
+  className,
+  delay = 0,
+  duration = 1,
+  playOnMount = false,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  duration?: number;
+  playOnMount?: boolean;
+}) {
+  const trigger = playOnMount
+    ? { animate: { y: "0%" } }
+    : { whileInView: { y: "0%" }, viewport: { once: true, margin: "-10% 0px" } };
+  return (
+    <span className={cn("inline-block overflow-hidden align-bottom", className)}>
+      <motion.span
+        className="inline-block"
+        initial={{ y: "115%" }}
+        {...trigger}
+        transition={{ duration, delay, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
+
 const container: Variants = {
   hidden: {},
   show: (stagger: number) => ({

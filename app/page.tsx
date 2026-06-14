@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 import { site } from "@/content/site";
-import { primaryCta, secondaryCta } from "@/content/nav";
+import { secondaryCta } from "@/content/nav";
 import { HeroVideo } from "@/components/hero-video";
-import { Reveal, SplitText } from "@/components/motion/reveal";
+import { Reveal, Rise } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 import { ParallaxMedia } from "@/components/motion/parallax-media";
 import { MediaPlaceholder } from "@/components/media-placeholder";
@@ -56,63 +56,23 @@ const tiers = [
 export default function Home() {
   return (
     <>
-      {/* ============== HERO ============== */}
-      <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-5 text-center">
+      {/* ============== HERO — the video, with the wordmark anchored ============== */}
+      <section className="relative min-h-[100svh] overflow-hidden">
         <HeroVideo />
 
-        <div className="relative z-10 mx-auto max-w-4xl pb-16 pt-24">
-          <Reveal y={16} playOnMount>
-            <p className="eyebrow justify-center">
-              {site.fullName} — {site.location.area}
-            </p>
-          </Reveal>
-
-          <h1 className="display mt-6 text-[clamp(2.5rem,7vw,5.5rem)] leading-[1.02]">
-            <SplitText text="Nothing given." by="word" stagger={0.06} playOnMount />
-            <span className="mt-1 block">
-              <SplitText
-                text="Everything earned."
-                by="word"
-                stagger={0.06}
-                playOnMount
-              />
-            </span>
-          </h1>
-
-          <Reveal delay={0.4} y={14} playOnMount className="mx-auto mt-7 max-w-xl">
-            <p className="text-base text-foreground/70 sm:text-lg">
-              Strength, RUSH classes, and Essential Recovery — under one roof.
-              A training experience that meets you where you are and leaves you
-              better every time.
-            </p>
-          </Reveal>
-
-          <Reveal
-            delay={0.55}
-            y={14}
-            playOnMount
-            className="mt-9 flex flex-wrap items-center justify-center gap-3"
+        {/* Wordmark, fully visible, resting on the bottom edge */}
+        <div className="absolute inset-x-0 bottom-0 z-10 flex justify-center px-4 pb-6 sm:pb-8 lg:pb-12">
+          <h1
+            aria-label="Grit Fit"
+            className="wordmark flex items-end justify-center gap-[0.07em] text-foreground"
           >
-            <Magnetic>
-              <Link href={primaryCta.href} className="btn btn-solid px-7 py-3.5">
-                {primaryCta.label}
-              </Link>
-            </Magnetic>
-            <Link
-              href={secondaryCta.href}
-              className="btn btn-outline px-7 py-3.5 backdrop-blur-sm"
-            >
-              {secondaryCta.label}
-            </Link>
-          </Reveal>
-        </div>
-
-        {/* Scroll cue */}
-        <div className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2">
-          <span className="text-[0.65rem] uppercase tracking-[0.3em] text-foreground/50">
-            Scroll
-          </span>
-          <span className="animate-scroll-cue text-brand">↓</span>
+            <Rise playOnMount duration={1.1}>
+              Grit
+            </Rise>
+            <Rise playOnMount delay={0.12} duration={1.1}>
+              Fit
+            </Rise>
+          </h1>
         </div>
       </section>
 

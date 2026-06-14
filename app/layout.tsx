@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Geist, Geist_Mono } from "next/font/google";
+import { Anton, Archivo, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
@@ -21,6 +21,14 @@ const geistMono = Geist_Mono({
 
 const archivo = Archivo({
   variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Heavy condensed display — used only for the oversized hero wordmark.
+const anton = Anton({
+  variable: "--font-wordmark",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -68,7 +76,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${archivo.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${archivo.variable} ${anton.variable} dark h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="grain min-h-full">
