@@ -42,8 +42,22 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE,
     siteName: "Grit Fit",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Grit Fit — Nothing given. Everything earned.",
+      },
+    ],
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Grit Fit — The Luxe Club",
+    description:
+      "Strength, RUSH classes, and Essential Recovery under one roof.",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
@@ -58,10 +72,15 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="grain min-h-full">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <SmoothScrollProvider>
           <Header />
           <PageTransition>
-            <main className="flex min-h-screen flex-col">{children}</main>
+            <main id="main" className="flex min-h-screen flex-col">
+              {children}
+            </main>
           </PageTransition>
           <Footer />
         </SmoothScrollProvider>

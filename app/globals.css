@@ -152,6 +152,22 @@
     background: var(--brand);
     color: #0a0a05;
   }
+  /* Keyboard focus — brand ring, never removed for keyboard users. */
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+  /* Skip-to-content link (visually hidden until focused). */
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[100] bg-foreground px-4 py-2 text-sm font-medium text-background;
+    clip: auto;
+    width: auto;
+    height: auto;
+  }
 }
 
 @layer components {
