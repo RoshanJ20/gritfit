@@ -13,7 +13,7 @@ export const site = {
   name: "Grit Fit",
   fullName: "Grit Fit — The Luxe Club",
   // Signature line — source: "Lift. Run. Fight. Fly.Stretch. Recover. And more."
-  signatureLine: "Lift. Run. Fight. Fly. Stretch. Recover. And more.",
+  signatureLine: "Lift. Run. Fight. Fly. Stretch. Recover. Strike.",
   signatureWords: [
     "Lift",
     "Run",
@@ -21,7 +21,7 @@ export const site = {
     "Fly",
     "Stretch",
     "Recover",
-    "And more",
+    "Strike",
   ],
   philosophy: [
     "Grit club is home where nothing is given, everything is earned through hard work.",

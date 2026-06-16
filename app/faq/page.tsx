@@ -40,13 +40,13 @@ export default function FaqPage() {
             <Reveal>
               <TabsList
                 variant="line"
-                className="-mx-5 h-auto w-auto flex-nowrap justify-start overflow-x-auto px-5 sm:mx-0 sm:flex-wrap sm:px-0"
+                className="relative -mx-5 h-auto w-auto flex-nowrap justify-start gap-x-8 gap-y-0 overflow-x-auto border-b border-border px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:w-full sm:flex-wrap sm:gap-y-3 sm:px-0"
               >
                 {sections.map((s) => (
                   <TabsTrigger
                     key={s.value}
                     value={s.value}
-                    className="h-auto flex-none whitespace-nowrap border-b border-border px-1 py-3 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-muted-foreground data-active:text-foreground"
+                    className="relative h-auto flex-none whitespace-nowrap rounded-none border-0 px-0 pb-4 pt-0 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground data-active:text-foreground after:h-[2px] after:bg-brand group-data-horizontal/tabs:after:-bottom-px"
                   >
                     {s.label}
                   </TabsTrigger>
