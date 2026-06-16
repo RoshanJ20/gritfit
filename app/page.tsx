@@ -57,11 +57,21 @@ export default function Home() {
   return (
     <>
       {/* ============== HERO — the video, with the wordmark anchored ============== */}
-      <section className="relative min-h-[100svh] overflow-hidden">
+      <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
         <HeroVideo />
 
-        {/* Wordmark, fully visible, resting on the bottom edge */}
-        <div className="absolute inset-x-0 bottom-0 z-10 flex justify-center px-4 pb-6 sm:pb-8 lg:pb-12">
+        {/* Wordmark rests on the bottom edge. On mobile a short philosophy line
+            sits above it (and the wordmark is lifted clear of the browser UI) so
+            the first screen isn't empty; on desktop the statement lives in its
+            own section below and this stays a clean edge-resting wordmark. */}
+        <div className="relative z-10 flex flex-col items-center gap-6 px-5 pb-20 text-center sm:pb-8 lg:gap-0 lg:px-4 lg:pb-12">
+          <Reveal playOnMount delay={0.5} className="lg:hidden">
+            <p className="mx-auto max-w-sm text-balance text-sm leading-relaxed text-foreground/85">
+              Nothing is given — everything is earned through hard work. Built on
+              a passion for strength, movement, and mindset.
+            </p>
+          </Reveal>
+
           <h1
             aria-label="Grit Fit"
             className="wordmark flex items-end justify-center gap-[0.07em] text-foreground"

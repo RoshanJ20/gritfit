@@ -22,6 +22,7 @@ export function Marquee({
       className={cn("group flex w-full overflow-hidden", className)}
       style={
         {
+          gap,
           "--marquee-duration": `${durationSeconds}s`,
           "--marquee-gap": gap,
         } as React.CSSProperties
@@ -34,7 +35,6 @@ export function Marquee({
           className="animate-marquee flex shrink-0 items-center"
           style={{
             gap,
-            paddingRight: gap,
             animationDirection: reverse ? "reverse" : "normal",
           }}
         >
