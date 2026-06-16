@@ -31,8 +31,8 @@ export const navGroups: NavGroup[] = [
     href: "/strength-club",
     side: "left",
     links: [
-      { label: "About Strength Club", href: "/strength-club/about" },
       { label: "Offerings", href: "/strength-club" },
+      { label: "About Strength Club", href: "/strength-club/about" },
     ],
   },
   {
@@ -40,8 +40,8 @@ export const navGroups: NavGroup[] = [
     href: "/rush",
     side: "left",
     links: [
-      { label: "About RUSH", href: "/rush/about" },
       { label: "Offerings", href: "/rush" },
+      { label: "About RUSH", href: "/rush/about" },
     ],
   },
   {
@@ -49,8 +49,8 @@ export const navGroups: NavGroup[] = [
     href: "/recovery",
     side: "left",
     links: [
-      { label: "About Recovery", href: "/recovery/about" },
       { label: "Offerings", href: "/recovery" },
+      { label: "About Recovery", href: "/recovery/about" },
     ],
   },
   {
@@ -68,8 +68,8 @@ export const navGroups: NavGroup[] = [
     href: "/amenities",
     side: "right",
     links: [
-      { label: "About Amenities", href: "/amenities/about" },
       { label: "Offerings", href: "/amenities" },
+      { label: "About Amenities", href: "/amenities/about" },
     ],
   },
 ];
