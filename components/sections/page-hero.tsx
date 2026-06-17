@@ -21,7 +21,7 @@ export function PageHero({
   mediaKind?: "image" | "video";
 }) {
   return (
-    <section className="bg-spotlight relative overflow-hidden border-b border-border pb-16 pt-32 lg:pb-24 lg:pt-44">
+    <section className="bg-spotlight relative overflow-hidden border-b border-border pb-16 pt-28 lg:pb-24 lg:pt-32">
       <div className="pointer-events-none absolute -left-40 top-10 size-[32rem] rounded-full bg-white/[0.03] blur-[120px]" />
 
       <div className="container-grit relative z-10 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
@@ -29,7 +29,7 @@ export function PageHero({
           <Reveal playOnMount>
             <p className="eyebrow">{eyebrow}</p>
           </Reveal>
-          <h1 className="display mt-5 text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.92]">
+          <h1 className="display mt-5 text-[clamp(2.75rem,7vw,6.5rem)] leading-[1.05] pb-[0.08em]">
             <SplitText text={title} by="word" stagger={0.06} playOnMount />
           </h1>
           {lead && (
