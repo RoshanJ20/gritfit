@@ -26,29 +26,29 @@ export function SiblingNav({
         <Reveal>
           <p className="eyebrow">{eyebrow}</p>
         </Reveal>
-      </div>
-      <div className={cn("grid border-t border-border", cols)}>
-        {items.map((m, i) => (
-          <Reveal key={m.href} delay={i * 0.06}>
-            <Link
-              href={m.href}
-              className="group flex h-full flex-col gap-4 border-b border-border p-8 transition-colors hover:bg-ink-800 lg:border-b-0 lg:border-r lg:p-10 lg:last:border-r-0"
-            >
-              <h3 className="display text-4xl transition-colors group-hover:text-brand">
-                {m.name}
-              </h3>
-              <p className="text-balance leading-relaxed text-muted-foreground">
-                {m.tagline}
-              </p>
-              <span className="mt-auto inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground transition-colors group-hover:text-brand">
-                Explore
-                <span className="transition-transform group-hover:translate-x-1">
-                  →
+        <div className={cn("mt-8 grid border border-border", cols)}>
+          {items.map((m, i) => (
+            <Reveal key={m.href} delay={i * 0.06}>
+              <Link
+                href={m.href}
+                className="group flex h-full flex-col gap-4 border-b border-border p-8 transition-colors hover:bg-ink-800 last:border-b-0 sm:border-b-0 sm:[&:not(:last-child)]:border-r sm:border-border lg:p-10"
+              >
+                <h3 className="display text-4xl transition-colors group-hover:text-brand">
+                  {m.name}
+                </h3>
+                <p className="text-balance leading-relaxed text-muted-foreground">
+                  {m.tagline}
+                </p>
+                <span className="mt-auto inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground transition-colors group-hover:text-brand">
+                  Explore
+                  <span className="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
                 </span>
-              </span>
-            </Link>
-          </Reveal>
-        ))}
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

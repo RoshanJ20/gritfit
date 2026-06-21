@@ -5,9 +5,9 @@
  * (src/components/Header.js) WORD FOR WORD — only the route paths are updated to
  * this app's cleaner URLs. Do not reword these without confirming.
  *
- *   Left   : Strength Club (About Strength Club / Offerings)
- *            RUSH (About RUSH / Offerings)
- *            Essential Recovery (About Recovery / Offerings)
+ *   Left   : Strength Club  → /strength-club (single combined page, no dropdown)
+ *            RUSH           → /rush          (single combined page, no dropdown)
+ *            Essential Recovery → /recovery  (single combined page, no dropdown)
  *   Right  : Trainings (Offerings / Meet the coaches / Testimonials)
  *            Amenities (About Amenities / Offerings)
  *            Join Club (CTA — see primaryCta)
@@ -30,28 +30,19 @@ export const navGroups: NavGroup[] = [
     label: "Strength Club",
     href: "/strength-club",
     side: "left",
-    links: [
-      { label: "Offerings", href: "/strength-club" },
-      { label: "About Strength Club", href: "/strength-club/about" },
-    ],
+    links: [],
   },
   {
     label: "RUSH",
     href: "/rush",
     side: "left",
-    links: [
-      { label: "Offerings", href: "/rush" },
-      { label: "About RUSH", href: "/rush/about" },
-    ],
+    links: [],
   },
   {
     label: "Essential Recovery",
     href: "/recovery",
     side: "left",
-    links: [
-      { label: "Offerings", href: "/recovery" },
-      { label: "About Recovery", href: "/recovery/about" },
-    ],
+    links: [],
   },
   {
     label: "Trainings",

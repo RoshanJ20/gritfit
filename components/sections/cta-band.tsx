@@ -1,23 +1,27 @@
 import Link from "next/link";
 
+import { cn } from "@/lib/utils";
 import { primaryCta, secondaryCta } from "@/content/nav";
 import { Reveal } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 
 /**
  * Closing call-to-action band reused at the bottom of interior pages.
+ * `className` can override the default vertical padding on shorter pages.
  */
 export function CtaBand({
   eyebrow = "Your first step starts here",
   heading = "Show up. Trust the process. Do the work.",
   body = "Every first-timer begins with a complimentary assessment. No pressure. No expectations. Just a clear starting line.",
+  className,
 }: {
   eyebrow?: string;
   heading?: string;
   body?: string;
+  className?: string;
 }) {
   return (
-    <section className="container-grit py-28 text-center lg:py-40">
+    <section className={cn("container-grit py-28 text-center lg:py-40", className)}>
       <Reveal>
         <p className="eyebrow justify-center">{eyebrow}</p>
       </Reveal>

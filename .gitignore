@@ -49,3 +49,13 @@ next-env.d.ts
 # playwright mcp / verification artifacts
 .playwright-mcp/
 faq-tabs*.png
+
+# media asset scripts / lists
+build_media_list.py
+build_media_list_simple.py
+Grit Fit - Media Asset Collection List.xlsx
+Grit Fit - Media Asset List (Simple).xlsx
+
+
+
+SEO.md

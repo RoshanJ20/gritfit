@@ -19,12 +19,18 @@ const offerings = recovery.offerings.map(({ name, href, tagline }) => ({
   tagline,
 }));
 
+const firstTimers = [
+  { title: "What to wear", items: recovery.firstTimers.wear },
+  { title: "What to bring", items: recovery.firstTimers.bring },
+];
+
 export default function RecoveryPage() {
   return (
     <>
       <PageHero
         eyebrow={recovery.eyebrow}
         title={recovery.signature}
+        lead={[recovery.contrast.lines[1]]}
         mediaLabel="The Recovery Zone"
       />
 
@@ -93,6 +99,44 @@ export default function RecoveryPage() {
                 {recovery.firstSession.closer}
               </p>
             </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Before your first session */}
+      <section className="border-t border-border">
+        <div className="container-grit py-24 lg:py-32">
+          <Reveal>
+            <p className="eyebrow">Before your first session</p>
+            <h2 className="display mt-4 text-display-2">Show up as you are.</h2>
+          </Reveal>
+
+          <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
+            {firstTimers.map((col, c) => (
+              <div key={col.title} className="bg-ink-900 p-8 lg:p-10">
+                <Reveal delay={c * 0.06}>
+                  <p className="eyebrow">{col.title}</p>
+                </Reveal>
+                <ul className="mt-6 flex flex-col">
+                  {col.items.map((item, i) => (
+                    <Reveal key={i} delay={c * 0.06 + i * 0.04} as="li">
+                      <span className="flex items-center gap-4 border-b border-border py-3.5 text-foreground last:border-b-0">
+                        <span className="size-1.5 shrink-0 bg-brand" aria-hidden />
+                        {item}
+                      </span>
+                    </Reveal>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 max-w-3xl space-y-4">
+            {recovery.firstTimers.doText.map((line, i) => (
+              <Reveal key={i} delay={i * 0.06}>
+                <p className="leading-relaxed text-muted-foreground">{line}</p>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>

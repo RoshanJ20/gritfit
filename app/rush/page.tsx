@@ -50,30 +50,30 @@ export default function RushPage() {
               Three models. One system.
             </h2>
           </Reveal>
-        </div>
 
-        <div className="grid border-t border-border lg:grid-cols-3">
-          {rush.models.map((m, i) => (
-            <Reveal key={m.key} delay={i * 0.08}>
-              <Link
-                href={m.href}
-                className="group flex h-full flex-col gap-6 border-b border-border p-8 transition-colors hover:bg-ink-800 lg:border-b-0 lg:border-r lg:p-10 lg:last:border-r-0"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="eyebrow">{m.count} formats</span>
-                  <span className="text-brand opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100">
-                    →
-                  </span>
-                </div>
-                <h3 className="display text-5xl transition-colors group-hover:text-brand">
-                  {m.name}
-                </h3>
-                <p className="mt-auto text-balance leading-relaxed text-muted-foreground">
-                  {m.tagline}
-                </p>
-              </Link>
-            </Reveal>
-          ))}
+          <div className="mt-8 grid border border-border lg:grid-cols-3">
+            {rush.models.map((m, i) => (
+              <Reveal key={m.key} delay={i * 0.08}>
+                <Link
+                  href={m.href}
+                  className="group flex h-full flex-col gap-6 border-b border-border p-8 transition-colors hover:bg-ink-800 last:border-b-0 lg:border-b-0 lg:[&:not(:last-child)]:border-r lg:border-border lg:p-10"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="eyebrow">{m.count} formats</span>
+                    <span className="text-brand opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100">
+                      →
+                    </span>
+                  </div>
+                  <h3 className="display text-5xl transition-colors group-hover:text-brand">
+                    {m.name}
+                  </h3>
+                  <p className="mt-auto text-balance leading-relaxed text-muted-foreground">
+                    {m.tagline}
+                  </p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
