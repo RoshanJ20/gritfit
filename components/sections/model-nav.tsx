@@ -1,7 +1,6 @@
-import Link from "next/link";
-
 import { rush } from "@/content/rush";
 import { Reveal } from "@/components/motion/reveal";
+import { SpotlightLink } from "@/components/reactbits/spotlight-link";
 
 /**
  * Bottom-of-page nav to the other two RUSH models. Pass the current model key
@@ -19,8 +18,9 @@ export function ModelNav({ current }: { current: "peak" | "flow" | "skilllab" })
       <div className="grid border-t border-border sm:grid-cols-2">
         {others.map((m, i) => (
           <Reveal key={m.key} delay={i * 0.08}>
-            <Link
+            <SpotlightLink
               href={m.href}
+              spotlightColor="rgba(174, 217, 35, 0.14)"
               className="group flex h-full flex-col gap-4 border-b border-border p-8 transition-colors hover:bg-ink-800 sm:border-b-0 sm:p-10 sm:[&:first-child]:border-r sm:[&:first-child]:border-border"
             >
               <span className="eyebrow">{m.count} formats</span>
@@ -36,7 +36,7 @@ export function ModelNav({ current }: { current: "peak" | "flow" | "skilllab" })
                   →
                 </span>
               </span>
-            </Link>
+            </SpotlightLink>
           </Reveal>
         ))}
       </div>

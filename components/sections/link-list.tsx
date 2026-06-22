@@ -33,7 +33,15 @@ export function LinkList({
                 href={item.href}
                 className="group flex flex-col gap-2 border-t border-border py-7 transition-colors last:border-b hover:text-brand sm:flex-row sm:items-center sm:justify-between sm:gap-8"
               >
-                <span className="display text-3xl sm:text-4xl">{item.name}</span>
+                <span className="relative inline-block w-fit transition-transform duration-500 ease-out group-hover:translate-x-1.5">
+                  <span className="display text-3xl sm:text-4xl">
+                    {item.name}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-brand transition-transform duration-500 ease-out group-hover:scale-x-100"
+                  />
+                </span>
                 {item.note && (
                   <span className="max-w-xl text-balance text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground">
                     {item.note}

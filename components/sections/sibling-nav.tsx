@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/reveal";
+import { SpotlightLink } from "@/components/reactbits/spotlight-link";
 
 export type SiblingItem = {
   name: string;
@@ -29,7 +29,7 @@ export function SiblingNav({
         <div className={cn("mt-8 grid border border-border", cols)}>
           {items.map((m, i) => (
             <Reveal key={m.href} delay={i * 0.06}>
-              <Link
+              <SpotlightLink
                 href={m.href}
                 className="group flex h-full flex-col gap-4 border-b border-border p-8 transition-colors hover:bg-ink-800 last:border-b-0 sm:border-b-0 sm:[&:not(:last-child)]:border-r sm:border-border lg:p-10"
               >
@@ -45,7 +45,7 @@ export function SiblingNav({
                     →
                   </span>
                 </span>
-              </Link>
+              </SpotlightLink>
             </Reveal>
           ))}
         </div>

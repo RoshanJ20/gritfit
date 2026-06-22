@@ -1,4 +1,5 @@
 export { SpotlightCard } from "./spotlight-card";
+export { SpotlightLink } from "./spotlight-link";
 export { TiltedCard } from "./tilted-card";
 export { CountUp } from "./count-up";
 export { ScrollReveal } from "./scroll-reveal";
