@@ -6,6 +6,9 @@ import { PageHero } from "@/components/sections/page-hero";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Reveal } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
+import { StepProgress } from "@/components/reactbits/step-progress";
+import { AnimatedList } from "@/components/reactbits/animated-list";
+import { ShinyText } from "@/components/reactbits/shiny-text";
 
 export const metadata: Metadata = {
   title: "Strength Club — A coached training floor",
@@ -39,7 +42,7 @@ export default function StrengthClubPage() {
           ))}
           <Reveal delay={0.2}>
             <p className="display pt-6 text-balance text-display-2 text-foreground">
-              {about.creed}
+              <ShinyText speed={5}>{about.creed}</ShinyText>
             </p>
           </Reveal>
         </div>
@@ -55,19 +58,7 @@ export default function StrengthClubPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-14 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
-            {strength.howItWorks.map((s, i) => (
-              <Reveal key={s.step} delay={i * 0.08}>
-                <div className="flex h-full flex-col gap-4 bg-ink-900 p-8 lg:p-10">
-                  <span className="display text-3xl text-brand">{s.step}</span>
-                  <h3 className="display text-2xl">{s.title}</h3>
-                  <p className="leading-relaxed text-muted-foreground">
-                    {s.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <StepProgress steps={strength.howItWorks} className="mt-14" />
 
           <div className="mx-auto mt-16 max-w-3xl space-y-3 text-center">
             {strength.closer.map((line, i) => (
@@ -97,19 +88,7 @@ export default function StrengthClubPage() {
               <Reveal>
                 <p className="eyebrow">What you get</p>
               </Reveal>
-              <ul className="mt-6 flex flex-col">
-                {about.get.map((item, i) => (
-                  <Reveal key={i} delay={i * 0.04} as="li">
-                    <span className="flex items-start gap-4 border-b border-border py-3.5 leading-relaxed text-foreground last:border-b-0">
-                      <span
-                        className="mt-2 size-1.5 shrink-0 bg-brand"
-                        aria-hidden
-                      />
-                      {item}
-                    </span>
-                  </Reveal>
-                ))}
-              </ul>
+              <AnimatedList className="mt-6" items={about.get} />
             </div>
 
             {/* What we don't do */}
@@ -117,19 +96,7 @@ export default function StrengthClubPage() {
               <Reveal delay={0.06}>
                 <p className="eyebrow">What we don’t do</p>
               </Reveal>
-              <ul className="mt-6 flex flex-col">
-                {about.dont.map((item, i) => (
-                  <Reveal key={i} delay={0.06 + i * 0.04} as="li">
-                    <span className="flex items-start gap-4 border-b border-border py-3.5 leading-relaxed text-muted-foreground last:border-b-0">
-                      <span
-                        className="mt-2 h-px w-3 shrink-0 bg-muted-foreground/60"
-                        aria-hidden
-                      />
-                      {item}
-                    </span>
-                  </Reveal>
-                ))}
-              </ul>
+              <AnimatedList className="mt-6" items={about.dont} muted />
             </div>
           </div>
         </div>
