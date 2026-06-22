@@ -5,6 +5,9 @@ import { rush } from "@/content/rush";
 import { PageHero } from "@/components/sections/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { SquaresBackground } from "@/components/reactbits/squares-bg";
+import { ScrambleText } from "@/components/reactbits/scramble-text";
+import { CountUp } from "@/components/reactbits/count-up";
 
 export const metadata: Metadata = {
   title: "RUSH — Move with Meaning",
@@ -43,7 +46,8 @@ export default function RushPage() {
       </section>
 
       {/* Models */}
-      <section className="border-t border-border">
+      <section className="relative isolate border-t border-border">
+        <SquaresBackground />
         <div className="container-grit py-16 lg:py-20">
           <Reveal>
             <p className="eyebrow">The Classes</p>
@@ -60,13 +64,15 @@ export default function RushPage() {
                   className="group flex h-full flex-col gap-6 border-b border-border p-8 transition-colors hover:bg-ink-800 last:border-b-0 lg:border-b-0 lg:[&:not(:last-child)]:border-r lg:border-border lg:p-10"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="eyebrow">{m.count} formats</span>
+                    <span className="eyebrow">
+                      <CountUp to={m.count} suffix=" formats" />
+                    </span>
                     <span className="text-brand opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100">
                       →
                     </span>
                   </div>
                   <h3 className="display text-5xl transition-colors group-hover:text-brand">
-                    {m.name}
+                    <ScrambleText text={m.name} />
                   </h3>
                   <p className="mt-auto text-balance leading-relaxed text-muted-foreground">
                     {m.tagline}
