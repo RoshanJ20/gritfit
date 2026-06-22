@@ -35,8 +35,8 @@ export default function CoachesPage() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: team.placeholderCount }).map((_, i) => (
             <Reveal key={i} delay={(i % 3) * 0.06}>
-              <div className="flex flex-col gap-4">
-                <MediaPlaceholder label="Coach" ratio="portrait" />
+              <div className="group flex flex-col gap-4">
+                <MediaPlaceholder label="Coach" ratio="portrait" interactive />
                 <div className="flex flex-col gap-2">
                   <Placeholder label="Name">Coach name</Placeholder>
                   <Placeholder label="Title">Title / discipline</Placeholder>

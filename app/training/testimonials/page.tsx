@@ -5,6 +5,7 @@ import { PageHero } from "@/components/sections/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
 import { Placeholder } from "@/components/placeholder";
+import { Carousel } from "@/components/reactbits/carousel";
 
 export const metadata: Metadata = {
   title: "Testimonials — Client Voices",
@@ -29,23 +30,32 @@ export default function TestimonialsPage() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {Array.from({ length: testimonials.placeholderCount }).map((_, i) => (
-            <Reveal key={i} delay={(i % 2) * 0.06}>
-              <figure className="flex h-full flex-col justify-between gap-8 border border-border p-8 lg:p-10">
-                <blockquote className="text-lg leading-relaxed text-muted-foreground">
+        <Reveal className="mt-12">
+          <Carousel>
+            {Array.from({ length: testimonials.placeholderCount }).map((_, i) => (
+              <figure
+                key={i}
+                className="relative flex h-full min-h-[17rem] flex-col justify-between gap-8 overflow-hidden border border-border bg-ink-900 p-8 transition-colors hover:border-brand/40 lg:p-10"
+              >
+                <span
+                  aria-hidden
+                  className="display pointer-events-none absolute -right-1 -top-8 select-none text-[8rem] leading-none text-brand/10"
+                >
+                  &rdquo;
+                </span>
+                <blockquote className="relative text-lg leading-relaxed text-muted-foreground">
                   <Placeholder label="Review">
                     Actual review — coming soon
                   </Placeholder>
                 </blockquote>
                 <figcaption className="flex items-center gap-3">
-                  <span className="size-10 shrink-0 border border-border bg-ink-800" />
+                  <span className="size-10 shrink-0 rounded-full border border-border bg-ink-800" />
                   <Placeholder label="Client">Client name</Placeholder>
                 </figcaption>
               </figure>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </Carousel>
+        </Reveal>
       </section>
 
       <CtaBand />
