@@ -3,6 +3,8 @@ import { Callout } from "@/components/sections/callout";
 import { SiblingNav, type SiblingItem } from "@/components/sections/sibling-nav";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { MediaPlaceholder } from "@/components/media-placeholder";
+import { ScrollReveal } from "@/components/reactbits/scroll-reveal";
 
 type DetailData = {
   name: string;
@@ -40,14 +42,24 @@ export function RecoveryDetail({
               <p className="eyebrow">{data.tagline}</p>
             </Reveal>
             {data.paras.map((p, i) => (
-              <Reveal key={i} delay={i * 0.06}>
-                <p className="text-balance text-xl font-light leading-[1.6] text-foreground">
-                  {p}
-                </p>
-              </Reveal>
+              <p
+                key={i}
+                className="text-balance text-xl font-light leading-[1.6] text-foreground"
+              >
+                <ScrollReveal>{p}</ScrollReveal>
+              </p>
             ))}
           </div>
-          <Callout label={data.protocolLabel}>{data.protocol}</Callout>
+          <div className="space-y-8">
+            <Callout glow label={data.protocolLabel}>
+              {data.protocol}
+            </Callout>
+            <MediaPlaceholder
+              label={data.name}
+              ratio="portrait"
+              interactive
+            />
+          </div>
         </div>
       </section>
 

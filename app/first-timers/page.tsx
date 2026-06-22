@@ -4,6 +4,7 @@ import { firstTimers } from "@/content/first-timers";
 import { PageHero } from "@/components/sections/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { ScrollReveal } from "@/components/reactbits/scroll-reveal";
 
 export const metadata: Metadata = {
   title: "First Timers — Your first step starts here",
@@ -25,11 +26,12 @@ export default function FirstTimersPage() {
       <section className="container-grit py-24 lg:py-36">
         <div className="mx-auto max-w-3xl space-y-6">
           {firstTimers.intro.map((line, i) => (
-            <Reveal key={i} delay={i * 0.06}>
-              <p className="text-balance text-2xl font-light leading-[1.5] text-foreground sm:text-3xl">
-                {line}
-              </p>
-            </Reveal>
+            <p
+              key={i}
+              className="text-balance text-2xl font-light leading-[1.5] text-foreground sm:text-3xl"
+            >
+              <ScrollReveal>{line}</ScrollReveal>
+            </p>
           ))}
         </div>
       </section>
@@ -94,7 +96,7 @@ export default function FirstTimersPage() {
       {/* Your first … session — alternating editorial blocks */}
       <section className="border-t border-border">
         <div className="container-grit divide-y divide-border">
-          {firstTimers.firstSessions.map((block, i) => (
+          {firstTimers.firstSessions.map((block) => (
             <div
               key={block.eyebrow}
               className="grid gap-8 py-20 lg:grid-cols-[0.5fr_1fr] lg:gap-16 lg:py-28"
@@ -209,11 +211,12 @@ export default function FirstTimersPage() {
             </Reveal>
             <div className="mt-8 space-y-4">
               {firstTimers.whatHappensNext.lines.map((line, i) => (
-                <Reveal key={i} delay={i * 0.05}>
-                  <p className="text-balance text-xl font-light leading-[1.5] text-foreground sm:text-2xl">
-                    {line}
-                  </p>
-                </Reveal>
+                <p
+                  key={i}
+                  className="text-balance text-xl font-light leading-[1.5] text-foreground sm:text-2xl"
+                >
+                  <ScrollReveal>{line}</ScrollReveal>
+                </p>
               ))}
             </div>
           </div>

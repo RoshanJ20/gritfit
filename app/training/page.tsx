@@ -8,6 +8,8 @@ import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Callout } from "@/components/sections/callout";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { CountUp } from "@/components/reactbits/count-up";
+import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 
 export const metadata: Metadata = {
   title: "Training — Coaching makes champions",
@@ -58,9 +60,10 @@ export default function TrainingPage() {
         <div className="grid border-t border-border md:grid-cols-2">
           {training.offerings.map((o, i) => (
             <Reveal key={o.name} delay={i * 0.08}>
-              <div className="flex h-full flex-col gap-4 border-b border-border p-8 md:border-b-0 md:p-10 md:[&:first-child]:border-r md:[&:first-child]:border-border">
+              <div className="group relative isolate flex h-full flex-col gap-4 overflow-hidden border-b border-border p-8 md:border-b-0 md:p-10 md:[&:first-child]:border-r md:[&:first-child]:border-border">
+                <SpotlightOverlay className="-z-10" />
                 <span className="display text-2xl text-brand">
-                  {String(i + 1).padStart(2, "0")}
+                  <CountUp to={i + 1} pad={2} />
                 </span>
                 <h3 className="display text-3xl">{o.name}</h3>
                 <p className="leading-relaxed text-muted-foreground">{o.desc}</p>
@@ -79,7 +82,9 @@ export default function TrainingPage() {
 
       {/* Membership note */}
       <section className="container-grit py-12 lg:py-16">
-        <Callout label="Please note">{training.membershipNote}</Callout>
+        <Callout glow label="Please note">
+          {training.membershipNote}
+        </Callout>
       </section>
 
       {/* Programs */}

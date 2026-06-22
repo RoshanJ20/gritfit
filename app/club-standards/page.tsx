@@ -4,6 +4,7 @@ import { clubStandards } from "@/content/club-standards";
 import { PageHero } from "@/components/sections/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 
 export const metadata: Metadata = {
   title: "Club Standards & Policies",
@@ -25,7 +26,8 @@ export default function ClubStandardsPage() {
           <div className="grid gap-px overflow-hidden border border-border bg-border lg:grid-cols-2">
             {clubStandards.sections.map((section, s) => (
               <Reveal key={section.title} delay={s * 0.06}>
-                <div className="flex h-full flex-col bg-ink-900 p-8 lg:p-10">
+                <div className="relative isolate flex h-full flex-col overflow-hidden bg-ink-900 p-8 lg:p-10">
+                  <SpotlightOverlay className="-z-10" />
                   <p className="eyebrow">{section.title}</p>
                   <ul className="mt-6 flex flex-col">
                     {section.items.map((item, i) => (

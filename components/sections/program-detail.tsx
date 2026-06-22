@@ -2,7 +2,7 @@ import { programs, type Program } from "@/content/programs";
 import { PageHero } from "@/components/sections/page-hero";
 import { LinkList } from "@/components/sections/link-list";
 import { CtaBand } from "@/components/sections/cta-band";
-import { Reveal } from "@/components/motion/reveal";
+import { ScrollReveal } from "@/components/reactbits/scroll-reveal";
 
 /**
  * Shared layout for a single training program: hero, the program statement, and
@@ -25,11 +25,12 @@ export function ProgramDetail({ program }: { program: Program }) {
       <section className="container-grit py-24 lg:py-36">
         <div className="mx-auto max-w-3xl space-y-6">
           {program.paras.map((p, i) => (
-            <Reveal key={i} delay={i * 0.06}>
-              <p className="text-balance text-xl font-light leading-[1.6] text-foreground">
-                {p}
-              </p>
-            </Reveal>
+            <p
+              key={i}
+              className="text-balance text-xl font-light leading-[1.6] text-foreground"
+            >
+              <ScrollReveal>{p}</ScrollReveal>
+            </p>
           ))}
         </div>
       </section>
