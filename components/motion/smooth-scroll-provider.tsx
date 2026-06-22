@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useReducedMotion } from "motion/react";
+import { MotionConfig, useReducedMotion } from "motion/react";
 
 let registered = false;
 
@@ -54,5 +54,10 @@ export function SmoothScrollProvider({
     ScrollTrigger.refresh();
   }, [pathname]);
 
-  return <>{children}</>;
+  // `reducedMotion="user"` makes every motion component honor the OS
+  // preference: transforms/movement are dropped while opacity still resolves,
+  // so scroll reveals degrade to a clean fade-free static state. Primitives
+  // that need to fully no-op (canvas grid, drag carousel, tilt) check
+  // useReducedMotion themselves in addition to this.
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }
