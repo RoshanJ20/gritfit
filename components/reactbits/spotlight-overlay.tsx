@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 /**
  * A drop-in cursor spotlight for an existing surface you don't want to
@@ -13,8 +14,10 @@ import { useReducedMotion } from "motion/react";
  */
 export function SpotlightOverlay({
   color = "rgba(174, 217, 35, 0.12)",
+  className,
 }: {
   color?: string;
+  className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -47,7 +50,10 @@ export function SpotlightOverlay({
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300"
+      className={cn(
+        "pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300",
+        className,
+      )}
       style={{
         background: `radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), ${color} 0%, transparent 60%)`,
       }}
