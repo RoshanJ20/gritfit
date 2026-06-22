@@ -6,6 +6,9 @@ import { SiblingNav } from "@/components/sections/sibling-nav";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { MediaPlaceholder } from "@/components/media-placeholder";
+import { ContrastHeading } from "@/components/recovery/contrast-heading";
+import { AnimatedList } from "@/components/reactbits/animated-list";
 
 export const metadata: Metadata = {
   title: "Essential Recovery — The Recovery Zone",
@@ -41,7 +44,7 @@ export default function RecoveryPage() {
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <Reveal>
             <p className="eyebrow">{recovery.contrast.eyebrow}</p>
-            <p className="display mt-4 text-display-2">Heat. Cold. Repeat.</p>
+            <ContrastHeading className="mt-4 text-display-2" />
           </Reveal>
           <div className="flex flex-col justify-center gap-6">
             {recovery.contrast.lines.slice(1).map((line, i) => (
@@ -53,6 +56,15 @@ export default function RecoveryPage() {
             ))}
           </div>
         </div>
+
+        <Reveal delay={0.05} className="mt-16">
+          <MediaPlaceholder
+            label="Contrast Therapy"
+            kind="image"
+            ratio="wide"
+            interactive
+          />
+        </Reveal>
 
         <Reveal delay={0.1}>
           <p className="display mx-auto mt-20 max-w-[20ch] text-balance text-center text-display-2 text-foreground">
@@ -119,16 +131,7 @@ export default function RecoveryPage() {
                 <Reveal delay={c * 0.06}>
                   <p className="eyebrow">{col.title}</p>
                 </Reveal>
-                <ul className="mt-6 flex flex-col">
-                  {col.items.map((item, i) => (
-                    <Reveal key={i} delay={c * 0.06 + i * 0.04} as="li">
-                      <span className="flex items-center gap-4 border-b border-border py-3.5 text-foreground last:border-b-0">
-                        <span className="size-1.5 shrink-0 bg-brand" aria-hidden />
-                        {item}
-                      </span>
-                    </Reveal>
-                  ))}
-                </ul>
+                <AnimatedList className="mt-6" items={col.items} />
               </div>
             ))}
           </div>
