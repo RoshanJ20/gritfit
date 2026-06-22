@@ -19,8 +19,9 @@ export default function RushPage() {
         eyebrow={rush.eyebrow}
         title={rush.signature}
         lead={[rush.writeup[0]]}
-        mediaLabel="RUSH"
-        mediaKind="video"
+        backgroundImage="/images/hero/rush.jpg"
+        textPosition="bottom-left"
+        imagePosition="center 30%"
       />
 
       {/* Writeup statement */}

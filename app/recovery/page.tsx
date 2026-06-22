@@ -31,7 +31,9 @@ export default function RecoveryPage() {
         eyebrow={recovery.eyebrow}
         title={recovery.signature}
         lead={[recovery.contrast.lines[1]]}
-        mediaLabel="The Recovery Zone"
+        backgroundImage="/images/hero/recovery.jpg"
+        textPosition="bottom-left"
+        imagePosition="center 40%"
       />
 
       {/* Contrast therapy */}

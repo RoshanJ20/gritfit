@@ -22,8 +22,9 @@ export default function StrengthClubPage() {
         eyebrow={strength.eyebrow}
         title={strength.heading}
         lead={[about.lead]}
-        mediaLabel="Strength Club"
-        mediaKind="video"
+        backgroundImage="/images/hero/strength.jpg"
+        textPosition="left-center"
+        imagePosition="center 22%"
       />
 
       {/* Concise about — The Floor statement + creed */}
