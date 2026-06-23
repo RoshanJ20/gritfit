@@ -4,12 +4,22 @@ import { training } from "@/content/training";
 import { programs } from "@/content/programs";
 import { PageHero } from "@/components/sections/page-hero";
 import { LinkList } from "@/components/sections/link-list";
+import { ProgramCards } from "@/components/sections/program-cards";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Callout } from "@/components/sections/callout";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { ParallaxMedia } from "@/components/motion/parallax-media";
+import { MediaPlaceholder } from "@/components/media-placeholder";
 import { CountUp } from "@/components/reactbits/count-up";
 import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
+
+// Real photography for each offering (carried over from the former
+// /training/offerings page so no imagery is lost in the merge).
+const offeringImages: Record<string, string> = {
+  "1-on-1 Coaching": "/images/training/one-on-one.jpg",
+  "Semi-Private Training": "/images/training/semi-private.jpg",
+};
 
 export const metadata: Metadata = {
   title: "Training — Coaching makes champions",
@@ -47,6 +57,21 @@ export default function TrainingPage() {
         </div>
       </section>
 
+      {/* Full-width coaching banner */}
+      <section className="container-grit pb-8 lg:pb-12">
+        <Reveal>
+          <ParallaxMedia amount={28} className="rounded-md">
+            <MediaPlaceholder
+              label="Coaching"
+              kind="image"
+              ratio="wide"
+              src="/images/training/offerings-hero.jpg"
+              className="rounded-none border-0"
+            />
+          </ParallaxMedia>
+        </Reveal>
+      </section>
+
       {/* How we coach — offerings */}
       <section className="border-t border-border">
         <div className="container-grit py-16 lg:py-20">
@@ -71,6 +96,24 @@ export default function TrainingPage() {
             </Reveal>
           ))}
         </div>
+        {/* Offering imagery */}
+        <div className="grid border-t border-border md:grid-cols-2">
+          {training.offerings.map((o, i) => (
+            <Reveal key={o.name} delay={i * 0.08}>
+              <div className="border-b border-border p-6 md:border-b-0 md:p-8 md:[&:first-child]:border-r md:[&:first-child]:border-border">
+                <ParallaxMedia amount={28} className="aspect-[4/3] rounded-md">
+                  <MediaPlaceholder
+                    label={o.name}
+                    kind="image"
+                    ratio="auto"
+                    src={offeringImages[o.name]}
+                    className="h-full rounded-none border-0"
+                  />
+                </ParallaxMedia>
+              </div>
+            </Reveal>
+          ))}
+        </div>
         <div className="container-grit py-8">
           <Reveal>
             <p className="text-balance text-lg text-muted-foreground">
@@ -88,7 +131,7 @@ export default function TrainingPage() {
       </section>
 
       {/* Programs */}
-      <LinkList eyebrow="Programs" items={programLinks} />
+      <ProgramCards eyebrow="Programs" items={programLinks} />
 
       {/* PT FAQ */}
       <section className="border-t border-border">

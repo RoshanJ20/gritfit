@@ -4,6 +4,8 @@ import { amenities } from "@/content/amenities";
 import { PageHero } from "@/components/sections/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { ParallaxMedia } from "@/components/motion/parallax-media";
+import { MediaPlaceholder } from "@/components/media-placeholder";
 import { CountUp } from "@/components/reactbits/count-up";
 import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 
@@ -45,6 +47,21 @@ export default function AmenitiesPage() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      {/* Full-width amenities banner */}
+      <section className="container-grit pb-20 lg:pb-28">
+        <Reveal>
+          <ParallaxMedia amount={28} className="rounded-md">
+            <MediaPlaceholder
+              label="Amenities"
+              kind="image"
+              ratio="wide"
+              src="/images/amenities-about.jpg"
+              className="rounded-none border-0"
+            />
+          </ParallaxMedia>
+        </Reveal>
       </section>
 
       <CtaBand />

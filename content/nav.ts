@@ -8,8 +8,8 @@
  *   Left   : Strength Club  → /strength-club (single combined page, no dropdown)
  *            RUSH           → /rush          (single combined page, no dropdown)
  *            Essential Recovery → /recovery  (single combined page, no dropdown)
- *   Right  : Trainings (Offerings / Meet the coaches / Testimonials)
- *            Amenities (About Amenities / Offerings)
+ *   Right  : Trainings (Meet the coaches / Testimonials)
+ *            Amenities (single combined page, no dropdown)
  *            Join Club (CTA — see primaryCta)
  */
 
@@ -49,7 +49,6 @@ export const navGroups: NavGroup[] = [
     href: "/training",
     side: "right",
     links: [
-      { label: "Offerings", href: "/training/offerings" },
       { label: "Meet the coaches", href: "/training/coaches" },
       { label: "Testimonials", href: "/training/testimonials" },
     ],
@@ -58,10 +57,7 @@ export const navGroups: NavGroup[] = [
     label: "Amenities",
     href: "/amenities",
     side: "right",
-    links: [
-      { label: "Offerings", href: "/amenities" },
-      { label: "About Amenities", href: "/amenities/about" },
-    ],
+    links: [],
   },
 ];
 
