@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ImageIcon, Film } from "lucide-react";
 import { TiltedCard } from "@/components/reactbits/tilted-card";
+import { getImageTint } from "@/lib/image-tint";
 
 type Ratio = "video" | "square" | "portrait" | "wide" | "auto";
 
@@ -31,7 +32,7 @@ export function MediaPlaceholder({
   src,
   imagePosition = "center",
   tint = true,
-  tintStrength = 0.55,
+  tintStrength,
   className,
 }: {
   label?: string;
@@ -44,11 +45,15 @@ export function MediaPlaceholder({
   imagePosition?: string;
   /** Apply the brand dark/lime duotone grade over the image (default true). */
   tint?: boolean;
-  /** 0–1 strength of the lime multiply layer. */
+  /**
+   * 0–1 strength of the lime multiply layer. Omit to use the per-image value
+   * from the tint map (calibrated to how far each photo is from the theme).
+   */
   tintStrength?: number;
   className?: string;
 }) {
   const Icon = kind === "video" ? Film : ImageIcon;
+  const tintOpacity = tintStrength ?? getImageTint(src);
   const surface = (
     <div
       data-media-placeholder
@@ -80,7 +85,7 @@ export function MediaPlaceholder({
               {/* brand-green grade — multiply over grayscale → lime duotone */}
               <div
                 className="pointer-events-none absolute inset-0 bg-brand mix-blend-multiply"
-                style={{ opacity: tintStrength }}
+                style={{ opacity: tintOpacity }}
                 aria-hidden
               />
               {/* deeper green in the shadows for richness */}
