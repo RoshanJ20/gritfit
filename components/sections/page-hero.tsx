@@ -21,6 +21,8 @@ export function PageHero({
   lead,
   mediaLabel,
   mediaKind = "image",
+  mediaSrc,
+  mediaImagePosition = "center",
   backgroundImage,
   textPosition = "left-center",
   imagePosition = "center",
@@ -30,6 +32,10 @@ export function PageHero({
   lead?: string[];
   mediaLabel?: string;
   mediaKind?: "image" | "video";
+  /** Real image for the side media block (otherwise a placeholder shows). */
+  mediaSrc?: string;
+  /** object-position for the side media image. */
+  mediaImagePosition?: string;
   /** When set, renders the full-bleed background-image variant. */
   backgroundImage?: string;
   /** Placement of the copy over the image. */
@@ -82,6 +88,8 @@ export function PageHero({
                 label={mediaLabel}
                 kind={mediaKind}
                 ratio="auto"
+                src={mediaSrc}
+                imagePosition={mediaImagePosition}
                 className="h-full rounded-none border-0"
               />
             </ParallaxMedia>

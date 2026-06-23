@@ -32,6 +32,7 @@ export default function FaqPage() {
         eyebrow="FAQ"
         title="Everything you need to know"
         mediaLabel="The Club"
+        mediaSrc="/images/club-interior.jpg"
       />
 
       <section className="border-t border-border">

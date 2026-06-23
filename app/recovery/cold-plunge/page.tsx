@@ -14,5 +14,11 @@ const siblings = recovery.offerings
   .map(({ name, href, tagline }) => ({ name, href, tagline }));
 
 export default function ColdPlungePage() {
-  return <RecoveryDetail data={coldPlunge} siblings={siblings} />;
+  return (
+    <RecoveryDetail
+      data={coldPlunge}
+      siblings={siblings}
+      image="/images/recovery/cold-plunge.jpg"
+    />
+  );
 }

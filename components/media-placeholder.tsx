@@ -31,12 +31,18 @@ export function MediaPlaceholder({
   ratio = "video",
   kind = "image",
   interactive = false,
+  src,
+  imagePosition = "center",
   className,
 }: {
   label?: string;
   ratio?: Ratio;
   kind?: "image" | "video";
   interactive?: boolean;
+  /** When set, renders this image filling the slot instead of the placeholder. */
+  src?: string;
+  /** CSS object-position for the image (e.g. "center", "top", "50% 30%"). */
+  imagePosition?: string;
   className?: string;
 }) {
   const Icon = kind === "video" ? Film : ImageIcon;
@@ -49,28 +55,47 @@ export function MediaPlaceholder({
         className,
       )}
     >
-      {/* shimmer sweep */}
-      <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.04] to-transparent [animation:shimmer_2.8s_ease-in-out_infinite]" />
-      {/* hatch texture — drifts slightly on hover for the interactive variant */}
-      <div
-        className={cn(
-          "absolute inset-0 opacity-[0.05]",
-          interactive &&
-            "transition-transform duration-700 ease-out group-hover:scale-110",
-        )}
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(135deg, var(--brand) 0 1px, transparent 1px 14px)",
-        }}
-        aria-hidden
-      />
-      <div className="relative z-10 flex flex-col items-center gap-2 text-muted-foreground">
-        <Icon className="size-6 text-brand/70" />
-        <span className="text-[0.7rem] font-semibold uppercase tracking-[0.22em]">
-          {label}
-        </span>
-      </div>
-      <style>{`@keyframes shimmer{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}`}</style>
+      {src ? (
+        // Real asset — fills the same slot the placeholder occupied. A faint
+        // scale on hover (interactive only) keeps it feeling alive.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={label}
+          loading="lazy"
+          className={cn(
+            "absolute inset-0 h-full w-full object-cover",
+            interactive &&
+              "transition-transform duration-700 ease-out group-hover:scale-[1.04]",
+          )}
+          style={{ objectPosition: imagePosition }}
+        />
+      ) : (
+        <>
+          {/* shimmer sweep */}
+          <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.04] to-transparent [animation:shimmer_2.8s_ease-in-out_infinite]" />
+          {/* hatch texture — drifts slightly on hover for the interactive variant */}
+          <div
+            className={cn(
+              "absolute inset-0 opacity-[0.05]",
+              interactive &&
+                "transition-transform duration-700 ease-out group-hover:scale-110",
+            )}
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(135deg, var(--brand) 0 1px, transparent 1px 14px)",
+            }}
+            aria-hidden
+          />
+          <div className="relative z-10 flex flex-col items-center gap-2 text-muted-foreground">
+            <Icon className="size-6 text-brand/70" />
+            <span className="text-[0.7rem] font-semibold uppercase tracking-[0.22em]">
+              {label}
+            </span>
+          </div>
+          <style>{`@keyframes shimmer{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}`}</style>
+        </>
+      )}
     </div>
   );
 

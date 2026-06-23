@@ -14,5 +14,11 @@ const siblings = recovery.offerings
   .map(({ name, href, tagline }) => ({ name, href, tagline }));
 
 export default function SaunaPage() {
-  return <RecoveryDetail data={sauna} siblings={siblings} />;
+  return (
+    <RecoveryDetail
+      data={sauna}
+      siblings={siblings}
+      image="/images/recovery/sauna.jpg"
+    />
+  );
 }

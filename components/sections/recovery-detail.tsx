@@ -22,9 +22,14 @@ type DetailData = {
 export function RecoveryDetail({
   data,
   siblings,
+  image,
+  imagePosition = "center",
 }: {
   data: DetailData;
   siblings: SiblingItem[];
+  /** Real hero/section image for this modality. */
+  image?: string;
+  imagePosition?: string;
 }) {
   return (
     <>
@@ -33,6 +38,8 @@ export function RecoveryDetail({
         title={data.name}
         lead={[data.intro]}
         mediaLabel={data.name}
+        mediaSrc={image}
+        mediaImagePosition={imagePosition}
       />
 
       <section className="container-grit py-24 lg:py-36">
@@ -58,6 +65,8 @@ export function RecoveryDetail({
               label={data.name}
               ratio="portrait"
               interactive
+              src={image}
+              imagePosition={imagePosition}
             />
           </div>
         </div>

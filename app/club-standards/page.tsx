@@ -19,6 +19,7 @@ export default function ClubStandardsPage() {
         eyebrow="Club Standards"
         title="Standards & Policies"
         mediaLabel="The Club"
+        mediaSrc="/images/club-interior.jpg"
       />
 
       <section className="border-t border-border">

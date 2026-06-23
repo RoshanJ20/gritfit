@@ -4,6 +4,12 @@ import { LinkList } from "@/components/sections/link-list";
 import { CtaBand } from "@/components/sections/cta-band";
 import { ScrollReveal } from "@/components/reactbits/scroll-reveal";
 
+/** Real hero imagery per program (others fall back to the placeholder). */
+const programImages: Record<string, string> = {
+  "strong-start": "/images/programs/strong-start.jpg",
+  "strong-performance": "/images/programs/strong-performance.jpg",
+};
+
 /**
  * Shared layout for a single training program: hero, the program statement, and
  * a cross-link list of the other programs.
@@ -20,6 +26,7 @@ export function ProgramDetail({ program }: { program: Program }) {
         title={program.name}
         lead={[program.lead]}
         mediaLabel={program.name}
+        mediaSrc={programImages[program.slug]}
       />
 
       <section className="container-grit py-24 lg:py-36">

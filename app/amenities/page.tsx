@@ -20,6 +20,7 @@ export default function AmenitiesPage() {
         eyebrow={amenities.eyebrow}
         title={amenities.heading}
         mediaLabel="Amenities"
+        mediaSrc="/images/amenities.jpg"
       />
 
       <section className="container-grit py-20 lg:py-28">
