@@ -303,6 +303,12 @@
     animation: marquee-x var(--marquee-duration, 30s) linear infinite;
   }
 
+  /* Hollow/outline word for the signature ticker */
+  .marquee-ghost {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(244, 244, 240, 0.28);
+  }
+
   /* Respect reduced motion globally */
   @media (prefers-reduced-motion: reduce) {
     *,

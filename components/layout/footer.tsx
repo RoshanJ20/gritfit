@@ -5,6 +5,7 @@ import { site } from "@/content/site";
 import { navGroups, primaryCta } from "@/content/nav";
 import { Placeholder } from "@/components/placeholder";
 import { Marquee } from "@/components/motion/marquee";
+import { cn } from "@/lib/utils";
 
 const socialIcon = {
   Instagram: FaInstagram,
@@ -15,19 +16,27 @@ const socialIcon = {
 export function Footer() {
   return (
     <footer className="relative border-t border-border bg-ink-900">
-      {/* Signature marquee band */}
-      <div className="border-b border-border py-6">
-        <Marquee durationSeconds={28}>
-          {site.signatureWords.map((w) => (
-            <span
-              key={w}
-              className="display flex items-center gap-8 text-4xl text-foreground/80 sm:text-5xl"
-            >
-              {w}
-              <span className="text-brand">/</span>
-            </span>
-          ))}
-        </Marquee>
+      {/* Signature marquee band — a slow, editorial ticker */}
+      <div className="border-b border-border py-12">
+        <div className="[mask-image:linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)]">
+          <Marquee durationSeconds={48} gap="2.75rem">
+            {site.signatureWords.map((w, i) => (
+              <span key={w} className="flex items-center gap-11">
+                <span
+                  className={cn(
+                    "display text-2xl uppercase tracking-[0.22em] sm:text-3xl",
+                    i % 2 === 0 ? "marquee-ghost" : "text-foreground/70",
+                  )}
+                >
+                  {w}
+                </span>
+                <span className="text-[0.5rem] text-brand" aria-hidden>
+                  ●
+                </span>
+              </span>
+            ))}
+          </Marquee>
+        </div>
       </div>
 
       <div className="container-grit grid grid-cols-2 gap-10 py-16 md:grid-cols-4 lg:gap-12">
