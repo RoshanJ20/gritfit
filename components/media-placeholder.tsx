@@ -16,15 +16,12 @@ const ratioClass: Record<Ratio, string> = {
  * Stands in for real photography / video, which doesn't exist yet. Branded,
  * clearly a placeholder, with a subtle animated shimmer so layouts read as
  * intentional rather than broken. Swap for <Image>/<video> when assets arrive.
- */
-/**
- * Stands in for real photography / video, which doesn't exist yet. Branded,
- * clearly a placeholder, with a subtle animated shimmer so layouts read as
- * intentional rather than broken. Swap for <Image>/<video> when assets arrive.
  *
  * Pass `interactive` to give the slot a 3D tilt + glare on hover (via
- * TiltedCard) — used for feature/portrait slots that deserve a little life.
- * Default (false) renders byte-for-byte the original static placeholder.
+ * TiltedCard). Pass `src` to render a real image filling the slot — by default
+ * it gets the same dark/lime duotone grade as the hero video (grayscale base +
+ * brand multiply + deep-green soft-light + a darkening vignette) so all site
+ * imagery shares one consistent, on-brand wash. Set `tint={false}` to opt out.
  */
 export function MediaPlaceholder({
   label = "Image",
@@ -33,6 +30,8 @@ export function MediaPlaceholder({
   interactive = false,
   src,
   imagePosition = "center",
+  tint = true,
+  tintStrength = 0.55,
   className,
 }: {
   label?: string;
@@ -43,6 +42,10 @@ export function MediaPlaceholder({
   src?: string;
   /** CSS object-position for the image (e.g. "center", "top", "50% 30%"). */
   imagePosition?: string;
+  /** Apply the brand dark/lime duotone grade over the image (default true). */
+  tint?: boolean;
+  /** 0–1 strength of the lime multiply layer. */
+  tintStrength?: number;
   className?: string;
 }) {
   const Icon = kind === "video" ? Film : ImageIcon;
@@ -56,20 +59,38 @@ export function MediaPlaceholder({
       )}
     >
       {src ? (
-        // Real asset — fills the same slot the placeholder occupied. A faint
-        // scale on hover (interactive only) keeps it feeling alive.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={src}
-          alt={label}
-          loading="lazy"
-          className={cn(
-            "absolute inset-0 h-full w-full object-cover",
-            interactive &&
-              "transition-transform duration-700 ease-out group-hover:scale-[1.04]",
+        // Real asset — fills the same slot the placeholder occupied, graded to
+        // the brand duotone (matching HeroVideo) for site-wide consistency.
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={src}
+            alt={label}
+            loading="lazy"
+            className={cn(
+              "absolute inset-0 h-full w-full object-cover",
+              tint && "grayscale contrast-110 brightness-105",
+              interactive &&
+                "transition-transform duration-700 ease-out group-hover:scale-[1.04]",
+            )}
+            style={{ objectPosition: imagePosition }}
+          />
+          {tint && (
+            <>
+              {/* brand-green grade — multiply over grayscale → lime duotone */}
+              <div
+                className="pointer-events-none absolute inset-0 bg-brand mix-blend-multiply"
+                style={{ opacity: tintStrength }}
+                aria-hidden
+              />
+              {/* deeper green in the shadows for richness */}
+              <div className="pointer-events-none absolute inset-0 bg-[#0a1f00] opacity-50 mix-blend-soft-light" aria-hidden />
+              {/* darken + gentle vignette so the wash reads as intentional */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-900/70 via-transparent to-ink-900/20" aria-hidden />
+              <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_120px_30px_rgba(7,7,7,0.65)]" aria-hidden />
+            </>
           )}
-          style={{ objectPosition: imagePosition }}
-        />
+        </>
       ) : (
         <>
           {/* shimmer sweep */}

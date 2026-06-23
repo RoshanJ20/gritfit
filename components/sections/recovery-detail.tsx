@@ -3,7 +3,6 @@ import { Callout } from "@/components/sections/callout";
 import { SiblingNav, type SiblingItem } from "@/components/sections/sibling-nav";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
-import { MediaPlaceholder } from "@/components/media-placeholder";
 import { ScrollReveal } from "@/components/reactbits/scroll-reveal";
 
 type DetailData = {
@@ -57,18 +56,9 @@ export function RecoveryDetail({
               </p>
             ))}
           </div>
-          <div className="space-y-8">
-            <Callout glow label={data.protocolLabel}>
-              {data.protocol}
-            </Callout>
-            <MediaPlaceholder
-              label={data.name}
-              ratio="portrait"
-              interactive
-              src={image}
-              imagePosition={imagePosition}
-            />
-          </div>
+          <Callout glow label={data.protocolLabel}>
+            {data.protocol}
+          </Callout>
         </div>
       </section>
 

@@ -8,6 +8,8 @@ import { ScrollReveal } from "@/components/reactbits/scroll-reveal";
 const programImages: Record<string, string> = {
   "strong-start": "/images/programs/strong-start.jpg",
   "strong-performance": "/images/programs/strong-performance.jpg",
+  youth: "/images/programs/youth.jpg",
+  "injury-return": "/images/programs/injury-return.jpg",
   postnatal: "/images/programs/postnatal.jpg",
 };
 

@@ -31,7 +31,7 @@ export default function TrainingPage() {
         title={training.signature}
         lead={[training.explore[0]]}
         mediaLabel="Training"
-        mediaSrc="/images/training/one-on-one.jpg"
+        mediaSrc="/images/training/index-hero.jpg"
       />
 
       {/* Explore statement */}

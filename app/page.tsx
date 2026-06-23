@@ -15,7 +15,7 @@ const pillars = [
     label: "RUSH",
     href: "/rush",
     tagline: "Move with Meaning",
-    media: "/images/hero/rush.jpg",
+    media: "/images/home/rush.jpg",
     blurb:
       "Our signature class system. One day you chase pace and fight fatigue, the next you’re under the bar. Every class has a purpose.",
   },
@@ -24,7 +24,7 @@ const pillars = [
     label: "Strength Club",
     href: "/strength-club",
     tagline: "Train with intent",
-    media: "/images/hero/strength.jpg",
+    media: "/images/home/strength.jpg",
     blurb:
       "A coached training floor — not an open gym. Structured programming through workout cards, with coaches on the floor to guide every session.",
   },
@@ -33,7 +33,7 @@ const pillars = [
     label: "The Recovery Zone",
     href: "/recovery",
     tagline: "Recovery hits different",
-    media: "/images/hero/recovery.jpg",
+    media: "/images/home/recovery.jpg",
     blurb:
       "Contrast therapy — infrared heat, cold plunge, intentional rest. Two extremes, one purpose: come back composed, and come back stronger.",
   },

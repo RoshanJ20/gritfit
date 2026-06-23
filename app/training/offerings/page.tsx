@@ -27,7 +27,7 @@ export default function OfferingsPage() {
         title="Offerings"
         lead={[training.offeringsShared]}
         mediaLabel="Coaching"
-        mediaSrc="/images/training/coaching.jpg"
+        mediaSrc="/images/training/offerings-hero.jpg"
       />
 
       {training.offerings.map((o, i) => {

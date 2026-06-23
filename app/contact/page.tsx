@@ -31,7 +31,7 @@ export default function ContactPage() {
           "Every first-time member begins with a complimentary assessment. No pressure. No expectations. Just a clear starting line.",
         ]}
         mediaLabel="The Club"
-        mediaSrc="/images/club-interior.jpg"
+        mediaSrc="/images/contact.jpg"
       />
 
       {/* Contact details */}

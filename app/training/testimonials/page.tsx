@@ -20,7 +20,7 @@ export default function TestimonialsPage() {
         title={testimonials.heading}
         lead={[testimonials.tagline]}
         mediaLabel="Client Voices"
-        mediaSrc="/images/training/semi-private.jpg"
+        mediaSrc="/images/training/client-voices.jpg"
       />
 
       <section className="container-grit py-20 lg:py-28">

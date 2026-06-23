@@ -7,7 +7,6 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { Callout } from "@/components/sections/callout";
 import { Placeholder } from "@/components/placeholder";
 import { Reveal } from "@/components/motion/reveal";
-import { MediaPlaceholder } from "@/components/media-placeholder";
 
 export const metadata: Metadata = {
   title: "Massage — Essential Recovery",
@@ -45,21 +44,12 @@ export default function MassagePage() {
               </Reveal>
             ))}
           </div>
-          <div className="space-y-8">
-            <Callout glow label="Appointment-based">
-              <span className="flex flex-wrap items-center gap-2 text-base font-normal">
-                Booking details
-                <Placeholder label="Booking">Coming soon</Placeholder>
-              </span>
-            </Callout>
-            <MediaPlaceholder
-              label="Massage"
-              ratio="portrait"
-              interactive
-              src="/images/recovery/massage.jpg"
-              imagePosition="center 30%"
-            />
-          </div>
+          <Callout glow label="Appointment-based">
+            <span className="flex flex-wrap items-center gap-2 text-base font-normal">
+              Booking details
+              <Placeholder label="Booking">Coming soon</Placeholder>
+            </span>
+          </Callout>
         </div>
       </section>
 
