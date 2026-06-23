@@ -82,26 +82,20 @@ export default function TrainingPage() {
             </h2>
           </Reveal>
         </div>
-        <div className="grid border-t border-border md:grid-cols-2">
+        <div className="container-grit grid gap-6 border-t border-border pt-12 md:grid-cols-2 lg:gap-8 lg:pt-16">
           {training.offerings.map((o, i) => (
             <Reveal key={o.name} delay={i * 0.08}>
-              <div className="group relative isolate flex h-full flex-col gap-4 overflow-hidden border-b border-border p-8 md:border-b-0 md:p-10 md:[&:first-child]:border-r md:[&:first-child]:border-border">
+              <div className="group relative isolate flex h-full flex-col gap-5 overflow-hidden rounded-md border border-border bg-ink-900 p-8 transition-colors hover:border-brand/40 lg:p-10">
                 <SpotlightOverlay className="-z-10" />
                 <span className="display text-2xl text-brand">
                   <CountUp to={i + 1} pad={2} />
                 </span>
                 <h3 className="display text-3xl">{o.name}</h3>
                 <p className="leading-relaxed text-muted-foreground">{o.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        {/* Offering imagery */}
-        <div className="grid border-t border-border md:grid-cols-2">
-          {training.offerings.map((o, i) => (
-            <Reveal key={o.name} delay={i * 0.08}>
-              <div className="border-b border-border p-6 md:border-b-0 md:p-8 md:[&:first-child]:border-r md:[&:first-child]:border-border">
-                <ParallaxMedia amount={28} className="aspect-[4/3] rounded-md">
+                <ParallaxMedia
+                  amount={20}
+                  className="mt-auto aspect-[4/3] rounded-md"
+                >
                   <MediaPlaceholder
                     label={o.name}
                     kind="image"
