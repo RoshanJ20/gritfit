@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     "1-on-1 coaching and semi-private training. Both are built around you. The environment is what changes.",
 };
 
+const offeringImages: Record<string, string> = {
+  "1-on-1 Coaching": "/images/training/one-on-one.jpg",
+  "Semi-Private Training": "/images/training/semi-private.jpg",
+};
+
 export default function OfferingsPage() {
   return (
     <>
@@ -22,7 +27,7 @@ export default function OfferingsPage() {
         title="Offerings"
         lead={[training.offeringsShared]}
         mediaLabel="Coaching"
-        mediaKind="video"
+        mediaSrc="/images/training/coaching.jpg"
       />
 
       {training.offerings.map((o, i) => {
@@ -36,6 +41,7 @@ export default function OfferingsPage() {
                     label={o.name}
                     kind="image"
                     ratio="auto"
+                    src={offeringImages[o.name]}
                     className="h-full rounded-none border-0"
                   />
                 </ParallaxMedia>

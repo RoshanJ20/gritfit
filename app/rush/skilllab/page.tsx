@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { skillab } from "@/content/rush";
+import { rushHeroImages } from "@/content/rush-media";
 import { PageHero } from "@/components/sections/page-hero";
 import { FormatList } from "@/components/sections/format-list";
 import { ModelNav } from "@/components/sections/model-nav";
@@ -19,7 +20,7 @@ export default function SkillabPage() {
         title="Skillab"
         lead={skillab.intro}
         mediaLabel="Skillab"
-        mediaKind="video"
+        mediaSrc={rushHeroImages.Skillab}
       />
       <FormatList formats={skillab.formats} mediaKind="video" />
       <ModelNav current="skilllab" />

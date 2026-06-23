@@ -20,6 +20,7 @@ export default function FirstTimersPage() {
         title={firstTimers.heading}
         lead={firstTimers.lead}
         mediaLabel="First Timers"
+        mediaSrc="/images/first-timers.jpg"
       />
 
       {/* Opening statement */}

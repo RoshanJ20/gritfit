@@ -19,6 +19,7 @@ export default function AboutAmenitiesPage() {
         title="About Amenities"
         lead={[amenities.heading]}
         mediaLabel="Amenities"
+        mediaSrc="/images/amenities.jpg"
       />
 
       <section className="container-grit py-16 lg:py-24">

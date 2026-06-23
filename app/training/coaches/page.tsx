@@ -21,6 +21,7 @@ export default function CoachesPage() {
         title="Meet the coaches"
         lead={[team.values]}
         mediaLabel="The Team"
+        mediaSrc="/images/training/coaching.jpg"
       />
 
       <section className="container-grit py-20 lg:py-28">

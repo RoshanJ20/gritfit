@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { peak } from "@/content/rush";
+import { rushHeroImages } from "@/content/rush-media";
 import { PageHero } from "@/components/sections/page-hero";
 import { FormatList } from "@/components/sections/format-list";
 import { ModelNav } from "@/components/sections/model-nav";
@@ -19,7 +20,7 @@ export default function PeakPage() {
         title="Peak"
         lead={[peak.tagline]}
         mediaLabel="Peak"
-        mediaKind="video"
+        mediaSrc={rushHeroImages.Peak}
       />
       <FormatList formats={peak.formats} mediaKind="video" />
       <ModelNav current="peak" />

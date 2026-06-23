@@ -63,6 +63,8 @@ export default function RecoveryPage() {
             kind="image"
             ratio="wide"
             interactive
+            src="/images/recovery/cold-plunge.jpg"
+            imagePosition="center 60%"
           />
         </Reveal>
 

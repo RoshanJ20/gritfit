@@ -2,6 +2,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { ParallaxMedia } from "@/components/motion/parallax-media";
 import { MediaPlaceholder } from "@/components/media-placeholder";
 import type { ClassFormat } from "@/content/rush";
+import { rushFormatImages } from "@/content/rush-media";
 
 /**
  * Renders a list of class formats as numbered, editorial alternating rows —
@@ -30,6 +31,7 @@ export function FormatList({
                     label={f.name}
                     kind={mediaKind}
                     ratio="auto"
+                    src={rushFormatImages[f.name]}
                     className="h-full rounded-none border-0"
                   />
                 </ParallaxMedia>

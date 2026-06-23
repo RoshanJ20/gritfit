@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { flow } from "@/content/rush";
+import { rushHeroImages } from "@/content/rush-media";
 import { PageHero } from "@/components/sections/page-hero";
 import { FormatList } from "@/components/sections/format-list";
 import { ModelNav } from "@/components/sections/model-nav";
@@ -19,7 +20,7 @@ export default function FlowPage() {
         title="Flow"
         lead={flow.intro}
         mediaLabel="Flow"
-        mediaKind="video"
+        mediaSrc={rushHeroImages.Flow}
       />
       <FormatList formats={flow.formats} mediaKind="video" />
       <ModelNav current="flow" />
