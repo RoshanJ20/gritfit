@@ -141,7 +141,7 @@ function ImmersiveHero({
         src={backgroundImage}
         alt=""
         aria-hidden
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
+        className="absolute inset-0 -z-10 h-full w-full object-cover grayscale"
         style={{ objectPosition: imagePosition }}
       />
 

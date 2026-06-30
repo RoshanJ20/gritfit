@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ImageIcon, Film } from "lucide-react";
 import { TiltedCard } from "@/components/reactbits/tilted-card";
-import { getImageTint } from "@/lib/image-tint";
 
 type Ratio = "video" | "square" | "portrait" | "wide" | "auto";
 
@@ -19,10 +18,10 @@ const ratioClass: Record<Ratio, string> = {
  * intentional rather than broken. Swap for <Image>/<video> when assets arrive.
  *
  * Pass `interactive` to give the slot a 3D tilt + glare on hover (via
- * TiltedCard). Pass `src` to render a real image filling the slot — by default
- * it gets the same dark/lime duotone grade as the hero video (grayscale base +
- * brand multiply + deep-green soft-light + a darkening vignette) so all site
- * imagery shares one consistent, on-brand wash. Set `tint={false}` to opt out.
+ * TiltedCard). Pass `src` to render a real image filling the slot — all site
+ * imagery is rendered black-and-white (grayscale) with a darkening vignette so
+ * the wash reads as intentional. Set `tint={false}` to drop the vignette (the
+ * image stays black-and-white regardless).
  */
 export function MediaPlaceholder({
   label = "Image",
@@ -32,7 +31,6 @@ export function MediaPlaceholder({
   src,
   imagePosition = "center",
   tint = true,
-  tintStrength,
   className,
 }: {
   label?: string;
@@ -43,17 +41,11 @@ export function MediaPlaceholder({
   src?: string;
   /** CSS object-position for the image (e.g. "center", "top", "50% 30%"). */
   imagePosition?: string;
-  /** Apply the brand dark/lime duotone grade over the image (default true). */
+  /** Apply the darkening vignette over the (always grayscale) image (default true). */
   tint?: boolean;
-  /**
-   * 0–1 strength of the lime multiply layer. Omit to use the per-image value
-   * from the tint map (calibrated to how far each photo is from the theme).
-   */
-  tintStrength?: number;
   className?: string;
 }) {
   const Icon = kind === "video" ? Film : ImageIcon;
-  const tintOpacity = tintStrength ?? getImageTint(src);
   const surface = (
     <div
       data-media-placeholder
@@ -73,8 +65,8 @@ export function MediaPlaceholder({
             alt={label}
             loading="lazy"
             className={cn(
-              "absolute inset-0 h-full w-full object-cover",
-              tint && "grayscale contrast-110 brightness-105",
+              // Always black-and-white — no exceptions across the site.
+              "absolute inset-0 h-full w-full object-cover grayscale contrast-110 brightness-105",
               interactive &&
                 "transition-transform duration-700 ease-out group-hover:scale-[1.04]",
             )}
@@ -82,14 +74,6 @@ export function MediaPlaceholder({
           />
           {tint && (
             <>
-              {/* brand-green grade — multiply over grayscale → lime duotone */}
-              <div
-                className="pointer-events-none absolute inset-0 bg-brand mix-blend-multiply"
-                style={{ opacity: tintOpacity }}
-                aria-hidden
-              />
-              {/* deeper green in the shadows for richness */}
-              <div className="pointer-events-none absolute inset-0 bg-[#0a1f00] opacity-50 mix-blend-soft-light" aria-hidden />
               {/* darken + gentle vignette so the wash reads as intentional */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-900/70 via-transparent to-ink-900/20" aria-hidden />
               <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_120px_30px_rgba(7,7,7,0.65)]" aria-hidden />
