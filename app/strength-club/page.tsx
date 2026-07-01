@@ -30,18 +30,11 @@ export default function StrengthClubPage() {
         imagePosition="center 22%"
       />
 
-      {/* Concise about — The Floor statement + creed */}
+      {/* Concise about — creed */}
       <section className="container-grit py-24 lg:py-36">
-        <div className="mx-auto max-w-4xl space-y-7">
-          {about.statement.map((line, i) => (
-            <Reveal key={i} delay={i * 0.05}>
-              <p className="text-balance text-2xl font-light leading-[1.5] text-foreground sm:text-3xl">
-                {line}
-              </p>
-            </Reveal>
-          ))}
-          <Reveal delay={0.2}>
-            <p className="display pt-6 text-balance text-display-2 text-foreground">
+        <div className="mx-auto max-w-4xl">
+          <Reveal>
+            <p className="display text-balance text-display-2 text-foreground">
               <ShinyText speed={5}>{about.creed}</ShinyText>
             </p>
           </Reveal>
@@ -59,16 +52,6 @@ export default function StrengthClubPage() {
           </Reveal>
 
           <StepProgress steps={strength.howItWorks} className="mt-14" />
-
-          <div className="mx-auto mt-16 max-w-3xl space-y-3 text-center">
-            {strength.closer.map((line, i) => (
-              <Reveal key={i} delay={i * 0.06}>
-                <p className="display text-2xl text-foreground sm:text-3xl">
-                  {line}
-                </p>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -102,16 +85,14 @@ export default function StrengthClubPage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Standards band */}
       <section className="border-t border-border">
-        <div className="container-grit grid gap-12 py-24 lg:grid-cols-[0.6fr_1fr] lg:gap-20 lg:py-32">
+        <div className="container-grit py-20 text-center lg:py-24">
           <Reveal>
-            <p className="eyebrow">Questions</p>
-            <h2 className="display mt-4 text-display-2">
-              Strength Club, explained.
-            </h2>
+            <p className="display text-2xl text-foreground sm:text-3xl">
+              {strength.closer}
+            </p>
           </Reveal>
-          <FaqAccordion faqs={strength.faqs} />
         </div>
       </section>
 
@@ -153,6 +134,19 @@ export default function StrengthClubPage() {
               .
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-border">
+        <div className="container-grit grid gap-12 py-24 lg:grid-cols-[0.6fr_1fr] lg:gap-20 lg:py-32">
+          <Reveal>
+            <p className="eyebrow">Questions</p>
+            <h2 className="display mt-4 text-display-2">
+              Strength Club, explained.
+            </h2>
+          </Reveal>
+          <FaqAccordion faqs={strength.faqs} />
         </div>
       </section>
     </>

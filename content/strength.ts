@@ -19,22 +19,15 @@ export const strength = {
     "Every member begins with an assessment before enrolment. From there, you’ll follow structured programming through workout cards, with coaches available on the floor to guide, support, and help you progress.",
     "Whether you’re new to resistance training or have years of experience, you’ll always know what to do when you walk in.",
   ],
-  closer: [
-    "Train with intent. Respect the space. Return equipment when you’re done.",
-    "Simple standards. Better training.",
-  ],
+  // Standalone band shown after the "difference" section.
+  closer: "Simple standards. Better training.",
   /**
    * "About Strength Club" page copy. VERBATIM from
    * "Strength Club write up (1).docx". The intro lead sentence is reused as the
-   * hero lead; the narrative lines drive the statement section.
+   * hero lead.
    */
   about: {
     lead: "At Strength Club, every member begins with a comprehensive assessment designed to understand their goals, movement capabilities, and current level of performance. From there, a structured training pathway is created, ensuring every session contributes to meaningful progress.",
-    statement: [
-      "The Floor is where that plan comes to life.",
-      "Designed around the principles of intelligent strength development, real-world performance, and athletic capability, the space combines performance equipment, adaptive resistance technology, and expert coaching support within an uncrowded environment that allows members to train with focus.",
-      "No guesswork. No distractions. Just intelligent training, measurable progress, and the satisfaction of becoming stronger than yesterday.",
-    ],
     creed: "Because excellence is never accidental. It is engineered.",
     get: [
       "Assessment before action and a plan built around you",
