@@ -45,7 +45,7 @@ export function Footer() {
           <p className="display text-2xl leading-none text-foreground">
             Grit Fit
             <span className="mt-1 block text-sm font-normal tracking-wide text-muted-foreground">
-              The Luxe Club
+              Luxe Health Club
             </span>
           </p>
           <p className="max-w-xs text-sm text-muted-foreground">

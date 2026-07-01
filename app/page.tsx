@@ -7,7 +7,6 @@ import { Reveal, Rise } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 import { ParallaxMedia } from "@/components/motion/parallax-media";
 import { MediaPlaceholder } from "@/components/media-placeholder";
-import { Placeholder } from "@/components/placeholder";
 
 const pillars = [
   {
@@ -17,7 +16,7 @@ const pillars = [
     tagline: "Move with Meaning",
     media: "/images/home/rush.jpg",
     blurb:
-      "Our signature class system. One day you chase pace and fight fatigue, the next you’re under the bar. Every class has a purpose.",
+      "RUSH is our signature training system—a complete approach to strength, conditioning, movement, recovery, and skill.\nAcross 14 unique class formats and training experiences, every class is designed to play a role in your long-term progress.",
   },
   {
     index: "02",
@@ -26,7 +25,7 @@ const pillars = [
     tagline: "Train with intent",
     media: "/images/home/strength.jpg",
     blurb:
-      "A coached training floor — not an open gym. Structured programming through workout cards, with coaches on the floor to guide every session.",
+      "A coached training floor — not an open gym.\nStructured programming through workout cards, with coaches on the floor to guide every session.\nEvery workout is also delivered through our member app, keeping your training, tracking, and progress connected wherever you are.",
   },
   {
     index: "03",
@@ -35,7 +34,7 @@ const pillars = [
     tagline: "Recovery hits different",
     media: "/images/home/recovery.jpg",
     blurb:
-      "Contrast therapy — infrared heat, cold plunge, intentional rest. Two extremes, one purpose: come back composed, and come back stronger.",
+      "A space to slow down, release, and restore.\nDesigned to bring the body back to balance.",
   },
 ];
 
@@ -51,10 +50,42 @@ const disciplines = [
 ];
 
 const tiers = [
-  { name: "Open Gym", note: "Choice of Classes or Strength Club" },
-  { name: "Platinum", note: "Unlimited Classes & Strength Club" },
-  { name: "VIP", note: "Everything, plus sauna & cold plunge" },
+  {
+    name: "Open Access",
+    tagline: "Choose your path.",
+    features: [
+      "Access to either RUSH Classes or the Strength Club",
+      "Full access to club amenities",
+      "Complimentary assessment",
+      "Guided introduction session",
+      "Nutrition counselling",
+    ],
+  },
+  {
+    name: "Platinum",
+    tagline: "Train without limits.",
+    features: [
+      "Unlimited access to both RUSH Classes and the Strength Club",
+      "Full access to club amenities",
+      "Complimentary assessment",
+      "Nutrition counselling",
+      "1 Personal Training session",
+    ],
+  },
+  {
+    name: "VIP",
+    tagline: "The complete Grit experience.",
+    features: [
+      "Everything included in Platinum",
+      "Access to The Recovery Zone*",
+      "Complimentary assessment",
+      "Nutrition counselling",
+      "3 Personal Training sessions",
+    ],
+  },
 ];
+
+const tiersFootnote = "*Recovery access is based on selected membership duration.";
 
 export default function Home() {
   return (
@@ -138,7 +169,7 @@ export default function Home() {
                   <h2 className="display mt-4 text-display-2">{p.label}</h2>
                 </Reveal>
                 <Reveal delay={0.12}>
-                  <p className="mt-5 max-w-md text-balance leading-relaxed text-muted-foreground">
+                  <p className="mt-5 max-w-md whitespace-pre-line text-balance leading-relaxed text-muted-foreground">
                     {p.blurb}
                   </p>
                 </Reveal>
@@ -229,19 +260,32 @@ export default function Home() {
               <Reveal key={t.name} delay={i * 0.08}>
                 <Link
                   href="/membership"
-                  className="flex h-full flex-col gap-4 bg-ink-900 p-8 transition-colors hover:bg-ink-800"
+                  className="flex h-full flex-col gap-5 bg-ink-900 p-8 transition-colors hover:bg-ink-800"
                 >
-                  <span className="eyebrow">{t.name}</span>
-                  <span className="text-2xl">
-                    <Placeholder label="Price">From —</Placeholder>
-                  </span>
-                  <span className="mt-auto text-sm text-muted-foreground">
-                    {t.note}
-                  </span>
+                  <div>
+                    <span className="eyebrow">{t.name}</span>
+                    <p className="mt-3 text-lg font-light text-foreground">
+                      {t.tagline}
+                    </p>
+                  </div>
+                  <ul className="flex flex-col gap-2.5 text-sm text-muted-foreground">
+                    {t.features.map((feature) => (
+                      <li key={feature} className="flex gap-2.5">
+                        <span className="mt-0.5 shrink-0 text-brand" aria-hidden>
+                          ✓
+                        </span>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </Link>
               </Reveal>
             ))}
           </div>
+
+          <p className="mt-6 text-xs text-muted-foreground/70">
+            {tiersFootnote}
+          </p>
         </div>
       </section>
 
@@ -259,6 +303,18 @@ export default function Home() {
           <p className="mx-auto mt-6 max-w-md text-muted-foreground">
             Every first-timer begins with a complimentary assessment. No
             pressure. No expectations. Just a clear starting line.
+          </p>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="mx-auto mt-4 max-w-md text-muted-foreground">
+            Not sure yet? Find everything you need to decide in the{" "}
+            <Link
+              href="/first-timers"
+              className="whitespace-nowrap text-foreground underline decoration-brand/60 underline-offset-4 transition-colors hover:text-brand"
+            >
+              First Timers
+            </Link>{" "}
+            section on our website.
           </p>
         </Reveal>
         <Reveal delay={0.24} className="mt-10 flex justify-center">

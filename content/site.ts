@@ -32,9 +32,10 @@ export const site = {
   usp: {
     heading: "One roof. Every discipline.",
     body: [
-      "We’ve built a full training space where everything sits under one roof — strength, conditioning, calisthenics, boxing, MMA, yoga, endurance work, and recovery like contrast therapy.",
-      "It’s not a standard gym setup. Even the machines aren’t off-the-shelf catalogue equipment. Everything is carefully selected, and in some cases custom-built with top manufacturers, chosen purely for performance and how well it helps people train better.",
-      "The idea is simple: one place where you can train hard, recover properly, and progress across different styles of training without switching spaces.",
+      "GRIT exists for those who want more from themselves—more discipline, more control, more capacity in how they move, train, and live. This is not a place built around trends, but around standards.",
+      "Built for full-spectrum performance training—Strength, Conditioning, Calisthenics, Boxing, MMA, Yoga, Endurance, and Recovery.",
+      "We train strength that holds under pressure, endurance that doesn’t break under fatigue, and movement that builds resilience—not just appearance. Recovery is treated with the same seriousness as effort.",
+      "The idea is simple: one place to train with intent, recover properly, and progress across multiple disciplines without compromise.",
     ],
   },
   location: {
