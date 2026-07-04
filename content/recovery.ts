@@ -17,8 +17,57 @@ export type RecoveryOffering = {
 };
 
 export const recovery = {
-  eyebrow: "The Recovery Zone",
-  signature: "Where recovery hits different",
+  eyebrow: "Essential Recovery",
+  signature: "Move between heat, cold, and manual therapy.",
+
+  // Opening statement — closes on a glowing line (like RUSH's "This is RUSH.").
+  intro: {
+    lines: [
+      "Recovery at Grit is not separate from training—it is part of the system that helps you perform better, recover faster, and stay consistent.",
+      "Our recovery services are designed to support training load, reduce muscle soreness, improve movement quality, and help you return to training ready.",
+      "Recovery is not relaxation alone. It is preparation for your next session.",
+    ],
+    closer: "RESET. RESTORE. REPEAT.",
+  },
+
+  // "How it works" — the four recovery experiences.
+  howItWorks: {
+    eyebrow: "How it works",
+    heading: "Four Experiences, One Outcome",
+  },
+  experiences: [
+    {
+      name: "Sauna",
+      tagline: "Step into heat. Relax deeper. Let tension melt away.",
+      href: "/recovery/sauna",
+    },
+    {
+      name: "Cold Plunge",
+      tagline: "Step into cold. Shock the system. Leave switched on.",
+      href: "/recovery/cold-plunge",
+    },
+    {
+      name: "Contrast Therapy",
+      tagline: "Move between heat and cold. Discover calm in the extremes.",
+      href: "/recovery/contrast",
+    },
+    {
+      name: "Manual Therapy",
+      tagline: "Hands-on recovery. Release tension. Restore how you move.",
+      href: "/recovery/massage",
+    },
+  ],
+
+  // Closing CTA. "carry" line ends in a "See what to carry" link to the FAQ.
+  cta: {
+    eyebrow: "Your journey starts here.",
+    heading: "Recovery is training.",
+    body: "Arrive 10 minutes early. Our team will guide you through the process and recommended exposure times.",
+    carry:
+      "To help you prepare for your first visit, we’ve outlined everything you need to bring.",
+    carryLink: "See what to carry",
+  },
+  faqNote: "Still unsure?",
 
   contrast: {
     eyebrow: "Contrast Therapy",
@@ -147,11 +196,71 @@ export const coldPlunge = {
     "2–3 sessions per week, 2–3 minutes per session (do not exceed ~3 minutes per exposure).",
 };
 
-export const massage = {
-  name: "Massage",
-  intro: "Recover with intention.",
-  tagline: "Appointment-based",
-  paras: [
-    "Our appointment-based massage room is designed to support muscle recovery, reduce tension, and help you move and feel better between training sessions.",
+export const manualTherapy = {
+  eyebrow: "Essential Recovery · Manual Therapy",
+  name: "Manual Therapy",
+  lead: "Hands-on massage-based recovery designed to release tension, restore movement, and bring the body back to a state where training feels easier, smoother, and more controlled.",
+
+  services: [
+    {
+      name: "Sports Massage",
+      tagline: "Recover Better. Train Harder.",
+      paras: [
+        "A performance recovery session designed to reduce muscle soreness, support fatigue management, and improve how your body feels after training.",
+        "Built for people who train regularly and want to stay consistent without breakdown.",
+      ],
+      benefits: [
+        "Reduces post-training soreness",
+        "Supports recovery between sessions",
+        "Helps manage training fatigue",
+        "Improves readiness for next workout",
+      ],
+      bestFor: "Athletes, lifters, runners, HYROX, CrossFit, active members",
+    },
+    {
+      name: "Deep Tissue Massage",
+      tagline: "Release Tightness. Restore Movement.",
+      paras: [
+        "A focused treatment for persistent muscle tightness and discomfort that affects training and daily movement.",
+        "This session targets specific areas that feel stiff, overworked, or restricted.",
+      ],
+      benefits: [
+        "Targets chronic tight areas",
+        "Reduces muscle tension sensation",
+        "Improves movement comfort",
+        "Supports better training mechanics",
+      ],
+      bestFor: "Neck, shoulders, back, hips, calves, recurring tightness",
+    },
+    {
+      name: "Mobility Reset",
+      tagline: "Move Better. Perform Better.",
+      paras: [
+        "A hybrid recovery session combining manual therapy, assisted stretching, and mobility work.",
+        "Designed to improve flexibility, restore movement quality, and help you train with better control.",
+      ],
+      benefits: [
+        "Improves range of motion",
+        "Enhances movement quality",
+        "Reduces stiffness from training or sitting",
+        "Supports better lifting and athletic performance",
+      ],
+      bestFor: "Stiffness, mobility restrictions, desk workers, movement limitations",
+    },
   ],
+
+  howToUse: {
+    eyebrow: "How to use recovery services",
+    heading: "Match recovery to your training load.",
+    intro: "Recovery is most effective when matched to training load:",
+    matches: [
+      { when: "Trained hard", then: "Sports Massage" },
+      { when: "One area always tight", then: "Deep Tissue Massage" },
+      { when: "Movement feels restricted", then: "Mobility Reset" },
+    ],
+    guide:
+      "Our coaches and therapists will guide you to the right option based on your training and recovery needs.",
+  },
+
+  note: "Recovery services are not a replacement for training, sleep, nutrition, or programming. They are a support system designed to help you train more consistently and effectively over time.",
 };

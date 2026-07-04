@@ -82,14 +82,10 @@ export default function StrengthClubPage() {
               <AnimatedList className="mt-6" items={about.dont} muted />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Standards band */}
-      <section className="border-t border-border">
-        <div className="container-grit py-20 text-center lg:py-24">
-          <Reveal>
-            <p className="display text-2xl text-foreground sm:text-3xl">
+          {/* Section sign-off — integrated closing line */}
+          <Reveal delay={0.1}>
+            <p className="display mt-14 text-balance text-center text-3xl leading-tight text-foreground sm:text-4xl lg:mt-16 lg:text-5xl">
               {strength.closer}
             </p>
           </Reveal>

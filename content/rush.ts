@@ -57,6 +57,47 @@ export const rush = {
       count: 7,
     },
   ] as RushModel[],
+  // Closing line beneath the three model cards.
+  modelsCloser: "Structured training. Endless variety.",
+  faqs: [
+    {
+      q: "What is RUSH?",
+      a: [
+        "RUSH is our signature training system at Grit.",
+        "It combines every training model—strength, hybrid, endurance, skill work, and movement flow—into one structured performance method.",
+      ],
+    },
+    {
+      q: "Is RUSH suitable for beginners?",
+      a: [
+        "Yes.",
+        "Every session can be scaled to your level. You don’t need experience to start.",
+      ],
+    },
+    {
+      q: "What should I expect?",
+      a: [
+        "Structure, intensity, and coaching.",
+        "You’ll move through strength and conditioning blocks designed to improve performance safely.",
+      ],
+    },
+    {
+      q: "Will I be able to keep up?",
+      a: [
+        "You don’t need to.",
+        "You train at your level. Progress matters more than comparison.",
+      ],
+    },
+    {
+      q: "How often should I do RUSH?",
+      a: [
+        "2–3 sessions per week is a strong starting point.",
+        "Consistency first. Volume later.",
+      ],
+    },
+  ],
+  // Lead of the closing line under the FAQ; "Reach out to our team" is a link.
+  faqNote: "Still unsure?",
 };
 
 export const peak = {

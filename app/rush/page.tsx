@@ -3,11 +3,13 @@ import Link from "next/link";
 
 import { rush } from "@/content/rush";
 import { PageHero } from "@/components/sections/page-hero";
-import { CtaBand } from "@/components/sections/cta-band";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Reveal } from "@/components/motion/reveal";
+import { Magnetic } from "@/components/motion/magnetic";
 import { SquaresBackground } from "@/components/reactbits/squares-bg";
 import { ScrambleText } from "@/components/reactbits/scramble-text";
 import { CountUp } from "@/components/reactbits/count-up";
+import { ShinyText } from "@/components/reactbits/shiny-text";
 
 export const metadata: Metadata = {
   title: "RUSH — Move with Meaning",
@@ -39,7 +41,7 @@ export default function RushPage() {
           ))}
           <Reveal delay={0.2}>
             <p className="display pt-4 text-display-2 text-foreground">
-              {rush.closer}
+              <ShinyText speed={5}>{rush.closer}</ShinyText>
             </p>
           </Reveal>
         </div>
@@ -81,10 +83,83 @@ export default function RushPage() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={0.2}>
+            <p className="mt-10 text-balance text-lg text-muted-foreground sm:text-xl">
+              {rush.modelsCloser}
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      <CtaBand />
+      {/* Conversion close — first-step CTA */}
+      <section className="container-grit py-28 text-center lg:py-40">
+        <Reveal>
+          <p className="eyebrow justify-center">Your first step starts here</p>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <h2 className="display mx-auto mt-6 text-display-1 max-w-[16ch]">
+            Show up. Trust the process. Do the work.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <p className="mx-auto mt-6 max-w-md text-muted-foreground">
+            Every first-timer begins with a complimentary assessment. No
+            pressure. No expectations. Just a clear starting line.
+          </p>
+        </Reveal>
+
+        <Reveal
+          delay={0.24}
+          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+        >
+          <Magnetic strength={0.45}>
+            <Link href="/contact" className="btn btn-solid px-8 py-4">
+              Book an Assessment
+            </Link>
+          </Magnetic>
+          <Link href="/membership" className="btn btn-outline px-8 py-4">
+            Explore membership options
+          </Link>
+        </Reveal>
+
+        <Reveal delay={0.32}>
+          <Link
+            href="/first-timers"
+            className="group mt-10 inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-brand"
+          >
+            Learn what your first visit looks like
+            <span className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+        </Reveal>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-border">
+        <div className="container-grit grid gap-12 py-24 lg:grid-cols-[0.6fr_1fr] lg:gap-20 lg:py-32">
+          <Reveal>
+            <p className="eyebrow">Questions</p>
+            <h2 className="display mt-4 text-display-2">RUSH Class FAQ</h2>
+          </Reveal>
+          <div>
+            <FaqAccordion faqs={rush.faqs} />
+            <Reveal delay={0.1}>
+              <p className="mt-8 text-sm text-muted-foreground">
+                {rush.faqNote}{" "}
+                <Link
+                  href="/contact"
+                  className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-brand hover:decoration-brand"
+                >
+                  Reach out to our team
+                </Link>
+                .
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

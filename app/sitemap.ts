@@ -15,6 +15,7 @@ const routes = [
   "/recovery",
   "/recovery/sauna",
   "/recovery/cold-plunge",
+  "/recovery/contrast",
   "/recovery/massage",
   "/amenities",
   "/training",
