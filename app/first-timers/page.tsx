@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { firstTimers } from "@/content/first-timers";
 import { PageHero } from "@/components/sections/page-hero";
+import { SectionAccordion } from "@/components/sections/section-accordion";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
 import { ScrollReveal } from "@/components/reactbits/scroll-reveal";
@@ -9,7 +10,7 @@ import { ScrollReveal } from "@/components/reactbits/scroll-reveal";
 export const metadata: Metadata = {
   title: "First Timers — Your first step starts here",
   description:
-    "Everyone starts somewhere. Whether you’re stepping into a Rush class, training on the Strength Club floor, or experiencing The Recovery Zone for the first time, every journey starts the same way: show up.",
+    "Everyone starts somewhere. Whether you’re stepping into a RUSH class, training on the Strength Club floor, or entering The Recovery Zone for the first time — your journey begins the same way: show up.",
 };
 
 export default function FirstTimersPage() {
@@ -23,8 +24,8 @@ export default function FirstTimersPage() {
         mediaSrc="/images/first-timers.jpg"
       />
 
-      {/* Opening statement */}
-      <section className="container-grit py-24 lg:py-36">
+      {/* Opening statement — stays open */}
+      <section className="container-grit py-24 lg:py-32">
         <div className="mx-auto max-w-3xl space-y-6">
           {firstTimers.intro.map((line, i) => (
             <p
@@ -37,197 +38,42 @@ export default function FirstTimersPage() {
         </div>
       </section>
 
-      {/* Before your first visit — numbered 2-step grid */}
+      {/* Group 1 — your first visit (single-open accordion) */}
       <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-32">
+        <div className="container-grit py-20 lg:py-28">
           <Reveal>
-            <p className="eyebrow">{firstTimers.beforeVisit.eyebrow}</p>
-            <h2 className="display mt-4 text-display-2">
-              Two steps before you start.
+            <p className="eyebrow">{firstTimers.visit.eyebrow}</p>
+            <h2 className="display mt-4 max-w-[20ch] text-display-2">
+              {firstTimers.visit.heading}
             </h2>
           </Reveal>
-
-          <div className="mt-14 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
-            {firstTimers.beforeVisit.steps.map((s, i) => (
-              <Reveal key={s.step} delay={i * 0.08}>
-                <div className="flex h-full flex-col gap-4 bg-ink-900 p-8 lg:p-10">
-                  <span className="display text-3xl text-brand">{s.step}</span>
-                  <h3 className="display text-2xl">{s.title}</h3>
-                  <div className="space-y-3">
-                    {s.body.map((line, j) => (
-                      <p
-                        key={j}
-                        className="leading-relaxed text-muted-foreground"
-                      >
-                        {line}
-                      </p>
-                    ))}
-                  </div>
-                  {s.list && (
-                    <ul className="mt-1 flex flex-col">
-                      {s.list.map((item, j) => (
-                        <li
-                          key={j}
-                          className="flex items-center gap-4 border-b border-border py-3 text-foreground last:border-b-0"
-                        >
-                          <span
-                            className="size-1.5 shrink-0 bg-brand"
-                            aria-hidden
-                          />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {s.close?.map((line, j) => (
-                    <p
-                      key={j}
-                      className="mt-1 leading-relaxed text-muted-foreground"
-                    >
-                      {line}
-                    </p>
-                  ))}
-                </div>
-              </Reveal>
-            ))}
+          <div className="mt-12">
+            <SectionAccordion sections={firstTimers.visit.sections} />
           </div>
         </div>
       </section>
 
-      {/* Your first … session — alternating editorial blocks */}
+      {/* Group 2 — PT terms & expectations (single-open accordion) */}
       <section className="border-t border-border">
-        <div className="container-grit divide-y divide-border">
-          {firstTimers.firstSessions.map((block) => (
-            <div
-              key={block.eyebrow}
-              className="grid gap-8 py-20 lg:grid-cols-[0.5fr_1fr] lg:gap-16 lg:py-28"
-            >
-              <Reveal>
-                <p className="eyebrow">{block.eyebrow}</p>
-              </Reveal>
-              <div className="max-w-2xl space-y-4">
-                {block.lines.map((line, j) => (
-                  <Reveal key={j} delay={j * 0.05}>
-                    <p className="leading-relaxed text-muted-foreground">
-                      {line}
-                    </p>
-                  </Reveal>
-                ))}
-
-                {block.list && (
-                  <ul className="mt-2 flex flex-col">
-                    {block.list.map((item, j) => (
-                      <Reveal key={j} delay={j * 0.04} as="li">
-                        <span className="flex items-center gap-4 border-b border-border py-3.5 text-foreground last:border-b-0">
-                          <span
-                            className="size-1.5 shrink-0 bg-brand"
-                            aria-hidden
-                          />
-                          {item}
-                        </span>
-                      </Reveal>
-                    ))}
-                  </ul>
-                )}
-
-                {block.close?.map((line, j) => (
-                  <Reveal key={`c-${j}`} delay={j * 0.05}>
-                    <p className="leading-relaxed text-muted-foreground">
-                      {line}
-                    </p>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* What to bring + Club etiquette — two-column lists */}
-      <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-32">
-          <div className="grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
-            {/* What to bring */}
-            <div className="bg-ink-900 p-8 lg:p-10">
-              <Reveal>
-                <p className="eyebrow">{firstTimers.whatToBring.eyebrow}</p>
-              </Reveal>
-              <ul className="mt-6 flex flex-col">
-                {firstTimers.whatToBring.items.map((item, i) => (
-                  <Reveal key={i} delay={i * 0.04} as="li">
-                    <span className="flex items-start gap-4 border-b border-border py-3.5 text-foreground last:border-b-0">
-                      <span
-                        className="mt-2 size-1.5 shrink-0 bg-brand"
-                        aria-hidden
-                      />
-                      {item}
-                    </span>
-                  </Reveal>
-                ))}
-              </ul>
-              <Reveal delay={0.1}>
-                <p className="mt-6 text-muted-foreground">
-                  {firstTimers.whatToBring.close}
-                </p>
-              </Reveal>
-            </div>
-
-            {/* Club etiquette */}
-            <div className="bg-ink-900 p-8 lg:p-10">
-              <Reveal>
-                <p className="eyebrow">{firstTimers.clubEtiquette.eyebrow}</p>
-                <p className="mt-4 leading-relaxed text-muted-foreground">
-                  {firstTimers.clubEtiquette.intro}
-                </p>
-              </Reveal>
-              <ul className="mt-6 flex flex-col">
-                {firstTimers.clubEtiquette.items.map((item, i) => (
-                  <Reveal key={i} delay={i * 0.04} as="li">
-                    <span className="flex items-center gap-4 border-b border-border py-3.5 text-foreground last:border-b-0">
-                      <span
-                        className="size-1.5 shrink-0 bg-brand"
-                        aria-hidden
-                      />
-                      {item}
-                    </span>
-                  </Reveal>
-                ))}
-              </ul>
-              <Reveal delay={0.1}>
-                <p className="mt-6 text-muted-foreground">
-                  {firstTimers.clubEtiquette.close}
-                </p>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What happens next — closing statement */}
-      <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-32">
-          <div className="mx-auto max-w-3xl">
+        <div className="container-grit py-20 lg:py-28">
+          <div className="grid gap-8 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
             <Reveal>
-              <p className="eyebrow">{firstTimers.whatHappensNext.eyebrow}</p>
-            </Reveal>
-            <div className="mt-8 space-y-4">
-              {firstTimers.whatHappensNext.lines.map((line, i) => (
-                <p
-                  key={i}
-                  className="text-balance text-xl font-light leading-[1.5] text-foreground sm:text-2xl"
-                >
-                  <ScrollReveal>{line}</ScrollReveal>
+              <div className="lg:sticky lg:top-28">
+                <p className="eyebrow">{firstTimers.ptTerms.eyebrow}</p>
+                <p className="mt-4 max-w-sm text-balance leading-relaxed text-muted-foreground">
+                  {firstTimers.ptTerms.intro}
                 </p>
-              ))}
-            </div>
+              </div>
+            </Reveal>
+            <SectionAccordion sections={firstTimers.ptTerms.sections} />
           </div>
         </div>
       </section>
 
       <CtaBand
-        eyebrow="What happens next?"
-        heading="Show up. Trust the process. Do the work."
-        body="One session won’t change your life. Consistency will."
+        eyebrow="Ready when you are"
+        heading="Book your intro session."
+        body="Every first-timer begins with a complimentary assessment. No pressure. No expectations. Just a clear starting line."
       />
     </>
   );

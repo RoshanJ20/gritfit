@@ -18,7 +18,8 @@ export type RecoveryOffering = {
 
 export const recovery = {
   eyebrow: "Essential Recovery",
-  signature: "Move between heat, cold, and manual therapy.",
+  signature: "Where recovery hits different",
+  subtitle: "Move between heat, cold, and manual therapy.",
 
   // Opening statement — closes on a glowing line (like RUSH's "This is RUSH.").
   intro: {

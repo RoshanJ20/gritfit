@@ -1,25 +1,19 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { training } from "@/content/training";
 import { programs } from "@/content/programs";
+import { primaryCta, secondaryCta } from "@/content/nav";
 import { PageHero } from "@/components/sections/page-hero";
 import { LinkList } from "@/components/sections/link-list";
-import { ProgramCards } from "@/components/sections/program-cards";
+import { TrainingPrograms } from "@/components/sections/training-programs";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Callout } from "@/components/sections/callout";
-import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
-import { ParallaxMedia } from "@/components/motion/parallax-media";
-import { MediaPlaceholder } from "@/components/media-placeholder";
+import { Magnetic } from "@/components/motion/magnetic";
 import { CountUp } from "@/components/reactbits/count-up";
 import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
-
-// Real photography for each offering (carried over from the former
-// /training/offerings page so no imagery is lost in the merge).
-const offeringImages: Record<string, string> = {
-  "1-on-1 Coaching": "/images/training/one-on-one.jpg",
-  "Semi-Private Training": "/images/training/semi-private.jpg",
-};
+import { ShinyText } from "@/components/reactbits/shiny-text";
 
 export const metadata: Metadata = {
   title: "Training — Coaching makes champions",
@@ -27,11 +21,18 @@ export const metadata: Metadata = {
     "An elite team of trainers from diverse disciplines, united by one mission — helping you achieve more. 1-on-1 coaching and semi-private training.",
 };
 
-const programLinks = programs.map((p) => ({
-  name: p.name,
-  href: p.href,
-  note: p.lead,
-}));
+// Programs shown on this page: the two core programs, plus a "Specialised
+// Coaching" card that reveals the three specialised programs on hover.
+const coreLinks = programs
+  .filter((p) => p.group === "core")
+  .map((p) => ({ name: p.name, href: p.href, note: p.lead }));
+
+const specialisedLinks = programs
+  .filter((p) => p.group === "specialised")
+  .map((p) => ({ name: p.name, href: p.href, note: p.lead }));
+
+const specialisedNote =
+  "Some goals require more than a standard training program. Our specialised coaching services provide expert guidance for specific stages of life, recovery, and athletic development.";
 
 export default function TrainingPage() {
   return (
@@ -39,37 +40,27 @@ export default function TrainingPage() {
       <PageHero
         eyebrow={training.eyebrow}
         title={training.signature}
-        lead={[training.explore[0]]}
-        mediaLabel="Training"
-        mediaSrc="/images/training/index-hero.jpg"
+        lead={[training.subtitle]}
+        backgroundImage="/images/training/index-hero.jpg"
+        textPosition="bottom-left"
       />
 
       {/* Explore statement */}
       <section className="container-grit py-24 lg:py-36">
         <div className="mx-auto max-w-4xl space-y-6">
-          {training.explore.slice(1).map((line, i) => (
+          {training.explore.map((line, i) => (
             <Reveal key={i} delay={i * 0.05}>
               <p className="text-balance text-xl font-light leading-[1.55] text-foreground sm:text-2xl">
                 {line}
               </p>
             </Reveal>
           ))}
+          <Reveal delay={0.2}>
+            <p className="display pt-4 text-display-2 text-foreground">
+              <ShinyText speed={5}>{training.closer}</ShinyText>
+            </p>
+          </Reveal>
         </div>
-      </section>
-
-      {/* Full-width coaching banner */}
-      <section className="container-grit pb-8 lg:pb-12">
-        <Reveal>
-          <ParallaxMedia amount={28} className="rounded-md">
-            <MediaPlaceholder
-              label="Coaching"
-              kind="image"
-              ratio="wide"
-              src="/images/training/offerings-hero.jpg"
-              className="rounded-none border-0"
-            />
-          </ParallaxMedia>
-        </Reveal>
       </section>
 
       {/* How we coach — offerings */}
@@ -92,18 +83,6 @@ export default function TrainingPage() {
                 </span>
                 <h3 className="display text-3xl">{o.name}</h3>
                 <p className="leading-relaxed text-muted-foreground">{o.desc}</p>
-                <ParallaxMedia
-                  amount={20}
-                  className="mt-auto aspect-[4/3] rounded-md"
-                >
-                  <MediaPlaceholder
-                    label={o.name}
-                    kind="image"
-                    ratio="auto"
-                    src={offeringImages[o.name]}
-                    className="h-full rounded-none border-0"
-                  />
-                </ParallaxMedia>
               </div>
             </Reveal>
           ))}
@@ -125,7 +104,54 @@ export default function TrainingPage() {
       </section>
 
       {/* Programs */}
-      <ProgramCards eyebrow="Programs" items={programLinks} />
+      <TrainingPrograms
+        eyebrow="Programs"
+        core={coreLinks}
+        specialised={specialisedLinks}
+        specialisedNote={specialisedNote}
+      />
+
+      {/* Our standard — closing CTA */}
+      <section className="container-grit py-28 text-center lg:py-36">
+        <Reveal>
+          <p className="eyebrow justify-center">{training.standard.eyebrow}</p>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <h2 className="display mx-auto mt-6 text-display-1 max-w-[18ch]">
+            {training.standard.heading}
+          </h2>
+        </Reveal>
+        <Reveal
+          delay={0.16}
+          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+        >
+          <Magnetic strength={0.45}>
+            <Link href={primaryCta.href} className="btn btn-solid px-8 py-4">
+              Train With Us
+            </Link>
+          </Magnetic>
+          <Link href={secondaryCta.href} className="btn btn-outline px-8 py-4">
+            Start Assessment
+          </Link>
+        </Reveal>
+        <Reveal delay={0.24}>
+          <p className="mx-auto mt-12 max-w-xl text-balance text-muted-foreground">
+            {training.standard.etiquetteNote}
+          </p>
+          <Link
+            href={training.standard.etiquetteHref}
+            className="group mt-4 inline-flex items-center gap-2 text-brand transition-colors hover:text-brand/80"
+          >
+            {training.standard.etiquetteLabel}
+            <span
+              aria-hidden
+              className="transition-transform duration-300 ease-out group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </Link>
+        </Reveal>
+      </section>
 
       {/* PT FAQ */}
       <section className="border-t border-border">
@@ -154,12 +180,6 @@ export default function TrainingPage() {
             note: "Trusted by professionals, loved by beginners.",
           },
         ]}
-      />
-
-      <CtaBand
-        eyebrow="Personal Training"
-        heading={training.matchHeading}
-        body={training.matchBody}
       />
     </>
   );

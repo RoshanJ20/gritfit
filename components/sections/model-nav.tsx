@@ -1,4 +1,5 @@
 import { rush } from "@/content/rush";
+import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/reveal";
 import { SpotlightLink } from "@/components/reactbits/spotlight-link";
 
@@ -15,13 +16,18 @@ export function ModelNav({ current }: { current: "peak" | "flow" | "skilllab" })
           <p className="eyebrow">More RUSH</p>
         </Reveal>
       </div>
-      <div className="grid border-t border-border sm:grid-cols-2">
+      <div className="container-grit grid border-t border-border sm:grid-cols-2">
         {others.map((m, i) => (
           <Reveal key={m.key} delay={i * 0.08}>
             <SpotlightLink
               href={m.href}
               spotlightColor="rgba(174, 217, 35, 0.14)"
-              className="group flex h-full flex-col gap-4 border-b border-border p-8 transition-colors hover:bg-ink-800 sm:border-b-0 sm:p-10 sm:[&:first-child]:border-r sm:[&:first-child]:border-border"
+              className={cn(
+                "group flex h-full flex-col gap-4 py-8 transition-colors hover:bg-ink-800 sm:py-10",
+                i === 0
+                  ? "border-b border-border sm:border-b-0 sm:border-r sm:border-border sm:pr-10"
+                  : "sm:pl-10",
+              )}
             >
               <span className="eyebrow">{m.count} formats</span>
               <h3 className="display text-4xl transition-colors group-hover:text-brand">

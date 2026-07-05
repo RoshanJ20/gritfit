@@ -8,19 +8,26 @@
 export const training = {
   eyebrow: "Training",
   signature: "Coaching makes champions",
+  subtitle: "Elite coaches. Clear intent. Better performance.",
   membershipNote:
     "Grit club membership is required for all personal training clients.",
   explore: [
     "We’re an elite team of trainers from diverse disciplines, united by one mission — helping you achieve more.",
-    "Whether it’s 1-on-1 coaching for competition, performance, or everyday life, or high-energy small group training, every program is built around your goals, your pace, and your potential.",
-    "Together, we push limits, build discipline, and unlock a stronger, healthier version of you.",
-    "Each trainer brings their own expertise, schedule, and approach — but at Grit, we’re united by one purpose: helping you become your strongest self.",
-    "Think of us as the guide behind your progress — here to support, challenge, and elevate you every step of the way.",
+    "Each trainer brings their own expertise and approach — but at Grit, we’re united by one purpose: helping you become your strongest self.",
+    "Whether it’s 1-on-1 coaching for competition, performance, or everyday life, or high-energy small group training, every program is built around your goals, pace, and potential.",
+    "Think of us as the guide behind your progress — here to support, challenge, and elevate you at every step.",
   ],
-  // Source: "Not sure where to begin? ... we’ll match you with the right trainer..."
-  matchHeading: "Not sure where to begin?",
-  matchBody:
-    "We’ve got you covered. We’ll match you with the right trainer to support your goals.",
+  // Bold closing statement — carries the animated brand sheen (ShinyText).
+  closer: "Push limits. Build discipline. Become stronger.",
+  // "Our standard" call-to-action band.
+  standard: {
+    eyebrow: "Our standard",
+    heading: "We don’t sell sessions. We build performance.",
+    etiquetteNote:
+      "To get the most from your coaching experience, we ask all PT clients to understand and follow our PT Terms & Etiquette.",
+    etiquetteLabel: "Learn PT Terms & Etiquette",
+    etiquetteHref: "/first-timers",
+  },
   offerings: [
     {
       name: "1-on-1 Coaching",

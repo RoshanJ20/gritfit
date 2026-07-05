@@ -20,6 +20,7 @@ export default function RecoveryPage() {
       <PageHero
         eyebrow={recovery.eyebrow}
         title={recovery.signature}
+        lead={[recovery.subtitle]}
         backgroundImage="/images/hero/recovery.jpg"
         textPosition="bottom-left"
         imagePosition="center 40%"
