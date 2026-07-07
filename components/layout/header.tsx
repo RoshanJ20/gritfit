@@ -165,20 +165,31 @@ function NavItem({
 
   return (
     <div
-      className="relative"
+      className="group/nav relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
       <Link
         href={group.href}
+        aria-current={active ? "page" : undefined}
         className={cn(
-          "block px-3 py-2 text-sm font-medium uppercase tracking-wide transition-colors",
+          "relative block px-3 py-2 text-sm font-medium uppercase tracking-wide transition-colors",
           active || open
             ? "text-foreground"
             : "text-muted-foreground hover:text-foreground",
         )}
       >
         {group.label}
+        {/* Active-page underline — also wipes in on hover for any item. */}
+        <span
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-x-3 bottom-1 h-0.5 origin-left rounded-full bg-brand transition-transform duration-300 ease-out",
+            active
+              ? "scale-x-100"
+              : "scale-x-0 group-hover/nav:scale-x-100",
+          )}
+        />
       </Link>
 
       <AnimatePresence>
