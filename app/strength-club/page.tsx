@@ -38,6 +38,11 @@ export default function StrengthClubPage() {
               <ShinyText speed={5}>{about.creed}</ShinyText>
             </p>
           </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-8 max-w-2xl text-balance leading-relaxed text-muted-foreground">
+              {about.detail}
+            </p>
+          </Reveal>
         </div>
       </section>
 

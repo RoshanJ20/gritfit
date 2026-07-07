@@ -22,8 +22,8 @@ export const amenities = {
       desc: "Refresh, reset, and get back to your day.",
     },
     {
-      name: "Towel Service",
-      desc: "Fresh towels, always ready when you are.",
+      name: "Fuel Pantry",
+      desc: "Grab-and-go shakes, snacks, and hydration to refuel before or after you train.",
     },
     {
       name: "Parking",

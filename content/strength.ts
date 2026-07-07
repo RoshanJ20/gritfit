@@ -27,8 +27,10 @@ export const strength = {
    * hero lead.
    */
   about: {
-    lead: "At Strength Club, every member begins with a comprehensive assessment designed to understand their goals, movement capabilities, and current level of performance. From there, a structured training pathway is created, ensuring every session contributes to meaningful progress.",
+    lead: "The floor is where that plan comes to life.",
     creed: "Because excellence is never accidental. It is engineered.",
+    detail:
+      "At Strength Club, every member begins with a comprehensive assessment designed to understand their goals, movement capabilities, and current level of performance. From there, a structured training pathway is created, ensuring every session contributes to meaningful progress.",
     get: [
       "Assessment before action and a plan built around you",
       "Training with structure and purpose",
