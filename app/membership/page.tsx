@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-import { membershipTiers, membershipNote } from "@/content/membership";
+import { membershipNote } from "@/content/membership";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Callout } from "@/components/sections/callout";
 import { Reveal } from "@/components/motion/reveal";
-import { PlanCard } from "@/components/membership/plan-card";
+import { MembershipPlans } from "@/components/membership/membership-plans";
 
 export const metadata: Metadata = {
   title: "Membership — Choose your commitment",
@@ -31,13 +31,7 @@ export default function MembershipPage() {
 
       {/* Plans */}
       <section className="container-grit py-12 lg:py-16">
-        <div className="group relative grid md:grid-cols-3">
-          {membershipTiers.map((tier, i) => (
-            <Reveal key={tier.name} delay={i * 0.08} className="h-full">
-              <PlanCard tier={tier} />
-            </Reveal>
-          ))}
-        </div>
+        <MembershipPlans />
 
         <div className="mt-10">
           <Callout label="Please note">{membershipNote}</Callout>

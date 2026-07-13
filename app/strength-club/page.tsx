@@ -34,13 +34,13 @@ export default function StrengthClubPage() {
       <section className="container-grit py-24 lg:py-36">
         <div className="mx-auto max-w-4xl">
           <Reveal>
-            <p className="display text-balance text-display-2 text-foreground">
-              <ShinyText speed={5}>{about.creed}</ShinyText>
+            <p className="max-w-2xl text-balance leading-relaxed text-muted-foreground">
+              {about.detail}
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-8 max-w-2xl text-balance leading-relaxed text-muted-foreground">
-              {about.detail}
+            <p className="display mt-8 text-balance text-display-2 text-foreground">
+              <ShinyText speed={5}>{about.creed}</ShinyText>
             </p>
           </Reveal>
         </div>
@@ -62,7 +62,7 @@ export default function StrengthClubPage() {
 
       {/* Remaining about — what you get / what we don't do */}
       <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-32">
+        <div className="container-grit pt-24 pb-16 lg:pt-32 lg:pb-20">
           <Reveal>
             <p className="eyebrow">The difference</p>
             <h2 className="display mt-4 text-display-2 max-w-[20ch]">
@@ -99,7 +99,7 @@ export default function StrengthClubPage() {
 
       {/* Conversion close — the two prioritized CTAs */}
       <section className="border-t border-border">
-        <div className="container-grit py-28 text-center lg:py-40">
+        <div className="container-grit pt-16 pb-28 text-center lg:pt-24 lg:pb-40">
           <Reveal>
             <p className="eyebrow justify-center">Your starting line</p>
           </Reveal>

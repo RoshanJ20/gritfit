@@ -29,10 +29,17 @@ export function SmoothScrollProvider({
     }
     if (reduced) return;
 
+    // smoothWheel is intentionally OFF. Lenis's wheel smoothing hijacks the
+    // native wheel (preventDefault + re-drives scroll from its own RAF loop).
+    // On this image-heavy site a single heavy paint frame can stall that loop
+    // or desync its scroll target, leaving the wheel dead while the native
+    // scrollbar still works — the recurring "stuck scroll" bug. Native wheel
+    // scrolling cannot get stuck this way. Lenis is kept only for smooth
+    // programmatic/anchor scrolling and to keep ScrollTrigger in sync.
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
+      smoothWheel: false,
       touchMultiplier: 1.5,
     });
 
@@ -42,7 +49,26 @@ export function SmoothScrollProvider({
     gsap.ticker.add(onRaf);
     gsap.ticker.lagSmoothing(0);
 
+    // Lenis caches the max-scroll limit at init and only recomputes it on a
+    // window resize. When the document grows taller *after* that (late-loading
+    // images, web-font reflow, hover/accordion-expanding sections), the cached
+    // limit stays stale and Lenis clamps the wheel to it — a hard "can't scroll
+    // past here" stop, even though native scrollbar dragging still reaches the
+    // bottom. Re-measure whenever the document's height actually changes.
+    let raf = 0;
+    const remeasure = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        lenis.resize();
+        ScrollTrigger.refresh();
+      });
+    };
+    const ro = new ResizeObserver(remeasure);
+    ro.observe(document.documentElement);
+
     return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
       gsap.ticker.remove(onRaf);
       lenis.destroy();
     };

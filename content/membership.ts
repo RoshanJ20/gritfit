@@ -3,12 +3,33 @@
  * known — the UI renders a Placeholder, never an invented number.
  */
 
+/** Commitment lengths offered, in months. */
+export type BillingDuration = 3 | 6 | 12;
+
+export const membershipDurations: {
+  months: BillingDuration;
+  label: string;
+}[] = [
+  { months: 3, label: "3 months" },
+  { months: 6, label: "6 months" },
+  { months: 12, label: "12 months" },
+];
+
+/** Which duration the toggle starts on. */
+export const defaultDuration: BillingDuration = 6;
+
 export type MembershipTier = {
   name: string;
   /** Short positioning line shown under the tier name. */
   tagline: string;
   /** Marks the recommended tier ("Most Chosen"). */
   highlight?: boolean;
+  /**
+   * Price per commitment length. Values are unknown for now — leave a duration
+   * out (or set undefined) to render the pricing placeholder. Fill in the real
+   * strings later, e.g. `{ 3: "₹—", 6: "₹—", 12: "₹—" }`.
+   */
+  prices?: Partial<Record<BillingDuration, string>>;
   features: string[];
   /**
    * Exact feature string to visually emphasise — used to draw attention to the
@@ -38,6 +59,8 @@ export const membershipTiers: MembershipTier[] = [
   {
     name: "Open Gym",
     tagline: "Start where you are",
+    // prices: { 3: "", 6: "", 12: "" },  ← fill in later
+    prices: {},
     access: { filled: 1, pillars: "choose-one", recovery: false },
     highlightFeature: "Choice of membership option: Classes or Strength Club",
     features: [
@@ -52,6 +75,7 @@ export const membershipTiers: MembershipTier[] = [
     name: "Platinum",
     tagline: "The full experience",
     highlight: true,
+    prices: {},
     access: { filled: 2, pillars: "both", recovery: false },
     highlightFeature:
       "Unlimited access to both Classes and Strength Club during operating hours, as well as club amenities",
@@ -65,6 +89,7 @@ export const membershipTiers: MembershipTier[] = [
   {
     name: "VIP",
     tagline: "Everything, uncapped",
+    prices: {},
     access: { filled: 3, pillars: "both", recovery: true },
     features: [
       "Unlimited access to both Classes and Strength Club during operating hours, as well as club amenities, including sauna & cold plunge access based on selected membership duration",

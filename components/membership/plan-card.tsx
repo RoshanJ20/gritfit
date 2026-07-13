@@ -3,7 +3,7 @@
 import { motion, type Variants } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import type { MembershipTier } from "@/content/membership";
+import type { MembershipTier, BillingDuration } from "@/content/membership";
 import { Placeholder } from "@/components/placeholder";
 import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 
@@ -140,7 +140,14 @@ const featureRow: Variants = {
  * spotlight on the highlighted tier, and staggered features whose emphasised
  * row pulses once as it appears.
  */
-export function PlanCard({ tier }: { tier: MembershipTier }) {
+export function PlanCard({
+  tier,
+  duration,
+}: {
+  tier: MembershipTier;
+  duration: BillingDuration;
+}) {
+  const price = tier.prices?.[duration];
   return (
     <div
       className={cn(
@@ -166,9 +173,26 @@ export function PlanCard({ tier }: { tier: MembershipTier }) {
             )}
           </div>
           <p className="mt-3 text-sm text-muted-foreground">{tier.tagline}</p>
-          <p className="mt-5 text-xl font-light text-foreground">
-            <Placeholder label="Price">Pricing at the club</Placeholder>
-          </p>
+          <motion.p
+            key={duration}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-5 flex items-baseline gap-2 text-xl font-light text-foreground"
+          >
+            {price ? (
+              <>
+                <span className="text-3xl font-semibold">{price}</span>
+                <span className="text-sm text-muted-foreground">
+                  / {duration} months
+                </span>
+              </>
+            ) : (
+              <Placeholder label="Price">
+                {duration}-month pricing at the club
+              </Placeholder>
+            )}
+          </motion.p>
         </div>
 
         <AccessLadder access={tier.access} />

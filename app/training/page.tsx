@@ -11,8 +11,6 @@ import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Callout } from "@/components/sections/callout";
 import { Reveal } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
-import { CountUp } from "@/components/reactbits/count-up";
-import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 import { ShinyText } from "@/components/reactbits/shiny-text";
 
 export const metadata: Metadata = {
@@ -73,21 +71,19 @@ export default function TrainingPage() {
             </h2>
           </Reveal>
         </div>
-        <div className="container-grit grid gap-6 border-t border-border pt-12 md:grid-cols-2 lg:gap-8 lg:pt-16">
+        <div className="container-grit grid gap-x-12 gap-y-10 border-t border-border pt-10 md:grid-cols-2 lg:pt-12">
           {training.offerings.map((o, i) => (
             <Reveal key={o.name} delay={i * 0.08}>
-              <div className="group relative isolate flex h-full flex-col gap-5 overflow-hidden rounded-md border border-border bg-ink-900 p-8 transition-colors hover:border-brand/40 lg:p-10">
-                <SpotlightOverlay className="-z-10" />
-                <span className="display text-2xl text-brand">
-                  <CountUp to={i + 1} pad={2} />
-                </span>
-                <h3 className="display text-3xl">{o.name}</h3>
-                <p className="leading-relaxed text-muted-foreground">{o.desc}</p>
+              <div className="border-l border-brand/40 pl-5">
+                <h3 className="text-lg font-medium text-brand">{o.name}</h3>
+                <p className="mt-2 leading-relaxed text-muted-foreground">
+                  {o.desc}
+                </p>
               </div>
             </Reveal>
           ))}
         </div>
-        <div className="container-grit py-8">
+        <div className="container-grit pt-10">
           <Reveal>
             <p className="text-balance text-lg text-muted-foreground">
               {training.offeringsShared}
