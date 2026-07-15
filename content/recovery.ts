@@ -260,6 +260,43 @@ export const manualTherapy = {
 };
 
 /**
+ * Manual Therapy sessions as alternating editorial rows (same `FormatList`
+ * rhythm as Exposure Therapy). Unlike the verbatim source copy above, the
+ * `paras` here are written for the wider two-column layout: each one folds the
+ * session's benefits and "best for" audience into flowing prose. Format `name`s
+ * are the keys used to look up imagery in the page's image map.
+ */
+export const massageFormats = [
+  {
+    name: "Sports Massage",
+    tagline: manualTherapy.services[0].tagline,
+    paras: [
+      "A performance recovery session designed to reduce muscle soreness, support fatigue management, and improve how your body feels after training.",
+      "Built for people who train regularly and want to stay consistent without breakdown, it keeps post-training soreness in check, supports recovery between sessions, and helps you manage the fatigue that accumulates across a training week.",
+      "The result is a body that shows up ready for the next workout, session after session. Ideal for athletes, lifters, runners, and HYROX or CrossFit members who train often.",
+    ],
+  },
+  {
+    name: "Deep Tissue Massage",
+    tagline: manualTherapy.services[1].tagline,
+    paras: [
+      "A focused treatment for persistent muscle tightness and discomfort that affects both training and daily movement.",
+      "This session works into the specific areas that feel stiff, overworked, or restricted — releasing chronic tight spots and reducing the sensation of muscle tension so movement feels comfortable again.",
+      "By freeing up the areas that hold you back, it supports cleaner training mechanics under load. Best for the neck, shoulders, back, hips, and calves, and for any recurring tightness that won't let go.",
+    ],
+  },
+  {
+    name: "Mobility Reset",
+    tagline: manualTherapy.services[2].tagline,
+    paras: [
+      "A hybrid recovery session that combines manual therapy, assisted stretching, and mobility work in one focused block.",
+      "Designed to improve flexibility, restore movement quality, and help you train with better control, it opens up range of motion and reduces the stiffness that builds from hard training or long hours at a desk.",
+      "The payoff is movement that feels free and controlled, supporting better lifting and athletic performance. Ideal if you're dealing with stiffness, mobility restrictions, or the movement limitations of a sedentary day.",
+    ],
+  },
+] as ClassFormat[];
+
+/**
  * Exposure Therapy — the merged hub for the heat/cold modalities. Presents
  * Sauna, Cold Plunge, and Contrast Therapy as alternating editorial rows,
  * reusing the verbatim modality copy above. Format `name`s are the keys used to

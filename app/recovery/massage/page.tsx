@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { manualTherapy, recovery } from "@/content/recovery";
+import { manualTherapy, massageFormats, recovery } from "@/content/recovery";
 import { PageHero } from "@/components/sections/page-hero";
+import { FormatList } from "@/components/sections/format-list";
 import { SiblingNav } from "@/components/sections/sibling-nav";
 import { Callout } from "@/components/sections/callout";
 import { Placeholder } from "@/components/placeholder";
@@ -13,6 +14,17 @@ export const metadata: Metadata = {
   title: "Manual Therapy — Essential Recovery",
   description:
     "Hands-on massage-based recovery designed to release tension, restore movement, and help training feel easier. Sports Massage, Deep Tissue, and Mobility Reset.",
+};
+
+/**
+ * Session imagery keyed by format name for the alternating rows. Sports Massage
+ * uses the real hands-on photo; Deep Tissue and Mobility Reset fall through to
+ * the branded placeholder until their photography lands — drop
+ * `/images/recovery/deep-tissue.jpg` and `/images/recovery/mobility-reset.jpg`
+ * in and add the keys here to swap them in.
+ */
+const massageImages: Record<string, string> = {
+  "Sports Massage": "/images/recovery/massage.jpg",
 };
 
 const siblings = recovery.experiences.filter(
@@ -31,57 +43,22 @@ export default function ManualTherapyPage() {
         mediaImagePosition="center 30%"
       />
 
-      {/* Services */}
+      {/* Sessions — alternating editorial rows (text + image) */}
       <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-32">
+        <div className="container-grit pt-24 lg:pt-32">
           <Reveal>
             <p className="eyebrow">The sessions</p>
             <h2 className="display mt-4 text-display-2 max-w-[20ch]">
               Three ways to recover.
             </h2>
           </Reveal>
-
-          <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border lg:grid-cols-3">
-            {manualTherapy.services.map((s, i) => (
-              <Reveal key={s.name} delay={i * 0.08} className="h-full">
-                <div className="flex h-full flex-col gap-5 bg-ink-900 p-8 lg:p-10">
-                  <div>
-                    <h3 className="display text-2xl text-foreground lg:text-3xl">
-                      {s.name}
-                    </h3>
-                    <p className="mt-2 text-sm font-medium uppercase tracking-[0.1em] text-brand">
-                      {s.tagline}
-                    </p>
-                  </div>
-
-                  <div className="space-y-3 leading-relaxed text-muted-foreground">
-                    {s.paras.map((p, j) => (
-                      <p key={j}>{p}</p>
-                    ))}
-                  </div>
-
-                  <ul className="flex flex-col gap-2.5 text-sm text-foreground">
-                    {s.benefits.map((b) => (
-                      <li key={b} className="flex gap-2.5">
-                        <span className="mt-0.5 shrink-0 text-brand" aria-hidden>
-                          ✓
-                        </span>
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <p className="mt-auto border-t border-border pt-4 text-sm text-muted-foreground">
-                    <span className="font-medium text-foreground">
-                      Best for:
-                    </span>{" "}
-                    {s.bestFor}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
+
+        <FormatList
+          formats={massageFormats}
+          mediaKind="image"
+          images={massageImages}
+        />
       </section>
 
       {/* How to use — compact two-column */}

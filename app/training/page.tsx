@@ -19,34 +19,42 @@ export const metadata: Metadata = {
     "An elite team of trainers from diverse disciplines, united by one mission — helping you achieve more. 1-on-1 coaching and semi-private training.",
 };
 
-// Programs shown on this page as three top-level cards:
-//  1. Core Programs — expands to the two core programs (Strong Start, Strong
-//     Performance).
-//  2. Nutrition — a single card linking to its own page, no sub-programs.
-//  3. Specialised Coaching — expands to the three specialised programs.
-const coreLinks = programs
-  .filter((p) => p.group === "core")
-  .map((p) => ({ name: p.name, href: p.href, note: p.lead }));
+// Programs shown on this page as an editorial accordion, in three chapters:
+//  1. Core Programs — Strong Start, Strong Performance.
+//  2. Nutrition — a single text-led row linking to its own page.
+//  3. Specialised Coaching — Athletic Youth, Injury Return, Postnatal.
+const toRow = (p: (typeof programs)[number]) => ({
+  name: p.name,
+  href: p.href,
+  lead: p.lead,
+  blurb: p.paras[0],
+  image: `/images/programs/${p.slug}.jpg`,
+});
 
-const specialisedLinks = programs
-  .filter((p) => p.group === "specialised")
-  .map((p) => ({ name: p.name, href: p.href, note: p.lead }));
-
-const programGroups = [
+const programSections = [
   {
-    name: "Core Programs",
-    note: "The foundation of how we coach — from building a stronger, healthier body to training for performance.",
-    children: coreLinks,
+    label: "Core Programs",
+    intro:
+      "The foundation of how we coach — from building a stronger, healthier body to training for performance.",
+    rows: programs.filter((p) => p.group === "core").map(toRow),
   },
   {
-    name: "Nutrition",
-    href: "/nutrition",
-    note: "Personalised nutrition coaching to fuel your training, recovery, and results.",
+    label: "Nutrition",
+    intro: "Fuel the work.",
+    rows: [
+      {
+        name: "Nutrition",
+        href: "/nutrition",
+        lead: "Personalised nutrition coaching to fuel your training, recovery, and results.",
+        cta: "Explore nutrition",
+      },
+    ],
   },
   {
-    name: "Specialised Coaching",
-    note: "Some goals require more than a standard training program. Our specialised coaching services provide expert guidance for specific stages of life, recovery, and athletic development.",
-    children: specialisedLinks,
+    label: "Specialised Coaching",
+    intro:
+      "Some goals require more than a standard program — expert guidance for specific stages of life, recovery, and athletic development.",
+    rows: programs.filter((p) => p.group === "specialised").map(toRow),
   },
 ];
 
@@ -80,7 +88,7 @@ export default function TrainingPage() {
       </section>
 
       {/* Programs */}
-      <TrainingPrograms eyebrow="Programs" groups={programGroups} />
+      <TrainingPrograms eyebrow="Programs" sections={programSections} />
 
       {/* Membership note */}
       <section className="container-grit py-12 lg:py-16">
