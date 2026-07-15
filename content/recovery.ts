@@ -8,6 +8,8 @@
  * Protocols (sessions/week, minutes) are exactly as written. Do not paraphrase.
  */
 
+import type { ClassFormat } from "@/content/rush";
+
 export type RecoveryOffering = {
   key: "sauna" | "cold-plunge" | "massage";
   name: string;
@@ -34,23 +36,14 @@ export const recovery = {
   // "How it works" — the four recovery experiences.
   howItWorks: {
     eyebrow: "How it works",
-    heading: "Four Experiences, One Outcome",
+    heading: "Two Experiences, One Outcome",
   },
   experiences: [
     {
-      name: "Sauna",
-      tagline: "Step into heat. Relax deeper. Let tension melt away.",
-      href: "/recovery/sauna",
-    },
-    {
-      name: "Cold Plunge",
-      tagline: "Step into cold. Shock the system. Leave switched on.",
-      href: "/recovery/cold-plunge",
-    },
-    {
-      name: "Contrast Therapy",
-      tagline: "Move between heat and cold. Discover calm in the extremes.",
-      href: "/recovery/contrast",
+      name: "Exposure Therapy",
+      tagline:
+        "Sauna, cold plunge, and contrast therapy. Move between heat and cold on purpose.",
+      href: "/recovery/exposure",
     },
     {
       name: "Manual Therapy",
@@ -264,4 +257,33 @@ export const manualTherapy = {
   },
 
   note: "Recovery services are not a replacement for training, sleep, nutrition, or programming. They are a support system designed to help you train more consistently and effectively over time.",
+};
+
+/**
+ * Exposure Therapy — the merged hub for the heat/cold modalities. Presents
+ * Sauna, Cold Plunge, and Contrast Therapy as alternating editorial rows,
+ * reusing the verbatim modality copy above. Format `name`s are the keys used to
+ * look up imagery in `exposureFormatImages`.
+ */
+export const exposure = {
+  eyebrow: "Essential Recovery · Exposure Therapy",
+  name: "Exposure Therapy",
+  lead: "Controlled exposure to heat and cold — sauna, cold plunge, and contrast therapy, working the body between the extremes.",
+  formats: [
+    {
+      name: "Sauna",
+      tagline: sauna.tagline,
+      paras: sauna.paras,
+    },
+    {
+      name: "Cold Plunge",
+      tagline: coldPlunge.tagline,
+      paras: coldPlunge.paras,
+    },
+    {
+      name: "Contrast Therapy",
+      tagline: recovery.contrast.lines[0],
+      paras: recovery.contrast.lines.slice(1),
+    },
+  ] as ClassFormat[],
 };

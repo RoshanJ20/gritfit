@@ -19,8 +19,11 @@ export const metadata: Metadata = {
     "An elite team of trainers from diverse disciplines, united by one mission — helping you achieve more. 1-on-1 coaching and semi-private training.",
 };
 
-// Programs shown on this page: the two core programs, plus a "Specialised
-// Coaching" card that reveals the three specialised programs on hover.
+// Programs shown on this page as three top-level cards:
+//  1. Core Programs — expands to the two core programs (Strong Start, Strong
+//     Performance).
+//  2. Nutrition — a single card linking to its own page, no sub-programs.
+//  3. Specialised Coaching — expands to the three specialised programs.
 const coreLinks = programs
   .filter((p) => p.group === "core")
   .map((p) => ({ name: p.name, href: p.href, note: p.lead }));
@@ -29,8 +32,23 @@ const specialisedLinks = programs
   .filter((p) => p.group === "specialised")
   .map((p) => ({ name: p.name, href: p.href, note: p.lead }));
 
-const specialisedNote =
-  "Some goals require more than a standard training program. Our specialised coaching services provide expert guidance for specific stages of life, recovery, and athletic development.";
+const programGroups = [
+  {
+    name: "Core Programs",
+    note: "The foundation of how we coach — from building a stronger, healthier body to training for performance.",
+    children: coreLinks,
+  },
+  {
+    name: "Nutrition",
+    href: "/nutrition",
+    note: "Personalised nutrition coaching to fuel your training, recovery, and results.",
+  },
+  {
+    name: "Specialised Coaching",
+    note: "Some goals require more than a standard training program. Our specialised coaching services provide expert guidance for specific stages of life, recovery, and athletic development.",
+    children: specialisedLinks,
+  },
+];
 
 export default function TrainingPage() {
   return (
@@ -61,36 +79,8 @@ export default function TrainingPage() {
         </div>
       </section>
 
-      {/* How we coach — offerings */}
-      <section className="border-t border-border">
-        <div className="container-grit py-16 lg:py-20">
-          <Reveal>
-            <p className="eyebrow">How we coach</p>
-            <h2 className="display mt-4 text-display-2">
-              Same coaching. Different environment.
-            </h2>
-          </Reveal>
-        </div>
-        <div className="container-grit grid gap-x-12 gap-y-10 border-t border-border pt-10 md:grid-cols-2 lg:pt-12">
-          {training.offerings.map((o, i) => (
-            <Reveal key={o.name} delay={i * 0.08}>
-              <div className="border-l border-brand/40 pl-5">
-                <h3 className="text-lg font-medium text-brand">{o.name}</h3>
-                <p className="mt-2 leading-relaxed text-muted-foreground">
-                  {o.desc}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <div className="container-grit pt-10">
-          <Reveal>
-            <p className="text-balance text-lg text-muted-foreground">
-              {training.offeringsShared}
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      {/* Programs */}
+      <TrainingPrograms eyebrow="Programs" groups={programGroups} />
 
       {/* Membership note */}
       <section className="container-grit py-12 lg:py-16">
@@ -99,13 +89,34 @@ export default function TrainingPage() {
         </Callout>
       </section>
 
-      {/* Programs */}
-      <TrainingPrograms
-        eyebrow="Programs"
-        core={coreLinks}
-        specialised={specialisedLinks}
-        specialisedNote={specialisedNote}
-      />
+      {/* How we coach — subtle inline note */}
+      <section className="container-grit pb-4">
+        <div className="max-w-3xl">
+          <Reveal>
+            <p className="eyebrow">How we coach</p>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <p className="mt-3 text-lg text-foreground">
+              Same coaching. Different environment.
+            </p>
+          </Reveal>
+          <div className="mt-5 space-y-3">
+            {training.offerings.map((o, i) => (
+              <Reveal key={o.name} delay={0.1 + i * 0.05}>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  <span className="font-medium text-foreground">{o.name}.</span>{" "}
+                  {o.desc}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.22}>
+            <p className="mt-5 text-sm text-muted-foreground">
+              {training.offeringsShared}
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       {/* Our standard — closing CTA */}
       <section className="container-grit py-28 text-center lg:py-36">
@@ -122,12 +133,12 @@ export default function TrainingPage() {
           className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
           <Magnetic strength={0.45}>
-            <Link href={primaryCta.href} className="btn btn-solid px-8 py-4">
-              Train With Us
+            <Link href={secondaryCta.href} className="btn btn-solid px-8 py-4">
+              Start Assessment
             </Link>
           </Magnetic>
-          <Link href={secondaryCta.href} className="btn btn-outline px-8 py-4">
-            Start Assessment
+          <Link href={primaryCta.href} className="btn btn-outline px-8 py-4">
+            Train With Us
           </Link>
         </Reveal>
         <Reveal delay={0.24}>

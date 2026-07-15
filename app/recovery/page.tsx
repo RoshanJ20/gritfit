@@ -54,7 +54,7 @@ export default function RecoveryPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
             {recovery.experiences.map((e, i) => (
               <Reveal key={e.name} delay={i * 0.08}>
                 <Link
@@ -104,8 +104,8 @@ export default function RecoveryPage() {
               Book Your Recovery →
             </Link>
           </Magnetic>
-          <Link href="/membership" className="btn btn-outline px-8 py-4">
-            Explore membership options
+          <Link href="/recovery/sessions" className="btn btn-outline px-8 py-4">
+            View session plans
           </Link>
         </Reveal>
 

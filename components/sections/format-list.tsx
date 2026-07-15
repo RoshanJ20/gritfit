@@ -12,10 +12,13 @@ export function FormatList({
   formats,
   startIndex = 1,
   mediaKind = "video",
+  images,
 }: {
   formats: ClassFormat[];
   startIndex?: number;
   mediaKind?: "image" | "video";
+  /** Optional image map keyed by format name; falls back to RUSH imagery. */
+  images?: Record<string, string>;
 }) {
   return (
     <div>
@@ -31,7 +34,7 @@ export function FormatList({
                     label={f.name}
                     kind={mediaKind}
                     ratio="auto"
-                    src={rushFormatImages[f.name]}
+                    src={images?.[f.name] ?? rushFormatImages[f.name]}
                     className="h-full rounded-none border-0"
                   />
                 </ParallaxMedia>

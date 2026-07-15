@@ -84,42 +84,44 @@ export default function ManualTherapyPage() {
         </div>
       </section>
 
-      {/* How to use */}
+      {/* How to use — compact two-column */}
       <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-32">
+        <div className="container-grit grid gap-8 py-14 lg:grid-cols-[0.75fr_1fr] lg:items-center lg:gap-16 lg:py-16">
           <Reveal>
             <p className="eyebrow">{manualTherapy.howToUse.eyebrow}</p>
-            <h2 className="display mt-4 text-display-2 max-w-[20ch]">
+            <h2 className="display mt-3 text-2xl sm:text-3xl max-w-[16ch]">
               {manualTherapy.howToUse.heading}
             </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="mt-6 max-w-2xl text-muted-foreground">
+            <p className="mt-3 max-w-md text-sm text-muted-foreground">
               {manualTherapy.howToUse.intro}
             </p>
           </Reveal>
 
-          <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">
-            {manualTherapy.howToUse.matches.map((m, i) => (
-              <Reveal key={m.when} delay={i * 0.08}>
-                <div className="flex h-full flex-col gap-3 bg-ink-900 p-8">
-                  <p className="text-muted-foreground">{m.when}</p>
-                  <p className="flex items-center gap-2 text-xl font-medium text-foreground">
-                    <span className="text-brand" aria-hidden>
-                      →
+          <div>
+            <ul className="border-y border-border">
+              {manualTherapy.howToUse.matches.map((m, i) => (
+                <Reveal key={m.when} delay={i * 0.06}>
+                  <li className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-border py-3.5 last:border-b-0">
+                    <span className="text-sm text-muted-foreground">
+                      {m.when}
                     </span>
-                    {m.then}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+                    <span className="flex items-center gap-2.5 font-medium text-foreground">
+                      <span
+                        className="size-1.5 shrink-0 bg-brand"
+                        aria-hidden
+                      />
+                      {m.then}
+                    </span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+            <Reveal delay={0.12}>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {manualTherapy.howToUse.guide}
+              </p>
+            </Reveal>
           </div>
-
-          <Reveal delay={0.12}>
-            <p className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              {manualTherapy.howToUse.guide}
-            </p>
-          </Reveal>
         </div>
       </section>
 
