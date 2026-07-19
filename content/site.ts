@@ -41,6 +41,15 @@ export const site = {
   location: {
     area: "HRBR", // real — source value
     placeholder: false,
+    // Display bits for the map snippet.
+    neighborhood: "HRBR Layout",
+    city: "Bengaluru",
+    // Google Maps deep link. Uses a search query for now (works off the area
+    // name); swap `query` for `&query_place_id=…` or a `/dir/?…&destination=lat,lng`
+    // once the exact club pin is confirmed. Precise coordinates are intentionally
+    // omitted until then, so the card shows the area rather than a guessed pin.
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Grit+Fit+HRBR+Layout+Bengaluru",
   },
   // Source marks contact + hours "Yet to work on" → placeholders.
   contact: {

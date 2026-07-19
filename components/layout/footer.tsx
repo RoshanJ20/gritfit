@@ -4,6 +4,7 @@ import { FaInstagram, FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import { site } from "@/content/site";
 import { navGroups, primaryCta } from "@/content/nav";
 import { Placeholder } from "@/components/placeholder";
+import { MapSnippet } from "@/components/map-snippet";
 import { Marquee } from "@/components/motion/marquee";
 import { cn } from "@/lib/utils";
 
@@ -55,6 +56,13 @@ export function Footer() {
           <Link href={primaryCta.href} className="btn btn-solid w-fit px-5 py-2.5">
             {primaryCta.label}
           </Link>
+          <MapSnippet
+            size="sm"
+            area={site.location.neighborhood}
+            city={site.location.city}
+            mapsUrl={site.location.mapsUrl}
+            className="mt-1 max-w-xs"
+          />
         </div>
 
         {/* Explore */}

@@ -6,6 +6,7 @@ import { site } from "@/content/site";
 import { secondaryCta } from "@/content/nav";
 import { PageHero } from "@/components/sections/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
+import { MapSnippet } from "@/components/map-snippet";
 import { Reveal } from "@/components/motion/reveal";
 import { Placeholder } from "@/components/placeholder";
 
@@ -51,6 +52,12 @@ export default function ContactPage() {
             >
               {secondaryCta.label}
             </Link>
+            <MapSnippet
+              area={site.location.neighborhood}
+              city={site.location.city}
+              mapsUrl={site.location.mapsUrl}
+              className="mt-10 max-w-sm"
+            />
           </Reveal>
 
           <Reveal delay={0.1}>
