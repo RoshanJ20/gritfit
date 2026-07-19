@@ -129,7 +129,7 @@ export function Footer() {
       </div>
 
       <div className="container-grit flex flex-col items-center justify-between gap-3 border-t border-border py-6 text-xs text-muted-foreground sm:flex-row">
-        <p>© {new Date().getFullYear()} Grit Fit — The Luxe Club. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Grit Fit — Luxe Health Club. All rights reserved.</p>
         <div className="flex gap-5">
           <Link href="/club-standards" className="hover:text-foreground">
             Club Standards

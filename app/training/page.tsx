@@ -19,42 +19,43 @@ export const metadata: Metadata = {
     "An elite team of trainers from diverse disciplines, united by one mission — helping you achieve more. 1-on-1 coaching and semi-private training.",
 };
 
-// Programs shown on this page as an editorial accordion, in three chapters:
+// Programs shown on this page as three broad category cards that lift open on
+// hover to reveal the individual programs inside each:
 //  1. Core Programs — Strong Start, Strong Performance.
-//  2. Nutrition — a single text-led row linking to its own page.
+//  2. Nutrition — a single program linking to its own page.
 //  3. Specialised Coaching — Athletic Youth, Injury Return, Postnatal.
-const toRow = (p: (typeof programs)[number]) => ({
+const toLink = (p: (typeof programs)[number]) => ({
   name: p.name,
   href: p.href,
-  lead: p.lead,
-  blurb: p.paras[0],
+  note: p.lead,
   image: `/images/programs/${p.slug}.jpg`,
 });
 
-const programSections = [
+const programCategories = [
   {
-    label: "Core Programs",
+    name: "Core Programs",
     intro:
       "The foundation of how we coach — from building a stronger, healthier body to training for performance.",
-    rows: programs.filter((p) => p.group === "core").map(toRow),
+    image: "/images/programs/strong-start.jpg",
+    programs: programs.filter((p) => p.group === "core").map(toLink),
   },
   {
-    label: "Nutrition",
+    name: "Nutrition",
     intro: "Fuel the work.",
-    rows: [
+    programs: [
       {
-        name: "Nutrition",
+        name: "Nutrition Coaching",
         href: "/nutrition",
-        lead: "Personalised nutrition coaching to fuel your training, recovery, and results.",
-        cta: "Explore nutrition",
+        note: "Personalised nutrition to fuel your training, recovery, and results.",
       },
     ],
   },
   {
-    label: "Specialised Coaching",
+    name: "Specialised Coaching",
     intro:
-      "Some goals require more than a standard program — expert guidance for specific stages of life, recovery, and athletic development.",
-    rows: programs.filter((p) => p.group === "specialised").map(toRow),
+      "Expert guidance for specific stages of life, recovery, and athletic development.",
+    image: "/images/programs/youth.jpg",
+    programs: programs.filter((p) => p.group === "specialised").map(toLink),
   },
 ];
 
@@ -88,7 +89,7 @@ export default function TrainingPage() {
       </section>
 
       {/* Programs */}
-      <TrainingPrograms eyebrow="Programs" sections={programSections} />
+      <TrainingPrograms eyebrow="Programs" categories={programCategories} />
 
       {/* Membership note */}
       <section className="container-grit py-12 lg:py-16">

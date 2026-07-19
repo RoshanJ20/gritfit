@@ -13,6 +13,9 @@ export const metadata: Metadata = {
 };
 
 export default function RecoverySessionsPage() {
+  // Largest pack sets the scale the per-plan meters fill against.
+  const maxSessions = Math.max(...sessionPacks.map((p) => p.sessions));
+
   return (
     <>
       {/* Compact header — no media, so the plans sit in the first viewport */}
@@ -40,7 +43,7 @@ export default function RecoverySessionsPage() {
         <div className="group relative grid sm:grid-cols-2 lg:grid-cols-4">
           {sessionPacks.map((pack, i) => (
             <Reveal key={pack.sessions} delay={i * 0.08} className="h-full">
-              <SessionPackCard pack={pack} />
+              <SessionPackCard pack={pack} maxSessions={maxSessions} />
             </Reveal>
           ))}
         </div>

@@ -7,21 +7,20 @@ import type { SessionPack } from "@/content/recovery-sessions";
 import { Placeholder } from "@/components/placeholder";
 import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 
-const dot: Variants = {
-  hidden: { scale: 0, opacity: 0 },
-  show: {
-    scale: 1,
-    opacity: 1,
-    transition: { type: "spring", stiffness: 380, damping: 22 },
-  },
-};
-
 /**
- * The session count made explicit: a large numeral + unit, reinforced by a row
- * of filled dots (one per session) that pop in on scroll. Replaces the earlier
- * dash meter so the quantity is unmistakable at a glance.
+ * The session count made explicit: a large numeral + unit above a proportional
+ * meter. The brand fill spans `sessions / maxSessions`, so each pack reads at a
+ * glance against the largest one; the unfilled track carries faint unit ticks
+ * so the bar feels measured. Replaces the earlier row of dots.
  */
-function SessionCount({ sessions }: { sessions: number }) {
+function SessionCount({
+  sessions,
+  maxSessions,
+}: {
+  sessions: number;
+  maxSessions: number;
+}) {
+  const pct = Math.min(100, Math.max(0, (sessions / maxSessions) * 100));
   return (
     <div>
       <p className="flex items-baseline gap-2">
@@ -32,21 +31,26 @@ function SessionCount({ sessions }: { sessions: number }) {
           {sessions === 1 ? "session" : "sessions"}
         </span>
       </p>
-      <motion.div
-        className="mt-3.5 flex flex-wrap gap-1.5"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-10% 0px" }}
-        transition={{ staggerChildren: 0.05 }}
-      >
-        {Array.from({ length: sessions }).map((_, i) => (
-          <motion.span
-            key={i}
-            variants={dot}
-            className="size-2.5 rounded-full bg-brand"
-          />
-        ))}
-      </motion.div>
+
+      {/* Proportional meter — filled to sessions/maxSessions over a ticked track */}
+      <div className="relative mt-4 h-[6px] w-full overflow-hidden rounded-full bg-foreground/[0.08]">
+        {/* Faint unit ticks — one division per session across the full scale */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: `repeating-linear-gradient(90deg, transparent 0, transparent calc(100% / ${maxSessions} - 1px), color-mix(in srgb, var(--foreground) 12%, transparent) calc(100% / ${maxSessions} - 1px), color-mix(in srgb, var(--foreground) 12%, transparent) calc(100% / ${maxSessions}))`,
+          }}
+        />
+        {/* Brand fill — grows in on scroll */}
+        <motion.span
+          className="absolute inset-y-0 left-0 rounded-full bg-brand"
+          initial={{ width: 0 }}
+          whileInView={{ width: `${pct}%` }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        />
+      </div>
     </div>
   );
 }
@@ -69,7 +73,13 @@ const featureRow: Variants = {
  * language — bordered grid seams, hover scale/recede, highlighted pack gets the
  * brand top-border, tint, "Best Value" badge, and cursor spotlight.
  */
-export function SessionPackCard({ pack }: { pack: SessionPack }) {
+export function SessionPackCard({
+  pack,
+  maxSessions,
+}: {
+  pack: SessionPack;
+  maxSessions: number;
+}) {
   return (
     <div
       className={cn(
@@ -96,7 +106,7 @@ export function SessionPackCard({ pack }: { pack: SessionPack }) {
           </div>
         </div>
 
-        <SessionCount sessions={pack.sessions} />
+        <SessionCount sessions={pack.sessions} maxSessions={maxSessions} />
 
         <p className="flex items-baseline text-xl font-light text-foreground">
           {pack.price ? (
