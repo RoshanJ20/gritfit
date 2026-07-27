@@ -176,6 +176,16 @@
     @apply mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12;
   }
 
+  /* Vertical section rhythm — one uniform, minimal scale across every page.
+     .section is the default band; .section-sm is for tighter teaser/CTA bands.
+     Prefer these over ad-hoc py-* so spacing never drifts page to page. */
+  .section {
+    @apply py-16 lg:py-24;
+  }
+  .section-sm {
+    @apply py-12 lg:py-16;
+  }
+
   /* Display headline — restrained grotesque (Archivo). Natural case, medium
      weight, calm. Ethos-style minimalism: type is quiet, imagery leads. */
   .display {

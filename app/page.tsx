@@ -38,17 +38,6 @@ const pillars = [
   },
 ];
 
-const disciplines = [
-  "Strength",
-  "Conditioning",
-  "Calisthenics",
-  "Boxing",
-  "MMA",
-  "Yoga",
-  "Endurance",
-  "Recovery",
-];
-
 const tiers = [
   {
     name: "Open Access",
@@ -215,21 +204,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        {/* Disciplines */}
-        <Reveal delay={0.1}>
-          <div className="mt-16 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-border pt-10">
-            {disciplines.map((d) => (
-              <span
-                key={d}
-                className="display text-2xl text-foreground/60 sm:text-3xl"
-              >
-                {d}
-                <span className="ml-6 text-brand">/</span>
-              </span>
-            ))}
-          </div>
-        </Reveal>
       </section>
 
       {/* ============== MEMBERSHIP TEASER ============== */}

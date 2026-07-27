@@ -49,7 +49,7 @@ export function StepProgress({
       {/* Rail track + fill — mobile (vertical) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute bottom-10 left-[2.6rem] top-[4.6rem] z-10 w-px bg-border md:hidden"
+        className="pointer-events-none absolute bottom-8 left-4 top-8 z-10 w-px bg-border md:hidden"
       >
         <motion.div
           className="w-full origin-top bg-brand"
