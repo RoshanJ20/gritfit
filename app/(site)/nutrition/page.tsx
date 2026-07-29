@@ -21,7 +21,7 @@ export default function NutritionPage() {
         mediaLabel="Nutrition"
       />
 
-      <section className="container-grit py-24 lg:py-36">
+      <section className="container-grit section">
         <div className="mx-auto max-w-3xl space-y-6">
           {nutrition.paras.map((p, i) => (
             <p

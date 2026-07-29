@@ -22,8 +22,8 @@ export const amenities = {
       desc: "Refresh, reset, and get back to your day.",
     },
     {
-      name: "Fuel Pantry",
-      desc: "Grab-and-go shakes, snacks, and hydration to refuel before or after you train.",
+      name: "Hydration Station",
+      desc: "Filtered water on tap to fill up and stay sharp through every session.",
     },
     {
       name: "Parking",

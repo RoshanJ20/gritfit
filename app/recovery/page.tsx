@@ -27,7 +27,7 @@ export default function RecoveryPage() {
       />
 
       {/* Opening statement */}
-      <section className="container-grit py-24 lg:py-36">
+      <section className="container-grit section">
         <div className="mx-auto max-w-4xl space-y-6">
           {recovery.intro.lines.map((line, i) => (
             <Reveal key={i} delay={i * 0.05}>
@@ -46,7 +46,7 @@ export default function RecoveryPage() {
 
       {/* How it works — four experiences */}
       <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-32">
+        <div className="container-grit section">
           <Reveal>
             <p className="eyebrow">{recovery.howItWorks.eyebrow}</p>
             <h2 className="display mt-4 text-display-2 max-w-[18ch]">
@@ -80,7 +80,7 @@ export default function RecoveryPage() {
       </section>
 
       {/* Conversion close */}
-      <section className="container-grit py-28 text-center lg:py-40">
+      <section className="container-grit section text-center">
         <Reveal>
           <p className="eyebrow justify-center">{recovery.cta.eyebrow}</p>
         </Reveal>
@@ -127,7 +127,7 @@ export default function RecoveryPage() {
 
       {/* FAQ */}
       <section id="faq" className="scroll-mt-24 border-t border-border">
-        <div className="container-grit grid gap-12 py-24 lg:grid-cols-[0.6fr_1fr] lg:gap-20 lg:py-32">
+        <div className="container-grit section grid gap-12 lg:grid-cols-[0.6fr_1fr] lg:gap-20">
           <Reveal>
             <p className="eyebrow">Questions</p>
             <h2 className="display mt-4 text-display-2">

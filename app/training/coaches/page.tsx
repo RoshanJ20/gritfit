@@ -24,7 +24,7 @@ export default function CoachesPage() {
         mediaSrc="/images/training/coaching.jpg"
       />
 
-      <section className="container-grit py-20 lg:py-28">
+      <section className="container-grit section">
         <Reveal>
           <p className="eyebrow">The coaches</p>
           <p className="mt-4 max-w-xl text-sm text-muted-foreground">

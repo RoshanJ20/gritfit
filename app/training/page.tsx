@@ -71,7 +71,7 @@ export default function TrainingPage() {
       />
 
       {/* Explore statement */}
-      <section className="container-grit py-24 lg:py-36">
+      <section className="container-grit section">
         <div className="mx-auto max-w-4xl space-y-6">
           {training.explore.map((line, i) => (
             <Reveal key={i} delay={i * 0.05}>
@@ -92,7 +92,7 @@ export default function TrainingPage() {
       <TrainingPrograms eyebrow="Programs" categories={programCategories} />
 
       {/* Membership note */}
-      <section className="container-grit py-12 lg:py-16">
+      <section className="container-grit section-sm">
         <Callout glow label="Please note">
           {training.membershipNote}
         </Callout>
@@ -128,7 +128,7 @@ export default function TrainingPage() {
       </section>
 
       {/* Our standard — closing CTA */}
-      <section className="container-grit py-28 text-center lg:py-36">
+      <section className="container-grit section text-center">
         <Reveal>
           <p className="eyebrow justify-center">{training.standard.eyebrow}</p>
         </Reveal>
@@ -171,7 +171,7 @@ export default function TrainingPage() {
 
       {/* PT FAQ */}
       <section className="border-t border-border">
-        <div className="container-grit grid gap-12 py-24 lg:grid-cols-[0.6fr_1fr] lg:gap-20 lg:py-32">
+        <div className="container-grit section grid gap-12 lg:grid-cols-[0.6fr_1fr] lg:gap-20">
           <Reveal>
             <p className="eyebrow">Questions</p>
             <h2 className="display mt-4 text-display-2">

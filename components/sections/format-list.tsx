@@ -27,7 +27,7 @@ export function FormatList({
         const flip = i % 2 === 1;
         return (
           <div key={f.name} className="border-b border-border">
-            <div className="container-grit grid items-center gap-10 py-16 lg:grid-cols-2 lg:gap-20 lg:py-24">
+            <div className="container-grit section grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
               <Reveal className={flip ? "lg:order-2" : ""} y={40}>
                 <ParallaxMedia amount={34} className="aspect-[4/3]">
                   <MediaPlaceholder

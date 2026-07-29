@@ -23,7 +23,7 @@ export default function TestimonialsPage() {
         mediaSrc="/images/training/client-voices.jpg"
       />
 
-      <section className="container-grit py-20 lg:py-28">
+      <section className="container-grit section">
         <Reveal>
           <p className="eyebrow">Reviews</p>
           <p className="mt-4 max-w-xl text-sm text-muted-foreground">

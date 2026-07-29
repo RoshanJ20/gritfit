@@ -21,7 +21,7 @@ export function CtaBand({
   className?: string;
 }) {
   return (
-    <section className={cn("container-grit py-28 text-center lg:py-40", className)}>
+    <section className={cn("container-grit section text-center", className)}>
       <Reveal>
         <p className="eyebrow justify-center">{eyebrow}</p>
       </Reveal>

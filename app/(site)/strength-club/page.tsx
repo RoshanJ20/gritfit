@@ -31,7 +31,7 @@ export default function StrengthClubPage() {
       />
 
       {/* Concise about — creed */}
-      <section className="container-grit py-24 lg:py-36">
+      <section className="container-grit section">
         <div className="mx-auto max-w-4xl">
           <Reveal>
             <p className="max-w-2xl text-balance leading-relaxed text-muted-foreground">
@@ -48,7 +48,7 @@ export default function StrengthClubPage() {
 
       {/* Offerings — how it works */}
       <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-36">
+        <div className="container-grit section">
           <Reveal>
             <p className="eyebrow">How it works</p>
             <h2 className="display mt-4 text-display-2 max-w-[18ch]">
@@ -62,7 +62,7 @@ export default function StrengthClubPage() {
 
       {/* Remaining about — what you get / what we don't do */}
       <section className="border-t border-border">
-        <div className="container-grit pt-24 pb-16 lg:pt-32 lg:pb-20">
+        <div className="container-grit section">
           <Reveal>
             <p className="eyebrow">The difference</p>
             <h2 className="display mt-4 text-display-2 max-w-[20ch]">
@@ -99,7 +99,7 @@ export default function StrengthClubPage() {
 
       {/* Conversion close — the two prioritized CTAs */}
       <section className="border-t border-border">
-        <div className="container-grit pt-16 pb-28 text-center lg:pt-24 lg:pb-40">
+        <div className="container-grit section text-center">
           <Reveal>
             <p className="eyebrow justify-center">Your starting line</p>
           </Reveal>
@@ -140,7 +140,7 @@ export default function StrengthClubPage() {
 
       {/* FAQ */}
       <section className="border-t border-border">
-        <div className="container-grit grid gap-12 py-24 lg:grid-cols-[0.6fr_1fr] lg:gap-20 lg:py-32">
+        <div className="container-grit section grid gap-12 lg:grid-cols-[0.6fr_1fr] lg:gap-20">
           <Reveal>
             <p className="eyebrow">Questions</p>
             <h2 className="display mt-4 text-display-2">

@@ -57,7 +57,7 @@ export function PageHero({
   }
 
   return (
-    <section className="bg-spotlight relative overflow-hidden border-b border-border pb-16 pt-28 lg:pb-24 lg:pt-32">
+    <section className="bg-spotlight relative overflow-hidden border-b border-border pb-12 pt-28 lg:pb-16 lg:pt-32">
       <div className="pointer-events-none absolute -left-40 top-10 size-[32rem] rounded-full bg-white/[0.03] blur-[120px]" />
 
       <div className="container-grit relative z-10 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
@@ -164,7 +164,7 @@ function ImmersiveHero({
 
       <div
         className={cn(
-          "container-grit relative z-10 flex w-full pb-20 pt-32 lg:pb-28 lg:pt-36",
+          "container-grit relative z-10 flex w-full pb-12 pt-32 lg:pb-16 lg:pt-36",
           place[textPosition],
         )}
       >

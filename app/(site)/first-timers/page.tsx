@@ -25,7 +25,7 @@ export default function FirstTimersPage() {
       />
 
       {/* Opening statement — stays open */}
-      <section className="container-grit py-24 lg:py-32">
+      <section className="container-grit section">
         <div className="mx-auto max-w-3xl space-y-6">
           {firstTimers.intro.map((line, i) => (
             <p
@@ -40,7 +40,7 @@ export default function FirstTimersPage() {
 
       {/* Group 1 — your first visit (single-open accordion) */}
       <section className="border-t border-border">
-        <div className="container-grit py-20 lg:py-28">
+        <div className="container-grit section">
           <Reveal>
             <p className="eyebrow">{firstTimers.visit.eyebrow}</p>
             <h2 className="display mt-4 max-w-[20ch] text-display-2">
@@ -55,7 +55,7 @@ export default function FirstTimersPage() {
 
       {/* Group 2 — PT terms & expectations (single-open accordion) */}
       <section className="border-t border-border">
-        <div className="container-grit py-20 lg:py-28">
+        <div className="container-grit section">
           <div className="grid gap-8 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
             <Reveal>
               <div className="lg:sticky lg:top-28">

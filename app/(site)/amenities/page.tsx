@@ -25,7 +25,7 @@ export default function AmenitiesPage() {
         mediaSrc="/images/amenities.jpg"
       />
 
-      <section className="container-grit py-20 lg:py-28">
+      <section className="container-grit section">
         <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {amenities.items.map((item, i) => (
             <Reveal key={item.name} delay={(i % 3) * 0.06}>
@@ -50,7 +50,7 @@ export default function AmenitiesPage() {
       </section>
 
       {/* Full-width amenities banner */}
-      <section className="container-grit pb-20 lg:pb-28">
+      <section className="container-grit pb-12 lg:pb-16">
         <Reveal>
           <ParallaxMedia amount={28} className="rounded-md">
             <MediaPlaceholder

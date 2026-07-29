@@ -20,7 +20,7 @@ export function LinkList({
 }) {
   return (
     <section className="border-t border-border">
-      <div className="container-grit py-16 lg:py-20">
+      <div className="container-grit section-sm">
         {eyebrow && (
           <Reveal>
             <p className="eyebrow mb-4">{eyebrow}</p>

@@ -11,7 +11,7 @@ export function ModelNav({ current }: { current: "peak" | "flow" | "skilllab" })
   const others = rush.models.filter((m) => m.key !== current);
   return (
     <section className="border-t border-border">
-      <div className="container-grit py-16 lg:py-20">
+      <div className="container-grit section-sm">
         <Reveal>
           <p className="eyebrow">More RUSH</p>
         </Reveal>

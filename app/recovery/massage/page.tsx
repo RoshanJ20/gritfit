@@ -45,7 +45,7 @@ export default function ManualTherapyPage() {
 
       {/* Sessions — alternating editorial rows (text + image) */}
       <section className="border-t border-border">
-        <div className="container-grit pt-24 lg:pt-32">
+        <div className="container-grit pt-12 lg:pt-16">
           <Reveal>
             <p className="eyebrow">The sessions</p>
             <h2 className="display mt-4 text-display-2 max-w-[20ch]">
@@ -63,7 +63,7 @@ export default function ManualTherapyPage() {
 
       {/* How to use — compact two-column */}
       <section className="border-t border-border">
-        <div className="container-grit grid gap-8 py-14 lg:grid-cols-[0.75fr_1fr] lg:items-center lg:gap-16 lg:py-16">
+        <div className="container-grit section-sm grid gap-8 lg:grid-cols-[0.75fr_1fr] lg:items-center lg:gap-16">
           <Reveal>
             <p className="eyebrow">{manualTherapy.howToUse.eyebrow}</p>
             <h2 className="display mt-3 text-2xl sm:text-3xl max-w-[16ch]">
@@ -104,7 +104,7 @@ export default function ManualTherapyPage() {
 
       {/* Note */}
       <section className="border-t border-border">
-        <div className="container-grit py-16 lg:py-20">
+        <div className="container-grit section-sm">
           <div className="mx-auto max-w-3xl">
             <Callout label="Note">{manualTherapy.note}</Callout>
           </div>
@@ -113,7 +113,7 @@ export default function ManualTherapyPage() {
 
       {/* Packages / Pricing */}
       <section className="border-t border-border">
-        <div className="container-grit py-24 text-center lg:py-28">
+        <div className="container-grit section text-center">
           <Reveal>
             <p className="eyebrow justify-center">Packages &amp; Pricing</p>
           </Reveal>
@@ -128,7 +128,7 @@ export default function ManualTherapyPage() {
       </section>
 
       {/* CTA */}
-      <section className="container-grit py-24 text-center lg:py-32">
+      <section className="container-grit section text-center">
         <Reveal>
           <p className="eyebrow justify-center">Your journey starts here.</p>
         </Reveal>

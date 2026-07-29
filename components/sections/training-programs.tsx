@@ -40,7 +40,7 @@ export function TrainingPrograms({
 }) {
   return (
     <section className="border-t border-border">
-      <div className="container-grit py-16 lg:py-24">
+      <div className="container-grit section">
         <Reveal>
           <p className="eyebrow mb-12 lg:mb-16">{eyebrow}</p>
         </Reveal>

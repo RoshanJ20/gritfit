@@ -39,7 +39,7 @@ export default function RecoverySessionsPage() {
       </section>
 
       {/* Session packs */}
-      <section className="container-grit py-12 lg:py-16">
+      <section className="container-grit section-sm">
         <div className="group relative grid sm:grid-cols-2 lg:grid-cols-4">
           {sessionPacks.map((pack, i) => (
             <Reveal key={pack.sessions} delay={i * 0.08} className="h-full">
@@ -54,7 +54,6 @@ export default function RecoverySessionsPage() {
       </section>
 
       <CtaBand
-        className="py-16 lg:py-20"
         eyebrow="The Recovery Zone"
         heading="Recovery is training."
         body="Arrive 10 minutes early. Our team will guide you through the process and recommended exposure times."

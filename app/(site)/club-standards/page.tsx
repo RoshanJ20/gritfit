@@ -23,7 +23,7 @@ export default function ClubStandardsPage() {
       />
 
       <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-32">
+        <div className="container-grit section">
           <div className="grid gap-px overflow-hidden border border-border bg-border lg:grid-cols-2">
             {clubStandards.sections.map((section, s) => (
               <Reveal key={section.title} delay={s * 0.06}>

@@ -180,10 +180,10 @@
      .section is the default band; .section-sm is for tighter teaser/CTA bands.
      Prefer these over ad-hoc py-* so spacing never drifts page to page. */
   .section {
-    @apply py-16 lg:py-24;
+    @apply py-12 lg:py-16;
   }
   .section-sm {
-    @apply py-12 lg:py-16;
+    @apply py-8 lg:py-10;
   }
 
   /* Display headline — restrained grotesque (Archivo). Natural case, medium

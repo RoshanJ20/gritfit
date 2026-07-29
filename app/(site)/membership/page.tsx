@@ -30,7 +30,7 @@ export default function MembershipPage() {
       </section>
 
       {/* Plans */}
-      <section className="container-grit py-12 lg:py-16">
+      <section className="container-grit section-sm">
         <MembershipPlans />
 
         <div className="mt-10">
@@ -38,7 +38,7 @@ export default function MembershipPage() {
         </div>
       </section>
 
-      <CtaBand className="py-16 lg:py-20" />
+      <CtaBand />
     </>
   );
 }

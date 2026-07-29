@@ -32,7 +32,7 @@ export function ProgramDetail({ program }: { program: Program }) {
         mediaSrc={programImages[program.slug]}
       />
 
-      <section className="container-grit py-24 lg:py-36">
+      <section className="container-grit section">
         <div className="mx-auto max-w-3xl space-y-6">
           {program.paras.map((p, i) => (
             <p

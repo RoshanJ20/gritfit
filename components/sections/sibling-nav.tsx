@@ -22,7 +22,7 @@ export function SiblingNav({
     items.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2";
   return (
     <section className="border-t border-border">
-      <div className="container-grit py-16 lg:py-20">
+      <div className="container-grit section-sm">
         <Reveal>
           <p className="eyebrow">{eyebrow}</p>
         </Reveal>

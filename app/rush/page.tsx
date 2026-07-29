@@ -30,7 +30,7 @@ export default function RushPage() {
       />
 
       {/* Writeup statement */}
-      <section className="container-grit py-24 lg:py-36">
+      <section className="container-grit section">
         <div className="mx-auto max-w-4xl space-y-6">
           {rush.writeup.slice(1).map((line, i) => (
             <Reveal key={i} delay={i * 0.05}>
@@ -50,7 +50,7 @@ export default function RushPage() {
       {/* Models */}
       <section className="relative isolate border-t border-border">
         <SquaresBackground />
-        <div className="container-grit py-16 lg:py-20">
+        <div className="container-grit section-sm">
           <Reveal>
             <p className="eyebrow">The Classes</p>
             <h2 className="display mt-4 text-display-2 max-w-[16ch]">
@@ -93,7 +93,7 @@ export default function RushPage() {
       </section>
 
       {/* Conversion close — first-step CTA */}
-      <section className="container-grit py-28 text-center lg:py-40">
+      <section className="container-grit section text-center">
         <Reveal>
           <p className="eyebrow justify-center">Your first step starts here</p>
         </Reveal>
@@ -138,7 +138,7 @@ export default function RushPage() {
 
       {/* FAQ */}
       <section className="border-t border-border">
-        <div className="container-grit grid gap-12 py-24 lg:grid-cols-[0.6fr_1fr] lg:gap-20 lg:py-32">
+        <div className="container-grit section grid gap-12 lg:grid-cols-[0.6fr_1fr] lg:gap-20">
           <Reveal>
             <p className="eyebrow">Questions</p>
             <h2 className="display mt-4 text-display-2">RUSH Class FAQ</h2>

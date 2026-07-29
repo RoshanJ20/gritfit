@@ -36,7 +36,7 @@ export default function FaqPage() {
       />
 
       <section className="border-t border-border">
-        <div className="container-grit py-24 lg:py-32">
+        <div className="container-grit section">
           <Tabs defaultValue="starters" className="gap-10">
             <Reveal>
               <TabsList

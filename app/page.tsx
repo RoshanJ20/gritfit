@@ -110,7 +110,7 @@ export default function Home() {
       </section>
 
       {/* ============== STATEMENT ============== */}
-      <section className="container-grit py-28 lg:py-44">
+      <section className="container-grit section">
         <div className="mx-auto max-w-5xl">
           <Reveal>
             <p className="eyebrow">Our Philosophy</p>
@@ -129,7 +129,7 @@ export default function Home() {
       <section className="border-t border-border">
         {pillars.map((p, i) => (
           <div key={p.label} className="border-b border-border">
-            <div className="container-grit grid items-center gap-10 py-16 lg:grid-cols-2 lg:gap-20 lg:py-24">
+            <div className="container-grit section grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
               {/* Media */}
               <Reveal
                 className={i % 2 === 1 ? "lg:order-2" : ""}
@@ -180,7 +180,7 @@ export default function Home() {
       </section>
 
       {/* ============== USP ============== */}
-      <section className="container-grit py-28 lg:py-44">
+      <section className="container-grit section">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <Reveal>
@@ -208,7 +208,7 @@ export default function Home() {
 
       {/* ============== MEMBERSHIP TEASER ============== */}
       <section className="border-y border-border bg-ink-800/40">
-        <div className="container-grit py-24 lg:py-32">
+        <div className="container-grit section">
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
             <Reveal>
               <p className="eyebrow">Membership</p>
@@ -264,7 +264,7 @@ export default function Home() {
       </section>
 
       {/* ============== FINAL CTA ============== */}
-      <section className="container-grit py-28 text-center lg:py-44">
+      <section className="container-grit section text-center">
         <Reveal>
           <p className="eyebrow justify-center">Your first step starts here</p>
         </Reveal>

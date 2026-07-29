@@ -36,7 +36,7 @@ export default function ContactPage() {
       />
 
       {/* Contact details */}
-      <section className="container-grit py-24 lg:py-36">
+      <section className="container-grit section">
         <div className="grid gap-12 lg:grid-cols-[0.7fr_1fr] lg:gap-20">
           <Reveal>
             <p className="eyebrow">Get in touch</p>

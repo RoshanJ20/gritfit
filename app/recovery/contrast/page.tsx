@@ -28,7 +28,7 @@ export default function ContrastTherapyPage() {
         mediaImagePosition="center 40%"
       />
 
-      <section className="container-grit py-24 lg:py-36">
+      <section className="container-grit section">
         <div className="mx-auto max-w-4xl space-y-6">
           <Reveal>
             <p className="eyebrow">{recovery.contrast.eyebrow}</p>

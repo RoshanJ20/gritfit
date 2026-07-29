@@ -41,7 +41,7 @@ export function RecoveryDetail({
         mediaImagePosition={imagePosition}
       />
 
-      <section className="container-grit py-24 lg:py-36">
+      <section className="container-grit section">
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_0.8fr] lg:gap-16">
           <div className="space-y-6">
             <Reveal>
