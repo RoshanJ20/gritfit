@@ -300,6 +300,22 @@
     animation: scroll-cue 1.8s ease-in-out infinite;
   }
 
+  /* Countdown digit tick — each changing value lifts in, so the seconds read
+     as alive without the panel ever feeling busy. */
+  @keyframes count-tick {
+    from {
+      opacity: 0;
+      transform: translateY(0.14em);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .count-tick {
+    animation: count-tick 0.42s var(--ease-out-expo) both;
+  }
+
   /* Animated marquee */
   @keyframes marquee-x {
     from {

@@ -1,37 +1,11 @@
 import type { Metadata } from "next";
-import { Anton, Archivo, Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 
+import { fontVariables } from "@/app/fonts";
 import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
 import { PageTransition } from "@/components/motion/page-transition";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-
-const geistSans = Geist({
-  variable: "--font-body",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const archivo = Archivo({
-  variable: "--font-display",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-// Heavy condensed display — used only for the oversized hero wordmark.
-const anton = Anton({
-  variable: "--font-wordmark",
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const SITE = "https://gritfit.club";
 
@@ -76,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${archivo.variable} ${anton.variable} dark h-full antialiased`}
+      className={`${fontVariables} dark h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="grain min-h-full">
