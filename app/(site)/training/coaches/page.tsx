@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 import { team } from "@/content/team";
+import { coaches, leadership } from "@/content/coaches";
 import { PageHero } from "@/components/sections/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
-import { MediaPlaceholder } from "@/components/media-placeholder";
-import { Placeholder } from "@/components/placeholder";
+import { CoachCard } from "@/components/sections/coach-card";
 
 export const metadata: Metadata = {
   title: "Meet the Coaches — Training",
@@ -26,23 +26,33 @@ export default function CoachesPage() {
 
       <section className="container-grit section">
         <Reveal>
+          <p className="eyebrow">Leadership</p>
+          <h2 className="display mt-4 text-display-2">The people behind Grit</h2>
+        </Reveal>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:max-w-[720px]">
+          {leadership.map((person, i) => (
+            <Reveal key={person.slug} delay={(i % 2) * 0.06}>
+              <CoachCard coach={person} index={i} />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="container-grit section border-t border-border">
+        <Reveal>
           <p className="eyebrow">The coaches</p>
-          <p className="mt-4 max-w-xl text-sm text-muted-foreground">
-            Individual coach profiles are being finalised. Each will include a
-            name, title, and personal statement.
+          <h2 className="display mt-4 text-display-2">Who you&apos;ll train with</h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
+            Hover or tap a coach to read their philosophy, areas of expertise,
+            and coaching style.
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: team.placeholderCount }).map((_, i) => (
-            <Reveal key={i} delay={(i % 3) * 0.06}>
-              <div className="group flex flex-col gap-4">
-                <MediaPlaceholder label="Coach" ratio="portrait" interactive />
-                <div className="flex flex-col gap-2">
-                  <Placeholder label="Name">Coach name</Placeholder>
-                  <Placeholder label="Title">Title / discipline</Placeholder>
-                </div>
-              </div>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {coaches.map((coach, i) => (
+            <Reveal key={coach.slug} delay={(i % 3) * 0.06}>
+              <CoachCard coach={coach} index={i} />
             </Reveal>
           ))}
         </div>
