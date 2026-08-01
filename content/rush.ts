@@ -46,7 +46,7 @@ export const rush = {
       href: "/rush/flow",
       tagline:
         "A space to reset, rebuild, and reconnect through breath, movement, and mindfulness.",
-      count: 4,
+      count: 3,
     },
     {
       key: "skilllab",
@@ -54,7 +54,7 @@ export const rush = {
       href: "/rush/skilllab",
       tagline:
         "A performance training system built on combat, calisthenics, movement, foundation, and running.",
-      count: 7,
+      count: 8,
     },
   ] as RushModel[],
   // Closing line beneath the three model cards.
@@ -166,14 +166,6 @@ export const flow = {
         "Release tension. Restore balance. Move better, longer.",
       ],
     },
-    {
-      name: "Move",
-      paras: [
-        "A high-energy dance class blending freestyle movement with fitness-driven training.",
-        "Built on music, rhythm, and expression, this session pushes you to move freely, sweat hard, and train with intensity.",
-        "Expect energy. Expect sweat. Move without limits.",
-      ],
-    },
   ] as ClassFormat[],
 };
 
@@ -241,6 +233,16 @@ export const skillab = {
         "Whether you’re just starting out or already chasing PBs, the Running Division is built for every level. We train pace. We build endurance. We sharpen on the track and progress through structured sessions that make every run count.",
         "We start together at the club. We warm up as one. But once we hit the road—that’s where work happens.",
         "Run smarter. Run stronger. Run together.",
+      ],
+    },
+    {
+      name: "Taekwondo",
+      paras: [
+        "Discipline. Precision. Power.",
+        "Taekwondo is more than a martial art—it is a practice of control, confidence, and continuous growth.",
+        "Through structured training, we develop technique, mobility, speed, coordination, and mental discipline. Every movement has purpose. Every session builds awareness, resilience, and respect.",
+        "Whether you’re stepping onto the mat for the first time or looking to sharpen your skills, Taekwondo at Grit helps you move with confidence, train with intention, and grow stronger from the inside out.",
+        "Train with discipline. Move with purpose. Become better every day.",
       ],
     },
   ] as ClassFormat[],

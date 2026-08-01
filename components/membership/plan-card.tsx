@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "motion/react";
+import { Check, Minus } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import type { MembershipTier, BillingDuration } from "@/content/membership";
@@ -92,7 +93,7 @@ function AccessLadder({ access }: { access: MembershipTier["access"] }) {
       <div className="mt-4 flex flex-wrap items-center gap-1.5">
         {access.pillars === "choose-one" ? (
           <>
-            <Pill>RUSH</Pill>
+            <Pill>Classes</Pill>
             <span className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-brand">
               or
             </span>
@@ -103,24 +104,19 @@ function AccessLadder({ access }: { access: MembershipTier["access"] }) {
           </>
         ) : (
           <>
-            <Pill on>RUSH</Pill>
+            <Pill on>Classes</Pill>
             <span className="text-xs text-muted-foreground">+</span>
             <Pill on>Strength Club</Pill>
             {access.recovery && (
               <>
                 <span className="text-xs text-muted-foreground">+</span>
-                <Pill on>Recovery Zone</Pill>
+                <Pill on>Essential Recovery</Pill>
               </>
             )}
           </>
         )}
       </div>
 
-      {!access.recovery && (
-        <p className="mt-2.5 text-[0.7rem] text-muted-foreground/60">
-          Recovery Zone not included
-        </p>
-      )}
     </div>
   );
 }
@@ -197,45 +193,92 @@ export function PlanCard({
 
         <AccessLadder access={tier.access} />
 
-        <motion.ul
-          className="flex flex-col gap-3.5"
-          variants={featureList}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-10% 0px" }}
-        >
-          {tier.features.map((feature) => {
-            const emphasised = feature === tier.highlightFeature;
-            return (
-              <motion.li
-                key={feature}
-                variants={featureRow}
-                {...(emphasised
-                  ? {
-                      whileInView: {
-                        boxShadow: [
-                          "0 0 0 0 rgba(174,217,35,0)",
-                          "0 0 0 3px rgba(174,217,35,0.22)",
-                          "0 0 0 0 rgba(174,217,35,0)",
-                        ],
-                        transition: { duration: 1.1, delay: 0.5, times: [0, 0.5, 1] },
-                      },
-                      viewport: { once: true },
-                    }
-                  : {})}
-                className={cn(
-                  "flex gap-3 text-sm leading-relaxed",
-                  emphasised
-                    ? "-mx-2 rounded-sm border-l-2 border-brand bg-brand/[0.08] px-3 py-2 font-medium text-foreground"
-                    : "text-muted-foreground",
-                )}
-              >
-                <span className="mt-2 size-1.5 shrink-0 bg-brand" aria-hidden />
-                {feature}
-              </motion.li>
-            );
-          })}
-        </motion.ul>
+        {/* Feature list grows to fill the card so the footnote (and every
+            card's bottom edge) lines up across the row. */}
+        <div className="flex flex-1 flex-col">
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            What’s included
+          </p>
+          <motion.ul
+            className="mt-4 flex flex-col gap-3.5"
+            variants={featureList}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-10% 0px" }}
+          >
+            {tier.features.map((feature) => {
+              const emphasised = feature === tier.highlightFeature;
+              return (
+                <motion.li
+                  key={feature}
+                  variants={featureRow}
+                  {...(emphasised
+                    ? {
+                        whileInView: {
+                          boxShadow: [
+                            "0 0 0 0 rgba(174,217,35,0)",
+                            "0 0 0 3px rgba(174,217,35,0.22)",
+                            "0 0 0 0 rgba(174,217,35,0)",
+                          ],
+                          transition: {
+                            duration: 1.1,
+                            delay: 0.5,
+                            times: [0, 0.5, 1],
+                          },
+                        },
+                        viewport: { once: true },
+                      }
+                    : {})}
+                  className={cn(
+                    "flex gap-3 text-sm leading-relaxed",
+                    emphasised
+                      ? "-mx-2 rounded-sm border-l-2 border-brand bg-brand/[0.08] px-3 py-2 font-medium text-foreground"
+                      : "text-muted-foreground",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-[3px] text-brand",
+                      emphasised ? "bg-brand/25" : "bg-brand/[0.12]",
+                    )}
+                    aria-hidden
+                  >
+                    <Check className="size-3" strokeWidth={3} />
+                  </span>
+                  <span className="flex-1">{feature}</span>
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+
+          {tier.excluded && tier.excluded.length > 0 && (
+            <ul
+              aria-label="Not included in this plan"
+              className="mt-5 flex flex-col gap-2.5 border-t border-border/60 pt-5"
+            >
+              {tier.excluded.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-sm leading-relaxed text-muted-foreground/45"
+                >
+                  <span
+                    className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-[3px] bg-foreground/[0.06]"
+                    aria-hidden
+                  >
+                    <Minus className="size-3" strokeWidth={3} />
+                  </span>
+                  <span className="flex-1">{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {tier.footnote && (
+            <p className="mt-auto pt-6 text-[0.7rem] leading-relaxed text-muted-foreground/60">
+              {tier.footnote}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

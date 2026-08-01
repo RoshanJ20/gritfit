@@ -36,13 +36,21 @@ export type MembershipTier = {
    * Classes/Strength Club access on the plans where it matters most.
    */
   highlightFeature?: string;
+  /** Small print tied to this tier (e.g. the VIP recovery asterisk). */
+  footnote?: string;
+  /**
+   * What this tier does NOT include — short labels derived from the tiers above
+   * it. Rendered muted beneath the feature list so the step up between plans is
+   * legible at a glance (and so the shorter cards don't read as unfinished).
+   */
+  excluded?: string[];
   /**
    * Structured access breakdown, rendered as a cumulative "ladder" so the
    * choose-one-vs-both distinction is unmistakable:
    *  - filled: how many of the 3 access rungs are unlocked (training pillar →
-   *    both pillars → + Recovery Zone).
+   *    both pillars → + Essential Recovery).
    *  - pillars: "choose-one" (RUSH OR Strength Club) vs "both" (RUSH + SC).
-   *  - recovery: whether the Recovery Zone is included.
+   *  - recovery: whether the Essential Recovery is included.
    */
   access: {
     filled: 1 | 2 | 3;
@@ -57,45 +65,51 @@ export const membershipNote = "All memberships must be purchased at the club.";
 
 export const membershipTiers: MembershipTier[] = [
   {
-    name: "Open Gym",
-    tagline: "Start where you are",
+    name: "Open Access",
+    tagline: "Choose your training path.",
     // prices: { 3: "", 6: "", 12: "" },  ← fill in later
     prices: {},
     access: { filled: 1, pillars: "choose-one", recovery: false },
-    highlightFeature: "Choice of membership option: Classes or Strength Club",
+    highlightFeature: "Choose either Classes or Strength Club",
     features: [
-      "Access to the club during operating hours, as well as club amenities",
-      "Choice of membership option: Classes or Strength Club",
-      "First class complimentary with required assessment prior to participation",
-      "One complimentary class with personal trainer guidance included during membership",
-      "Nutrition counselling included as part of the membership",
+      "Choose either Classes or Strength Club",
+      "Access to the club and amenities during operating hours",
+    ],
+    excluded: [
+      "Guided classes with a coach",
+      "Nutrition consultation",
+      "Essential Recovery access",
     ],
   },
   {
     name: "Platinum",
-    tagline: "The full experience",
+    tagline: "Train without limits.",
     highlight: true,
     prices: {},
     access: { filled: 2, pillars: "both", recovery: false },
-    highlightFeature:
-      "Unlimited access to both Classes and Strength Club during operating hours, as well as club amenities",
+    highlightFeature: "Unlimited access to Classes + Strength Club",
     features: [
-      "Unlimited access to both Classes and Strength Club during operating hours, as well as club amenities",
-      "First class complimentary with required assessment prior to participation",
-      "One complimentary class with personal trainer guidance included during membership",
-      "Nutrition counselling included as part of the membership",
+      "Unlimited access to Classes + Strength Club",
+      "Full access to the club and amenities during operating hours",
+      "One guided class with a coach",
+      "Nutrition consultation included",
     ],
+    excluded: ["Essential Recovery access"],
   },
   {
     name: "VIP",
-    tagline: "Everything, uncapped",
+    tagline: "The complete Grit experience.",
     prices: {},
     access: { filled: 3, pillars: "both", recovery: true },
+    highlightFeature:
+      "Unlimited access to Classes + Strength Club + Essential Recovery*",
+    footnote: "*Sauna & Cold Plunge access is based on membership duration.",
     features: [
-      "Unlimited access to both Classes and Strength Club during operating hours, as well as club amenities, including sauna & cold plunge access based on selected membership duration",
-      "First class complimentary with required assessment prior to participation",
-      "Personal trainer guidance included during membership",
-      "Nutrition counselling included as part of the membership",
+      "Unlimited access to Classes + Strength Club + Essential Recovery*",
+      "Full access to the club and amenities during operating hours",
+      "Three guided classes with a coach",
+      "Ongoing coaching and guidance throughout your membership",
+      "Nutrition consultation included",
     ],
   },
 ];

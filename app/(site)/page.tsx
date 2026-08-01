@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { site } from "@/content/site";
+import { membershipTiers } from "@/content/membership";
 import { secondaryCta } from "@/content/nav";
 import { HeroVideo } from "@/components/hero-video";
 import { Reveal, Rise } from "@/components/motion/reveal";
@@ -38,43 +39,9 @@ const pillars = [
   },
 ];
 
-const tiers = [
-  {
-    name: "Open Access",
-    tagline: "Choose your path.",
-    features: [
-      "Access to either RUSH Classes or the Strength Club",
-      "Full access to club amenities",
-      "Complimentary assessment",
-      "Guided introduction session",
-      "Nutrition counselling",
-    ],
-  },
-  {
-    name: "Platinum",
-    tagline: "Train without limits.",
-    features: [
-      "Unlimited access to both RUSH Classes and the Strength Club",
-      "Full access to club amenities",
-      "Complimentary assessment",
-      "Nutrition counselling",
-      "1 Personal Training session",
-    ],
-  },
-  {
-    name: "VIP",
-    tagline: "The complete Grit experience.",
-    features: [
-      "Everything included in Platinum",
-      "Access to The Recovery Zone*",
-      "Complimentary assessment",
-      "Nutrition counselling",
-      "3 Personal Training sessions",
-    ],
-  },
-];
-
-const tiersFootnote = "*Recovery access is based on selected membership duration.";
+// Single source of truth — the membership page renders the same tiers.
+const tiers = membershipTiers;
+const tiersFootnote = membershipTiers.find((t) => t.footnote)?.footnote;
 
 export default function Home() {
   return (
@@ -237,7 +204,14 @@ export default function Home() {
                   className="flex h-full flex-col gap-5 bg-ink-900 p-8 transition-colors hover:bg-ink-800"
                 >
                   <div>
-                    <span className="eyebrow">{t.name}</span>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="eyebrow">{t.name}</span>
+                      {t.highlight && (
+                        <span className="inline-flex items-center bg-brand px-2 py-1 text-[0.6rem] font-medium uppercase tracking-[0.15em] text-background">
+                          Most Chosen
+                        </span>
+                      )}
+                    </div>
                     <p className="mt-3 text-lg font-light text-foreground">
                       {t.tagline}
                     </p>
@@ -257,9 +231,11 @@ export default function Home() {
             ))}
           </div>
 
-          <p className="mt-6 text-xs text-muted-foreground/70">
-            {tiersFootnote}
-          </p>
+          {tiersFootnote && (
+            <p className="mt-6 text-xs text-muted-foreground/70">
+              {tiersFootnote}
+            </p>
+          )}
         </div>
       </section>
 
