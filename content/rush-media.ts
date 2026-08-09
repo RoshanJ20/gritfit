@@ -15,8 +15,7 @@ export const rushFormatImages: Record<string, string> = {
   "Authentic YogaX": "/images/rush/yogax.jpg",
   Ground: "/images/rush/mobility.jpg",
   // Skillab
-  // Taekwondo has no photography yet — it intentionally falls back to the
-  // branded MediaPlaceholder until an asset lands in /images/rush.
+  Taekwondo: "/images/rush/taekwondo.jpg",
   Fight: "/images/rush/fight.jpg",
   Barlethics: "/images/rush/calisthenics.jpg",
   Foundation: "/images/rush/foundation.jpg",

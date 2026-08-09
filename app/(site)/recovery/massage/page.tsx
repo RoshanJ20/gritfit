@@ -16,15 +16,11 @@ export const metadata: Metadata = {
     "Hands-on massage-based recovery designed to release tension, restore movement, and help training feel easier. Sports Massage, Deep Tissue, and Mobility Reset.",
 };
 
-/**
- * Session imagery keyed by format name for the alternating rows. Sports Massage
- * uses the real hands-on photo; Deep Tissue and Mobility Reset fall through to
- * the branded placeholder until their photography lands — drop
- * `/images/recovery/deep-tissue.jpg` and `/images/recovery/mobility-reset.jpg`
- * in and add the keys here to swap them in.
- */
+/** Session imagery keyed by format name for the alternating rows. */
 const massageImages: Record<string, string> = {
   "Sports Massage": "/images/recovery/massage.jpg",
+  "Deep Tissue Massage": "/images/recovery/deep-tissue.jpg",
+  "Mobility Reset": "/images/recovery/mobility-reset.jpg",
 };
 
 const siblings = recovery.experiences.filter(
@@ -39,7 +35,8 @@ export default function ManualTherapyPage() {
         title={manualTherapy.name}
         lead={[manualTherapy.lead]}
         mediaLabel="Manual Therapy"
-        mediaSrc="/images/recovery/massage.jpg"
+        // Distinct from the Sports Massage row below, which uses massage.jpg.
+        mediaSrc="/images/recovery/manual-therapy.jpg"
         mediaImagePosition="center 30%"
       />
 

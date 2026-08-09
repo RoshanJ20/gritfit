@@ -19,6 +19,7 @@ export default function NutritionPage() {
         title={nutrition.name}
         lead={[nutrition.lead]}
         mediaLabel="Nutrition"
+        mediaSrc="/images/nutrition.jpg"
       />
 
       <section className="container-grit section">

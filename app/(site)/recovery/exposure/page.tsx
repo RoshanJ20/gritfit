@@ -31,7 +31,8 @@ export default function ExposureTherapyPage() {
         title={exposure.name}
         lead={[exposure.lead]}
         mediaLabel="Exposure Therapy"
-        mediaSrc="/images/recovery/sauna.jpg"
+        // Distinct from the Sauna row below, which uses sauna.jpg.
+        mediaSrc="/images/recovery/steam.jpg"
         mediaImagePosition="center 40%"
       />
 

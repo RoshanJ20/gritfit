@@ -44,12 +44,15 @@ export const site = {
     // Display bits for the map snippet.
     neighborhood: "HRBR Layout",
     city: "Bengaluru",
-    // Google Maps deep link. Uses a search query for now (works off the area
-    // name); swap `query` for `&query_place_id=…` or a `/dir/?…&destination=lat,lng`
-    // once the exact club pin is confirmed. Precise coordinates are intentionally
-    // omitted until then, so the card shows the area rather than a guessed pin.
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Grit+Fit+HRBR+Layout+Bengaluru",
+    // Google Maps deep link — the club's own confirmed pin, as a maps.app.goo.gl
+    // short link. Google resolves it to the place on web and hands off to the
+    // Maps app on mobile. Read by both the footer and the contact page via
+    // `<MapSnippet mapsUrl={…} />`, so this is the only place to change it.
+    mapsUrl: "https://maps.app.goo.gl/7krXJMgJYsdod7UQA",
+    // The confirmed pin for "GRIT FIT Luxe Health Club", read off the place
+    // marker that the link above resolves to. Shown as a coordinate readout on
+    // the map card, which takes the place of the city line.
+    coordinates: { lat: 13.0161614, lng: 77.6473416 },
   },
   // Source marks contact + hours "Yet to work on" → placeholders.
   contact: {

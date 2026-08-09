@@ -31,7 +31,7 @@ export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
   }
 
   return (
-    <div className="group relative aspect-[3/4] w-full [perspective:1400px]">
+    <div className="group relative aspect-[3/4] w-full [perspective:1200px]">
       <button
         type="button"
         onClick={() => setFlipped((f) => !f)}
@@ -39,10 +39,24 @@ export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
         aria-label={`${coach.name}, ${coach.role} — show profile details`}
         className={cn(
           "absolute inset-0 block h-full w-full cursor-pointer rounded-md text-left",
-          "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] [transform-style:preserve-3d]",
+          // `will-change` keeps the faces on their own layer, so the type stops
+          // re-rasterising (and shimmering) partway through the turn.
+          "[transform-style:preserve-3d] [will-change:transform]",
+          // Symmetric in-out easing: a flip travels A→B, so it should ease out of
+          // rest and back into it. The expo-out curve used elsewhere front-loads
+          // ~75% of the rotation into the first fifth of the duration, which is
+          // what read as a snap. Slower, too — the turn is the moment here.
+          "transition-transform duration-[1000ms] ease-in-out-quint",
           flipped
-            ? "[transform:rotateY(180deg)]"
-            : "group-hover:[transform:rotateY(180deg)] group-focus-within:[transform:rotateY(180deg)]",
+            ? "[transform:rotateY(180deg)_scale(1.02)]"
+            : cn(
+                "[transform:rotateY(0deg)_scale(1)]",
+                // Hover-in waits a beat so sweeping the cursor across the grid
+                // doesn't set every card spinning; leaving drops the delay, so
+                // the card returns the instant you go.
+                "group-hover:[transform:rotateY(180deg)_scale(1.02)] group-hover:[transition-delay:120ms]",
+                "group-focus-within:[transform:rotateY(180deg)_scale(1.02)]",
+              ),
         )}
       >
         <div className="absolute inset-0 [backface-visibility:hidden]">

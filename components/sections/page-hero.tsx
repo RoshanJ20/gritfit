@@ -56,6 +56,63 @@ export function PageHero({
     );
   }
 
+  const split = (
+    <SplitHero
+      eyebrow={eyebrow}
+      title={title}
+      lead={lead}
+      mediaLabel={mediaLabel}
+      mediaKind={mediaKind}
+      mediaSrc={mediaSrc}
+      mediaImagePosition={mediaImagePosition}
+    />
+  );
+
+  // Below `lg` the split hero collapses to one column, so the copy and the photo
+  // become two full-height blocks stacked back to back — and the next section's
+  // own media then lands directly beneath the hero photo. On mobile we show the
+  // immersive treatment instead: a single image carrying the copy, which both
+  // removes that collision and marks the hero as outranking the smaller,
+  // in-flow photos further down the page. Desktop keeps the split layout exactly
+  // as it is. Both variants point at the same `src`, so the photo is fetched
+  // once no matter which one is visible.
+  if (!mediaSrc) return split;
+
+  return (
+    <>
+      <div className="lg:hidden">
+        <ImmersiveHero
+          eyebrow={eyebrow}
+          title={title}
+          lead={lead}
+          backgroundImage={mediaSrc}
+          textPosition="bottom-left"
+          imagePosition={mediaImagePosition}
+        />
+      </div>
+      <div className="hidden lg:block">{split}</div>
+    </>
+  );
+}
+
+/** The default interior hero: copy on the left, media on the right. */
+function SplitHero({
+  eyebrow,
+  title,
+  lead,
+  mediaLabel,
+  mediaKind,
+  mediaSrc,
+  mediaImagePosition,
+}: {
+  eyebrow: string;
+  title: string;
+  lead?: string[];
+  mediaLabel?: string;
+  mediaKind: "image" | "video";
+  mediaSrc?: string;
+  mediaImagePosition: string;
+}) {
   return (
     <section className="bg-spotlight relative overflow-hidden border-b border-border pb-12 pt-28 lg:pb-16 lg:pt-32">
       <div className="pointer-events-none absolute -left-40 top-10 size-[32rem] rounded-full bg-white/[0.03] blur-[120px]" />

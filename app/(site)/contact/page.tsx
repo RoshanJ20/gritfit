@@ -55,6 +55,7 @@ export default function ContactPage() {
             <MapSnippet
               area={site.location.neighborhood}
               city={site.location.city}
+              coordinates={site.location.coordinates}
               mapsUrl={site.location.mapsUrl}
               className="mt-10 max-w-sm"
             />

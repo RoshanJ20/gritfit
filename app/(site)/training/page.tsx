@@ -36,12 +36,15 @@ const programCategories = [
     name: "Core Programs",
     intro:
       "The foundation of how we coach — from building a stronger, healthier body to training for performance.",
-    image: "/images/programs/strong-start.jpg",
+    // Its own photo — the programs inside carry /images/programs/*.jpg.
+    image: "/images/training/core-programs.jpg",
     programs: programs.filter((p) => p.group === "core").map(toLink),
   },
   {
     name: "Nutrition",
     intro: "Fuel the work.",
+    // Its own photo — /images/nutrition.jpg carries the Nutrition page hero.
+    image: "/images/training/nutrition.jpg",
     programs: [
       {
         name: "Nutrition Coaching",
@@ -54,7 +57,8 @@ const programCategories = [
     name: "Specialised Coaching",
     intro:
       "Expert guidance for specific stages of life, recovery, and athletic development.",
-    image: "/images/programs/youth.jpg",
+    // Its own photo — the programs inside carry /images/programs/*.jpg.
+    image: "/images/training/specialised.jpg",
     programs: programs.filter((p) => p.group === "specialised").map(toLink),
   },
 ];
