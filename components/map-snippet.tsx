@@ -84,7 +84,7 @@ export function MapSnippet({
           "relative overflow-hidden",
           // `h-full` lets the band stretch to its grid row; the min-height only
           // bites when stacked (mobile), where it keeps the pin clear of the caption.
-          band ? "h-full min-h-[19rem]" : sm ? "h-28" : "h-44",
+          band ? "h-full min-h-[15rem] sm:min-h-[19rem]" : sm ? "h-28" : "h-44",
         )}
       >
         {/* Muted at rest, warms on hover. */}

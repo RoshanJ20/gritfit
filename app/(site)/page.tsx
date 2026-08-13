@@ -41,7 +41,6 @@ const pillars = [
 
 // Single source of truth — the membership page renders the same tiers.
 const tiers = membershipTiers;
-const tiersFootnote = membershipTiers.find((t) => t.footnote)?.footnote;
 
 export default function Home() {
   return (
@@ -198,10 +197,10 @@ export default function Home() {
 
           <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">
             {tiers.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.08}>
+              <Reveal key={t.name} delay={i * 0.08} className="h-full">
                 <Link
                   href="/membership"
-                  className="flex h-full flex-col gap-5 bg-ink-900 p-8 transition-colors hover:bg-ink-800"
+                  className="group/plan flex h-full flex-col gap-4 bg-ink-900 p-8 transition-colors hover:bg-ink-800"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-3">
@@ -216,26 +215,24 @@ export default function Home() {
                       {t.tagline}
                     </p>
                   </div>
-                  <ul className="flex flex-col gap-2.5 text-sm text-muted-foreground">
-                    {t.features.map((feature) => (
-                      <li key={feature} className="flex gap-2.5">
-                        <span className="mt-0.5 shrink-0 text-brand" aria-hidden>
-                          ✓
-                        </span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* One line only — the full breakdown lives on /membership. */}
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {t.summary}
+                  </p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground">
+                    See what&rsquo;s included
+                    <span
+                      aria-hidden
+                      className="text-brand transition-transform group-hover/plan:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </span>
                 </Link>
               </Reveal>
             ))}
           </div>
 
-          {tiersFootnote && (
-            <p className="mt-6 text-xs text-muted-foreground/70">
-              {tiersFootnote}
-            </p>
-          )}
         </div>
       </section>
 

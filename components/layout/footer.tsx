@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaFacebookF, FaXTwitter } from "react-icons/fa6";
 
@@ -41,64 +40,56 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Top row: brand card + logo. Bottom row: the three lists on one shared
-          baseline. The map spans both rows on the right. Every block is placed
-          on the grid directly — rather than nested inside flex stacks — which
-          is what keeps the row baselines honest when block heights differ. */}
-      {/* The outer columns are deliberately equal (1fr … 1fr): the middle
-          column's midpoint only lands on the container's midpoint when they
-          match, which is what keeps the logo truly centred in the footer. */}
-      {/* On mobile the logo leads as a masthead, then the brand card; below that
-          Explore and Hours pair up as two short columns with Contact spanning
-          the full width beneath them. From `sm` up this is the original grid. */}
-      <div className="container-grit grid gap-x-10 gap-y-10 py-12 sm:grid-cols-2 sm:grid-rows-[auto_1fr] sm:gap-y-12 sm:py-16 lg:grid-cols-[1fr_0.85fr_1fr] lg:gap-x-14">
-        {/* Brand card — the footer's anchor, lifted off the ground with its own
-            panel, hairline accent and full-width CTA. */}
-        <div className="relative border border-border bg-ink-800 p-5 sm:col-start-1 sm:row-start-1 sm:p-6 lg:p-7">
-          <span
-            aria-hidden
-            className="absolute inset-x-0 top-0 h-[2px] bg-brand/70"
-          />
-          <p className="display text-2xl leading-none text-foreground">
-            Grit Fit
-          </p>
-          <p className="mt-1.5 text-sm tracking-wide text-muted-foreground">
-            Luxe Health Club
-          </p>
-          <span aria-hidden className="my-5 block h-px w-full bg-border" />
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            Nothing is given. Everything is earned. Strength, RUSH, and Recovery
-            under one roof in {site.location.area}.
-          </p>
-          <Link
-            href={primaryCta.href}
-            className="btn btn-solid mt-6 w-full px-5 py-3"
-          >
-            {primaryCta.label}
-          </Link>
-        </div>
-
-        {/* Logo — centred in the top row beside the brand card. */}
-        <div className="order-first flex items-center justify-center sm:order-none sm:col-start-2 sm:row-start-1 lg:col-start-2">
-          <Link
-            href="/"
-            aria-label="Grit Fit — home"
-            className="block w-full max-w-[9rem] transition-opacity duration-300 hover:opacity-80 sm:max-w-[13rem]"
-          >
-            <Image
-              src="/logo.png"
-              alt="Grit Fit — Luxe Health Club"
-              width={500}
-              height={499}
-              sizes="(min-width: 768px) 13rem, 40vw"
-              className="h-auto w-full"
+      {/* Two rows: the brand card and the map share the top row as equal halves,
+          and the three lists sit together on the row beneath. Mobile keeps the
+          lists side by side (two columns) so the footer stays short. */}
+      <div className="container-grit grid gap-y-10 py-12 sm:gap-y-12 sm:py-16">
+        {/* Top row — brand card and map, matched in width and height. */}
+        <div className="grid items-stretch gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-10">
+          {/* Brand card — the footer's anchor, lifted off the ground with its
+              own panel, hairline accent and full-width CTA. */}
+          <div className="relative flex flex-col border border-border bg-ink-800 p-5 sm:p-6 lg:p-7">
+            <span
+              aria-hidden
+              className="absolute inset-x-0 top-0 h-[2px] bg-brand/70"
             />
-          </Link>
+            <p className="display text-2xl leading-none text-foreground">
+              Grit Fit
+            </p>
+            <p className="mt-1.5 text-sm tracking-wide text-muted-foreground">
+              Luxe Health Club
+            </p>
+            <span aria-hidden className="my-5 block h-px w-full bg-border" />
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Nothing is given. Everything is earned. Strength, RUSH, and
+              Recovery under one roof in {site.location.area}.
+            </p>
+            {/* mt-auto pins the CTA to the card's foot so it lines up with the
+                bottom edge of the map beside it; pt-6 floors the gap. */}
+            <div className="mt-6 sm:mt-auto sm:pt-6">
+              <Link
+                href={primaryCta.href}
+                className="btn btn-solid w-full px-5 py-3"
+              >
+                {primaryCta.label}
+              </Link>
+            </div>
+          </div>
+
+          {/* Location — the top row's other half, matched to the brand card. */}
+          <MapSnippet
+            variant="band"
+            area={site.location.neighborhood}
+            city={site.location.city}
+            coordinates={site.location.coordinates}
+            mapsUrl={site.location.mapsUrl}
+          />
         </div>
 
-        {/* The three lists — one row, one baseline, in their own nested grid so
-            they divide the space left of the map evenly. */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:col-span-2 sm:col-start-1 sm:row-start-2 sm:grid-cols-3 lg:col-span-2 lg:gap-x-10">
+        {/* The three lists — one row, one shared baseline. Two columns on
+            mobile (Explore beside Hours, Contact beneath) so the footer doesn't
+            run long; three from `sm` up. */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:gap-x-10">
           <FooterCol title="Explore" className="order-1 sm:order-none">
             {navGroups.map((g) => (
               <FooterLink key={g.href} href={g.href}>
@@ -107,8 +98,10 @@ export function Footer() {
             ))}
           </FooterCol>
 
-          <div className="order-3 col-span-2 sm:order-none sm:col-span-1">
-            <FooterCol title="Contact">
+          {/* On mobile the contact details and the socials sit side by side in
+              the full-width cell; from `sm` up they stack in one column. */}
+          <div className="order-3 col-span-2 flex flex-wrap items-start justify-between gap-x-8 gap-y-6 sm:order-none sm:col-span-1 sm:block">
+            <FooterCol title="Contact" className="flex-1">
               <li className="text-sm">
                 {site.contact.email.placeholder ? (
                   <Placeholder label="Email" className="text-xs">
@@ -142,7 +135,7 @@ export function Footer() {
 
             {/* Socials sit apart from the contact list so the dashed
                 placeholder chips read as one group and the icons as another. */}
-            <ul className="mt-6 flex gap-2.5">
+            <ul className="flex gap-2.5 sm:mt-6">
               {site.socials.map((s) => {
                 const Icon = socialIcon[s.label as keyof typeof socialIcon];
                 return (
@@ -180,16 +173,6 @@ export function Footer() {
             ))}
           </FooterCol>
         </div>
-
-        {/* Location — fills the height of both rows */}
-        <MapSnippet
-          variant="band"
-          area={site.location.neighborhood}
-          city={site.location.city}
-          coordinates={site.location.coordinates}
-          mapsUrl={site.location.mapsUrl}
-          className="sm:col-span-2 sm:col-start-1 sm:row-start-3 lg:col-span-1 lg:col-start-3 lg:row-span-2 lg:row-start-1"
-        />
       </div>
 
       <div className="container-grit flex flex-col items-center justify-between gap-3 border-t border-border py-5 text-center text-xs text-muted-foreground sm:flex-row sm:py-6 sm:text-left">

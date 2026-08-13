@@ -22,6 +22,11 @@ export type MembershipTier = {
   name: string;
   /** Short positioning line shown under the tier name. */
   tagline: string;
+  /**
+   * One-line condensation of `features`, for the home page teaser — the full
+   * bullet list lives on /membership, which the teaser links to.
+   */
+  summary: string;
   /** Marks the recommended tier ("Most Chosen"). */
   highlight?: boolean;
   /**
@@ -67,6 +72,7 @@ export const membershipTiers: MembershipTier[] = [
   {
     name: "Open Access",
     tagline: "Choose your training path.",
+    summary: "Classes or Strength Club — pick one — plus the club and amenities.",
     // prices: { 3: "", 6: "", 12: "" },  ← fill in later
     prices: {},
     access: { filled: 1, pillars: "choose-one", recovery: false },
@@ -84,6 +90,8 @@ export const membershipTiers: MembershipTier[] = [
   {
     name: "Platinum",
     tagline: "Train without limits.",
+    summary:
+      "Unlimited Classes + Strength Club, a guided class and a nutrition consultation.",
     highlight: true,
     prices: {},
     access: { filled: 2, pillars: "both", recovery: false },
@@ -99,6 +107,8 @@ export const membershipTiers: MembershipTier[] = [
   {
     name: "VIP",
     tagline: "The complete Grit experience.",
+    summary:
+      "Everything in Platinum, plus Essential Recovery and ongoing coaching.",
     prices: {},
     access: { filled: 3, pillars: "both", recovery: true },
     highlightFeature:

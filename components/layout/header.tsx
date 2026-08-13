@@ -19,12 +19,6 @@ import {
   SheetTrigger,
   SheetTitle,
 } from "@/components/ui/sheet";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
 
 export function Header() {
   const pathname = usePathname();
@@ -68,42 +62,20 @@ export function Header() {
             >
               <SheetTitle className="sr-only">Navigation</SheetTitle>
               <div className="flex h-full flex-col overflow-y-auto px-6 pb-10 pt-12">
-                <Accordion type="single" collapsible className="w-full">
-                  {navGroups.map((group) =>
-                    // Groups with sub-links expand; combined single-page groups
-                    // (no sub-links) are a direct link to their page.
-                    group.links.length > 1 ? (
-                      <AccordionItem key={group.label} value={group.label}>
-                        <AccordionTrigger className="display text-2xl hover:no-underline">
-                          {group.label}
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          <div className="flex flex-col gap-1 pb-2">
-                            {group.links.map((link) => (
-                              <Link
-                                key={link.href}
-                                href={link.href}
-                                onClick={() => setMobileOpen(false)}
-                                className="rounded-md px-2 py-2 text-sm text-muted-foreground transition-colors hover:bg-ink-700 hover:text-foreground"
-                              >
-                                {link.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ) : (
-                      <Link
-                        key={group.label}
-                        href={group.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="display flex border-b border-border py-4 text-2xl text-foreground transition-colors hover:text-brand"
-                      >
-                        {group.label}
-                      </Link>
-                    ),
-                  )}
-                </Accordion>
+                <nav className="w-full">
+                  {/* Every group is a direct link to its page — no accordions on
+                      mobile; sub-pages are reached from the section page itself. */}
+                  {navGroups.map((group) => (
+                    <Link
+                      key={group.label}
+                      href={group.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="display flex border-b border-border py-4 text-2xl text-foreground transition-colors hover:text-brand"
+                    >
+                      {group.label}
+                    </Link>
+                  ))}
+                </nav>
                 <Link
                   href={primaryCta.href}
                   onClick={() => setMobileOpen(false)}
