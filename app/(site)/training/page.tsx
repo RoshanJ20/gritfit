@@ -129,8 +129,6 @@ export default function TrainingPage() {
         </div>
       </section>
 
-      <TrainingCta />
-
       {/* PT FAQ */}
       <section className="border-t border-border">
         <div className="container-grit section grid gap-12 lg:grid-cols-[0.6fr_1fr] lg:gap-20">
@@ -159,6 +157,10 @@ export default function TrainingPage() {
           },
         ]}
       />
+
+      {/* Closing CTA — last on the page, as on every other Trainings page and
+          across RUSH, so the section reads content first and closes on the ask. */}
+      <TrainingCta />
     </>
   );
 }
