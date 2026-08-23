@@ -152,6 +152,59 @@
     background: var(--brand);
     color: #0a0a05;
   }
+
+  /* ---------------------------------------------------------------------
+     Cursor policy.
+
+     The site reads as an interface, not a document, so body copy does not
+     raise the text I-beam — the arrow stays put over headings, paragraphs
+     and list items. Text is still selectable; only the pointer shape
+     changes. Anything genuinely interactive raises the hand, including the
+     elements browsers leave as an arrow by default (`<button>`, `<summary>`)
+     and the ARIA equivalents our Radix components render.
+
+     Every selector is wrapped in `:where()` so it carries zero specificity.
+     That keeps these as defaults a component can always override with a
+     plain `cursor-*` utility.
+     --------------------------------------------------------------------- */
+  :where(body) {
+    cursor: default;
+  }
+  /* Real text-entry keeps its I-beam. None today, but the rule travels with
+     the policy so a future form behaves correctly without a second thought. */
+  :where(
+      input:not(
+          [type="button"],
+          [type="submit"],
+          [type="reset"],
+          [type="checkbox"],
+          [type="radio"],
+          [type="range"],
+          [type="color"],
+          [type="file"]
+        ),
+      textarea,
+      [contenteditable]:not([contenteditable="false"])
+    ) {
+    cursor: text;
+  }
+  :where(
+      a[href],
+      button,
+      summary,
+      label[for],
+      select,
+      [role="button"],
+      [role="link"],
+      [role="tab"],
+      [role="menuitem"],
+      [role="option"]
+    ) {
+    cursor: pointer;
+  }
+  :where(button:disabled, [aria-disabled="true"], [disabled]) {
+    cursor: not-allowed;
+  }
   /* Keyboard focus — brand ring, never removed for keyboard users. */
   :focus-visible {
     outline: 2px solid var(--brand);

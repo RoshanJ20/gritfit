@@ -14,10 +14,16 @@ export function Callout({
   label,
   children,
   glow = false,
+  bodyClassName,
 }: {
   label: string;
   children: React.ReactNode;
   glow?: boolean;
+  /**
+   * Extra classes for the body paragraph — used to cap the measure when the
+   * box itself is full-bleed, so a wide panel doesn't produce wide lines.
+   */
+  bodyClassName?: string;
 }) {
   return (
     <Reveal>
@@ -30,7 +36,12 @@ export function Callout({
         )}
       >
         <p className="eyebrow">{label}</p>
-        <p className="mt-4 text-xl font-medium leading-snug text-foreground sm:text-2xl">
+        <p
+          className={cn(
+            "mt-4 text-xl font-medium leading-snug text-foreground sm:text-2xl",
+            bodyClassName,
+          )}
+        >
           {children}
         </p>
         {glow && (

@@ -4,14 +4,14 @@ import Link from "next/link";
 import { recovery } from "@/content/recovery";
 import { PageHero } from "@/components/sections/page-hero";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
+import { RecoveryClose } from "@/components/recovery/recovery-close";
 import { Reveal } from "@/components/motion/reveal";
-import { Magnetic } from "@/components/motion/magnetic";
 import { ShinyText } from "@/components/reactbits/shiny-text";
 
 export const metadata: Metadata = {
-  title: "Essential Recovery — Move between heat, cold, and manual therapy",
+  title: "Essential Recovery — Move between heat, cold and manual therapy",
   description:
-    "Recovery at Grit is part of the system. Sauna, cold plunge, contrast therapy, and manual therapy — designed to help you perform better, recover faster, and stay consistent.",
+    "Recovery at Grit Fit is part of the system. Sauna, cold plunge, contrast therapy and manual therapy — designed to help you perform better, recover faster and stay consistent.",
 };
 
 export default function RecoveryPage() {
@@ -79,50 +79,46 @@ export default function RecoveryPage() {
         </div>
       </section>
 
-      {/* Conversion close */}
-      <section className="container-grit section text-center">
-        <Reveal>
-          <p className="eyebrow justify-center">{recovery.cta.eyebrow}</p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="display mx-auto mt-6 text-display-1 max-w-[16ch]">
-            {recovery.cta.heading}
-          </h2>
-        </Reveal>
-        <Reveal delay={0.16}>
-          <p className="mx-auto mt-6 max-w-md text-muted-foreground">
-            {recovery.cta.body}
-          </p>
-        </Reveal>
+      {/* What to carry — the list itself, not a link to it. The old "See what
+          to carry" button pointed at the FAQ, where the answer sat collapsed
+          behind an accordion, so the promise never actually paid off. */}
+      <section className="border-t border-border">
+        <div className="container-grit section grid gap-10 lg:grid-cols-[0.6fr_1fr] lg:gap-20">
+          <Reveal>
+            <p className="eyebrow">{recovery.whatToCarry.eyebrow}</p>
+            <h2 className="display mt-4 text-display-2 max-w-[16ch]">
+              {recovery.whatToCarry.heading}
+            </h2>
+            <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
+              {recovery.cta.carry}
+            </p>
+          </Reveal>
 
-        <Reveal
-          delay={0.24}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
-        >
-          <Magnetic strength={0.45}>
-            <Link href="/contact" className="btn btn-solid px-8 py-4">
-              Book Your Recovery →
-            </Link>
-          </Magnetic>
-          <Link href="/recovery/sessions" className="btn btn-outline px-8 py-4">
-            View session plans
-          </Link>
-        </Reveal>
-
-        <Reveal delay={0.32}>
-          <p className="mx-auto mt-10 max-w-lg text-sm leading-relaxed text-muted-foreground">
-            {recovery.cta.carry}{" "}
-            <Link
-              href="#faq"
-              className="group inline-flex items-center gap-1 text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-brand hover:decoration-brand"
-            >
-              {recovery.cta.carryLink}
-              <span className="transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
-          </p>
-        </Reveal>
+          <div>
+            <Reveal>
+              <p className="text-muted-foreground">
+                {recovery.firstSession.lead}
+              </p>
+            </Reveal>
+            <ul className="mt-6 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
+              {recovery.firstSession.bring.map((item, i) => (
+                <Reveal key={item} delay={(i % 2) * 0.06}>
+                  <li className="flex h-full items-start gap-3 bg-ink-900 p-5">
+                    <span aria-hidden className="text-brand">
+                      →
+                    </span>
+                    <span className="leading-snug">{item}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+            <Reveal delay={0.12}>
+              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+                {recovery.firstSession.note}
+              </p>
+            </Reveal>
+          </div>
+        </div>
       </section>
 
       {/* FAQ */}
@@ -151,6 +147,8 @@ export default function RecoveryPage() {
           </div>
         </div>
       </section>
+
+      <RecoveryClose />
     </>
   );
 }

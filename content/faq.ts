@@ -15,15 +15,15 @@ export const startersFaqs: Faq[] = [
   {
     q: "I'm new. Where do I start?",
     a: [
-      "Start with an assessment.",
+      "Start with a complimentary Performance Assessment.",
       "We guide you into the right pathway from there.",
     ],
   },
   {
     q: "What happens in the first session?",
     a: [
-      "You begin with a comprehensive assessment covering your goals, movement, and training history.",
-      "You meet a coach, discuss your direction, and get introduced to your training environment.",
+      "You begin with a comprehensive Performance Assessment covering your goals, movement and training history.",
+      "You meet a coach, discuss your direction and get introduced to your training environment.",
     ],
   },
   {
@@ -45,8 +45,8 @@ export const rushFaqs: Faq[] = [
   {
     q: "What is RUSH?",
     a: [
-      "RUSH is our signature training system at Grit.",
-      "It combines every training model—strength, hybrid, endurance, skill work, and movement flow—into one structured performance method.",
+      "RUSH is our signature training system at Grit Fit.",
+      "It combines every training model—strength, hybrid, endurance, skill work and movement flow—into one structured performance method.",
     ],
   },
   {
@@ -59,8 +59,8 @@ export const rushFaqs: Faq[] = [
   {
     q: "What should I expect?",
     a: [
-      "Structure, intensity, and coaching.",
-      "You'll move through strength and conditioning blocks designed to improve performance safely.",
+      "Structure, purpose and coaching.",
+      "Structured sessions designed to build strength, conditioning, movement and skill.",
     ],
   },
   {
@@ -82,15 +82,15 @@ export const rushFaqs: Faq[] = [
 // GENERAL
 export const generalFaqs: Faq[] = [
   {
-    q: "What makes Grit different?",
+    q: "What makes Grit Fit different?",
     a: [
-      "Everything is coached, structured, and intentional.",
+      "Everything is coached, structured and intentional.",
       "You don't just train—you train with purpose.",
-      "Everyone trains like an athlete here.",
+      "Everyone trains for performance here.",
     ],
   },
   {
-    q: "Can I combine classes, Strength Club, and PT?",
+    q: "Can I combine classes, Strength Club and PT?",
     a: [
       "Yes.",
       "Most members use a combination. We help structure it properly.",
@@ -99,7 +99,7 @@ export const generalFaqs: Faq[] = [
   {
     q: "Do I need a membership before trying?",
     a: [
-      "You'll start with an assessment first. We guide you into the right option from there.",
+      "You'll start with a complimentary Performance Assessment first. We guide you into the right option from there.",
     ],
   },
   {
@@ -109,7 +109,7 @@ export const generalFaqs: Faq[] = [
     ],
   },
   {
-    q: "Who is Grit for?",
+    q: "Who is Grit Fit for?",
     a: [
       "Anyone willing to train with intent and show up consistently.",
       "Still unsure? Reach out to our team.",

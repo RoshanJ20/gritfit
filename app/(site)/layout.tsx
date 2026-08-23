@@ -6,6 +6,7 @@ import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider
 import { PageTransition } from "@/components/motion/page-transition";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { WhatsappFab } from "@/components/whatsapp-fab";
 
 const SITE = "https://gritfit.club";
 
@@ -16,11 +17,11 @@ export const metadata: Metadata = {
     template: "%s · Grit Fit",
   },
   description:
-    "Grit Fit — The Luxe Club. Strength, RUSH classes, and Essential Recovery under one roof in HRBR. Nothing is given. Everything is earned.",
+    "Grit Fit — The Luxe Club. Strength, RUSH classes and Essential Recovery under one roof in HRBR. Nothing is given. Everything is earned.",
   openGraph: {
     title: "Grit Fit — The Luxe Club",
     description:
-      "Strength, RUSH classes, and Essential Recovery under one roof. Nothing is given. Everything is earned.",
+      "Strength, RUSH classes and Essential Recovery under one roof. Nothing is given. Everything is earned.",
     type: "website",
     url: SITE,
     siteName: "Grit Fit",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Grit Fit — The Luxe Club",
     description:
-      "Strength, RUSH classes, and Essential Recovery under one roof.",
+      "Strength, RUSH classes and Essential Recovery under one roof.",
     images: ["/og.png"],
   },
 };
@@ -65,6 +66,7 @@ export default function RootLayout({
             </main>
           </PageTransition>
           <Footer />
+          <WhatsappFab />
         </SmoothScrollProvider>
       </body>
     </html>

@@ -9,7 +9,7 @@ import { Reveal } from "@/components/motion/reveal";
 export const metadata: Metadata = {
   title: "Contrast Therapy — Essential Recovery",
   description:
-    "Move between infrared heat and cold immersion—two extremes, one purpose. Designed to support physical recovery, improve circulation responses, and build mental resilience.",
+    "Move between infrared heat and cold immersion—two extremes, one purpose. Designed to support physical recovery, improve circulation responses and build mental resilience.",
 };
 
 const siblings = recovery.experiences.filter(

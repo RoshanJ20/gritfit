@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { manualTherapy, massageFormats, recovery } from "@/content/recovery";
 import { PageHero } from "@/components/sections/page-hero";
 import { FormatList } from "@/components/sections/format-list";
 import { SiblingNav } from "@/components/sections/sibling-nav";
-import { Callout } from "@/components/sections/callout";
-import { Placeholder } from "@/components/placeholder";
+import { RecoveryClose } from "@/components/recovery/recovery-close";
 import { Reveal } from "@/components/motion/reveal";
-import { Magnetic } from "@/components/motion/magnetic";
 
 export const metadata: Metadata = {
   title: "Manual Therapy — Essential Recovery",
   description:
-    "Hands-on massage-based recovery designed to release tension, restore movement, and help training feel easier. Sports Massage, Deep Tissue, and Mobility Reset.",
+    "Hands-on massage-based recovery designed to release tension, restore movement and help training feel easier. Sports Massage, Deep Tissue and Mobility Reset.",
 };
 
 /** Session imagery keyed by format name for the alternating rows. */
@@ -71,21 +68,38 @@ export default function ManualTherapyPage() {
             </p>
           </Reveal>
 
+          {/* Each row is one recommendation, not two columns of loose text.
+              The "If" / "Start with" labels name the relationship outright and
+              the arrow carries the eye across it, so the pairing reads as
+              advice. Below `sm` the arrow rotates to point down and the two
+              halves stack, keeping the same read on a narrow screen. */}
           <div>
-            <ul className="border-y border-border">
+            <ul className="flex flex-col gap-3">
               {manualTherapy.howToUse.matches.map((m, i) => (
                 <Reveal key={m.when} delay={i * 0.06}>
-                  <li className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-border py-3.5 last:border-b-0">
-                    <span className="text-sm text-muted-foreground">
-                      {m.when}
+                  <li className="flex flex-col gap-3 border border-border bg-ink-800/50 p-4 transition-colors hover:border-brand/40 sm:flex-row sm:items-center sm:gap-5 sm:p-5">
+                    <div className="min-w-0 flex-1">
+                      <p className="eyebrow text-muted-foreground">If</p>
+                      <p className="mt-1.5 text-sm leading-snug text-foreground">
+                        {m.when}
+                      </p>
+                    </div>
+
+                    <span
+                      aria-hidden
+                      className="shrink-0 rotate-90 text-lg leading-none text-brand sm:rotate-0"
+                    >
+                      →
                     </span>
-                    <span className="flex items-center gap-2.5 font-medium text-foreground">
-                      <span
-                        className="size-1.5 shrink-0 bg-brand"
-                        aria-hidden
-                      />
-                      {m.then}
-                    </span>
+
+                    <div className="min-w-0 flex-1 sm:text-right">
+                      <p className="eyebrow text-muted-foreground">
+                        Start with
+                      </p>
+                      <p className="mt-1.5 font-medium leading-snug text-foreground">
+                        {m.then}
+                      </p>
+                    </div>
                   </li>
                 </Reveal>
               ))}
@@ -99,51 +113,8 @@ export default function ManualTherapyPage() {
         </div>
       </section>
 
-      {/* Note */}
-      <section className="border-t border-border">
-        <div className="container-grit section-sm">
-          <div className="mx-auto max-w-3xl">
-            <Callout label="Note">{manualTherapy.note}</Callout>
-          </div>
-        </div>
-      </section>
-
-      {/* Packages / Pricing */}
-      <section className="border-t border-border">
-        <div className="container-grit section text-center">
-          <Reveal>
-            <p className="eyebrow justify-center">Packages &amp; Pricing</p>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="display mx-auto mt-5 text-display-2">
-              <Placeholder label="Pricing">
-                Packages &amp; pricing at the club
-              </Placeholder>
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="container-grit section text-center">
-        <Reveal>
-          <p className="eyebrow justify-center">Your journey starts here.</p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="display mx-auto mt-6 text-display-1 max-w-[16ch]">
-            Recovery is training.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.16} className="mt-10 flex justify-center">
-          <Magnetic strength={0.45}>
-            <Link href="/contact" className="btn btn-solid px-9 py-4">
-              Book a Recovery Session
-            </Link>
-          </Magnetic>
-        </Reveal>
-      </section>
-
       <SiblingNav eyebrow="More recovery" items={siblings} />
+      <RecoveryClose />
     </>
   );
 }

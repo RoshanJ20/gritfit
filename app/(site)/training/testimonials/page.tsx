@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { testimonials } from "@/content/team";
 import { PageHero } from "@/components/sections/page-hero";
-import { CtaBand } from "@/components/sections/cta-band";
+import { TrainingCta } from "@/components/sections/training-cta";
 import { Reveal } from "@/components/motion/reveal";
 import { Placeholder } from "@/components/placeholder";
 import { Carousel } from "@/components/reactbits/carousel";
@@ -59,7 +59,7 @@ export default function TestimonialsPage() {
         </Reveal>
       </section>
 
-      <CtaBand />
+      <TrainingCta />
     </>
   );
 }

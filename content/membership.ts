@@ -16,7 +16,7 @@ export const membershipDurations: {
 ];
 
 /** Which duration the toggle starts on. */
-export const defaultDuration: BillingDuration = 6;
+export const defaultDuration: BillingDuration = 12;
 
 export type MembershipTier = {
   name: string;
@@ -64,15 +64,25 @@ export type MembershipTier = {
   };
 };
 
-// The shared note rendered once below the grid (was previously duplicated as a
-// feature bullet on every tier).
-export const membershipNote = "All memberships must be purchased at the club.";
+// The shared notes rendered once below the grid (the first was previously
+// duplicated as a feature bullet on every tier). Kept as short label/body pairs
+// so the page can lay them out as compact points rather than one wide banner.
+export const membershipNotes = [
+  {
+    label: "Where to buy",
+    body: "All memberships must be purchased at the club.",
+  },
+  {
+    label: "Current offer",
+    body: "For ongoing offers, contact the club directly.",
+  },
+];
 
 export const membershipTiers: MembershipTier[] = [
   {
-    name: "Open Access",
+    name: "Core",
     tagline: "Choose your training path.",
-    summary: "Classes or Strength Club — pick one — plus the club and amenities.",
+    summary: "Unlimited RUSH classes or Strength Club — pick one.",
     // prices: { 3: "", 6: "", 12: "" },  ← fill in later
     prices: {},
     access: { filled: 1, pillars: "choose-one", recovery: false },
@@ -90,8 +100,7 @@ export const membershipTiers: MembershipTier[] = [
   {
     name: "Platinum",
     tagline: "Train without limits.",
-    summary:
-      "Unlimited Classes + Strength Club, a guided class and a nutrition consultation.",
+    summary: "Unlimited RUSH classes + Strength Club — both included.",
     highlight: true,
     prices: {},
     access: { filled: 2, pillars: "both", recovery: false },
@@ -106,9 +115,9 @@ export const membershipTiers: MembershipTier[] = [
   },
   {
     name: "VIP",
-    tagline: "The complete Grit experience.",
+    tagline: "The complete Grit Fit experience.",
     summary:
-      "Everything in Platinum, plus Essential Recovery and ongoing coaching.",
+      "Unlimited RUSH classes + Strength Club + Essential Recovery — full access.",
     prices: {},
     access: { filled: 3, pillars: "both", recovery: true },
     highlightFeature:

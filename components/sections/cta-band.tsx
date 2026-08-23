@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
+import { cn, whatsappUrl } from "@/lib/utils";
 import { primaryCta, secondaryCta } from "@/content/nav";
+import { SentenceLines } from "@/components/sections/sentence-lines";
 import { Reveal } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 
@@ -11,8 +12,8 @@ import { Magnetic } from "@/components/motion/magnetic";
  */
 export function CtaBand({
   eyebrow = "Your first step starts here",
-  heading = "Show up. Trust the process. Do the work.",
-  body = "Every first-timer begins with a complimentary assessment. No pressure. No expectations. Just a clear starting line.",
+  heading = "Show up. Trust the process. Feel the difference.",
+  body = "Every first-timer begins with a complimentary Performance Assessment. No pressure. No expectations. Just a clear starting line.",
   className,
 }: {
   eyebrow?: string;
@@ -26,8 +27,8 @@ export function CtaBand({
         <p className="eyebrow justify-center">{eyebrow}</p>
       </Reveal>
       <Reveal delay={0.08}>
-        <h2 className="display mx-auto mt-6 text-display-1 max-w-[16ch]">
-          {heading}
+        <h2 className="display mx-auto mt-6 text-display-1 max-w-[24ch]">
+          <SentenceLines text={heading} />
         </h2>
       </Reveal>
       <Reveal delay={0.16}>
@@ -42,9 +43,16 @@ export function CtaBand({
             {secondaryCta.label}
           </Link>
         </Magnetic>
-        <Link href={primaryCta.href} className="btn btn-outline px-8 py-4">
+        {/* Bottom-of-page "Join Club" opens WhatsApp directly rather than
+            routing to /membership — the header and footer keep the nav link. */}
+        <a
+          href={whatsappUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-outline px-8 py-4"
+        >
           {primaryCta.label}
-        </Link>
+        </a>
       </Reveal>
     </section>
   );

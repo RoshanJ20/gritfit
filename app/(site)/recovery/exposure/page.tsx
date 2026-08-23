@@ -4,12 +4,12 @@ import { exposure, recovery } from "@/content/recovery";
 import { PageHero } from "@/components/sections/page-hero";
 import { FormatList } from "@/components/sections/format-list";
 import { SiblingNav } from "@/components/sections/sibling-nav";
-import { CtaBand } from "@/components/sections/cta-band";
+import { RecoveryClose } from "@/components/recovery/recovery-close";
 
 export const metadata: Metadata = {
   title: "Exposure Therapy — Essential Recovery",
   description:
-    "Controlled exposure to heat and cold — sauna, cold plunge, and contrast therapy. Move between the extremes on purpose.",
+    "Controlled exposure to heat and cold — sauna, cold plunge and contrast therapy.",
 };
 
 /** Recovery imagery keyed by format name for the alternating rows. */
@@ -43,11 +43,7 @@ export default function ExposureTherapyPage() {
       />
 
       <SiblingNav eyebrow="More recovery" items={siblings} />
-      <CtaBand
-        eyebrow="Essential Recovery"
-        heading="Recovery is training."
-        body="Arrive 10 minutes early. Our team will guide you through the process and recommended exposure times."
-      />
+      <RecoveryClose />
     </>
   );
 }

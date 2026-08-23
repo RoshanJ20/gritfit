@@ -1,12 +1,12 @@
 /**
  * Coach + leadership profiles.
  *
- * Source: "Coaches write up for website.xlsx" (Sheet1 = full field set,
- * Sheet2 = the roster, which adds Taarika). Every column from that sheet has a
- * key below, including the ones the sheet leaves blank today — One-Line
- * Identity Statement, Coaching Philosophy, and The Grit Question. Those are
- * empty strings, NOT invented copy: the card renders a marked placeholder for
- * any empty field, so the page doubles as a checklist of what's outstanding.
+ * Source: "Coaches write up for website as of 21-08-2026.xlsx" (Sheet1 = full
+ * field set, Sheet2 = the roster, which adds the directors). Every column from
+ * that sheet has a key below, including the ones the sheet still leaves blank —
+ * the leadership profiles. Those are empty strings, NOT invented copy: the card
+ * renders a marked placeholder for any empty field, so the page doubles as a
+ * checklist of what's outstanding.
  *
  * To publish a profile, fill the strings in. No component changes needed —
  * cards decide what to render (and whether they flip at all) from the data.
@@ -40,12 +40,16 @@ export function hasBackContent(c: Coach): boolean {
   );
 }
 
-/** Leadership — listed first on the page. */
+/**
+ * Leadership. Rendered beneath the coaches on /training/coaches — a member
+ * meets who they train with first. Array order is the display order, set by
+ * the club: Abhishek, then Taarika, then Bharath.
+ */
 export const leadership: Coach[] = [
   {
-    slug: "bharath",
-    name: "Bharath",
-    role: "CEO",
+    slug: "abhishek-raju",
+    name: "Abhishek Raju",
+    role: "Director",
     identity: "",
     philosophy: "",
     expertise: [],
@@ -62,6 +66,16 @@ export const leadership: Coach[] = [
     style: "",
     why: "",
   },
+  {
+    slug: "bharath",
+    name: "Bharath",
+    role: "CEO",
+    identity: "",
+    philosophy: "",
+    expertise: [],
+    style: "",
+    why: "",
+  },
 ];
 
 /** Coaching staff, alphabetical — the order the sheet uses. */
@@ -70,8 +84,9 @@ export const coaches: Coach[] = [
     slug: "akilesh",
     name: "Akilesh",
     role: "Yoga Coach",
-    identity: "",
-    philosophy: "",
+    identity: "Building resilient humans through conscious movement.",
+    philosophy:
+      "Awareness before action. Quality before quantity. Consistency over intensity.",
     expertise: [
       "Mobility",
       "Flexibility",
@@ -80,14 +95,14 @@ export const coaches: Coach[] = [
       "Recovery Practices",
     ],
     style: "Adaptive & Individualised",
-    why: "",
+    why: "Because true strength begins with awareness of the body, breath and mind.",
   },
   {
     slug: "anjali",
     name: "Anjali",
     role: "Performance Nutrition Coach / Fitness Consultant",
-    identity: "",
-    philosophy: "",
+    identity: "Making mindful training a way of life.",
+    philosophy: "Take one step at a time. Never take a step back.",
     expertise: [
       "Sports Nutrition",
       "Habit Building",
@@ -96,14 +111,15 @@ export const coaches: Coach[] = [
       "Lifestyle Nutrition",
     ],
     style: "Encouraging & Supportive",
-    why: "",
+    why: "Because people deserve facts over myths and a smarter way to become healthier.",
   },
   {
     slug: "hemanth",
     name: "Hemanth",
     role: "Movement Coach / Calisthenics Specialist",
-    identity: "",
-    philosophy: "",
+    identity: "Listen. Empathize. Analyze. Solve.",
+    philosophy:
+      "Help people break through the limitations of their mind and body.",
     expertise: [
       "Movement Quality",
       "Movement Control",
@@ -113,25 +129,25 @@ export const coaches: Coach[] = [
       "Advanced Calisthenics",
     ],
     style: "Precision & Detail-Oriented",
-    why: "",
+    why: "Because I love helping people help themselves.",
   },
   {
     slug: "krishna",
     name: "Krishna",
     role: "Calisthenics Coach / Content Creator",
-    identity: "",
-    philosophy: "",
+    identity: "Build strength. Build discipline. Build a better you.",
+    philosophy: "Show up. Do the work. Get better every single day.",
     expertise: ["Bodyweight Strength", "Skill Development", "Relative Strength"],
-    // Sheet leaves Coaching Style blank for Krishna.
-    style: "",
-    why: "",
+    style: "High-Energy & Motivational",
+    why: "Because I want people to discover that they’re capable of far more than they believe.",
   },
   {
     slug: "praphul",
     name: "Praphul",
     role: "Performance Coach / Combat Specialist",
-    identity: "",
-    philosophy: "",
+    identity: "Building people strong enough for whatever life throws at them.",
+    philosophy:
+      "Build versatility, resilience and capability beyond the ordinary.",
     expertise: [
       "Speed",
       "Power",
@@ -142,14 +158,15 @@ export const coaches: Coach[] = [
       "Striking Fundamentals",
     ],
     style: "Performance Driven",
-    why: "",
+    why: "Because everyone is capable of more, and I want to help them discover it.",
   },
   {
     slug: "roshan",
     name: "Roshan",
     role: "Hypertrophy Coach",
-    identity: "",
-    philosophy: "",
+    identity: "Beyond fitness. Build physical capability.",
+    philosophy:
+      "Build a strong foundation. Pursue performance. Prioritize lasting progress.",
     expertise: [
       "Muscle Development",
       "Strength Progression",
@@ -158,6 +175,6 @@ export const coaches: Coach[] = [
       "Progressive Overload",
     ],
     style: "Intensity-Focused",
-    why: "",
+    why: "Because physical capability changes the way you experience life.",
   },
 ];

@@ -66,7 +66,7 @@ export function RecoveryDetail({
       <CtaBand
         eyebrow="The Recovery Zone"
         heading="Recovery is training."
-        body="Arrive 10 minutes early, bring swimwear, a towel, and water. Our team will guide you through the process and recommended exposure times."
+        body="Arrive 10 minutes early, bring swimwear, a towel and water. Our team will guide you through the process and recommended exposure times."
       />
     </>
   );

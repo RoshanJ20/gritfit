@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { training } from "@/content/training";
 import { programs } from "@/content/programs";
-import { primaryCta, secondaryCta } from "@/content/nav";
 import { PageHero } from "@/components/sections/page-hero";
 import { LinkList } from "@/components/sections/link-list";
 import { TrainingPrograms } from "@/components/sections/training-programs";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
+import { TrainingCta } from "@/components/sections/training-cta";
 import { Callout } from "@/components/sections/callout";
 import { Reveal } from "@/components/motion/reveal";
-import { Magnetic } from "@/components/motion/magnetic";
 import { ShinyText } from "@/components/reactbits/shiny-text";
 
 export const metadata: Metadata = {
@@ -49,14 +47,14 @@ const programCategories = [
       {
         name: "Nutrition Coaching",
         href: "/nutrition",
-        note: "Personalised nutrition to fuel your training, recovery, and results.",
+        note: "Personalised nutrition to fuel your training, recovery and results.",
       },
     ],
   },
   {
     name: "Specialised Coaching",
     intro:
-      "Expert guidance for specific stages of life, recovery, and athletic development.",
+      "Expert guidance for specific stages of life, recovery and athletic development.",
     // Its own photo — the programs inside carry /images/programs/*.jpg.
     image: "/images/training/specialised.jpg",
     programs: programs.filter((p) => p.group === "specialised").map(toLink),
@@ -131,47 +129,7 @@ export default function TrainingPage() {
         </div>
       </section>
 
-      {/* Our standard — closing CTA */}
-      <section className="container-grit section text-center">
-        <Reveal>
-          <p className="eyebrow justify-center">{training.standard.eyebrow}</p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="display mx-auto mt-6 text-display-1 max-w-[18ch]">
-            {training.standard.heading}
-          </h2>
-        </Reveal>
-        <Reveal
-          delay={0.16}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
-        >
-          <Magnetic strength={0.45}>
-            <Link href={secondaryCta.href} className="btn btn-solid px-8 py-4">
-              Start Assessment
-            </Link>
-          </Magnetic>
-          <Link href={primaryCta.href} className="btn btn-outline px-8 py-4">
-            Train With Us
-          </Link>
-        </Reveal>
-        <Reveal delay={0.24}>
-          <p className="mx-auto mt-12 max-w-xl text-balance text-muted-foreground">
-            {training.standard.etiquetteNote}
-          </p>
-          <Link
-            href={training.standard.etiquetteHref}
-            className="group mt-4 inline-flex items-center gap-2 text-brand transition-colors hover:text-brand/80"
-          >
-            {training.standard.etiquetteLabel}
-            <span
-              aria-hidden
-              className="transition-transform duration-300 ease-out group-hover:translate-x-1"
-            >
-              →
-            </span>
-          </Link>
-        </Reveal>
-      </section>
+      <TrainingCta />
 
       {/* PT FAQ */}
       <section className="border-t border-border">
@@ -192,7 +150,7 @@ export default function TrainingPage() {
           {
             name: "Meet the coaches",
             href: "/training/coaches",
-            note: "An elite team, united by humility, consistency, and continuous learning.",
+            note: "An elite team, united by humility, consistency and continuous learning.",
           },
           {
             name: "Testimonials",

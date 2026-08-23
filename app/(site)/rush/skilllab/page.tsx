@@ -24,7 +24,7 @@ export default function SkillabPage() {
       />
       <FormatList formats={skillab.formats} mediaKind="video" />
       <ModelNav current="skilllab" />
-      <CtaBand />
+      <CtaBand eyebrow="Ready when you are" heading="Book your intro session." />
     </>
   );
 }

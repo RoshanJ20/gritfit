@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RotateCw } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -17,10 +17,37 @@ import { Placeholder } from "@/components/placeholder";
  * already gated behind `@media (hover: hover)`), on tap, and on keyboard focus.
  * A profile with no back-side content yet renders as a static card instead, so
  * leadership entries start flipping automatically the moment copy lands.
+ *
+ * A tap-flip is not sticky: it releases the moment the pointer leaves the card,
+ * when a pointer goes down anywhere outside it, or on Escape. Without that, a
+ * clicked card stayed face-up while you moved on to the next one and the grid
+ * filled up with open backs.
  */
 export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
   const [flipped, setFlipped] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   const flippable = hasBackContent(coach);
+
+  // Only listen while this card is actually held open.
+  useEffect(() => {
+    if (!flipped) return;
+
+    const onPointerDown = (e: PointerEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setFlipped(false);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setFlipped(false);
+    };
+
+    // Capture phase so a press on a neighbouring card releases this one before
+    // that card's own click handler runs.
+    document.addEventListener("pointerdown", onPointerDown, true);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown, true);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [flipped]);
 
   if (!flippable) {
     return (
@@ -31,7 +58,13 @@ export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
   }
 
   return (
-    <div className="group relative aspect-[3/4] w-full [perspective:1200px]">
+    <div
+      ref={ref}
+      // Leaving the card releases a tap-flip, so moving to the next card (or
+      // to empty space) turns this one back over on its own.
+      onMouseLeave={() => setFlipped(false)}
+      className="group relative aspect-[3/4] w-full [perspective:1200px]"
+    >
       <button
         type="button"
         onClick={() => setFlipped((f) => !f)}
@@ -42,11 +75,11 @@ export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
           // `will-change` keeps the faces on their own layer, so the type stops
           // re-rasterising (and shimmering) partway through the turn.
           "[transform-style:preserve-3d] [will-change:transform]",
-          // Symmetric in-out easing: a flip travels A→B, so it should ease out of
-          // rest and back into it. The expo-out curve used elsewhere front-loads
-          // ~75% of the rotation into the first fifth of the duration, which is
-          // what read as a snap. Slower, too — the turn is the moment here.
-          "transition-transform duration-[1000ms] ease-in-out-quint",
+          // Symmetric in-out easing: a flip travels A→B, so it should ease out
+          // of rest and back into it. The quint curve keeps the midpoint fast
+          // while both ends settle, which is what reads as snappy rather than
+          // abrupt.
+          "transition-transform duration-[520ms] ease-in-out-quint",
           flipped
             ? "[transform:rotateY(180deg)_scale(1.02)]"
             : cn(
@@ -54,7 +87,7 @@ export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
                 // Hover-in waits a beat so sweeping the cursor across the grid
                 // doesn't set every card spinning; leaving drops the delay, so
                 // the card returns the instant you go.
-                "group-hover:[transform:rotateY(180deg)_scale(1.02)] group-hover:[transition-delay:120ms]",
+                "group-hover:[transform:rotateY(180deg)_scale(1.02)] group-hover:[transition-delay:90ms]",
                 "group-focus-within:[transform:rotateY(180deg)_scale(1.02)]",
               ),
         )}

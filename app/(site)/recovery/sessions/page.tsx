@@ -9,7 +9,7 @@ import { Reveal } from "@/components/motion/reveal";
 export const metadata: Metadata = {
   title: "Recovery Sessions — Session-based plans",
   description:
-    "Recover on your terms with session-based plans for the Recovery Zone. Choose 1, 4, 8, or 12 sessions — no long-term commitment.",
+    "Recover on your terms with session-based plans for the Recovery Zone. Choose 1, 4, 8 or 12 sessions — no long-term commitment.",
 };
 
 export default function RecoverySessionsPage() {

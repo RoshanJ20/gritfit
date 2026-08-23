@@ -29,7 +29,7 @@ export const sessionPacks: SessionPack[] = [
     name: "Single Session",
     features: [
       "One guided Recovery Zone session",
-      "Access to Exposure Therapy — sauna, cold plunge, and contrast therapy",
+      "Access to Exposure Therapy — sauna, cold plunge and contrast therapy",
       "Coach guidance on recommended exposure times",
     ],
   },
@@ -38,7 +38,7 @@ export const sessionPacks: SessionPack[] = [
     name: "4 Sessions",
     features: [
       "Four guided Recovery Zone sessions",
-      "Access to Exposure Therapy — sauna, cold plunge, and contrast therapy",
+      "Access to Exposure Therapy — sauna, cold plunge and contrast therapy",
       "Coach guidance on recommended exposure times",
     ],
   },
@@ -48,7 +48,7 @@ export const sessionPacks: SessionPack[] = [
     highlight: true,
     features: [
       "Eight guided Recovery Zone sessions",
-      "Access to Exposure Therapy — sauna, cold plunge, and contrast therapy",
+      "Access to Exposure Therapy — sauna, cold plunge and contrast therapy",
       "Coach guidance on recommended exposure times",
     ],
   },
@@ -57,7 +57,7 @@ export const sessionPacks: SessionPack[] = [
     name: "12 Sessions",
     features: [
       "Twelve guided Recovery Zone sessions",
-      "Access to Exposure Therapy — sauna, cold plunge, and contrast therapy",
+      "Access to Exposure Therapy — sauna, cold plunge and contrast therapy",
       "Coach guidance on recommended exposure times",
     ],
   },

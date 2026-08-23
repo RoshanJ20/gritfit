@@ -13,7 +13,7 @@ import { ShinyText } from "@/components/reactbits/shiny-text";
 export const metadata: Metadata = {
   title: "Strength Club — A coached training floor",
   description:
-    "The Strength Club is not an open gym. Structured programming through workout cards, with coaches available on the floor to guide, support, and help you progress.",
+    "The Strength Club is not an open gym. Structured programming through workout cards, with coaches available on the floor to guide, support and help you progress.",
 };
 
 const { about } = strength;

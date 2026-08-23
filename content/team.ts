@@ -9,7 +9,7 @@
 export const team = {
   eyebrow: "The Team",
   values:
-    "We build our team around three values: humility, consistency, and a commitment to continuous learning.",
+    "We build our team around three values: humility, consistency and a commitment to continuous learning.",
   // Field labels from the source — used to structure each (placeholder) profile.
   fields: ["Name", "Title", "Personal Statement"] as const,
 };
@@ -17,7 +17,7 @@ export const team = {
 export const testimonials = {
   eyebrow: "Testimonials",
   heading: "Client Voices",
-  // Source: "Trusted by professionals,Loved by beginners"
+  // Source: "Trusted by professionals, Loved by beginners"
   tagline: "Trusted by professionals, loved by beginners.",
   placeholderCount: 4,
 };

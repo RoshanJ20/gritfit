@@ -24,7 +24,7 @@ export default function PeakPage() {
       />
       <FormatList formats={peak.formats} mediaKind="video" />
       <ModelNav current="peak" />
-      <CtaBand />
+      <CtaBand eyebrow="Ready when you are" heading="Book your intro session." />
     </>
   );
 }

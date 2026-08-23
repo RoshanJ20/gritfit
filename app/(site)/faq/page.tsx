@@ -13,7 +13,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 export const metadata: Metadata = {
   title: "FAQ — Everything you need to know",
   description:
-    "Answers for first-timers, RUSH, personal training, Strength Club, recovery, and the Grit Fit way.",
+    "Answers for first-timers, RUSH, personal training, Strength Club, recovery and the Grit Fit way.",
 };
 
 const sections = [

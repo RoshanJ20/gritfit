@@ -16,7 +16,7 @@ export const strength = {
   heading: "A coached training floor",
   intro: [
     "The Strength Club is not an open gym.",
-    "Every member begins with an assessment before enrolment. From there, you’ll follow structured programming through workout cards, with coaches available on the floor to guide, support, and help you progress.",
+    "Every member begins with a Performance Assessment before enrolment. From there, you’ll follow structured programming through workout cards, with coaches available on the floor to guide, support and help you progress.",
     "Whether you’re new to resistance training or have years of experience, you’ll always know what to do when you walk in.",
   ],
   // Standalone band shown after the "difference" section.
@@ -30,13 +30,13 @@ export const strength = {
     lead: "The floor is where that plan comes to life.",
     creed: "Because excellence is never accidental. It is engineered.",
     detail:
-      "At Strength Club, every member begins with a comprehensive assessment designed to understand their goals, movement capabilities, and current level of performance. From there, a structured training pathway is created, ensuring every session contributes to meaningful progress.",
+      "At Strength Club, every member begins with a comprehensive Performance Assessment designed to understand their goals, movement capabilities and current level of performance. From there, a structured training pathway is created, ensuring every session contributes to meaningful progress.",
     get: [
       "Assessment before action and a plan built around you",
       "Training with structure and purpose",
       "Guidance when it matters",
       "Access to elite performance equipment and systems across strength and conditioning",
-      "Athletic capability for life",
+      "An environment built for performance",
     ],
     dont: [
       "No overcrowded floors or waiting for equipment",
@@ -54,7 +54,7 @@ export const strength = {
     {
       step: "01",
       title: "Assessment",
-      body: "Because we don’t guess your starting point. The assessment helps us understand your movement, goals, and experience so we can place you correctly from day one.",
+      body: "Because we don’t guess your starting point. The Performance Assessment helps us understand your movement, goals and experience so we can place you correctly from day one.",
     },
     {
       step: "02",
@@ -64,7 +64,7 @@ export const strength = {
     {
       step: "03",
       title: "Coached floor",
-      body: "Strength Club is a coached training floor built on structure, accountability, and progression. You train using workout cards within a guided system, with coaches available on the floor.",
+      body: "Strength Club is a coached training floor built on structure, accountability and progression. You train using workout cards within a guided system, with coaches available on the floor.",
     },
   ],
   faqs: [
@@ -72,15 +72,15 @@ export const strength = {
       q: "Is Strength Club an open gym?",
       a: [
         "No.",
-        "Strength Club is a coached training floor built on structure, accountability, and progression.",
+        "Strength Club is a coached training floor built on structure, accountability and progression.",
         "You train using workout cards within a guided system, with coaches available on the floor.",
       ],
     },
     {
-      q: "Why do I need an assessment before joining?",
+      q: "Why do I need a Performance Assessment before joining?",
       a: [
         "Because we don’t guess your starting point.",
-        "The assessment helps us understand your movement, goals, and experience so we can place you correctly from day one.",
+        "The Performance Assessment helps us understand your movement, goals and experience so we can place you correctly from day one.",
       ],
     },
     {
@@ -96,7 +96,7 @@ export const strength = {
       a: [
         "Yes.",
         "Beginners are guided, not excluded.",
-        "We teach movement, control, and load step by step.",
+        "We teach movement, control and load step by step.",
       ],
     },
     {
@@ -104,7 +104,7 @@ export const strength = {
       a: [
         "Yes.",
         "Experience doesn’t replace structure.",
-        "Many advanced lifters join for programming clarity, progression, and coaching support.",
+        "Many advanced lifters join for programming clarity, progression and coaching support.",
       ],
     },
   ],

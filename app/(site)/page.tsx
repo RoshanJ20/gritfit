@@ -4,6 +4,7 @@ import { site } from "@/content/site";
 import { membershipTiers } from "@/content/membership";
 import { secondaryCta } from "@/content/nav";
 import { HeroVideo } from "@/components/hero-video";
+import { SentenceLines } from "@/components/sections/sentence-lines";
 import { Reveal, Rise } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 import { ParallaxMedia } from "@/components/motion/parallax-media";
@@ -17,7 +18,7 @@ const pillars = [
     tagline: "Move with Meaning",
     media: "/images/home/rush.jpg",
     blurb:
-      "RUSH is our signature training system—a complete approach to strength, conditioning, movement, recovery, and skill.\nAcross 14 unique class formats and training experiences, every class is designed to play a role in your long-term progress.",
+      "RUSH is our signature training system—a complete approach to strength, conditioning, movement, recovery and skill.\nAcross 14 unique class formats and training experiences, every class is designed to play a role in your long-term progress.",
   },
   {
     index: "02",
@@ -26,16 +27,16 @@ const pillars = [
     tagline: "Train with intent",
     media: "/images/home/strength.jpg",
     blurb:
-      "A coached training floor — not an open gym.\nStructured programming through workout cards, with coaches on the floor to guide every session.\nEvery workout is also delivered through our member app, keeping your training, tracking, and progress connected wherever you are.",
+      "Not an open gym. A coached training floor built around you.\nEvery member follows structured programming, with workout cards personally crafted from your Performance Assessment. Coaches guide, correct and support you when needed.\nWe measure your progress, so you can see what’s improving, where you’re headed and feel the difference.",
   },
   {
     index: "03",
-    label: "The Recovery Zone",
+    label: "Essential Recovery",
     href: "/recovery",
     tagline: "Recovery hits different",
     media: "/images/home/recovery.jpg",
     blurb:
-      "A space to slow down, release, and restore.\nDesigned to bring the body back to balance.",
+      "A space to slow down, release and restore.\nDesigned to bring the body back to balance.",
   },
 ];
 
@@ -57,7 +58,7 @@ export default function Home() {
           <Reveal playOnMount delay={0.5} className="lg:hidden">
             <p className="mx-auto max-w-sm text-balance text-sm leading-relaxed text-foreground/85">
               Nothing is given — everything is earned through hard work. Built on
-              a passion for strength, movement, and mindset.
+              a passion for strength, movement and mindset.
             </p>
           </Reveal>
 
@@ -83,8 +84,8 @@ export default function Home() {
           </Reveal>
           <Reveal delay={0.08}>
             <p className="mt-8 text-balance text-xl font-light leading-[1.55] text-foreground sm:text-2xl lg:text-[1.75rem]">
-              Grit club is home where nothing is given — everything is earned
-              through hard work. Built on a passion for strength, movement, and
+              Grit Fit is home where nothing is given — everything is earned
+              through hard work. Built on a passion for strength, movement and
               mindset.
             </p>
           </Reveal>
@@ -150,13 +151,13 @@ export default function Home() {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <Reveal>
-              <p className="eyebrow">Why Grit</p>
+              <p className="eyebrow">Why Grit Fit</p>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="display mt-5 text-display-1">
-                One roof.
+                Everything you need.
                 <br />
-                Every discipline.
+                Nothing you don’t.
               </h2>
             </Reveal>
           </div>
@@ -242,34 +243,35 @@ export default function Home() {
           <p className="eyebrow justify-center">Your first step starts here</p>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="display mx-auto mt-6 text-display-1 max-w-[16ch]">
-            Show up. Trust the process. Do the work.
+          <h2 className="display mx-auto mt-6 text-display-1 max-w-[24ch]">
+            <SentenceLines text="Show up. Trust the process. Feel the difference." />
           </h2>
         </Reveal>
         <Reveal delay={0.16}>
           <p className="mx-auto mt-6 max-w-md text-muted-foreground">
-            Every first-timer begins with a complimentary assessment. No
-            pressure. No expectations. Just a clear starting line.
+            Every first-timer begins with a complimentary Performance
+            Assessment. No pressure. No expectations. Just a clear starting
+            line.
           </p>
         </Reveal>
-        <Reveal delay={0.2}>
-          <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            Not sure yet? Find everything you need to decide in the{" "}
-            <Link
-              href="/first-timers"
-              className="whitespace-nowrap text-foreground underline decoration-brand/60 underline-offset-4 transition-colors hover:text-brand"
-            >
-              First Timers
-            </Link>{" "}
-            section on our website.
-          </p>
-        </Reveal>
-        <Reveal delay={0.24} className="mt-10 flex justify-center">
+        <Reveal delay={0.2} className="mt-10 flex justify-center">
           <Magnetic strength={0.45}>
             <Link href={secondaryCta.href} className="btn btn-solid px-9 py-4">
               {secondaryCta.label}
             </Link>
           </Magnetic>
+        </Reveal>
+        <Reveal delay={0.24}>
+          <p className="mx-auto mt-8 max-w-md text-muted-foreground">
+            Not sure yet? Find everything you need to decide in the{" "}
+            <Link
+              href="/first-timers"
+              className="whitespace-nowrap text-foreground underline decoration-brand/60 underline-offset-4 transition-colors hover:text-brand"
+            >
+              First Timers Guide
+            </Link>
+            .
+          </p>
         </Reveal>
       </section>
     </>

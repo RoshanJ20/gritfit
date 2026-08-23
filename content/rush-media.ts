@@ -16,7 +16,7 @@ export const rushFormatImages: Record<string, string> = {
   Ground: "/images/rush/mobility.jpg",
   // Skillab
   Taekwondo: "/images/rush/taekwondo.jpg",
-  Fight: "/images/rush/fight.jpg",
+  Strike: "/images/rush/fight.jpg",
   Barlethics: "/images/rush/calisthenics.jpg",
   Foundation: "/images/rush/foundation.jpg",
   Movement: "/images/rush/movement.jpg",

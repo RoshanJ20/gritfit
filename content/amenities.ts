@@ -6,8 +6,7 @@
 
 export const amenities = {
   eyebrow: "Amenities",
-  // "...built into every detail." (verbatim phrase from the source list)
-  heading: "Built into every detail",
+  heading: "Quality built into every detail",
   items: [
     {
       name: "Modern Locker Rooms",
@@ -19,14 +18,14 @@ export const amenities = {
     },
     {
       name: "Showers",
-      desc: "Refresh, reset, and get back to your day.",
+      desc: "Refresh, reset and get back to your day.",
     },
     {
-      name: "Hydration Station",
-      desc: "Filtered water on tap to fill up and stay sharp through every session.",
+      name: "The Refresh Lounge",
+      desc: "Water and hot beverages, with coffee, tea, milk and green tea to keep you refreshed and ready.",
     },
     {
-      name: "Parking",
+      name: "Limited Member Parking",
       desc: "Arrive easy. Leave easy. Train without friction.",
     },
     {

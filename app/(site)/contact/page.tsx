@@ -13,7 +13,7 @@ import { Placeholder } from "@/components/placeholder";
 export const metadata: Metadata = {
   title: "Visit — Book an Assessment",
   description:
-    "Every first-time member begins with a complimentary assessment. Find Grit Fit in HRBR and book your starting line.",
+    "Every first-time member begins with a complimentary Performance Assessment. Find Grit Fit in HRBR and book your starting line.",
 };
 
 const socialIcon = {
@@ -29,7 +29,7 @@ export default function ContactPage() {
         eyebrow="Visit"
         title="Book an Assessment"
         lead={[
-          "Every first-time member begins with a complimentary assessment. No pressure. No expectations. Just a clear starting line.",
+          "Every first-time member begins with a complimentary Performance Assessment. No pressure. No expectations. Just a clear starting line.",
         ]}
         mediaLabel="The Club"
         mediaSrc="/images/contact.jpg"
@@ -96,7 +96,17 @@ export default function ContactPage() {
                       {site.contact.phone.value}
                     </Placeholder>
                   ) : (
-                    site.contact.phone.value
+                    <>
+                      <span className="block text-muted-foreground">
+                        Ask for {site.contact.name}
+                      </span>
+                      <a
+                        href={`tel:${site.contact.phone.value.replace(/\s/g, "")}`}
+                        className="mt-1 inline-block text-base text-foreground transition-colors hover:text-brand"
+                      >
+                        {site.contact.phone.value}
+                      </a>
+                    </>
                   )}
                 </dd>
               </div>
@@ -124,10 +134,14 @@ export default function ContactPage() {
                       <span className="block text-foreground">{h.days}</span>
                       {h.placeholder ? (
                         <Placeholder label="Hours" className="mt-1 text-xs">
-                          {h.time}
+                          {h.times.join(" · ")}
                         </Placeholder>
                       ) : (
-                        h.time
+                        <span className="mt-1 flex flex-col gap-0.5">
+                          {h.times.map((t) => (
+                            <span key={t}>{t}</span>
+                          ))}
+                        </span>
                       )}
                     </div>
                   ))}

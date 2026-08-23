@@ -24,10 +24,7 @@ export default function FlowPage() {
       />
       <FormatList formats={flow.formats} mediaKind="video" />
       <ModelNav current="flow" />
-      <CtaBand
-        eyebrow="Reset · Rebuild · Reconnect"
-        heading="Balance your training. Restore your body."
-      />
+      <CtaBand eyebrow="Ready when you are" heading="Book your intro session." />
     </>
   );
 }

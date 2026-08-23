@@ -84,7 +84,7 @@ export function MapSnippet({
           "relative overflow-hidden",
           // `h-full` lets the band stretch to its grid row; the min-height only
           // bites when stacked (mobile), where it keeps the pin clear of the caption.
-          band ? "h-full min-h-[15rem] sm:min-h-[19rem]" : sm ? "h-28" : "h-44",
+          band ? "h-full min-h-[12rem] sm:min-h-[14rem]" : sm ? "h-28" : "h-44",
         )}
       >
         {/* Muted at rest, warms on hover. */}
@@ -134,11 +134,11 @@ export function MapSnippet({
 
         {/* Band caption — sits on the fade, inside the stage */}
         {band ? (
-          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+          <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
             <p className="text-[0.6rem] font-medium uppercase tracking-[0.2em] text-brand">
               {kicker}
             </p>
-            <p className="display mt-2 text-2xl leading-none text-foreground sm:text-3xl">
+            <p className="display mt-1.5 text-xl leading-none text-foreground sm:text-2xl">
               {area}
             </p>
             {coords ? (
@@ -148,7 +148,7 @@ export function MapSnippet({
             ) : city ? (
               <p className="mt-2 text-sm text-muted-foreground">{city}</p>
             ) : null}
-            <span className="mt-5 flex items-center justify-between gap-3 border-t border-white/15 pt-4 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-foreground">
+            <span className="mt-4 flex items-center justify-between gap-3 border-t border-white/15 pt-3 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-foreground">
               Open in Google Maps
               <span
                 aria-hidden

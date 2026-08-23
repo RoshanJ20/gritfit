@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { amenities } from "@/content/amenities";
 import { PageHero } from "@/components/sections/page-hero";
-import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
 import { ParallaxMedia } from "@/components/motion/parallax-media";
 import { MediaPlaceholder } from "@/components/media-placeholder";
@@ -10,9 +9,9 @@ import { CountUp } from "@/components/reactbits/count-up";
 import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 
 export const metadata: Metadata = {
-  title: "Amenities — Built into every detail",
+  title: "Amenities — Quality built into every detail",
   description:
-    "Modern locker rooms, private changing areas, showers, towel service, parking, and complete on-site security.",
+    "Modern locker rooms, private changing areas, showers, The Refresh Lounge, limited member parking and complete on-site security.",
 };
 
 export default function AmenitiesPage() {
@@ -63,8 +62,6 @@ export default function AmenitiesPage() {
           </ParallaxMedia>
         </Reveal>
       </section>
-
-      <CtaBand />
     </>
   );
 }

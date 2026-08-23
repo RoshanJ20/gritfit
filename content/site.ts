@@ -24,18 +24,18 @@ export const site = {
     "Strike",
   ],
   philosophy: [
-    "Grit club is home where nothing is given, everything is earned through hard work.",
-    "Built on a passion for strength, movement, and mindset.",
+    "Grit Fit is home where nothing is given, everything is earned through hard work.",
+    "Built on a passion for strength, movement and mindset.",
     "A training experience that meets you where you are, pushes you forward, and leaves you better every time.",
   ],
   // Source: "We've built a full training space where everything sits under one roof…"
   usp: {
-    heading: "One roof. Every discipline.",
+    heading: "Everything you need. Nothing you don’t.",
     body: [
-      "GRIT exists for those who want more from themselves—more discipline, more control, more capacity in how they move, train, and live. This is not a place built around trends, but around standards.",
-      "Built for full-spectrum performance training—Strength, Conditioning, Calisthenics, Boxing, MMA, Yoga, Endurance, and Recovery.",
-      "We train strength that holds under pressure, endurance that doesn’t break under fatigue, and movement that builds resilience—not just appearance. Recovery is treated with the same seriousness as effort.",
-      "The idea is simple: one place to train with intent, recover properly, and progress across multiple disciplines without compromise.",
+      "GRITFIT is for those who want more from themselves. More strength. More control. More capacity. More capability.",
+      "We bring Strength, Conditioning, Calisthenics, Combat, Yoga, Movement, Recovery and Nutrition together under one roof — with coaching and structure behind every part of the experience.",
+      "This is not a place built around trends, but around standards that pushes you to become better.",
+      "GritFit isn’t about doing more things. It’s about becoming more capable.",
     ],
   },
   location: {
@@ -54,22 +54,47 @@ export const site = {
     // the map card, which takes the place of the city line.
     coordinates: { lat: 13.0161614, lng: 77.6473416 },
   },
-  // Source marks contact + hours "Yet to work on" → placeholders.
+  // The club's WhatsApp line. `number` is the E.164 digits wa.me expects (no
+  // "+", no spaces); `display` is how it reads to a human. Both the floating
+  // widget and the bottom-of-page "Join Club" CTAs build their link from
+  // `whatsappUrl()` in @/lib/utils, so this is the only place to change it.
+  whatsapp: {
+    number: "918095874762",
+    display: "+91 80958 74762",
+    // Prefilled first message. Kept short — WhatsApp shows it in the composer
+    // and the member can edit before sending.
+    message: "Hi Grit Fit — I'd like to know more about joining the club.",
+  },
+  // Email + address remain "Yet to work on" → still placeholders. The named
+  // contact and phone are confirmed, so they render as real values.
   contact: {
+    // Who to ask for. Shown above the phone number so the number has an owner.
+    name: "Bharath",
     email: { value: "hello@gritfit.club", placeholder: true } as MaybePlaceholder,
-    phone: { value: "+91 00000 00000", placeholder: true } as MaybePlaceholder,
+    phone: { value: "+91 80958 74762", placeholder: false } as MaybePlaceholder,
     address: {
       value: "HRBR Layout, Bengaluru",
       placeholder: true,
     } as MaybePlaceholder,
   },
+  // Confirmed hours. The club runs two windows a day, so `times` is a list —
+  // both the footer and the contact page stack the entries under one day label.
   hours: [
-    { days: "Mon — Fri", time: "Yet to be confirmed", placeholder: true },
-    { days: "Sat — Sun", time: "Yet to be confirmed", placeholder: true },
+    {
+      days: "Mon — Sat",
+      times: ["6:00 AM — 12:30 PM", "4:30 PM — 9:00 PM"],
+      placeholder: false,
+    },
+    { days: "Sunday", times: ["Closed"], placeholder: false },
   ],
   socials: [
-    { label: "Instagram", href: "#", placeholder: true },
-    { label: "Facebook", href: "#", placeholder: true },
-    { label: "Twitter", href: "#", placeholder: true },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/grit.fit.official",
+      handle: "@grit.fit.official",
+      placeholder: false,
+    },
+    { label: "Facebook", href: "#", handle: "", placeholder: true },
+    { label: "Twitter", href: "#", handle: "", placeholder: true },
   ],
 } as const;

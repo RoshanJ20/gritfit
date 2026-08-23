@@ -52,7 +52,7 @@ export function CountdownClient() {
         <Counter time={time} ready={ready} />
 
         <p className="mt-8 max-w-sm text-sm leading-relaxed text-muted-foreground">
-          Nothing is given. Everything is earned. Strength, RUSH, and Recovery
+          Nothing is given. Everything is earned. Strength, RUSH and Recovery
           under one roof.
         </p>
 
