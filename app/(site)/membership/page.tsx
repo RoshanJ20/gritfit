@@ -9,7 +9,7 @@ import { MembershipPlans } from "@/components/membership/membership-plans";
 export const metadata: Metadata = {
   title: "Membership — Choose your commitment",
   description:
-    "Three ways to train at Grit Fit: Core, Platinum and VIP — from a single training path to unlimited Classes, Strength Club and Essential Recovery.",
+    "Three ways to train at Grit Fit: Core, Elite and Apex — from a single training path to unlimited Classes, Strength Club and Essential Recovery.",
 };
 
 export default function MembershipPage() {

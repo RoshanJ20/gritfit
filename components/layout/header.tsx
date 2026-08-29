@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -94,9 +95,14 @@ export function Header() {
           className="flex shrink-0 items-center justify-center"
           aria-label="Grit Fit — home"
         >
-          <span className="display text-xl leading-none text-foreground transition-colors hover:text-brand lg:text-2xl">
-            GRITFIT
-          </span>
+          <Image
+            src="/images/logo-gritfit.png"
+            alt="Grit Fit — Luxe Health Club"
+            width={689}
+            height={169}
+            priority
+            className="h-7 w-auto transition-opacity hover:opacity-80 sm:h-8 lg:h-11"
+          />
         </Link>
 
         {/* ---------- Right ---------- */}

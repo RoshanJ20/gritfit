@@ -16,12 +16,15 @@ export const site = {
   signatureLine: "Lift. Run. Fight. Fly. Stretch. Recover. Strike.",
   signatureWords: [
     "Lift",
+    "Carry",
     "Run",
     "Fight",
+    "Strike",
+    "Move",
     "Fly",
     "Stretch",
+    "Breathe",
     "Recover",
-    "Strike",
   ],
   philosophy: [
     "Grit Fit is home where nothing is given, everything is earned through hard work.",

@@ -21,7 +21,7 @@ export const amenities = {
       desc: "Refresh, reset and get back to your day.",
     },
     {
-      name: "The Refresh Lounge",
+      name: "Hydration Station",
       desc: "Water and hot beverages, with coffee, tea, milk and green tea to keep you refreshed and ready.",
     },
     {

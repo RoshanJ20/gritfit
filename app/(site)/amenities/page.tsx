@@ -11,7 +11,7 @@ import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 export const metadata: Metadata = {
   title: "Amenities — Quality built into every detail",
   description:
-    "Modern locker rooms, private changing areas, showers, The Refresh Lounge, limited member parking and complete on-site security.",
+    "Modern locker rooms, private changing areas, showers, the Hydration Station, limited member parking and complete on-site security.",
 };
 
 export default function AmenitiesPage() {

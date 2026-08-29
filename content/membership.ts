@@ -41,7 +41,7 @@ export type MembershipTier = {
    * Classes/Strength Club access on the plans where it matters most.
    */
   highlightFeature?: string;
-  /** Small print tied to this tier (e.g. the VIP recovery asterisk). */
+  /** Small print tied to this tier (e.g. the Apex recovery asterisk). */
   footnote?: string;
   /**
    * What this tier does NOT include — short labels derived from the tiers above
@@ -98,7 +98,7 @@ export const membershipTiers: MembershipTier[] = [
     ],
   },
   {
-    name: "Platinum",
+    name: "Elite",
     tagline: "Train without limits.",
     summary: "Unlimited RUSH classes + Strength Club — both included.",
     highlight: true,
@@ -114,7 +114,7 @@ export const membershipTiers: MembershipTier[] = [
     excluded: ["Essential Recovery access"],
   },
   {
-    name: "VIP",
+    name: "Apex",
     tagline: "The complete Grit Fit experience.",
     summary:
       "Unlimited RUSH classes + Strength Club + Essential Recovery — full access.",
