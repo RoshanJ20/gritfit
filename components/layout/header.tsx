@@ -98,8 +98,8 @@ export function Header() {
           <Image
             src="/images/logo-gritfit.png"
             alt="Grit Fit — Luxe Health Club"
-            width={689}
-            height={169}
+            width={913}
+            height={239}
             priority
             className="h-7 w-auto transition-opacity hover:opacity-80 sm:h-8 lg:h-11"
           />
