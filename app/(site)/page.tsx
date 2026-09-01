@@ -1,13 +1,16 @@
 import Link from "next/link";
 
+import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
 import { membershipTiers } from "@/content/membership";
 import { secondaryCta } from "@/content/nav";
 import { HeroVideo } from "@/components/hero-video";
+import { HeroWordmark } from "@/components/hero-wordmark";
+import { IntroSequence } from "@/components/intro-sequence";
 import { SentenceLines } from "@/components/sections/sentence-lines";
-import { Reveal, Rise } from "@/components/motion/reveal";
-import { Magnetic } from "@/components/motion/magnetic";
-import { ParallaxMedia } from "@/components/motion/parallax-media";
+import { Reveal, Curtain } from "@/components/motion/reveal";
+import { ActionLink } from "@/components/sections/action-link";
+import { CardEdge } from "@/components/sections/card-edge";
 import { MediaPlaceholder } from "@/components/media-placeholder";
 
 const pillars = [
@@ -46,6 +49,8 @@ const tiers = membershipTiers;
 export default function Home() {
   return (
     <>
+      <IntroSequence />
+
       {/* ============== HERO — the video, with the wordmark anchored ============== */}
       <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
         <HeroVideo />
@@ -54,17 +59,7 @@ export default function Home() {
             browser UI. The statement lives in its own section below, so the
             first screen stays a clean edge-resting wordmark at every size. */}
         <div className="relative z-10 flex flex-col items-center px-5 pb-20 text-center sm:pb-8 lg:px-4 lg:pb-12">
-          <h1
-            aria-label="Grit Fit"
-            className="wordmark flex items-end justify-center gap-[0.07em] text-foreground"
-          >
-            <Rise playOnMount duration={1.1}>
-              Grit
-            </Rise>
-            <Rise playOnMount delay={0.12} duration={1.1}>
-              Fit
-            </Rise>
-          </h1>
+          <HeroWordmark />
         </div>
       </section>
 
@@ -90,20 +85,17 @@ export default function Home() {
           <div key={p.label} className="border-b border-border">
             <div className="container-grit section grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
               {/* Media */}
-              <Reveal
-                className={i % 2 === 1 ? "lg:order-2" : ""}
-                y={40}
+              <Curtain
+                className={cn("aspect-[4/3]", i % 2 === 1 && "lg:order-2")}
               >
-                <ParallaxMedia amount={36} className="aspect-[4/3]">
-                  <MediaPlaceholder
-                    label={p.label}
-                    kind="video"
-                    ratio="auto"
-                    src={p.media}
-                    className="h-full rounded-none border-0"
-                  />
-                </ParallaxMedia>
-              </Reveal>
+                <MediaPlaceholder
+                  label={p.label}
+                  kind="video"
+                  ratio="auto"
+                  src={p.media}
+                  className="h-full rounded-none border-0"
+                />
+              </Curtain>
 
               {/* Copy */}
               <div className={i % 2 === 1 ? "lg:order-1" : ""}>
@@ -122,15 +114,9 @@ export default function Home() {
                   </p>
                 </Reveal>
                 <Reveal delay={0.18}>
-                  <Link
-                    href={p.href}
-                    className="group mt-7 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground transition-colors hover:text-brand"
-                  >
-                    Explore {p.label}
-                    <span className="transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </Link>
+                  <ActionLink href={p.href} className="mt-7">
+                    {`Explore ${p.label}`}
+                  </ActionLink>
                 </Reveal>
               </div>
             </div>
@@ -176,15 +162,7 @@ export default function Home() {
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <Link
-                href="/membership"
-                className="group inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground transition-colors hover:text-brand"
-              >
-                View all plans
-                <span className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
+              <ActionLink href="/membership">View all plans</ActionLink>
             </Reveal>
           </div>
 
@@ -193,8 +171,9 @@ export default function Home() {
               <Reveal key={t.name} delay={i * 0.08} className="h-full">
                 <Link
                   href="/membership"
-                  className="group/plan flex h-full flex-col gap-4 bg-ink-900 p-8 transition-colors hover:bg-ink-800"
+                  className="card-charge group/plan flex h-full flex-col gap-4 bg-ink-900 p-8 transition-colors hover:bg-ink-800"
                 >
+                  <CardEdge />
                   <div>
                     <div className="flex items-center justify-between gap-3">
                       <span className="eyebrow">{t.name}</span>
@@ -247,11 +226,9 @@ export default function Home() {
           </p>
         </Reveal>
         <Reveal delay={0.2} className="mt-10 flex justify-center">
-          <Magnetic strength={0.45}>
-            <Link href={secondaryCta.href} className="btn btn-solid px-9 py-4">
-              {secondaryCta.label}
-            </Link>
-          </Magnetic>
+          <Link href={secondaryCta.href} className="btn btn-solid px-9 py-4">
+            {secondaryCta.label}
+          </Link>
         </Reveal>
         <Reveal delay={0.24}>
           <p className="mx-auto mt-8 max-w-md text-muted-foreground">

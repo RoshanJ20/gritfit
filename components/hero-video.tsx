@@ -26,7 +26,16 @@ export function HeroVideo({
     "h-full w-full object-cover grayscale contrast-105 brightness-135";
 
   return (
-    <div className={cn("absolute inset-0 -z-10 overflow-hidden bg-ink-900", className)}>
+    <div
+      className={cn(
+        // `hero-exit-media` scales the footage back a touch as the first screen
+        // is scrolled past, so the hero recedes rather than sliding off. It is
+        // a scroll-driven CSS animation (see globals.css) — compositor work,
+        // not a per-frame JS transform.
+        "hero-exit-media absolute inset-0 -z-10 overflow-hidden bg-ink-900",
+        className,
+      )}
+    >
       {reduced ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={poster} alt="" className={mediaClass} />
@@ -49,6 +58,12 @@ export function HeroVideo({
 
       {/* Darken toward the bottom so the wordmark reads; gentle vignette. */}
       <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/5 to-ink-900/50" />
+      {/* A second scrim that deepens on scroll, so the footage dims as the
+          hero leaves rather than staying lit all the way out. */}
+      <div
+        aria-hidden
+        className="hero-exit-scrim absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/40 to-ink-900/20 opacity-0"
+      />
       <div className="absolute inset-0 [box-shadow:inset_0_0_200px_30px_rgba(7,7,7,0.55)]" />
     </div>
   );

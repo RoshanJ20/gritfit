@@ -5,7 +5,6 @@ import { strength } from "@/content/strength";
 import { PageHero } from "@/components/sections/page-hero";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Reveal } from "@/components/motion/reveal";
-import { Magnetic } from "@/components/motion/magnetic";
 import { StepProgress } from "@/components/reactbits/step-progress";
 import { AnimatedList } from "@/components/reactbits/animated-list";
 import { ShinyText } from "@/components/reactbits/shiny-text";
@@ -113,11 +112,9 @@ export default function StrengthClubPage() {
             delay={0.16}
             className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
-            <Magnetic strength={0.45}>
-              <Link href="/contact" className="btn btn-solid px-8 py-4">
-                Start with Assessment
-              </Link>
-            </Magnetic>
+            <Link href="/contact" className="btn btn-solid px-8 py-4">
+              Start with Assessment
+            </Link>
             <Link href="/membership" className="btn btn-outline px-8 py-4">
               Explore membership options
             </Link>

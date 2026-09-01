@@ -95,11 +95,16 @@ export function Header() {
           className="flex shrink-0 items-center justify-center"
           aria-label="Grit Fit — home"
         >
+          {/* Path is absolute from `public/` — Next serves static files only
+              from there, and next/image needs the leading slash. The
+              width/height are the file's real pixel dimensions; they set the
+              aspect ratio the browser reserves before the image loads, so they
+              have to match or the header shifts on first paint. */}
           <Image
-            src="/images/logo-gritfit.png"
+            src="/images/finalgritfitlogo.png"
             alt="Grit Fit — Luxe Health Club"
             width={913}
-            height={239}
+            height={238}
             priority
             className="h-7 w-auto transition-opacity hover:opacity-80 sm:h-8 lg:h-11"
           />

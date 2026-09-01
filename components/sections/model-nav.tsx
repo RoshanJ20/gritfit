@@ -1,6 +1,8 @@
 import { rush } from "@/content/rush";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/reveal";
+import { ActionLabel } from "@/components/sections/action-link";
+import { CardEdge } from "@/components/sections/card-edge";
 import { SpotlightLink } from "@/components/reactbits/spotlight-link";
 
 /**
@@ -23,12 +25,13 @@ export function ModelNav({ current }: { current: "peak" | "flow" | "skilllab" })
               href={m.href}
               spotlightColor="rgba(174, 217, 35, 0.14)"
               className={cn(
-                "group flex h-full flex-col gap-4 py-8 transition-colors hover:bg-ink-800 sm:py-10",
+                "card-charge group flex h-full flex-col gap-4 py-8 transition-colors hover:bg-ink-800 sm:py-10",
                 i === 0
                   ? "border-b border-border sm:border-b-0 sm:border-r sm:border-border sm:pr-10"
                   : "sm:pl-10",
               )}
             >
+              <CardEdge />
               <span className="eyebrow">{m.count} formats</span>
               <h3 className="display text-4xl transition-colors group-hover:text-brand">
                 {m.name}
@@ -36,12 +39,9 @@ export function ModelNav({ current }: { current: "peak" | "flow" | "skilllab" })
               <p className="mt-2 text-balance leading-relaxed text-muted-foreground">
                 {m.tagline}
               </p>
-              <span className="mt-2 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground transition-colors group-hover:text-brand">
-                Explore {m.name}
-                <span className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </span>
+              <ActionLabel className="mt-2 w-fit">
+                {`Explore ${m.name}`}
+              </ActionLabel>
             </SpotlightLink>
           </Reveal>
         ))}

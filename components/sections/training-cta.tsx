@@ -5,7 +5,6 @@ import { secondaryCta } from "@/content/nav";
 import { whatsappUrl } from "@/lib/utils";
 import { SentenceLines } from "@/components/sections/sentence-lines";
 import { Reveal } from "@/components/motion/reveal";
-import { Magnetic } from "@/components/motion/magnetic";
 
 /**
  * The closing CTA for the Trainings section — "Our standard / We don't sell
@@ -34,11 +33,9 @@ export function TrainingCta({
         delay={0.16}
         className="mt-10 flex flex-wrap items-center justify-center gap-3"
       >
-        <Magnetic strength={0.45}>
-          <Link href={secondaryCta.href} className="btn btn-solid px-8 py-4">
-            Start Assessment
-          </Link>
-        </Magnetic>
+        <Link href={secondaryCta.href} className="btn btn-solid px-8 py-4">
+          Start Assessment
+        </Link>
         {/* Bottom-of-page CTA opens WhatsApp — see CtaBand. */}
         <a
           href={whatsappUrl()}

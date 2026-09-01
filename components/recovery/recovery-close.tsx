@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import { recovery } from "@/content/recovery";
 import { Callout } from "@/components/sections/callout";
 import { Reveal } from "@/components/motion/reveal";
-import { Magnetic } from "@/components/motion/magnetic";
 
 /**
  * The shared bottom of every Essential Recovery page — the "not a replacement
@@ -62,11 +61,9 @@ export function RecoveryClose({ children }: { children?: ReactNode }) {
             </div>
 
             <Reveal delay={0.24} className="lg:pb-1">
-              <Magnetic strength={0.35}>
-                <Link href="/contact" className="btn btn-outline px-8 py-4">
-                  {recovery.packages.cta}
-                </Link>
-              </Magnetic>
+              <Link href="/contact" className="btn btn-outline px-8 py-4">
+                {recovery.packages.cta}
+              </Link>
             </Reveal>
           </div>
         </div>
@@ -87,11 +84,9 @@ export function RecoveryClose({ children }: { children?: ReactNode }) {
           </p>
         </Reveal>
         <Reveal delay={0.24} className="mt-10 flex justify-center">
-          <Magnetic strength={0.45}>
-            <Link href="/contact" className="btn btn-solid px-9 py-4">
-              Book a Recovery Session
-            </Link>
-          </Magnetic>
+          <Link href="/contact" className="btn btn-solid px-9 py-4">
+            Book a Recovery Session
+          </Link>
         </Reveal>
         {children}
       </section>

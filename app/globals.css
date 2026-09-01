@@ -264,15 +264,18 @@
     @apply inline-flex items-center gap-2 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-brand;
   }
 
-  /* Buttons — understated, monochrome. Green is NOT used here anymore. */
+  /* Buttons — understated, monochrome. Green is NOT used here anymore.
+     The hover fill itself lives in the unlayered block at the bottom of this
+     file (see "Interaction layer"), because it has to out-rank Tailwind's
+     utility layer to repaint the surface. */
   .btn {
-    @apply inline-flex items-center justify-center rounded-none text-xs font-medium uppercase tracking-[0.15em] transition-colors;
+    @apply inline-flex items-center justify-center rounded-none text-xs font-medium uppercase tracking-[0.15em];
   }
   .btn-solid {
-    @apply bg-foreground text-background hover:bg-foreground/85;
+    @apply text-background;
   }
   .btn-outline {
-    @apply border border-foreground/25 text-foreground hover:border-foreground hover:bg-foreground hover:text-background;
+    @apply text-foreground;
   }
 
   /* Hairline divider */
@@ -399,4 +402,366 @@
       scroll-behavior: auto !important;
     }
   }
+}
+
+/* ==================================================================== */
+/*  Interaction layer                                                   */
+/*                                                                      */
+/*  Deliberately UNLAYERED. Tailwind's `utilities` layer is the last     */
+/*  cascade layer, so anything declared inside `@layer components` loses */
+/*  to a utility class regardless of selector specificity. These rules   */
+/*  repaint surfaces that also carry utility classes (button fills, the  */
+/*  grayscale filter on card imagery), so they have to sit outside the   */
+/*  layer stack to win. The reduced-motion block above still overrides   */
+/*  every duration here — it uses `!important`, which beats layer order. */
+/* ==================================================================== */
+
+/* -- Buttons: the fill grows from the bottom edge ------------------- */
+/* Solid and outline are each other's inverse, and both fill upward, so */
+/* the gesture is identical while the hierarchy between them holds.     */
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition:
+    color 0.45s var(--ease-out-expo),
+    border-color 0.5s var(--ease-out-expo);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.55s var(--ease-out-expo);
+}
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: scaleY(1);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-solid {
+  background: var(--foreground);
+  border-color: var(--foreground);
+  color: var(--background);
+}
+.btn-solid::before {
+  background: var(--ink-900);
+}
+.btn-solid:hover,
+.btn-solid:focus-visible {
+  color: var(--foreground);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: rgba(244, 244, 240, 0.25);
+  color: var(--foreground);
+}
+.btn-outline::before {
+  background: var(--foreground);
+}
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  color: var(--ink-900);
+  border-color: var(--foreground);
+}
+
+/* -- Action link: label rolls, rule wipes --------------------------- */
+/* Replaces the hand-rolled "label + translate-x-1 arrow" that had been  */
+/* copy-pasted across nine call sites. See components/sections/action-  */
+/* link.tsx for the markup this expects.                                */
+.action-link,
+.action-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding-bottom: 0.45rem;
+  color: var(--foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+/* The label that rolls up to a brand-coloured copy of itself.
+   The second copy is a pseudo-element rather than a second span: a real
+   duplicate in the DOM shows as doubled text the moment this stylesheet is
+   missing or stale, which is a bad failure for the site's most repeated link.
+   As a pseudo-element it simply does not exist without CSS. */
+.action-link-roll {
+  display: block;
+  overflow: hidden;
+  height: 1.25em;
+}
+.action-link-roll > span {
+  position: relative;
+  display: block;
+  transition: transform 0.55s var(--ease-out-expo);
+}
+.action-link-roll > span::after {
+  content: attr(data-label);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+  color: var(--brand);
+}
+.action-link:hover .action-link-roll > span,
+.action-link:focus-visible .action-link-roll > span {
+  transform: translateY(-100%);
+}
+.action-link-arrow {
+  display: inline-block;
+  color: var(--brand);
+  transition: transform 0.55s var(--ease-out-expo);
+}
+.action-link:hover .action-link-arrow,
+.action-link:focus-visible .action-link-arrow {
+  transform: translateX(5px);
+}
+/* Two stacked rules: the resting hairline, and the brand rule that wipes
+   out to the right and back in from the left, so the two ends never cross. */
+.action-link::before,
+.action-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+}
+.action-link::before {
+  background: var(--border);
+}
+.action-link::after {
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+.action-link:hover::after,
+.action-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition-delay: 0.06s;
+}
+
+/* The same treatment for the "Explore →" that sits INSIDE a card link. It
+   cannot be an anchor (no nested links), so it is a span driven by the card's
+   own hover instead. `card-charge` is the shared hook — the class that already
+   drives the card's other responses. */
+.card-charge:hover .action-label .action-link-roll > span,
+.card-charge:focus-within .action-label .action-link-roll > span {
+  transform: translateY(-100%);
+}
+.card-charge:hover .action-label .action-link-arrow,
+.card-charge:focus-within .action-label .action-link-arrow {
+  transform: translateX(5px);
+}
+.card-charge:hover .action-label::after,
+.card-charge:focus-within .action-label::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition-delay: 0.06s;
+}
+
+/* -- Card charge ---------------------------------------------------- */
+/* Four coordinated responses on one curve: the photo lifts and lights,  */
+/* a brand rule grows across the top edge, viewfinder ticks draw in at    */
+/* opposite corners, and the index numeral goes live. Add `card-charge`   */
+/* to the card surface and drop a <CardEdge /> inside it.                */
+.card-charge {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.card-charge .card-edge-rule {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 4;
+  height: 2px;
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.75s var(--ease-out-expo);
+  pointer-events: none;
+}
+.card-charge .card-edge-tick {
+  position: absolute;
+  z-index: 4;
+  width: 11px;
+  height: 11px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.45s ease,
+    transform 0.55s var(--ease-out-expo);
+}
+.card-charge .card-edge-tl {
+  top: 9px;
+  left: 9px;
+  border-top: 1px solid var(--brand);
+  border-left: 1px solid var(--brand);
+  transform: translate(-5px, -5px);
+}
+.card-charge .card-edge-br {
+  right: 9px;
+  bottom: 9px;
+  border-right: 1px solid var(--brand);
+  border-bottom: 1px solid var(--brand);
+  transform: translate(5px, 5px);
+}
+.card-charge:hover .card-edge-rule,
+.card-charge:focus-visible .card-edge-rule,
+.card-charge:focus-within .card-edge-rule {
+  transform: scaleX(1);
+}
+.card-charge:hover .card-edge-tick,
+.card-charge:focus-visible .card-edge-tick,
+.card-charge:focus-within .card-edge-tick {
+  opacity: 0.85;
+  transform: none;
+}
+/* Imagery stays black-and-white — it is only lit, never coloured. */
+.card-charge [data-charge-media] {
+  transition:
+    transform 1.1s var(--ease-out-expo),
+    filter 0.9s ease;
+}
+.card-charge:hover [data-charge-media],
+.card-charge:focus-within [data-charge-media] {
+  transform: scale(1.055);
+  filter: grayscale(1) contrast(1.16) brightness(1.16);
+}
+.card-charge .card-index {
+  transition: color 0.4s ease;
+}
+.card-charge:hover .card-index,
+.card-charge:focus-within .card-index {
+  color: var(--brand);
+}
+
+/* -- Hero exit ------------------------------------------------------ */
+/* Scroll-driven, so it runs on the compositor rather than from a JS      */
+/* rAF loop. This is the distinction that matters here: the old           */
+/* ParallaxMedia transformed large grayscale-filtered layers from JS on   */
+/* every scroll frame and saturated the main thread (see that file's      */
+/* header). A scroll timeline animating only transform and opacity does   */
+/* not. Browsers without `animation-timeline` simply get the old          */
+/* behaviour — the hero scrolls away flat, which is a fine floor.         */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .hero-exit-wordmark {
+      animation: hero-wordmark-exit linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+      will-change: transform, opacity;
+    }
+    .hero-exit-media {
+      animation: hero-media-exit linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+      will-change: transform;
+    }
+    .hero-exit-scrim {
+      animation: hero-scrim-exit linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+    }
+  }
+}
+@keyframes hero-wordmark-exit {
+  to {
+    transform: translateY(-72px);
+    opacity: 0;
+  }
+}
+@keyframes hero-media-exit {
+  to {
+    transform: scale(0.94);
+  }
+}
+@keyframes hero-scrim-exit {
+  to {
+    opacity: 1;
+  }
+}
+
+/* -- Intro sequence ------------------------------------------------- */
+/* `data-gf-intro` is set on <html> by a parse-time inline script (see
+   components/intro-sequence.tsx) so the decision is made before first
+   paint and a returning visitor never sees a flash of black.
+
+   It is an attribute rather than a class on purpose: the root layout
+   server-renders `className` on <html>, so React rewrites that attribute
+   on hydration and drops anything a script added to it. React never
+   renders `data-gf-intro`, so it survives.
+
+   The overlay is hidden by default and only shown for the two states that
+   need it. That way a failed or blocked inline script leaves the page
+   usable rather than stranding a black panel over it. */
+/* Everything except `display` lives in the base rule on purpose. If the
+   attribute selector below never matches — or this file is only partly
+   applied — the overlay is still taken out of flow and hidden, instead of
+   dropping a stray progress counter into the top of the page. */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  place-content: center;
+  justify-items: center;
+  gap: 1.5rem;
+  background: var(--ink-900);
+  clip-path: inset(0 0 0 0);
+}
+html[data-gf-intro="run"] .intro-overlay,
+html[data-gf-intro="lifting"] .intro-overlay {
+  display: grid;
+}
+html[data-gf-intro="run"],
+html[data-gf-intro="run"] body {
+  overflow: hidden;
+}
+/* The home wordmark waits behind the curtain rather than playing beneath it. */
+html[data-gf-intro="run"] .hero-exit-wordmark {
+  animation: none;
+}
+.intro-overlay[data-state="lift"] {
+  animation: intro-lift 1s var(--ease-in-out-quint) forwards;
+}
+@keyframes intro-lift {
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+.intro-count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.intro-bar {
+  position: relative;
+  width: min(230px, 46vw);
+  height: 1px;
+  overflow: hidden;
+  background: rgba(244, 244, 240, 0.14);
+}
+.intro-bar > i {
+  position: absolute;
+  inset: 0;
+  background: var(--brand);
+  transform: scaleX(var(--intro-progress, 0));
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out-expo);
 }

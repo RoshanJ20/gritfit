@@ -12,6 +12,21 @@ const SITE = "https://gritfit.club";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
+  other: {
+    /*
+     * Tell Dark Reader to leave the page alone.
+     *
+     * The club is dark by design, so a dark-mode extension has nothing to add
+     * and a great deal to break: it rewrites the brand lime, flattens the
+     * grayscale photography, and — because it mutates the DOM before React
+     * hydrates — injects `data-darkreader-*` attributes that trip a hydration
+     * mismatch ("this won't be patched up") on the lucide icons in the header.
+     * The lock meta is Dark Reader's documented opt-out for sites that already
+     * ship their own dark theme. Dark Reader keys off the meta's presence, not
+     * its value — but the value has to be non-empty or Next drops the tag.
+     */
+    "darkreader-lock": "true",
+  },
   title: {
     default: "Grit Fit — The Luxe Club",
     template: "%s · Grit Fit",

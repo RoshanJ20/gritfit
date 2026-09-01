@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type RevealProps = {
@@ -51,8 +51,88 @@ export function Reveal({
 }
 
 /**
+ * Media reveal: a curtain opens bottom-to-top while the image inside settles
+ * out of a slight over-scale. The two run at deliberately different lengths —
+ * the mask finishes well before the scale does, so the picture is still moving
+ * after it is fully visible. That lag is the whole effect, and it is what
+ * separates "revealed" from "faded in".
+ *
+ * Use this instead of `<Reveal>` for photography. It replaces the media
+ * wrapper too (it clips its own children), so it stands in for the old
+ * `<Reveal><ParallaxMedia>` pairing at a call site.
+ *
+ * Only `clip-path` and `transform` animate, and only for the ~2s of the
+ * reveal — there is no per-scroll-frame work, so this cannot reintroduce the
+ * stutter that forced ParallaxMedia to be disabled.
+ */
+export function Curtain({
+  children,
+  className,
+  delay = 0,
+  once = true,
+  playOnMount = false,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  once?: boolean;
+  playOnMount?: boolean;
+}) {
+  const reduced = useReducedMotion();
+
+  // `MotionConfig reducedMotion="user"` drops transforms but would still
+  // animate clip-path, so the opt-out has to be explicit here.
+  if (reduced) {
+    return (
+      <div className={cn("overflow-hidden", className)}>
+        <div className="h-full w-full">{children}</div>
+      </div>
+    );
+  }
+
+  const trigger = playOnMount
+    ? { animate: "show" as const }
+    : {
+        whileInView: "show" as const,
+        viewport: { once, margin: "-10% 0px" },
+      };
+
+  return (
+    <motion.div
+      className={cn("overflow-hidden", className)}
+      initial="hidden"
+      {...trigger}
+      variants={{
+        hidden: { clipPath: "inset(0% 0% 100% 0%)" },
+        show: {
+          clipPath: "inset(0% 0% 0% 0%)",
+          transition: { duration: 1.25, delay, ease: [0.16, 1, 0.3, 1] },
+        },
+      }}
+    >
+      <motion.div
+        className="h-full w-full"
+        variants={{
+          hidden: { scale: 1.16 },
+          show: {
+            scale: 1,
+            transition: { duration: 1.9, delay, ease: [0.16, 1, 0.3, 1] },
+          },
+        }}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/**
  * Mask-reveal: the child rises up from behind a clipped edge (no fade). Used for
  * the oversized hero wordmark. Each instance masks its own line.
+ *
+ * `play` takes manual control of the trigger, for the one case that needs it:
+ * the home wordmark has to wait for the intro curtain to lift rather than
+ * animating on mount underneath it.
  */
 export function Rise({
   children,
@@ -60,19 +140,36 @@ export function Rise({
   delay = 0,
   duration = 1,
   playOnMount = false,
+  play,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   duration?: number;
   playOnMount?: boolean;
+  /** When provided, drives the animation directly and ignores the other triggers. */
+  play?: boolean;
 }) {
-  const trigger = playOnMount
-    ? { animate: { y: "0%" } }
-    : { whileInView: { y: "0%" }, viewport: { once: true, margin: "-10% 0px" } };
+  const trigger =
+    play !== undefined
+      ? { animate: { y: play ? "0%" : "115%" } }
+      : playOnMount
+        ? { animate: { y: "0%" } }
+        : {
+            whileInView: { y: "0%" },
+            viewport: { once: true, margin: "-10% 0px" },
+          };
   return (
     <span className={cn("inline-block overflow-hidden align-bottom", className)}>
       <motion.span
+        // Changing the key remounts the span when `play` flips, so motion runs
+        // its mount animation (initial -> animate) instead of being asked to
+        // re-target an `animate` value it has already settled on. Motion does
+        // not reliably pick up that re-target here, and a remount is both the
+        // fix and the same code path the uncontrolled `playOnMount` callers
+        // already take. The key is constant when `play` is not supplied, so
+        // those callers never remount.
+        key={play === undefined ? "auto" : play ? "play" : "hold"}
         className="inline-block"
         initial={{ y: "115%" }}
         {...trigger}

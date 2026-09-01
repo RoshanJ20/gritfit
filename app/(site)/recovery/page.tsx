@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { recovery } from "@/content/recovery";
 import { PageHero } from "@/components/sections/page-hero";
+import { CardEdge } from "@/components/sections/card-edge";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { RecoveryClose } from "@/components/recovery/recovery-close";
 import { Reveal } from "@/components/motion/reveal";
@@ -59,8 +60,9 @@ export default function RecoveryPage() {
               <Reveal key={e.name} delay={i * 0.08}>
                 <Link
                   href={e.href}
-                  className="group flex h-full flex-col gap-5 bg-ink-900 p-8 transition-colors hover:bg-ink-800 lg:p-10"
+                  className="card-charge group flex h-full flex-col gap-5 bg-ink-900 p-8 transition-colors hover:bg-ink-800 lg:p-10"
                 >
+                  <CardEdge />
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="display text-2xl transition-colors group-hover:text-brand lg:text-3xl">
                       {e.name}

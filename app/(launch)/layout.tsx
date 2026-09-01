@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
+
 import "@/app/globals.css";
 
 import { fontVariables } from "@/app/fonts";
+
+/** Same Dark Reader opt-out the site layout carries — see the note there. */
+export const metadata: Metadata = {
+  other: { "darkreader-lock": "true" },
+};
 
 /**
  * Root layout for the launch takeover.

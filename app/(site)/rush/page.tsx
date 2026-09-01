@@ -5,6 +5,7 @@ import { rush } from "@/content/rush";
 import { CtaBand } from "@/components/sections/cta-band";
 import { PageHero } from "@/components/sections/page-hero";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
+import { CardEdge } from "@/components/sections/card-edge";
 import { Reveal } from "@/components/motion/reveal";
 import { SquaresBackground } from "@/components/reactbits/squares-bg";
 import { ScrambleText } from "@/components/reactbits/scramble-text";
@@ -63,8 +64,9 @@ export default function RushPage() {
               <Reveal key={m.key} delay={i * 0.08}>
                 <Link
                   href={m.href}
-                  className="group flex h-full flex-col gap-6 border-b border-border p-8 transition-colors hover:bg-ink-800 last:border-b-0 lg:border-b-0 lg:[&:not(:last-child)]:border-r lg:border-border lg:p-10"
+                  className="card-charge group flex h-full flex-col gap-6 border-b border-border p-8 transition-colors hover:bg-ink-800 last:border-b-0 lg:border-b-0 lg:[&:not(:last-child)]:border-r lg:border-border lg:p-10"
                 >
+                  <CardEdge />
                   <div className="flex items-center justify-between">
                     <span className="eyebrow">
                       <CountUp to={m.count} suffix=" formats" />

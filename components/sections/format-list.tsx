@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Reveal } from "@/components/motion/reveal";
-import { ParallaxMedia } from "@/components/motion/parallax-media";
+import { Reveal, Curtain } from "@/components/motion/reveal";
 import { MediaPlaceholder } from "@/components/media-placeholder";
 import type { ClassFormat } from "@/content/rush";
 import { rushFormatImages } from "@/content/rush-media";
@@ -36,8 +35,8 @@ export function FormatList({
                 two margins below are a matched pair and must move together.
                 Desktop is the original two-column split, untouched. */}
             <div className="container-grit section grid lg:grid-cols-2 lg:items-center lg:gap-20">
-              <Reveal className={cn("relative", flip && "lg:order-2")} y={40}>
-                <ParallaxMedia amount={34} className="aspect-[4/3]">
+              <div className={cn("relative", flip && "lg:order-2")}>
+                <Curtain className="aspect-[4/3]">
                   <MediaPlaceholder
                     label={f.name}
                     kind={mediaKind}
@@ -45,7 +44,7 @@ export function FormatList({
                     src={images?.[f.name] ?? rushFormatImages[f.name]}
                     className="h-full rounded-none border-0"
                   />
-                </ParallaxMedia>
+                </Curtain>
                 {/* Legibility scrim under the caption. Fades to --background so
                     the photo dissolves into the page rather than ending on a
                     hard edge. Mobile only — desktop has no overlaid caption. */}
@@ -53,7 +52,7 @@ export function FormatList({
                   aria-hidden
                   className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink-900 via-ink-900/75 to-transparent lg:hidden"
                 />
-              </Reveal>
+              </div>
 
               <div className={flip ? "lg:order-1" : ""}>
                 {/* Negative margin lifts the caption onto the photo. At lg it

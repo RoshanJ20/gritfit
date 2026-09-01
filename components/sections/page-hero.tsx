@@ -1,5 +1,4 @@
-import { Reveal, SplitText } from "@/components/motion/reveal";
-import { ParallaxMedia } from "@/components/motion/parallax-media";
+import { Reveal, Curtain, SplitText } from "@/components/motion/reveal";
 import { MediaPlaceholder } from "@/components/media-placeholder";
 import { cn } from "@/lib/utils";
 
@@ -139,18 +138,20 @@ function SplitHero({
         </div>
 
         {mediaLabel && (
-          <Reveal playOnMount delay={0.2} y={40}>
-            <ParallaxMedia amount={28} className="aspect-[4/5] lg:aspect-square">
-              <MediaPlaceholder
-                label={mediaLabel}
-                kind={mediaKind}
-                ratio="auto"
-                src={mediaSrc}
-                imagePosition={mediaImagePosition}
-                className="h-full rounded-none border-0"
-              />
-            </ParallaxMedia>
-          </Reveal>
+          <Curtain
+            playOnMount
+            delay={0.2}
+            className="aspect-[4/5] lg:aspect-square"
+          >
+            <MediaPlaceholder
+              label={mediaLabel}
+              kind={mediaKind}
+              ratio="auto"
+              src={mediaSrc}
+              imagePosition={mediaImagePosition}
+              className="h-full rounded-none border-0"
+            />
+          </Curtain>
         )}
       </div>
     </section>

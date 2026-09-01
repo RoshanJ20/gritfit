@@ -4,7 +4,6 @@ import { cn, whatsappUrl } from "@/lib/utils";
 import { primaryCta, secondaryCta } from "@/content/nav";
 import { SentenceLines } from "@/components/sections/sentence-lines";
 import { Reveal } from "@/components/motion/reveal";
-import { Magnetic } from "@/components/motion/magnetic";
 
 /**
  * Closing call-to-action band reused at the bottom of interior pages.
@@ -38,11 +37,9 @@ export function CtaBand({
         delay={0.24}
         className="mt-10 flex flex-wrap items-center justify-center gap-3"
       >
-        <Magnetic strength={0.45}>
-          <Link href={secondaryCta.href} className="btn btn-solid px-8 py-4">
-            {secondaryCta.label}
-          </Link>
-        </Magnetic>
+        <Link href={secondaryCta.href} className="btn btn-solid px-8 py-4">
+          {secondaryCta.label}
+        </Link>
         {/* Bottom-of-page "Join Club" opens WhatsApp directly rather than
             routing to /membership — the header and footer keep the nav link. */}
         <a

@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/reveal";
+import { ActionLabel } from "@/components/sections/action-link";
+import { CardEdge } from "@/components/sections/card-edge";
 import { SpotlightLink } from "@/components/reactbits/spotlight-link";
 
 export type SiblingItem = {
@@ -31,20 +33,16 @@ export function SiblingNav({
             <Reveal key={m.href} delay={i * 0.06}>
               <SpotlightLink
                 href={m.href}
-                className="group flex h-full flex-col gap-4 border-b border-border p-8 transition-colors hover:bg-ink-800 last:border-b-0 sm:border-b-0 sm:[&:not(:last-child)]:border-r sm:border-border lg:p-10"
+                className="card-charge group flex h-full flex-col gap-4 border-b border-border p-8 transition-colors hover:bg-ink-800 last:border-b-0 sm:border-b-0 sm:[&:not(:last-child)]:border-r sm:border-border lg:p-10"
               >
+                <CardEdge />
                 <h3 className="display text-4xl transition-colors group-hover:text-brand">
                   {m.name}
                 </h3>
                 <p className="text-balance leading-relaxed text-muted-foreground">
                   {m.tagline}
                 </p>
-                <span className="mt-auto inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground transition-colors group-hover:text-brand">
-                  Explore
-                  <span className="transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
-                </span>
+                <ActionLabel className="mt-auto w-fit">Explore</ActionLabel>
               </SpotlightLink>
             </Reveal>
           ))}
