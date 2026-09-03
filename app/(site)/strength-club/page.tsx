@@ -24,9 +24,9 @@ export default function StrengthClubPage() {
         eyebrow={strength.eyebrow}
         title={strength.heading}
         lead={[about.lead]}
-        backgroundImage="/images/hero/strength.jpg"
+        backgroundImage="/images/amenities-about.jpg"
         textPosition="left-center"
-        imagePosition="center 22%"
+        imagePosition="center"
       />
 
       {/* Concise about — creed */}

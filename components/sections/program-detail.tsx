@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/reactbits/scroll-reveal";
 /** Real hero imagery per program (others fall back to the placeholder). */
 const programImages: Record<string, string> = {
   "strong-start": "/images/programs/strong-start.jpg",
-  "strong-performance": "/images/programs/strong-performance.jpg",
+  "strong-performance": "/images/rush/forcex.jpg",
   youth: "/images/programs/youth.jpg",
   "injury-return": "/images/programs/injury-return.jpg",
   postnatal: "/images/programs/postnatal.jpg",

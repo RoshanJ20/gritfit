@@ -69,37 +69,32 @@ export default function ManualTherapyPage() {
           </Reveal>
 
           {/* Each row is one recommendation, not two columns of loose text.
-              The "If" / "Start with" labels name the relationship outright and
-              the arrow carries the eye across it, so the pairing reads as
-              advice. Below `sm` the arrow rotates to point down and the two
-              halves stack, keeping the same read on a narrow screen. */}
+              The session name leads at display size and the "If" condition sits
+              beside it as supporting copy, so the eye lands on the answer first.
+              Below `sm` the two halves stack, keeping the same read on a narrow
+              screen. */}
           <div>
             <ul className="flex flex-col gap-3">
               {manualTherapy.howToUse.matches.map((m, i) => (
                 <Reveal key={m.when} delay={i * 0.06}>
-                  <li className="flex flex-col gap-3 border border-border bg-ink-800/50 p-4 transition-colors hover:border-brand/40 sm:flex-row sm:items-center sm:gap-5 sm:p-5">
-                    <div className="min-w-0 flex-1">
-                      <p className="eyebrow text-muted-foreground">If</p>
-                      <p className="mt-1.5 text-sm leading-snug text-foreground">
-                        {m.when}
-                      </p>
-                    </div>
+                  <li className="group flex flex-col gap-2 border border-border bg-ink-800/50 p-4 transition-colors hover:border-brand/40 sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_1.5rem] sm:items-center sm:gap-5 sm:p-5">
+                    <p className="display text-xl leading-tight text-foreground sm:text-2xl">
+                      {m.then}
+                    </p>
+
+                    <p className="text-sm leading-snug text-muted-foreground sm:col-start-2">
+                      <span className="eyebrow mr-2 text-muted-foreground">
+                        If
+                      </span>
+                      {m.when}
+                    </p>
 
                     <span
                       aria-hidden
-                      className="shrink-0 rotate-90 text-lg leading-none text-brand sm:rotate-0"
+                      className="hidden text-lg leading-none text-brand transition-transform group-hover:translate-x-1 sm:col-start-3 sm:block sm:justify-self-end"
                     >
                       →
                     </span>
-
-                    <div className="min-w-0 flex-1 sm:text-right">
-                      <p className="eyebrow text-muted-foreground">
-                        Start with
-                      </p>
-                      <p className="mt-1.5 font-medium leading-snug text-foreground">
-                        {m.then}
-                      </p>
-                    </div>
                   </li>
                 </Reveal>
               ))}

@@ -1,0 +1,11 @@
+# Cloudflare Pages response headers.
+#
+# Hero media is requested with a `?v=<content hash>` stamp (see
+# scripts/gen-media-version.mjs), so a given URL always means the same bytes and
+# can be cached hard. Without the stamp these files kept a stable URL across
+# deploys, which is what made a replaced hero.mp4 flash the old clip on reload.
+/hero.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/hero-poster.jpg
+  Cache-Control: public, max-age=31536000, immutable

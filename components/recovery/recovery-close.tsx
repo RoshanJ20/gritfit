@@ -2,12 +2,12 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { recovery } from "@/content/recovery";
-import { Callout } from "@/components/sections/callout";
 import { Reveal } from "@/components/motion/reveal";
 
 /**
  * The shared bottom of every Essential Recovery page — the "not a replacement
- * for training" note, the packages & pricing band, then the booking CTA. The
+ * for training" note paired with the packages & pricing panel, then the booking
+ * CTA. The
  * hub, Exposure Therapy, and Manual Therapy all end on this exact sequence so
  * the section reads the same wherever a member lands. `children` is an optional
  * slot beneath the CTA.
@@ -15,52 +15,47 @@ import { Reveal } from "@/components/motion/reveal";
 export function RecoveryClose({ children }: { children?: ReactNode }) {
   return (
     <>
-      {/* Note and the packages panel below are the same object at two
-          different weights, so they share a footprint: both span the full
-          container and carry the same padding. The body copy keeps its own
-          measure so the wider box doesn't stretch the lines. */}
+      {/* Note + packages share one section, side by side on `lg`. They used to
+          stack as two full-width bands, which cost a lot of height for two
+          short blocks; paired in one row they read as a single closing
+          statement and the page tightens up. The note stays a hairline-marked
+          statement (no box); the packages half keeps its bordered panel and
+          brand wash so the action still has weight. Below `lg` they stack in
+          the same order as before. */}
       <section className="border-t border-border">
-        <div className="container-grit section-sm">
-          <Callout label="Note" bodyClassName="max-w-3xl">
-            {recovery.note}
-          </Callout>
-        </div>
-      </section>
-
-      {/* Packages & pricing. A bordered panel inside the container so its edges
-          line up with the rest of the page rather than bleeding to the viewport.
-          Heading left, action right — the asymmetry keeps it from looking like a
-          second copy of the centred CTA below. Brand appears only as the eyebrow
-          and a soft wash; the old version wrapped the headline in the dashed
-          `Placeholder` chip, which is why it read as loud and unfinished. */}
-      <section className="container-grit section-sm">
-        <div className="relative isolate overflow-hidden border border-border bg-ink-800/40 p-8 lg:p-10">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 -z-10"
-            style={{
-              background:
-                "radial-gradient(55% 120% at 100% 50%, color-mix(in srgb, var(--brand) 9%, transparent) 0%, transparent 70%)",
-            }}
-          />
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-20">
-            <div>
-              <Reveal>
-                <p className="eyebrow">{recovery.packages.eyebrow}</p>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <h2 className="display mt-4 text-display-2 max-w-[16ch]">
-                  {recovery.packages.heading}
-                </h2>
-              </Reveal>
-              <Reveal delay={0.16}>
-                <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
-                  {recovery.packages.body}
-                </p>
-              </Reveal>
+        <div className="container-grit section-sm grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <Reveal>
+            <div className="border-l-2 border-brand/70 pl-6 lg:pl-8">
+              <p className="eyebrow">Note</p>
+              <p className="mt-4 text-lg font-medium leading-snug text-foreground sm:text-xl">
+                {recovery.note}
+              </p>
             </div>
+          </Reveal>
 
-            <Reveal delay={0.24} className="lg:pb-1">
+          <div className="relative isolate overflow-hidden border border-border bg-ink-800/40 p-8 lg:p-10">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10"
+              style={{
+                background:
+                  "radial-gradient(55% 120% at 100% 0%, color-mix(in srgb, var(--brand) 9%, transparent) 0%, transparent 70%)",
+              }}
+            />
+            <Reveal>
+              <p className="eyebrow">{recovery.packages.eyebrow}</p>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h2 className="display mt-4 text-3xl max-w-[16ch] sm:text-4xl">
+                {recovery.packages.heading}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+                {recovery.packages.body}
+              </p>
+            </Reveal>
+            <Reveal delay={0.24} className="mt-7">
               <Link href="/contact" className="btn btn-outline px-8 py-4">
                 {recovery.packages.cta}
               </Link>

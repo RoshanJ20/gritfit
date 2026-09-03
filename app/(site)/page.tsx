@@ -16,21 +16,21 @@ import { MediaPlaceholder } from "@/components/media-placeholder";
 const pillars = [
   {
     index: "01",
-    label: "RUSH",
-    href: "/rush",
-    tagline: "Move with Meaning",
-    media: "/images/home/rush.jpg",
-    blurb:
-      "RUSH is our signature training system—a complete approach to strength, conditioning, movement, recovery and skill.\nAcross 14 unique class formats and training experiences, every class is designed to play a role in your long-term progress.",
-  },
-  {
-    index: "02",
     label: "Strength Club",
     href: "/strength-club",
     tagline: "Train with intent",
     media: "/images/home/strength.jpg",
     blurb:
       "Not an open gym. A coached training floor built around you.\nEvery member follows structured programming, with workout cards personally crafted from your Performance Assessment. Coaches guide, correct and support you when needed.\nWe measure your progress, so you can see what’s improving, where you’re headed and feel the difference.",
+  },
+  {
+    index: "02",
+    label: "RUSH",
+    href: "/rush",
+    tagline: "Move with Meaning",
+    media: "/images/home/rush.jpg",
+    blurb:
+      "RUSH is our signature training system—a complete approach to strength, conditioning, movement, recovery and skill.\nAcross 14 unique class formats and training experiences, every class is designed to play a role in your long-term progress.",
   },
   {
     index: "03",
@@ -101,7 +101,9 @@ export default function Home() {
               <div className={i % 2 === 1 ? "lg:order-1" : ""}>
                 <Reveal>
                   <div className="flex items-baseline gap-4">
-                    <span className="display text-2xl text-brand">{p.index}</span>
+                    <span className="display text-2xl text-brand">
+                      {p.index}
+                    </span>
                     <span className="eyebrow">{p.tagline}</span>
                   </div>
                 </Reveal>
@@ -204,7 +206,6 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-
         </div>
       </section>
 

@@ -2,6 +2,7 @@
 
 import { useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { heroMediaVersion } from "@/lib/media-version";
 
 /**
  * Full-bleed cinematic background video (Dogpound-style). Autoplays muted on
@@ -11,6 +12,12 @@ import { cn } from "@/lib/utils";
  *
  * NOTE: `public/hero.mp4` is a temporary royalty-free clip (Pexels, free for
  * commercial use); swap for real footage.
+ *
+ * The media URLs carry a build-time content hash (`?v=`). Files under `public/`
+ * keep a stable URL across deploys, so without the stamp a browser holding the
+ * previous clip replays it for a beat on reload before revalidation swaps in
+ * the new bytes — the flash seen on the hosted site. The stamp gives every
+ * version its own cache key. See `scripts/gen-media-version.mjs`.
  */
 export function HeroVideo({
   src = "/hero.mp4",
@@ -22,6 +29,7 @@ export function HeroVideo({
   className?: string;
 }) {
   const reduced = useReducedMotion();
+  const stamp = (url: string) => `${url}?v=${heroMediaVersion}`;
   const mediaClass =
     "h-full w-full object-cover grayscale contrast-105 brightness-135";
 
@@ -38,15 +46,15 @@ export function HeroVideo({
     >
       {reduced ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={poster} alt="" className={mediaClass} />
+        <img src={stamp(poster)} alt="" className={mediaClass} />
       ) : (
         <video
           className={cn(
             mediaClass,
             "scale-105 will-change-transform animate-kenburns",
           )}
-          src={src}
-          poster={poster}
+          src={stamp(src)}
+          poster={stamp(poster)}
           autoPlay
           muted
           loop

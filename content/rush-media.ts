@@ -9,7 +9,7 @@ export const rushFormatImages: Record<string, string> = {
   // Peak
   Endure: "/images/rush/conditioning.jpg",
   "Strength Build": "/images/rush/strength-build.jpg",
-  Hybrid: "/images/rush/kettlebell.jpg",
+  Hybrid: "/images/rush/conditioning.jpg",
   // Flow
   "Authentic Yoga": "/images/rush/authentic-yoga.jpg",
   "Authentic YogaX": "/images/rush/yogax.jpg",
@@ -17,17 +17,17 @@ export const rushFormatImages: Record<string, string> = {
   // Skillab
   Taekwondo: "/images/rush/taekwondo.jpg",
   Strike: "/images/rush/fight.jpg",
-  Barlethics: "/images/rush/calisthenics.jpg",
+  Barlethics: "/images/rush/skillab-hero.jpg",
   Foundation: "/images/rush/foundation.jpg",
   Movement: "/images/rush/movement.jpg",
   Forge: "/images/rush/forge.jpg",
-  ForceX: "/images/rush/forcex.jpg",
+  ForceX: "/images/programs/youth.jpg",
   "Running Division": "/images/rush/running.jpg",
 };
 
 /** Per-model hero imagery for the Peak / Flow / Skillab pages. */
 export const rushHeroImages: Record<string, string> = {
-  Peak: "/images/rush/peak-hero.jpg",
+  Peak: "/images/rush/kettlebell.jpg",
   Flow: "/images/rush/yoga.jpg",
-  Skillab: "/images/rush/skillab-hero.jpg",
+  Skillab: "/images/programs/strong-performance.jpg",
 };

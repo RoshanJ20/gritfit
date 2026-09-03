@@ -68,7 +68,7 @@ export default function TrainingPage() {
         eyebrow={training.eyebrow}
         title={training.signature}
         lead={[training.subtitle]}
-        backgroundImage="/images/training/index-hero.jpg"
+        backgroundImage="/images/training/coaching.jpg"
         textPosition="bottom-left"
       />
 

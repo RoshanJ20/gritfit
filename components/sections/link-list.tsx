@@ -31,7 +31,7 @@ export function LinkList({
             <Reveal key={item.href} delay={i * 0.05}>
               <Link
                 href={item.href}
-                className="group flex flex-col gap-2 border-t border-border py-7 transition-colors last:border-b hover:text-brand sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+                className="group flex flex-col gap-2 border-t border-border py-7 transition-colors last:border-b hover:text-brand sm:grid sm:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_1.5rem] sm:items-center sm:gap-8"
               >
                 <span className="relative inline-block w-fit transition-transform duration-500 ease-out group-hover:translate-x-1.5">
                   <span className="display text-3xl sm:text-4xl">
@@ -43,11 +43,11 @@ export function LinkList({
                   />
                 </span>
                 {item.note && (
-                  <span className="max-w-xl text-balance text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground">
+                  <span className="text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground sm:col-start-2">
                     {item.note}
                   </span>
                 )}
-                <span className="hidden text-brand transition-transform group-hover:translate-x-1 sm:block">
+                <span className="hidden text-brand transition-transform group-hover:translate-x-1 sm:col-start-3 sm:block sm:justify-self-end">
                   →
                 </span>
               </Link>

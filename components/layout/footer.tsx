@@ -4,7 +4,6 @@ import { FaInstagram, FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import { site } from "@/content/site";
 import { navGroups } from "@/content/nav";
 import { Placeholder } from "@/components/placeholder";
-import { MapSnippet } from "@/components/map-snippet";
 import { Marquee } from "@/components/motion/marquee";
 import { cn } from "@/lib/utils";
 
@@ -47,18 +46,17 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Two rows, both edge-to-edge in the container: the brand card opposite
-          the map, then one divided band beneath. Everything is a bordered panel
-          so the footer reads as a built object rather than loose lists. */}
-      <div className="container-grit grid gap-4 py-8 sm:gap-5 sm:py-10 lg:gap-6">
-        {/* ── Top row — identity card + map ───────────────────────────── */}
-        <div className="grid items-stretch gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
-          {/* The card is laid out as a spec sheet: a wordmark lockup, then
-              label/value rows separated by rules that run the full width of the
-              panel. The full-bleed rules (negative margins against the card's
-              own padding) are what make it read as a printed card rather than a
-              div with text in it. */}
-          <div className="relative flex flex-col overflow-hidden border border-border bg-ink-800 p-5 lg:p-6">
+      {/* One divided band of four equal cells: the identity card, then Explore,
+          Contact and Follow. The card keeps its highlight — a filled panel with
+          the brand rule across the top — so it still anchors the footer even
+          though it now shares the row, and the width, with the link columns.
+          The card is laid out as a spec sheet: a wordmark lockup, then
+          label/value rows separated by rules that run the full width of the
+          cell. Those full-bleed rules are what make it read as a printed card
+          rather than a div with text in it. */}
+      <div className="container-grit py-8 sm:py-10">
+        <div className="grid border border-border lg:grid-cols-4">
+          <div className="relative flex flex-col overflow-hidden bg-ink-800 p-5 lg:p-6">
             <span
               aria-hidden
               className="absolute inset-x-0 top-0 h-[2px] bg-brand/70"
@@ -116,25 +114,16 @@ export function Footer() {
             </FieldRow>
           </div>
 
-          {/* Location — the top row's other half, matched to the brand card. */}
-          <MapSnippet
-            variant="band"
-            area={site.location.neighborhood}
-            city={site.location.city}
-            coordinates={site.location.coordinates}
-            mapsUrl={site.location.mapsUrl}
-          />
-        </div>
-
-        {/* ── Bottom row — one divided band ───────────────────────────── */}
-        <div className="grid border border-border lg:grid-cols-3">
           {/* Explore — full-width link rows, each on its own hairline with a
               marker that slides in on hover, so the nav reads as a table of
               destinations instead of a stack of small grey words. */}
-          <FooterCell title="Explore">
+          <FooterCell title="Explore" divided>
             <ul>
               {navGroups.map((g) => (
-                <li key={g.href} className="border-b border-border/60 last:border-b-0">
+                <li
+                  key={g.href}
+                  className="border-b border-border/60 last:border-b-0"
+                >
                   <Link
                     href={g.href}
                     className="group flex items-center justify-between gap-4 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -252,12 +241,12 @@ export function Footer() {
 
       {/* `flex-col-reverse` puts the legal links above the copyright line on
           mobile while the DOM (and the desktop row) keeps copyright first. */}
-      <div className="container-grit flex flex-col-reverse items-center justify-between gap-2.5 border-t border-border py-3.5 text-center text-xs text-muted-foreground sm:flex-row sm:py-4 sm:text-left">
+      <div className="container-grit flex flex-col-reverse items-center justify-between gap-3 border-t border-border py-5 text-center text-sm text-muted-foreground sm:flex-row sm:py-7 sm:text-left">
         <p>
           © {new Date().getFullYear()} Grit Fit — Luxe Health Club. All rights
           reserved.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <Link
             href="/club-standards"
             className="transition-colors hover:text-foreground"
@@ -301,10 +290,7 @@ function FieldRow({
 }) {
   return (
     <div className={className}>
-      <span
-        aria-hidden
-        className="-mx-5 mb-4 block h-px bg-border lg:-mx-6"
-      />
+      <span aria-hidden className="-mx-5 mb-4 block h-px bg-border lg:-mx-6" />
       <p className={cn(fieldLabel, "mb-2.5")}>{label}</p>
       {children}
     </div>
