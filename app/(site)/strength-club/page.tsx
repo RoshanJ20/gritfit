@@ -5,6 +5,7 @@ import { strength } from "@/content/strength";
 import { PageHero } from "@/components/sections/page-hero";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Reveal } from "@/components/motion/reveal";
+import { CtaActions } from "@/components/sections/cta-actions";
 import { StepProgress } from "@/components/reactbits/step-progress";
 import { AnimatedList } from "@/components/reactbits/animated-list";
 import { ShinyText } from "@/components/reactbits/shiny-text";
@@ -24,21 +25,22 @@ export default function StrengthClubPage() {
         eyebrow={strength.eyebrow}
         title={strength.heading}
         lead={[about.lead]}
-        backgroundImage="/images/amenities-about.jpg"
-        textPosition="left-center"
-        imagePosition="center"
+        backgroundImage="/images/hero/strength.jpg"
+        textPosition="bottom-left"
+        imagePosition="center 45%"
       />
 
-      {/* Concise about — creed */}
+      {/* Concise about — creed. Same block as the RUSH writeup: one container,
+          one type scale, closing on a shiny statement line. */}
       <section className="container-grit section">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-4xl space-y-6">
           <Reveal>
-            <p className="max-w-2xl text-balance leading-relaxed text-muted-foreground">
+            <p className="text-balance text-lg font-light leading-[1.6] text-foreground sm:text-xl">
               {about.detail}
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="display mt-8 text-balance text-display-2 text-foreground">
+            <p className="display pt-4 text-display-2 text-foreground">
               <ShinyText speed={5}>{about.creed}</ShinyText>
             </p>
           </Reveal>
@@ -73,7 +75,7 @@ export default function StrengthClubPage() {
             {/* What you get */}
             <div className="bg-ink-900 p-8 lg:p-10">
               <Reveal>
-                <p className="eyebrow">What you get</p>
+                <p className="eyebrow">What we do</p>
               </Reveal>
               <AnimatedList className="mt-6" items={about.get} />
             </div>
@@ -81,7 +83,7 @@ export default function StrengthClubPage() {
             {/* What we don't do */}
             <div className="bg-ink-900 p-8 lg:p-10">
               <Reveal delay={0.06}>
-                <p className="eyebrow">What we don’t do</p>
+                <p className="eyebrow">What we don’t</p>
               </Reveal>
               <AnimatedList className="mt-6" items={about.dont} muted />
             </div>
@@ -89,7 +91,7 @@ export default function StrengthClubPage() {
 
           {/* Section sign-off — integrated closing line */}
           <Reveal delay={0.1}>
-            <p className="display mt-14 text-balance text-center text-3xl leading-tight text-foreground sm:text-4xl lg:mt-16 lg:text-5xl">
+            <p className="mt-10 text-balance text-lg text-muted-foreground sm:text-xl">
               {strength.closer}
             </p>
           </Reveal>
@@ -108,17 +110,7 @@ export default function StrengthClubPage() {
             </h2>
           </Reveal>
 
-          <Reveal
-            delay={0.16}
-            className="mt-10 flex flex-wrap items-center justify-center gap-3"
-          >
-            <Link href="/contact" className="btn btn-solid px-8 py-4">
-              Start with Assessment
-            </Link>
-            <Link href="/membership" className="btn btn-outline px-8 py-4">
-              Explore membership options
-            </Link>
-          </Reveal>
+          <CtaActions className="mt-10" delay={0.16} />
 
           <Reveal delay={0.28}>
             <p className="mx-auto mt-12 max-w-md text-sm leading-relaxed text-muted-foreground">

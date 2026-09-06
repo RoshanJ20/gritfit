@@ -9,6 +9,7 @@ import { CardEdge } from "@/components/sections/card-edge";
 import { Reveal } from "@/components/motion/reveal";
 import { SquaresBackground } from "@/components/reactbits/squares-bg";
 import { ScrambleText } from "@/components/reactbits/scramble-text";
+import { AnimatedList } from "@/components/reactbits/animated-list";
 import { CountUp } from "@/components/reactbits/count-up";
 import { ShinyText } from "@/components/reactbits/shiny-text";
 
@@ -35,7 +36,7 @@ export default function RushPage() {
         <div className="mx-auto max-w-4xl space-y-6">
           {rush.writeup.slice(1).map((line, i) => (
             <Reveal key={i} delay={i * 0.05}>
-              <p className="text-balance text-xl font-light leading-[1.5] text-foreground sm:text-2xl">
+              <p className="text-balance text-lg font-light leading-[1.6] text-foreground sm:text-xl">
                 {line}
               </p>
             </Reveal>
@@ -86,13 +87,45 @@ export default function RushPage() {
             ))}
           </div>
 
-          <Reveal delay={0.2}>
-            <p className="mt-10 text-balance text-lg text-muted-foreground sm:text-xl">
-              {rush.modelsCloser}
-            </p>
-          </Reveal>
         </div>
       </section>
+
+      {/* The difference — same two-panel card as Strength Club, so the two
+          club pages close their story the same way. */}
+      <section className="border-t border-border">
+        <div className="container-grit section">
+          <Reveal>
+            <p className="eyebrow">{rush.difference.eyebrow}</p>
+            <h2 className="display mt-4 text-display-2 max-w-[20ch]">
+              {rush.modelsCloser}
+            </h2>
+          </Reveal>
+
+          <div className="mt-14 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
+            <div className="bg-ink-900 p-8 lg:p-10">
+              <Reveal>
+                <p className="eyebrow">What we do</p>
+              </Reveal>
+              <AnimatedList className="mt-6" items={rush.difference.get} />
+            </div>
+            <div className="bg-ink-900 p-8 lg:p-10">
+              <Reveal delay={0.06}>
+                <p className="eyebrow">What we don’t</p>
+              </Reveal>
+              <AnimatedList className="mt-6" items={rush.difference.dont} muted />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Conversion close — the shared first-step CTA, identical on every RUSH
+          page. It follows the content and precedes the FAQ, so the ask lands
+          while the page is still making its case and the detail sits after. */}
+      <CtaBand
+        eyebrow="Ready when you are"
+        heading="Book your intro session."
+        uniformActions
+      />
 
       {/* FAQ */}
       <section className="border-t border-border">
@@ -119,10 +152,6 @@ export default function RushPage() {
         </div>
       </section>
 
-      {/* Conversion close — the shared first-step CTA, identical on every RUSH
-          page and always the last thing on the page, so the section reads
-          content first and closes on the ask. */}
-      <CtaBand eyebrow="Ready when you are" heading="Book your intro session." />
     </>
   );
 }

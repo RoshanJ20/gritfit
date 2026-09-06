@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { RotateCw } from "lucide-react";
+import { RotateCw, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { hasBackContent, type Coach } from "@/content/coaches";
@@ -13,41 +13,40 @@ import { Placeholder } from "@/components/placeholder";
  * The back carries the rest of the sheet: identity statement, philosophy,
  * expertise, style, and why they coach.
  *
- * Flips on hover (hover-capable pointers only — Tailwind's `hover:` variant is
- * already gated behind `@media (hover: hover)`), on tap, and on keyboard focus.
+ * Two ways in, and they behave differently on purpose:
+ *
+ * - Hover (hover-capable pointers only — Tailwind's `hover:` variant is already
+ *   gated behind `@media (hover: hover)`) and keyboard focus are a preview: the
+ *   card turns while you are on it and turns back when you leave.
+ * - A click pins the card open. It stays open until the same card is clicked
+ *   again or Escape is pressed, so several backs can be held side by side and
+ *   compared. Leaving a pinned card no longer closes it.
+ *
  * A profile with no back-side content yet renders as a static card instead, so
  * leadership entries start flipping automatically the moment copy lands.
- *
- * A tap-flip is not sticky: it releases the moment the pointer leaves the card,
- * when a pointer goes down anywhere outside it, or on Escape. Without that, a
- * clicked card stayed face-up while you moved on to the next one and the grid
- * filled up with open backs.
  */
 export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
-  const [flipped, setFlipped] = useState(false);
+  const [pinned, setPinned] = useState(false);
+  // Un-pinning while the pointer is still on the card (and while the button
+  // holds focus from that very click) would hand the flip straight back to
+  // `group-hover` / `group-focus-within`, so the back stayed face-up and the
+  // click read as broken — you had to click blank space to see it close. Once
+  // a card is un-pinned, its preview flip is muted until the pointer leaves
+  // and focus moves on.
+  const [previewMuted, setPreviewMuted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const flippable = hasBackContent(coach);
 
-  // Only listen while this card is actually held open.
+  // Escape releases a pinned card — the only global listener left, since a
+  // pinned card is meant to survive the pointer moving anywhere else.
   useEffect(() => {
-    if (!flipped) return;
-
-    const onPointerDown = (e: PointerEvent) => {
-      if (!ref.current?.contains(e.target as Node)) setFlipped(false);
-    };
+    if (!pinned) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setFlipped(false);
+      if (e.key === "Escape") setPinned(false);
     };
-
-    // Capture phase so a press on a neighbouring card releases this one before
-    // that card's own click handler runs.
-    document.addEventListener("pointerdown", onPointerDown, true);
     document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("pointerdown", onPointerDown, true);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [flipped]);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [pinned]);
 
   if (!flippable) {
     return (
@@ -60,16 +59,24 @@ export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
   return (
     <div
       ref={ref}
-      // Leaving the card releases a tap-flip, so moving to the next card (or
-      // to empty space) turns this one back over on its own.
-      onMouseLeave={() => setFlipped(false)}
+      onPointerLeave={() => setPreviewMuted(false)}
       className="group relative aspect-[3/4] w-full [perspective:1200px]"
     >
       <button
         type="button"
-        onClick={() => setFlipped((f) => !f)}
-        aria-pressed={flipped}
-        aria-label={`${coach.name}, ${coach.role} — show profile details`}
+        onBlur={() => setPreviewMuted(false)}
+        onClick={() => {
+          setPinned((p) => {
+            if (p) setPreviewMuted(true);
+            return !p;
+          });
+        }}
+        aria-pressed={pinned}
+        aria-label={
+          pinned
+            ? `${coach.name}, ${coach.role} — hide profile details`
+            : `${coach.name}, ${coach.role} — show profile details`
+        }
         className={cn(
           "absolute inset-0 block h-full w-full cursor-pointer rounded-md text-left",
           // `will-change` keeps the faces on their own layer, so the type stops
@@ -80,15 +87,17 @@ export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
           // while both ends settle, which is what reads as snappy rather than
           // abrupt.
           "transition-transform duration-[520ms] ease-in-out-quint",
-          flipped
+          pinned
             ? "[transform:rotateY(180deg)_scale(1.02)]"
             : cn(
                 "[transform:rotateY(0deg)_scale(1)]",
                 // Hover-in waits a beat so sweeping the cursor across the grid
                 // doesn't set every card spinning; leaving drops the delay, so
                 // the card returns the instant you go.
-                "group-hover:[transform:rotateY(180deg)_scale(1.02)] group-hover:[transition-delay:90ms]",
-                "group-focus-within:[transform:rotateY(180deg)_scale(1.02)]",
+                !previewMuted &&
+                  "group-hover:[transform:rotateY(180deg)_scale(1.02)] group-hover:[transition-delay:90ms]",
+                !previewMuted &&
+                  "group-focus-within:[transform:rotateY(180deg)_scale(1.02)]",
               ),
         )}
       >
@@ -96,7 +105,7 @@ export function CoachCard({ coach, index }: { coach: Coach; index: number }) {
           <CardFront coach={coach} index={index} showFlipCue />
         </div>
         <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <CardBack coach={coach} />
+          <CardBack coach={coach} pinned={pinned} />
         </div>
       </button>
     </div>
@@ -139,12 +148,27 @@ function CardFront({
       </span>
 
       {showFlipCue && (
-        <span
-          aria-hidden
-          className="absolute right-4 top-4 z-10 flex size-7 items-center justify-center rounded-full border border-foreground/20 text-foreground/50 transition-colors duration-500 group-hover:border-brand/60 group-hover:text-brand"
-        >
-          <RotateCw className="size-3" />
-        </span>
+        <>
+          <span
+            aria-hidden
+            className="absolute right-4 top-4 z-10 flex size-7 items-center justify-center rounded-full border border-foreground/20 text-foreground/50 transition-colors duration-500 group-hover:border-brand/60 group-hover:text-brand"
+          >
+            <RotateCw className="size-3" />
+          </span>
+
+          {/* Touch devices never see the hover flip, so the card has to say it
+              is interactive. The pill renders only where hover is unavailable
+              (`@media (hover: none)`), sits on the scrim beside the name and
+              breathes once a second so it reads as an affordance, not a label.
+              `motion-safe` keeps it still for reduced-motion users. */}
+          <span
+            aria-hidden
+            className="absolute bottom-5 right-5 z-20 hidden items-center gap-1.5 rounded-full border border-brand/50 bg-ink-900/80 px-3 py-1.5 text-[0.6rem] font-medium uppercase tracking-[0.16em] text-brand backdrop-blur-sm motion-safe:animate-pulse [@media(hover:none)]:flex"
+          >
+            <RotateCw className="size-3" />
+            Tap to read
+          </span>
+        </>
       )}
 
       <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-1.5 p-5">
@@ -157,14 +181,26 @@ function CardFront({
   );
 }
 
-function CardBack({ coach }: { coach: Coach }) {
+function CardBack({ coach, pinned }: { coach: Coach; pinned: boolean }) {
   return (
     <div className="relative flex h-full w-full flex-col overflow-hidden rounded-md border border-brand/25 bg-ink-800">
       <span aria-hidden className="h-px w-full shrink-0 bg-brand" />
 
+      {/* A pinned card says so, and says how to put it back — the card itself
+          is the button, so anywhere on it closes. */}
+      {pinned && (
+        <span
+          aria-hidden
+          className="absolute right-4 top-4 z-20 flex items-center gap-1.5 rounded-full border border-brand/50 bg-ink-900/80 px-2.5 py-1 text-[0.55rem] font-medium uppercase tracking-[0.16em] text-brand backdrop-blur-sm"
+        >
+          <X className="size-3" />
+          Close
+        </span>
+      )}
+
       <div className="flex shrink-0 flex-col gap-1 px-5 pb-3 pt-4">
-        <h3 className="display text-lg leading-none">{coach.name}</h3>
-        <p className="text-[0.62rem] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+        <h3 className="display max-w-[70%] text-lg leading-none">{coach.name}</h3>
+        <p className="max-w-[70%] text-[0.62rem] font-medium uppercase tracking-[0.16em] text-muted-foreground">
           {coach.role}
         </p>
       </div>

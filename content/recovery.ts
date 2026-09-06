@@ -270,16 +270,22 @@ export const manualTherapy = {
     heading: "Match recovery to your training load.",
     intro:
       "Recovery is most effective when matched to training load. Find the line that sounds like your week, and start with the session beside it:",
-    // Symptom → recommended session. `when` is phrased as something a member
-    // would actually say about their body, so the pairing reads as advice
-    // rather than two unrelated columns.
+    // Session → the week it suits, written as a full line the way the "More
+    // programs" rows on Trainings are: the session name leads, and the note
+    // beside it describes the member it is for.
     matches: [
-      { when: "You've trained hard this week", then: "Sports Massage" },
       {
-        when: "One area stays tight, session after session",
-        then: "Deep Tissue Massage",
+        name: "Sports Massage",
+        note: "You have trained hard this week and want to be ready for the next one.",
       },
-      { when: "Movement feels restricted or stiff", then: "Mobility Reset" },
+      {
+        name: "Deep Tissue Massage",
+        note: "One area stays tight, session after session, and will not let go.",
+      },
+      {
+        name: "Mobility Reset",
+        note: "Movement feels restricted or stiff, and your range has closed down.",
+      },
     ],
     guide:
       "Our coaches and therapists will guide you to the right option based on your training and recovery needs.",

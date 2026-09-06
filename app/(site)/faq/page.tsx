@@ -41,7 +41,7 @@ export default function FaqPage() {
             <Reveal>
               <TabsList
                 variant="line"
-                className="relative -mx-5 flex h-auto w-full min-w-0 max-w-[calc(100%+2.5rem)] flex-nowrap justify-start gap-x-8 gap-y-0 overflow-x-auto border-b border-border px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:max-w-full sm:flex-wrap sm:gap-y-3 sm:px-0"
+                className="relative flex h-auto w-full min-w-0 max-w-full flex-wrap justify-start gap-x-6 gap-y-3 border-b border-border px-0 sm:gap-x-8"
               >
                 {sections.map((s) => (
                   <TabsTrigger

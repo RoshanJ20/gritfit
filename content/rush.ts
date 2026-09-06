@@ -57,8 +57,25 @@ export const rush = {
       count: 8,
     },
   ] as RushModel[],
-  // Closing line beneath the three model cards.
+  // Closing line beneath the three model cards — also the heading of the
+  // difference panel below it.
   modelsCloser: "Structured training. Endless variety.",
+  // What RUSH is and isn't. Not from the source doc — written from the RUSH
+  // writeup and FAQ answers, which say the same things in longer form.
+  difference: {
+    eyebrow: "The difference",
+    get: [
+      "Every class has a purpose. Every session fits the bigger picture.",
+      "Structured sessions designed to build strength, conditioning, movement and skill.",
+      "Coach-led classes you can scale to your level, whatever your experience.",
+      "Strength, hybrid, endurance, skill work and movement flow in one method.",
+    ],
+    dont: [
+      "No random workouts with no place in a bigger plan.",
+      "No keeping up with anyone else — you train at your level.",
+      "No experience needed before you start.",
+    ],
+  },
   faqs: [
     {
       q: "What is RUSH?",

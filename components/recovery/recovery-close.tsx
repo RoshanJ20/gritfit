@@ -15,51 +15,56 @@ import { Reveal } from "@/components/motion/reveal";
 export function RecoveryClose({ children }: { children?: ReactNode }) {
   return (
     <>
-      {/* Note + packages share one section, side by side on `lg`. They used to
-          stack as two full-width bands, which cost a lot of height for two
-          short blocks; paired in one row they read as a single closing
-          statement and the page tightens up. The note stays a hairline-marked
-          statement (no box); the packages half keeps its bordered panel and
-          brand wash so the action still has weight. Below `lg` they stack in
-          the same order as before. */}
+      {/* Note + packages, stacked in one narrow column. Side by side they left
+          a wide empty band on `lg`; stacked and capped at `max-w-3xl` they read
+          as one closing statement without costing much height — the packages
+          panel keeps its copy and its button on one row from `sm` up, so the
+          stack stays short. The note is a hairline-marked statement (no box);
+          the panel keeps its border and brand wash so the action has weight. */}
       <section className="border-t border-border">
-        <div className="container-grit section-sm grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <Reveal>
-            <div className="border-l-2 border-brand/70 pl-6 lg:pl-8">
-              <p className="eyebrow">Note</p>
-              <p className="mt-4 text-lg font-medium leading-snug text-foreground sm:text-xl">
-                {recovery.note}
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="relative isolate overflow-hidden border border-border bg-ink-800/40 p-8 lg:p-10">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 -z-10"
-              style={{
-                background:
-                  "radial-gradient(55% 120% at 100% 0%, color-mix(in srgb, var(--brand) 9%, transparent) 0%, transparent 70%)",
-              }}
-            />
+        <div className="container-grit section-sm">
+          <div className="mx-auto flex max-w-3xl flex-col gap-8">
             <Reveal>
-              <p className="eyebrow">{recovery.packages.eyebrow}</p>
+              <div className="border-l-2 border-brand/70 pl-6 lg:pl-8">
+                <p className="eyebrow">Note</p>
+                <p className="mt-3 text-lg font-medium leading-snug text-foreground sm:text-xl">
+                  {recovery.note}
+                </p>
+              </div>
             </Reveal>
-            <Reveal delay={0.08}>
-              <h2 className="display mt-4 text-3xl max-w-[16ch] sm:text-4xl">
-                {recovery.packages.heading}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-                {recovery.packages.body}
-              </p>
-            </Reveal>
-            <Reveal delay={0.24} className="mt-7">
-              <Link href="/contact" className="btn btn-outline px-8 py-4">
-                {recovery.packages.cta}
-              </Link>
-            </Reveal>
+
+            <div className="relative isolate overflow-hidden border border-border bg-ink-800/40 p-6 sm:p-8">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 -z-10"
+                style={{
+                  background:
+                    "radial-gradient(55% 120% at 100% 0%, color-mix(in srgb, var(--brand) 9%, transparent) 0%, transparent 70%)",
+                }}
+              />
+              <div className="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-10">
+                <div>
+                  <Reveal>
+                    <p className="eyebrow">{recovery.packages.eyebrow}</p>
+                  </Reveal>
+                  <Reveal delay={0.08}>
+                    <h2 className="display mt-3 max-w-[20ch] text-2xl sm:text-3xl">
+                      {recovery.packages.heading}
+                    </h2>
+                  </Reveal>
+                  <Reveal delay={0.16}>
+                    <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
+                      {recovery.packages.body}
+                    </p>
+                  </Reveal>
+                </div>
+                <Reveal delay={0.24} className="sm:shrink-0">
+                  <Link href="/contact" className="btn btn-outline px-8 py-4">
+                    {recovery.packages.cta}
+                  </Link>
+                </Reveal>
+              </div>
+            </div>
           </div>
         </div>
       </section>

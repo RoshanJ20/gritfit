@@ -1,10 +1,9 @@
 import Link from "next/link";
 
 import { training } from "@/content/training";
-import { secondaryCta } from "@/content/nav";
-import { whatsappUrl } from "@/lib/utils";
 import { SentenceLines } from "@/components/sections/sentence-lines";
 import { Reveal } from "@/components/motion/reveal";
+import { CtaActions } from "@/components/sections/cta-actions";
 
 /**
  * The closing CTA for the Trainings section — "Our standard / We don't sell
@@ -29,23 +28,7 @@ export function TrainingCta({
           <SentenceLines text={training.standard.heading} />
         </h2>
       </Reveal>
-      <Reveal
-        delay={0.16}
-        className="mt-10 flex flex-wrap items-center justify-center gap-3"
-      >
-        <Link href={secondaryCta.href} className="btn btn-solid px-8 py-4">
-          Start Assessment
-        </Link>
-        {/* Bottom-of-page CTA opens WhatsApp — see CtaBand. */}
-        <a
-          href={whatsappUrl()}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-outline px-8 py-4"
-        >
-          Train With Us
-        </a>
-      </Reveal>
+      <CtaActions className="mt-10" delay={0.16} />
 
       {showEtiquette && (
         <Reveal delay={0.24}>

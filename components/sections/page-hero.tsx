@@ -226,7 +226,7 @@ function ImmersiveHero({
           place[textPosition],
         )}
       >
-        <div className={cn("max-w-2xl", textPosition === "center" && "mx-auto")}>
+        <div className={cn("max-w-3xl", textPosition === "center" && "mx-auto")}>
           <Reveal playOnMount>
             <p className={cn("eyebrow", textPosition === "center" && "justify-center")}>
               {eyebrow}

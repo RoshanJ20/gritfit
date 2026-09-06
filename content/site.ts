@@ -67,6 +67,8 @@ export const site = {
     // Prefilled first message. Kept short — WhatsApp shows it in the composer
     // and the member can edit before sending.
     message: "Hi Grit Fit — I'd like to know more about joining the club.",
+    // Shorter variant for the header "Join Club" button.
+    joinMessage: "Hi Grit Fit — I'd like to join the club.",
   },
   // Email + address remain "Yet to work on" → still placeholders. The named
   // contact and phone are confirmed, so they render as real values.

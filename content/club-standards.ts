@@ -17,7 +17,9 @@ export const clubStandards = {
     "These standards help us maintain an environment that is focused, clean, safe and uncompromising on quality.",
   ],
   closing:
-    "Thank you for helping us uphold the Grit Fit standard. For any questions, suggestions or concerns, our Grit Fit Team is always here to assist.",
+    "Thank you for helping us uphold the Grit Fit standard — it is what keeps this a space everyone is glad to train in. If you have any questions, suggestions or concerns, our team is always happy to help. We’d love to hear from you — reach out to us at",
+  // Club inbox, rendered as a mailto link after the closing line.
+  closingEmail: "fitness@gritfit.club",
   sections: [
     {
       title: "Training Areas",

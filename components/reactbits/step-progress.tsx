@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { ScrambleText } from "@/components/reactbits/scramble-text";
 
 export type Step = { step: string; title: string; body: string };
 
@@ -67,7 +68,9 @@ export function StepProgress({
               threshold={threshold}
               reduced={!!reduced}
             />
-            <h3 className="display mt-4 text-2xl">{s.title}</h3>
+            <h3 className="display mt-4 text-2xl">
+              <ScrambleText text={s.title} />
+            </h3>
             <p className="mt-3 leading-relaxed text-muted-foreground">{s.body}</p>
           </div>
         );

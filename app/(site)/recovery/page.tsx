@@ -123,6 +123,8 @@ export default function RecoveryPage() {
         </div>
       </section>
 
+      <RecoveryClose />
+
       {/* FAQ */}
       <section id="faq" className="scroll-mt-24 border-t border-border">
         <div className="container-grit section grid gap-12 lg:grid-cols-[0.6fr_1fr] lg:gap-20">
@@ -149,8 +151,6 @@ export default function RecoveryPage() {
           </div>
         </div>
       </section>
-
-      <RecoveryClose />
     </>
   );
 }

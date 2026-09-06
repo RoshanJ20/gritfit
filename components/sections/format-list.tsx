@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { withShine } from "@/lib/shine";
 import { Reveal, Curtain } from "@/components/motion/reveal";
 import { MediaPlaceholder } from "@/components/media-placeholder";
 import type { ClassFormat } from "@/content/rush";
@@ -82,7 +83,9 @@ export function FormatList({
                 <div className="mt-5 max-w-md space-y-4">
                   {f.paras.map((p, j) => (
                     <Reveal key={j} delay={0.12 + j * 0.05}>
-                      <p className="leading-relaxed text-muted-foreground">{p}</p>
+                      <p className="leading-relaxed text-muted-foreground">
+                        {withShine(p)}
+                      </p>
                     </Reveal>
                   ))}
                 </div>

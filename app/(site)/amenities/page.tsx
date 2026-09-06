@@ -20,8 +20,10 @@ export default function AmenitiesPage() {
       <PageHero
         eyebrow={amenities.eyebrow}
         title={amenities.heading}
-        mediaLabel="Amenities"
-        mediaSrc="/images/amenities.jpg"
+        lead={[amenities.lead]}
+        backgroundImage="/images/amenities.jpg"
+        textPosition="bottom-left"
+        imagePosition="center 45%"
       />
 
       <section className="container-grit section">
@@ -53,7 +55,7 @@ export default function AmenitiesPage() {
             label="Amenities"
             kind="image"
             ratio="wide"
-            src="/images/amenities-about.jpg"
+            src="/images/hero/strength.jpg"
             className="rounded-none border-0"
           />
         </Curtain>

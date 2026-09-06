@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 import { clubStandards } from "@/content/club-standards";
 import { PageHero } from "@/components/sections/page-hero";
+import { SectionAccordion } from "@/components/sections/section-accordion";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
-import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 
 export const metadata: Metadata = {
   title: "Club Standards",
@@ -23,48 +23,36 @@ export default function ClubStandardsPage() {
         mediaSrc="/images/club-interior.jpg"
       />
 
-      {/* The nine sections run from 15 items down to 3, so an equal-height grid
-          left large gaps under the short ones. CSS columns let each card size to
-          its own content and the shorter ones pack in beneath the longer. */}
+      {/* Same shape as First Timers: every standards section is a single-open
+          accordion item, so the nine lists stay scannable instead of stacking
+          into one long page. */}
       <section className="border-t border-border">
         <div className="container-grit section">
-          <div className="lg:columns-2 lg:gap-8">
-            {clubStandards.sections.map((section, s) => (
-              <Reveal
-                key={section.title}
-                delay={(s % 2) * 0.06}
-                className="mb-6 break-inside-avoid lg:mb-8"
-              >
-                <div className="relative isolate overflow-hidden border border-border bg-ink-900 p-8 lg:p-10">
-                  <SpotlightOverlay className="-z-10" />
-                  <div className="flex items-baseline gap-4">
-                    <span className="display text-sm text-brand">
-                      {String(s + 1).padStart(2, "0")}
-                    </span>
-                    <h2 className="eyebrow">{section.title}</h2>
-                  </div>
-                  <ul className="mt-6 flex flex-col">
-                    {section.items.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-4 border-b border-border py-4 text-muted-foreground last:border-b-0 last:pb-0"
-                      >
-                        <span
-                          className="mt-2.5 size-1.5 shrink-0 bg-brand"
-                          aria-hidden
-                        />
-                        <span className="leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            ))}
+          <Reveal>
+            <p className="eyebrow">The Standard</p>
+            <h2 className="display mt-4 max-w-[20ch] text-display-2">
+              How we train, and how we treat the space.
+            </h2>
+          </Reveal>
+          <div className="mt-12">
+            <SectionAccordion
+              sections={clubStandards.sections.map((section) => ({
+                title: section.title,
+                blocks: [{ items: section.items }],
+              }))}
+            />
           </div>
 
           <Reveal>
-            <p className="mx-auto mt-6 max-w-2xl text-balance text-center leading-relaxed text-muted-foreground">
-              {clubStandards.closing}
+            <p className="mx-auto mt-12 max-w-2xl text-balance text-center leading-relaxed text-muted-foreground">
+              {clubStandards.closing}{" "}
+              <a
+                href={`mailto:${clubStandards.closingEmail}`}
+                className="text-brand underline-offset-4 hover:underline"
+              >
+                {clubStandards.closingEmail}
+              </a>
+              .
             </p>
           </Reveal>
         </div>

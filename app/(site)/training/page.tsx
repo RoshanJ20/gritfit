@@ -70,6 +70,7 @@ export default function TrainingPage() {
         lead={[training.subtitle]}
         backgroundImage="/images/training/coaching.jpg"
         textPosition="bottom-left"
+        imagePosition="center 35%"
       />
 
       {/* Explore statement */}
@@ -93,53 +94,48 @@ export default function TrainingPage() {
       {/* Programs */}
       <TrainingPrograms eyebrow="Programs" categories={programCategories} />
 
-      {/* Membership note */}
+      {/* How we coach — its own bordered card, at section type sizes rather
+          than the old inline footnote. The membership callout follows it, so
+          the coaching offer is read before its condition. */}
       <section className="container-grit section-sm">
-        <Callout glow label="Please note">
-          {training.membershipNote}
-        </Callout>
-      </section>
-
-      {/* How we coach — subtle inline note */}
-      <section className="container-grit pb-4">
-        <div className="max-w-3xl">
+        <div className="border border-border bg-ink-900 p-8 lg:p-12">
           <Reveal>
             <p className="eyebrow">How we coach</p>
           </Reveal>
           <Reveal delay={0.06}>
-            <p className="mt-3 text-lg text-foreground">
-              Same coaching. Different environment.
-            </p>
+            <h2 className="display mt-4 max-w-[20ch] text-display-2">
+              <ShinyText speed={5}>{training.offeringsHeading}</ShinyText>
+            </h2>
           </Reveal>
-          <div className="mt-5 space-y-3">
+
+          <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-12">
             {training.offerings.map((o, i) => (
-              <Reveal key={o.name} delay={0.1 + i * 0.05}>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  <span className="font-medium text-foreground">{o.name}.</span>{" "}
-                  {o.desc}
-                </p>
+              <Reveal key={o.name} delay={0.1 + i * 0.06}>
+                <div className="group">
+                  <h3 className="display text-2xl transition-colors group-hover:text-brand">
+                    {o.name}
+                  </h3>
+                  <p className="mt-3 leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground">
+                    {o.desc}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </div>
+
           <Reveal delay={0.22}>
-            <p className="mt-5 text-sm text-muted-foreground">
+            <p className="mt-10 text-balance text-lg font-light leading-[1.6] text-foreground sm:text-xl">
               {training.offeringsShared}
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* PT FAQ */}
-      <section className="border-t border-border">
-        <div className="container-grit section grid gap-12 lg:grid-cols-[0.6fr_1fr] lg:gap-20">
-          <Reveal>
-            <p className="eyebrow">Questions</p>
-            <h2 className="display mt-4 text-display-2">
-              Personal training, explained.
-            </h2>
-          </Reveal>
-          <FaqAccordion faqs={training.faqs} />
-        </div>
+      {/* Membership note */}
+      <section className="container-grit section-sm pt-0">
+        <Callout glow label="Please note">
+          {training.membershipNote}
+        </Callout>
       </section>
 
       {/* Coaches + testimonials links */}
@@ -158,9 +154,23 @@ export default function TrainingPage() {
         ]}
       />
 
-      {/* Closing CTA — last on the page, as on every other Trainings page and
-          across RUSH, so the section reads content first and closes on the ask. */}
+      {/* Closing CTA — it follows the content and precedes the FAQ, as on RUSH
+          and Essential Recovery: the ask lands while the page is still making
+          its case, with the detail sitting after it. */}
       <TrainingCta />
+
+      {/* PT FAQ */}
+      <section className="border-t border-border">
+        <div className="container-grit section grid gap-12 lg:grid-cols-[0.6fr_1fr] lg:gap-20">
+          <Reveal>
+            <p className="eyebrow">Questions</p>
+            <h2 className="display mt-4 text-display-2">
+              Personal training, explained.
+            </h2>
+          </Reveal>
+          <FaqAccordion faqs={training.faqs} />
+        </div>
+      </section>
     </>
   );
 }

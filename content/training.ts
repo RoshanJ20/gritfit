@@ -38,7 +38,10 @@ export const training = {
       desc: "Semi-private training gives you the same level of coaching in a small group environment that adds energy, structure and shared momentum.",
     },
   ],
-  offeringsShared: "Both are built around you. The environment is what changes.",
+  // Card heading for "How we coach".
+  offeringsHeading: "Both are built around you. The environment is what changes.",
+  // Closing line under the two coaching types.
+  offeringsShared: "Same Coaching, Different Environment.",
   // PT Terms & Expectations — moved here from First Timers; these are terms
   // of the coaching service, so they belong beside the coaching offer.
   // Rendered as a single-open accordion at the foot of /training.

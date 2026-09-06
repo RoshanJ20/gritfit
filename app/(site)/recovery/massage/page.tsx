@@ -55,56 +55,40 @@ export default function ManualTherapyPage() {
         />
       </section>
 
-      {/* How to use — compact two-column */}
+      {/* How to use — same shape as the "More programs" rows on Trainings:
+          a heading block, then full-width hairline rows where the session name
+          leads at display size and the line beside it says whose week it is.
+          The rows are advice, not links, so they carry no arrow or hover. */}
       <section className="border-t border-border">
-        <div className="container-grit section-sm grid gap-8 lg:grid-cols-[0.75fr_1fr] lg:items-center lg:gap-16">
+        <div className="container-grit section-sm">
           <Reveal>
             <p className="eyebrow">{manualTherapy.howToUse.eyebrow}</p>
-            <h2 className="display mt-3 text-2xl sm:text-3xl max-w-[16ch]">
+            <h2 className="display mt-4 max-w-[20ch] text-display-2">
               {manualTherapy.howToUse.heading}
             </h2>
-            <p className="mt-3 max-w-md text-sm text-muted-foreground">
+            <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
               {manualTherapy.howToUse.intro}
             </p>
           </Reveal>
 
-          {/* Each row is one recommendation, not two columns of loose text.
-              The session name leads at display size and the "If" condition sits
-              beside it as supporting copy, so the eye lands on the answer first.
-              Below `sm` the two halves stack, keeping the same read on a narrow
-              screen. */}
-          <div>
-            <ul className="flex flex-col gap-3">
-              {manualTherapy.howToUse.matches.map((m, i) => (
-                <Reveal key={m.when} delay={i * 0.06}>
-                  <li className="group flex flex-col gap-2 border border-border bg-ink-800/50 p-4 transition-colors hover:border-brand/40 sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_1.5rem] sm:items-center sm:gap-5 sm:p-5">
-                    <p className="display text-xl leading-tight text-foreground sm:text-2xl">
-                      {m.then}
-                    </p>
+          <ul className="mt-10 flex flex-col">
+            {manualTherapy.howToUse.matches.map((m, i) => (
+              <Reveal key={m.name} delay={i * 0.05}>
+                <li className="flex flex-col gap-2 border-t border-border py-7 last:border-b sm:grid sm:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] sm:items-center sm:gap-8">
+                  <span className="display text-3xl sm:text-4xl">{m.name}</span>
+                  <span className="text-sm leading-relaxed text-muted-foreground sm:col-start-2">
+                    {m.note}
+                  </span>
+                </li>
+              </Reveal>
+            ))}
+          </ul>
 
-                    <p className="text-sm leading-snug text-muted-foreground sm:col-start-2">
-                      <span className="eyebrow mr-2 text-muted-foreground">
-                        If
-                      </span>
-                      {m.when}
-                    </p>
-
-                    <span
-                      aria-hidden
-                      className="hidden text-lg leading-none text-brand transition-transform group-hover:translate-x-1 sm:col-start-3 sm:block sm:justify-self-end"
-                    >
-                      →
-                    </span>
-                  </li>
-                </Reveal>
-              ))}
-            </ul>
-            <Reveal delay={0.12}>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {manualTherapy.howToUse.guide}
-              </p>
-            </Reveal>
-          </div>
+          <Reveal delay={0.12}>
+            <p className="mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              {manualTherapy.howToUse.guide}
+            </p>
+          </Reveal>
         </div>
       </section>
 

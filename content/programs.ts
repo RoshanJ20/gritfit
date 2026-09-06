@@ -23,7 +23,6 @@ export const programs: Program[] = [
     lead: "If your goal is to feel better, move better and build a stronger, healthier body — this is where you start.",
     paras: [
       "Strong Start is built for real-life results: fat loss, muscle building, strength, flexibility, mobility and sustained energy. It’s not about extremes — it’s about building a body that works better every day.",
-      "Choose focused 1-on-1 coaching for full personalization, or semi-private training for structure with shared energy and accountability.",
       "This is where consistency turns into transformation.",
     ],
   },

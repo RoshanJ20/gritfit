@@ -7,6 +7,7 @@
 export const amenities = {
   eyebrow: "Amenities",
   heading: "Quality built into every detail",
+  lead: "Modern locker rooms, private changing areas, showers, the Hydration Station, member parking and complete on-site security.",
   items: [
     {
       name: "Modern Locker Rooms",

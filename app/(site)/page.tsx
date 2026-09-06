@@ -12,6 +12,8 @@ import { Reveal, Curtain } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/sections/action-link";
 import { CardEdge } from "@/components/sections/card-edge";
 import { MediaPlaceholder } from "@/components/media-placeholder";
+import { ShinyText } from "@/components/reactbits/shiny-text";
+import { withShine } from "@/lib/shine";
 
 const pillars = [
   {
@@ -72,8 +74,8 @@ export default function Home() {
           <Reveal delay={0.08}>
             <p className="mt-8 text-balance text-xl font-light leading-[1.55] text-foreground sm:text-2xl lg:text-[1.75rem]">
               Grit Fit is home where nothing is given — everything is earned
-              through hard work. Built on a passion for strength, movement and
-              mindset.
+              through hard work. Built on a passion for{" "}
+              <ShinyText speed={5}>strength, movement and mindset</ShinyText>.
             </p>
           </Reveal>
         </div>
@@ -145,7 +147,7 @@ export default function Home() {
             {site.usp.body.map((para, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <p className="text-balance leading-relaxed text-muted-foreground">
-                  {para}
+                  {withShine(para)}
                 </p>
               </Reveal>
             ))}

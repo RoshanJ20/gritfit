@@ -13,6 +13,12 @@ import {
 import { Menu } from "lucide-react";
 
 import { navGroups, primaryCta, type NavGroup } from "@/content/nav";
+import { site } from "@/content/site";
+import { whatsappUrl } from "@/lib/utils";
+
+/* "Join Club" opens WhatsApp with a short prefilled message rather than
+   routing to /membership — same behaviour as the bottom-of-page CTAs. */
+const joinHref = whatsappUrl(site.whatsapp.joinMessage);
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -77,13 +83,15 @@ export function Header() {
                     </Link>
                   ))}
                 </nav>
-                <Link
-                  href={primaryCta.href}
+                <a
+                  href={joinHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}
                   className="btn btn-solid mt-8 w-full px-5 py-3.5"
                 >
                   {primaryCta.label}
-                </Link>
+                </a>
               </div>
             </SheetContent>
           </Sheet>
@@ -115,18 +123,25 @@ export function Header() {
           {rightGroups.map((group) => (
             <NavItem key={group.label} group={group} pathname={pathname} align="right" />
           ))}
-          <Link href={primaryCta.href} className="btn btn-solid ml-3 px-5 py-2.5">
+          <a
+            href={joinHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-solid ml-3 px-5 py-2.5"
+          >
             {primaryCta.label}
-          </Link>
+          </a>
         </nav>
         {/* Mobile: Join (right) — keeps the logo optically centered */}
         <div className="flex items-center justify-end lg:hidden">
-          <Link
-            href={primaryCta.href}
+          <a
+            href={joinHref}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-xs font-medium uppercase tracking-[0.15em] text-foreground"
           >
             Join
-          </Link>
+          </a>
         </div>
       </div>
     </header>
