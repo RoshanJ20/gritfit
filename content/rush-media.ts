@@ -7,7 +7,7 @@
  */
 export const rushFormatImages: Record<string, string> = {
   // Peak
-  Endure: "/images/rush/conditioning.jpg",
+  Endure: "/images/rush/endure.jpg",
   "Strength Build": "/images/rush/strength-build.jpg",
   Hybrid: "/images/rush/conditioning.jpg",
   // Flow

@@ -35,10 +35,10 @@ export const site = {
   usp: {
     heading: "Everything you need. Nothing you don’t.",
     body: [
-      "GRITFIT is for those who want more from themselves. More strength. More control. More capacity. More capability.",
+      "GRIT FIT is for those who want more from themselves. More strength. More control. More capacity. More capability.",
       "We bring Strength, Conditioning, Calisthenics, Combat, Yoga, Movement, Recovery and Nutrition together under one roof — with coaching and structure behind every part of the experience.",
       "This is not a place built around trends, but around standards that pushes you to become better.",
-      "GritFit isn’t about doing more things. It’s about becoming more capable.",
+      "Grit Fit isn’t about doing more things. It’s about becoming more capable.",
     ],
   },
   location: {

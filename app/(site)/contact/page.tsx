@@ -33,6 +33,11 @@ export default function ContactPage() {
         ]}
         mediaLabel="The Club"
         mediaSrc="/images/contact.jpg"
+        // The club signage is a wide frame and the wordmark runs almost its full
+        // width, so any square or portrait crop cuts the name in half. Pinning
+        // the frame to the file's own 16:9 leaves nothing for object-cover to
+        // trim, and keeps the split layout on mobile for the same reason.
+        mediaAspect="aspect-[16/9]"
       />
 
       {/* Contact details */}

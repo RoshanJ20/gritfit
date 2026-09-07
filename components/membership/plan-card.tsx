@@ -178,22 +178,30 @@ export function PlanCard({
      * subtree is rasterised to a GPU texture at its untransformed size. Any
      * scale on an ancestor then RESAMPLES that texture instead of re-rendering
      * the type, which is what made the hovered card look soft. So:
-     *  1. the hover emphasis is a whole-pixel lift, border and shadow — never a
-     *     scale, on this card or on its receding siblings;
-     *  2. the 3D context itself only exists while the card is turning or
-     *     flipped, so an idle card is plain 2D and its text is rendered at
-     *     native resolution.
+     *  1. the 3D context only exists while the card is turning or flipped — an
+     *     idle card is plain 2D, and the browser re-rasterises its type at the
+     *     final scale once the transition settles, so it stays sharp;
+     *  2. the hover scale is therefore gated on `!threeD`. A card that is mid-
+     *     turn or already flipped falls back to the lift and shadow alone,
+     *     which is what keeps its type crisp while the 3D texture is live.
      * The back face stays mounted (merely `invisible`) throughout so the card
      * keeps the height of its taller side and the row never jumps.
      */
     <div
       className={cn(
-        "relative h-full transition-[transform,box-shadow] duration-300 ease-out",
+        // Tailwind v4 emits standalone `translate:` and `scale:` properties
+        // rather than a composed `transform:`, so those are the names the
+        // transition has to list or the lift and zoom snap instead of easing.
+        "relative h-full transition-[translate,scale,box-shadow,opacity] duration-300 ease-out",
         "-ml-px first:ml-0",
         threeD && "[perspective:1800px]",
-        "md:group-hover:[&:not(:hover)]:opacity-40",
-        "md:hover:z-10 md:hover:-translate-y-1",
-        "md:hover:shadow-[0_28px_70px_-40px_rgba(0,0,0,0.95)]",
+        // Every card that is not the hovered one recedes.
+        "md:group-hover:[&:not(:hover)]:opacity-25",
+        // The hovered card lifts clear of the row and grows. See the note above
+        // for why the scale is gated on there being no 3D context.
+        "md:hover:z-10 md:hover:-translate-y-1.5",
+        !threeD && "md:hover:scale-[1.04]",
+        "md:hover:shadow-[0_36px_90px_-40px_rgba(0,0,0,0.95)]",
       )}
     >
       <motion.div

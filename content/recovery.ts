@@ -67,23 +67,17 @@ export const recovery = {
     heading: "What to carry",
   },
 
-  // Packages & pricing band, shared by every Essential Recovery page via
-  // `RecoveryClose`. Pricing is enquiry-only, so this points to where the
-  // numbers live rather than listing them.
+  // Closing band, shared by every Essential Recovery page via `RecoveryClose`.
+  // What recovery is for and what it costs are one statement here, not two:
+  // the heading frames it as support rather than a substitute, and the body
+  // says where the numbers live. Pricing is enquiry-only, so none are listed.
   packages: {
     eyebrow: "Packages & Pricing",
-    heading: "Packages & pricing at the club",
-    body: "Recovery is available as single sessions and as session packs. Our team will walk you through the options and current pricing — just ask.",
+    heading: "Recovery supports your training. It does not replace it.",
+    body: "Sleep, nutrition and programming still do the work — recovery keeps you training consistently around them. Sessions are available singly or as packs, and our team will walk you through the options and current pricing at the club — just ask.",
     cta: "Enquire about pricing",
   },
   faqNote: "Still unsure?",
-
-  /**
-   * Shared closing note. Rendered by `RecoveryClose` on every Essential
-   * Recovery page (hub, Exposure Therapy, Manual Therapy) so the three read
-   * identically at the bottom.
-   */
-  note: "Recovery services are not a replacement for training, sleep, nutrition or programming. They are a support system designed to help you train more consistently and effectively over time.",
 
   contrast: {
     eyebrow: "Contrast Therapy",
@@ -267,9 +261,6 @@ export const manualTherapy = {
 
   howToUse: {
     eyebrow: "How to use recovery services",
-    heading: "Match recovery to your training load.",
-    intro:
-      "Recovery is most effective when matched to training load. Find the line that sounds like your week, and start with the session beside it:",
     // Session → the week it suits, written as a full line the way the "More
     // programs" rows on Trainings are: the session name leads, and the note
     // beside it describes the member it is for.
@@ -291,7 +282,6 @@ export const manualTherapy = {
       "Our coaches and therapists will guide you to the right option based on your training and recovery needs.",
   },
 
-  note: recovery.note,
 };
 
 /**

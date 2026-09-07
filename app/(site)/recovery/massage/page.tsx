@@ -56,19 +56,13 @@ export default function ManualTherapyPage() {
       </section>
 
       {/* How to use — same shape as the "More programs" rows on Trainings:
-          a heading block, then full-width hairline rows where the session name
+          an eyebrow, then full-width hairline rows where the session name
           leads at display size and the line beside it says whose week it is.
           The rows are advice, not links, so they carry no arrow or hover. */}
       <section className="border-t border-border">
         <div className="container-grit section-sm">
           <Reveal>
             <p className="eyebrow">{manualTherapy.howToUse.eyebrow}</p>
-            <h2 className="display mt-4 max-w-[20ch] text-display-2">
-              {manualTherapy.howToUse.heading}
-            </h2>
-            <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-              {manualTherapy.howToUse.intro}
-            </p>
           </Reveal>
 
           <ul className="mt-10 flex flex-col">

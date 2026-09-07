@@ -22,6 +22,7 @@ export function PageHero({
   mediaKind = "image",
   mediaSrc,
   mediaImagePosition = "center",
+  mediaAspect,
   backgroundImage,
   textPosition = "left-center",
   imagePosition = "center",
@@ -35,6 +36,15 @@ export function PageHero({
   mediaSrc?: string;
   /** object-position for the side media image. */
   mediaImagePosition?: string;
+  /**
+   * Aspect ratio for the side media frame, as Tailwind classes. Defaults to the
+   * portrait-then-square pair, which crops the photo to fit. Pass the photo's
+   * own ratio (e.g. "aspect-[16/9]") when the whole frame has to stay visible:
+   * the frame then matches the file and `object-cover` has nothing to trim.
+   * Doing so also pins the split layout at every width, because the mobile
+   * variant is a full-bleed background image and would crop it again.
+   */
+  mediaAspect?: string;
   /** When set, renders the full-bleed background-image variant. */
   backgroundImage?: string;
   /** Placement of the copy over the image. */
@@ -64,6 +74,7 @@ export function PageHero({
       mediaKind={mediaKind}
       mediaSrc={mediaSrc}
       mediaImagePosition={mediaImagePosition}
+      mediaAspect={mediaAspect}
     />
   );
 
@@ -75,7 +86,10 @@ export function PageHero({
   // in-flow photos further down the page. Desktop keeps the split layout exactly
   // as it is. Both variants point at the same `src`, so the photo is fetched
   // once no matter which one is visible.
-  if (!mediaSrc) return split;
+  // A caller that pinned `mediaAspect` did so to keep the whole photo visible.
+  // The immersive variant is a full-bleed background image, so it would crop the
+  // photo again at small widths — stay with the split layout at every size.
+  if (!mediaSrc || mediaAspect) return split;
 
   return (
     <>
@@ -103,6 +117,7 @@ function SplitHero({
   mediaKind,
   mediaSrc,
   mediaImagePosition,
+  mediaAspect,
 }: {
   eyebrow: string;
   title: string;
@@ -111,6 +126,7 @@ function SplitHero({
   mediaKind: "image" | "video";
   mediaSrc?: string;
   mediaImagePosition: string;
+  mediaAspect?: string;
 }) {
   return (
     <section className="bg-spotlight relative overflow-hidden border-b border-border pb-12 pt-28 lg:pb-16 lg:pt-32">
@@ -141,7 +157,7 @@ function SplitHero({
           <Curtain
             playOnMount
             delay={0.2}
-            className="aspect-[4/5] lg:aspect-square"
+            className={mediaAspect ?? "aspect-[4/5] lg:aspect-square"}
           >
             <MediaPlaceholder
               label={mediaLabel}
