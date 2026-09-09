@@ -36,7 +36,7 @@ export default function RushPage() {
         <div className="mx-auto max-w-4xl space-y-6">
           {rush.writeup.slice(1).map((line, i) => (
             <Reveal key={i} delay={i * 0.05}>
-              <p className="text-balance text-lg font-light leading-[1.6] text-foreground sm:text-xl">
+              <p className="lede">
                 {line}
               </p>
             </Reveal>

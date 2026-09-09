@@ -37,7 +37,7 @@ export function ProgramDetail({ program }: { program: Program }) {
           {program.paras.map((p, i) => (
             <p
               key={i}
-              className="text-balance text-xl font-light leading-[1.6] text-foreground"
+              className="lede"
             >
               <ScrollReveal>{p}</ScrollReveal>
             </p>

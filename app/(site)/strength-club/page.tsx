@@ -35,7 +35,7 @@ export default function StrengthClubPage() {
       <section className="container-grit section">
         <div className="mx-auto max-w-4xl space-y-6">
           <Reveal>
-            <p className="text-balance text-lg font-light leading-[1.6] text-foreground sm:text-xl">
+            <p className="lede">
               {about.detail}
             </p>
           </Reveal>

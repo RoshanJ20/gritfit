@@ -20,7 +20,6 @@ export default function AmenitiesPage() {
       <PageHero
         eyebrow={amenities.eyebrow}
         title={amenities.heading}
-        lead={[amenities.lead]}
         backgroundImage="/images/amenities.jpg"
         textPosition="bottom-left"
         imagePosition="center 45%"

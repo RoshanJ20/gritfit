@@ -35,7 +35,7 @@ export default function ContrastTherapyPage() {
           </Reveal>
           {recovery.contrast.lines.slice(1).map((p, i) => (
             <Reveal key={i} delay={i * 0.06}>
-              <p className="text-balance text-xl font-light leading-[1.6] text-foreground sm:text-2xl">
+              <p className="lede">
                 {p}
               </p>
             </Reveal>

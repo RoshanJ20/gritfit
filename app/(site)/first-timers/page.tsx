@@ -9,7 +9,7 @@ import { Reveal } from "@/components/motion/reveal";
 export const metadata: Metadata = {
   title: "First Timers — Your first step starts here",
   description:
-    "Everyone starts somewhere. Whether you’re stepping into RUSH, training in the Strength Club or entering Essential Recovery for the first time, your journey at Grit Fit starts the same way. Show up. We’ll take it from there.",
+    "Everyone starts somewhere. Whether you’re training in the Strength Club, stepping into your first RUSH class or booking a session in Essential Recovery, your journey at Grit Fit starts the same way. Show up. We’ll take it from there.",
 };
 
 export default function FirstTimersPage() {

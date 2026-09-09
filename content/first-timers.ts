@@ -28,7 +28,7 @@ export const firstTimers = {
   // Lead = opening intro lines (used in the hero).
   lead: [
     "Everyone starts somewhere.",
-    "Whether you’re stepping into RUSH, training in the Strength Club or entering Essential Recovery for the first time, your journey at Grit Fit starts the same way.",
+    "Whether you’re training in the Strength Club, stepping into your first RUSH class or booking a session in Essential Recovery, your journey at Grit Fit starts the same way.",
     "Show up. We’ll take it from there.",
   ],
 

@@ -78,7 +78,7 @@ export default function TrainingPage() {
         <div className="mx-auto max-w-4xl space-y-6">
           {training.explore.map((line, i) => (
             <Reveal key={i} delay={i * 0.05}>
-              <p className="text-balance text-xl font-light leading-[1.55] text-foreground sm:text-2xl">
+              <p className="lede">
                 {line}
               </p>
             </Reveal>

@@ -259,6 +259,15 @@
     font-size: clamp(3rem, 22vw, 21rem);
   }
 
+  /* Opening statement / lede — the paragraph block that follows a PageHero on
+     the main section pages (Strength Club, RUSH, Recovery, Training, Nutrition)
+     and the detail pages beneath them. One class, so the same block never
+     renders at a different size page to page. Like .section and .display,
+     prefer this over hand-written text-lg/text-xl pairs. */
+  .lede {
+    @apply text-balance text-xl font-light leading-[1.55] text-foreground sm:text-2xl;
+  }
+
   /* Eyebrow / kicker label — the main sanctioned use of the green accent. */
   .eyebrow {
     @apply inline-flex items-center gap-2 text-[0.7rem] font-medium uppercase tracking-[0.2em] text-brand;

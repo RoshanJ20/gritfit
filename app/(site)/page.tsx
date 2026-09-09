@@ -72,7 +72,7 @@ export default function Home() {
             <p className="eyebrow">Our Philosophy</p>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mt-8 text-balance text-xl font-light leading-[1.55] text-foreground sm:text-2xl lg:text-[1.75rem]">
+            <p className="mt-8 lede lg:text-[1.75rem]">
               Grit Fit is home where nothing is given — everything is earned
               through hard work. Built on a passion for{" "}
               <ShinyText speed={5}>strength, movement and mindset</ShinyText>.
