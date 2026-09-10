@@ -7,6 +7,7 @@ import { PageTransition } from "@/components/motion/page-transition";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { WhatsappFab } from "@/components/whatsapp-fab";
+import { StickyCta } from "@/components/mobile/sticky-cta";
 
 const SITE = "https://gritfit.club";
 
@@ -82,6 +83,7 @@ export default function RootLayout({
           </PageTransition>
           <Footer />
           <WhatsappFab />
+          <StickyCta />
         </SmoothScrollProvider>
       </body>
     </html>

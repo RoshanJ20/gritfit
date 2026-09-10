@@ -24,7 +24,7 @@ Branch: `mobile-native-redesign`.
 | Phase | Scope | Status |
 |-------|-------|--------|
 | 1 | Foundation: mobile globals, touch targets, edge-to-edge helper, condensed app header that hides on scroll-down | ✅ |
-| 2 | Sticky Join + WhatsApp CTA bar (folds in the FAB) | ⏳ |
+| 2 | Sticky Join + WhatsApp CTA bar (folds in the FAB) | ✅ |
 | 3 | Snap carousels — home pillars & membership teaser (mobile only) | ⏳ |
 | 4 | Full-screen nav sheet refinement, interior polish, mobile perf pass, QA | ⏳ |
 
@@ -51,5 +51,21 @@ Branch: `mobile-native-redesign`.
 **Verified:** mobile (390px) — bar shows at top, hides on scroll-down, returns on
 scroll-up with its scrolled background. Desktop (1440px) — nav, centred logo,
 2-col pillars all unchanged; header stays visible when scrolled. `eslint` clean.
+
+### Phase 2 — Sticky CTA ✅
+
+- **`components/mobile/sticky-cta.tsx`** (new) — mobile-only (`lg:hidden`) bottom
+  bar: "Join Club" (WhatsApp join link) + WhatsApp chat button. Appears once past
+  the first screen (`scrollY > 400`), retracts as the footer enters view
+  (IntersectionObserver, `rootMargin -12%`) so it never covers footer links.
+  Safe-area padding baked in. Slide/fade via transform+opacity only.
+- **`components/whatsapp-fab.tsx`** — now `hidden lg:inline-flex`: desktop keeps
+  the FAB; on mobile the sticky bar carries the WhatsApp action, so the two never
+  stack.
+- **`app/(site)/layout.tsx`** — render `<StickyCta />` alongside the FAB.
+
+**Verified:** mobile — bar appears after the hero, hides at the footer (all
+footer links uncovered). Desktop — sticky bar `display:none`, FAB `display:flex`.
+`eslint` clean.
 
 _(updated per phase)_

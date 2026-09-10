@@ -15,6 +15,9 @@ import { site } from "@/content/site";
  * after a short scroll so it never competes with the hero on first paint.
  *
  * z-40 keeps it under the mobile nav sheet (z-50) and the skip link (z-100).
+ *
+ * Desktop only: below `lg` the mobile sticky CTA bar (components/mobile/
+ * sticky-cta.tsx) carries the WhatsApp action instead, so the two never stack.
  */
 export function WhatsappFab() {
   const [shown, setShown] = useState(false);
@@ -33,7 +36,7 @@ export function WhatsappFab() {
       rel="noopener noreferrer"
       aria-label={`Chat with Grit Fit on WhatsApp at ${site.whatsapp.display}`}
       className={cn(
-        "group fixed bottom-5 right-5 z-40 inline-flex items-center gap-0 rounded-full",
+        "group fixed bottom-5 right-5 z-40 hidden items-center gap-0 rounded-full lg:inline-flex",
         "border border-white/12 bg-ink-800/85 py-3 pl-3 pr-3 text-foreground shadow-lg backdrop-blur",
         "transition-[opacity,transform,border-color,padding] duration-300 ease-out",
         "hover:border-brand/50 hover:pr-4 focus-visible:border-brand/50 focus-visible:pr-4",
