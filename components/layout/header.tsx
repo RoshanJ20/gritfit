@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -31,9 +31,24 @@ export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Mobile only: the bar retracts on scroll-down and returns on scroll-up, the
+  // way a native app reclaims the reading area. `lg:translate-y-0` below pins it
+  // permanently open on desktop, so this state never affects the desktop header.
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24));
+  useMotionValueEvent(scrollY, "change", (y) => {
+    setScrolled(y > 24);
+    const goingDown = y > lastY.current;
+    // Only retract once clear of the bar's own height, never at the very top.
+    if (goingDown && y > 140) setHidden(true);
+    else if (!goingDown) setHidden(false);
+    lastY.current = y;
+  });
+
+  // Keep the bar present whenever the menu is open.
+  const collapsed = hidden && !mobileOpen;
 
   const leftGroups = navGroups.filter((g) => g.side === "left");
   const rightGroups = navGroups.filter((g) => g.side === "right");
@@ -41,13 +56,14 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color] duration-500 ease-out lg:translate-y-0",
+        collapsed ? "-translate-y-full" : "translate-y-0",
         scrolled
           ? "border-b border-border bg-ink-900/85 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="container-grit grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-4 lg:h-20">
+      <div className="container-grit grid h-14 grid-cols-[1fr_auto_1fr] items-center gap-4 lg:h-20">
         {/* ---------- Left ---------- */}
         <nav className="hidden items-center justify-start gap-1 lg:flex">
           {leftGroups.map((group) => (
@@ -58,7 +74,7 @@ export function Header() {
         <div className="flex items-center lg:hidden">
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger
-              className="inline-flex size-10 items-center justify-center rounded-md text-foreground"
+              className="-ml-2 inline-flex size-11 items-center justify-center rounded-md text-foreground"
               aria-label="Open menu"
             >
               <Menu className="size-6" />
@@ -138,7 +154,7 @@ export function Header() {
             href={joinHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-medium uppercase tracking-[0.15em] text-foreground"
+            className="-mr-2 inline-flex h-11 items-center px-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground"
           >
             Join
           </a>

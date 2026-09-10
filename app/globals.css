@@ -132,10 +132,15 @@
     color-scheme: dark;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* Hold type at its designed size when a phone is rotated to landscape. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
+    /* No grey flash on tap — the site provides its own press states. */
+    -webkit-tap-highlight-color: transparent;
   }
   /* Lenis smooth-scroll hooks */
   html.lenis,
@@ -229,6 +234,25 @@
     @apply mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12;
   }
 
+  /* Edge-to-edge on mobile — cancels the container gutter so media and
+     carousels run full-bleed to the screen edges, the way a native app lays
+     out. Resets to flush at `lg`, so desktop layout is never affected.
+     The negative margins mirror .container-grit's padding at each breakpoint
+     (px-5 → px-8 → reset). */
+  .edge-bleed {
+    margin-inline: -1.25rem;
+  }
+  @media (min-width: 640px) {
+    .edge-bleed {
+      margin-inline: -2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .edge-bleed {
+      margin-inline: 0;
+    }
+  }
+
   /* Vertical section rhythm — one uniform, minimal scale across every page.
      .section is the default band; .section-sm is for tighter teaser/CTA bands.
      Prefer these over ad-hoc py-* so spacing never drifts page to page. */
@@ -294,6 +318,16 @@
 }
 
 @layer utilities {
+  /* Safe-area helpers — keep fixed bottom furniture (sticky CTA, FAB) clear of
+     the iOS home indicator / Android gesture bar. No-ops on devices without an
+     inset, so they are safe everywhere. */
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+  .bottom-safe {
+    bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+
   /* Fluid display sizes — moderate, not dominating. */
   .text-hero {
     font-size: clamp(2.5rem, 7vw, 6rem);
