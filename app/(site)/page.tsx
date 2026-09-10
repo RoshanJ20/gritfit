@@ -12,6 +12,7 @@ import { Reveal, Curtain } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/sections/action-link";
 import { CardEdge } from "@/components/sections/card-edge";
 import { MediaPlaceholder } from "@/components/media-placeholder";
+import { SnapRail } from "@/components/mobile/snap-rail";
 import { ShinyText } from "@/components/reactbits/shiny-text";
 import { withShine } from "@/lib/shine";
 
@@ -83,6 +84,8 @@ export default function Home() {
 
       {/* ============== PILLARS (editorial rows) ============== */}
       <section className="border-t border-border">
+        {/* Desktop: editorial alternating rows — unchanged below `lg`. */}
+        <div className="hidden lg:block">
         {pillars.map((p, i) => (
           <div key={p.label} className="border-b border-border">
             <div className="container-grit section grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
@@ -126,6 +129,56 @@ export default function Home() {
             </div>
           </div>
         ))}
+        </div>
+
+        {/* Mobile: the same three pillars, same copy, as a native swipe deck.
+            Full blurb is preserved — nothing is dropped from the flow. */}
+        <div className="lg:hidden">
+          <div className="container-grit section">
+            <Reveal>
+              <p className="eyebrow">What we are</p>
+              <h2 className="display mt-3 text-display-2">Three ways to train.</h2>
+            </Reveal>
+            <SnapRail className="mt-8" ariaLabel="Our training pillars">
+              {pillars.map((p) => (
+                <Link
+                  key={p.label}
+                  href={p.href}
+                  className="group flex w-[82vw] max-w-[340px] flex-col border border-border bg-ink-800"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <MediaPlaceholder
+                      label={p.label}
+                      kind="video"
+                      ratio="auto"
+                      src={p.media}
+                      className="h-full rounded-none border-0"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <div className="flex items-baseline gap-3">
+                      <span className="display text-xl text-brand">{p.index}</span>
+                      <span className="eyebrow">{p.tagline}</span>
+                    </div>
+                    <h3 className="display mt-3 text-2xl">{p.label}</h3>
+                    <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+                      {p.blurb}
+                    </p>
+                    <span className="mt-auto inline-flex items-center gap-2 pt-5 text-xs font-medium uppercase tracking-[0.15em] text-foreground">
+                      {`Explore ${p.label}`}
+                      <span
+                        aria-hidden
+                        className="text-brand transition-transform group-hover:translate-x-1"
+                      >
+                        →
+                      </span>
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </SnapRail>
+          </div>
+        </div>
       </section>
 
       {/* ============== USP ============== */}
@@ -170,7 +223,8 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">
+          {/* Desktop: hairline-divided grid — unchanged below `lg`. */}
+          <div className="mt-12 hidden gap-px overflow-hidden border border-border bg-border sm:grid-cols-3 lg:grid">
             {tiers.map((t, i) => (
               <Reveal key={t.name} delay={i * 0.08} className="h-full">
                 <Link
@@ -207,6 +261,45 @@ export default function Home() {
                 </Link>
               </Reveal>
             ))}
+          </div>
+
+          {/* Mobile: the same plans as a swipe deck, opening on "Most Chosen". */}
+          <div className="mt-10 lg:hidden">
+            <SnapRail ariaLabel="Membership plans">
+              {tiers.map((t) => (
+                <Link
+                  key={t.name}
+                  href="/membership"
+                  className={cn(
+                    "flex w-[80vw] max-w-[320px] flex-col gap-4 border bg-ink-900 p-6",
+                    t.highlight ? "border-brand/40" : "border-border",
+                  )}
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="eyebrow">{t.name}</span>
+                      {t.highlight && (
+                        <span className="inline-flex items-center bg-brand px-2 py-1 text-[0.6rem] font-medium uppercase tracking-[0.15em] text-background">
+                          Most Chosen
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-3 text-lg font-light text-foreground">
+                      {t.tagline}
+                    </p>
+                  </div>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {t.summary}
+                  </p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground">
+                    See what&rsquo;s included
+                    <span aria-hidden className="text-brand">
+                      →
+                    </span>
+                  </span>
+                </Link>
+              ))}
+            </SnapRail>
           </div>
         </div>
       </section>

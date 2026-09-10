@@ -25,7 +25,7 @@ Branch: `mobile-native-redesign`.
 |-------|-------|--------|
 | 1 | Foundation: mobile globals, touch targets, edge-to-edge helper, condensed app header that hides on scroll-down | ✅ |
 | 2 | Sticky Join + WhatsApp CTA bar (folds in the FAB) | ✅ |
-| 3 | Snap carousels — home pillars & membership teaser (mobile only) | ⏳ |
+| 3 | Snap carousels — home pillars & membership teaser (mobile only) | ✅ |
 | 4 | Full-screen nav sheet refinement, interior polish, mobile perf pass, QA | ⏳ |
 
 ---
@@ -67,5 +67,24 @@ scroll-up with its scrolled background. Desktop (1440px) — nav, centred logo,
 **Verified:** mobile — bar appears after the hero, hides at the footer (all
 footer links uncovered). Desktop — sticky bar `display:none`, FAB `display:flex`.
 `eslint` clean.
+
+### Phase 3 — Snap carousels ✅
+
+- **`components/mobile/snap-rail.tsx`** (new) — reusable CSS scroll-snap deck.
+  Edge-to-edge track (`edge-bleed`), snap-start slides, hidden scrollbar,
+  progress dots driven by one passive scroll listener that writes state only when
+  the active slide changes. No library, no scroll-driven layout.
+- **`app/(site)/page.tsx`**
+  - Pillars: existing editorial alternating rows kept **verbatim** behind
+    `hidden lg:block`; a mobile-only (`lg:hidden`) `SnapRail` of pillar cards
+    added — same copy, **full blurb preserved**, whole card tappable.
+  - Membership teaser: grid wrapped `hidden … lg:grid`; mobile-only `SnapRail` of
+    plan cards added, opening on Core with the "Most Chosen" Elite card
+    brand-bordered.
+
+**Verified:** mobile — both decks swipe and snap, dots track position, next card
+peeks, content flows straight into the next section. Desktop (1440px) — mobile
+rails `display:none`; editorial pillar rows and the 3-col membership grid render
+exactly as before. `eslint` clean.
 
 _(updated per phase)_
