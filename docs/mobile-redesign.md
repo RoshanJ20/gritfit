@@ -131,3 +131,28 @@ against the running dev server:
 
 _Note:_ a full `next build` was intentionally not run so it wouldn't clobber the
 active dev server's `.next` on Windows; `tsc --noEmit` (whole project) is green.
+
+---
+
+## Follow-up — scroll-driven decks + screen-fit cards ✅
+
+Client feedback after Phase 3: (1) cards overflowed the screen, and (2) the
+side-swipe hid the right-hand cards behind a gesture users might not discover.
+
+- **`components/mobile/scroll-deck.tsx`** (new, replaces `snap-rail.tsx`) — the
+  section **pins** and its cards translate horizontally as the reader scrolls
+  **vertically**, so every card is walked through in order. Built on the GSAP
+  ScrollTrigger already in the project (pin + `scrub`), enabled only below `lg`
+  and only with motion allowed, via `gsap.matchMedia` (reverts cleanly at desktop
+  / on resize). Base markup stays a swipe rail, so no-JS / reduced-motion still
+  works. Only `transform` animates.
+- **`app/(site)/page.tsx`** — pillars and membership now use `ScrollDeck`. Pillar
+  cards are sized to one screen (`h-[82svh]`, image `basis-[38%]`, blurb scaled
+  to fit) so nothing is clipped; membership cards are centred one-per-screen.
+  `snap-rail.tsx` removed (superseded).
+
+**Verified:** mobile (390px) — pillars deck pins and walks Strength → RUSH →
+Recovery, each card fully on-screen; membership deck walks Core → Elite → Apex;
+both un-pin cleanly into the next section. Desktop (1440px) — deck wrappers
+`display:none`, **zero pin-spacers created**, body height normal, editorial rows
+and grid unchanged. `tsc --noEmit` green; `eslint` clean.

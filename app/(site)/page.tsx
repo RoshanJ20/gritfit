@@ -12,7 +12,7 @@ import { Reveal, Curtain } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/sections/action-link";
 import { CardEdge } from "@/components/sections/card-edge";
 import { MediaPlaceholder } from "@/components/media-placeholder";
-import { SnapRail } from "@/components/mobile/snap-rail";
+import { ScrollDeck } from "@/components/mobile/scroll-deck";
 import { ShinyText } from "@/components/reactbits/shiny-text";
 import { withShine } from "@/lib/shine";
 
@@ -131,53 +131,54 @@ export default function Home() {
         ))}
         </div>
 
-        {/* Mobile: the same three pillars, same copy, as a native swipe deck.
-            Full blurb is preserved — nothing is dropped from the flow. */}
+        {/* Mobile: the same three pillars, same copy, as a scroll-driven deck.
+            The section pins and the cards advance horizontally as you scroll, so
+            every pillar is walked through. Each card is sized to one screen. */}
         <div className="lg:hidden">
-          <div className="container-grit section">
+          <div className="container-grit pt-12">
             <Reveal>
               <p className="eyebrow">What we are</p>
               <h2 className="display mt-3 text-display-2">Three ways to train.</h2>
             </Reveal>
-            <SnapRail className="mt-8" ariaLabel="Our training pillars">
-              {pillars.map((p) => (
-                <Link
-                  key={p.label}
-                  href={p.href}
-                  className="group flex w-[82vw] max-w-[340px] flex-col border border-border bg-ink-800"
-                >
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <MediaPlaceholder
-                      label={p.label}
-                      kind="video"
-                      ratio="auto"
-                      src={p.media}
-                      className="h-full rounded-none border-0"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <div className="flex items-baseline gap-3">
-                      <span className="display text-xl text-brand">{p.index}</span>
-                      <span className="eyebrow">{p.tagline}</span>
-                    </div>
-                    <h3 className="display mt-3 text-2xl">{p.label}</h3>
-                    <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-                      {p.blurb}
-                    </p>
-                    <span className="mt-auto inline-flex items-center gap-2 pt-5 text-xs font-medium uppercase tracking-[0.15em] text-foreground">
-                      {`Explore ${p.label}`}
-                      <span
-                        aria-hidden
-                        className="text-brand transition-transform group-hover:translate-x-1"
-                      >
-                        →
-                      </span>
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </SnapRail>
           </div>
+          <ScrollDeck ariaLabel="Our training pillars">
+            {pillars.map((p) => (
+              <Link
+                key={p.label}
+                href={p.href}
+                className="group flex h-[82svh] max-h-[600px] w-[86vw] max-w-[380px] flex-col overflow-hidden border border-border bg-ink-800"
+              >
+                <div className="relative min-h-0 shrink-0 basis-[38%] overflow-hidden">
+                  <MediaPlaceholder
+                    label={p.label}
+                    kind="video"
+                    ratio="auto"
+                    src={p.media}
+                    className="h-full rounded-none border-0"
+                  />
+                </div>
+                <div className="flex min-h-0 flex-1 flex-col p-5">
+                  <div className="flex items-baseline gap-3">
+                    <span className="display text-lg text-brand">{p.index}</span>
+                    <span className="eyebrow">{p.tagline}</span>
+                  </div>
+                  <h3 className="display mt-2 text-2xl">{p.label}</h3>
+                  <p className="mt-2 min-h-0 flex-1 overflow-hidden whitespace-pre-line text-[0.8rem] leading-[1.5] text-muted-foreground">
+                    {p.blurb}
+                  </p>
+                  <span className="mt-3 inline-flex shrink-0 items-center gap-2 border-t border-border pt-3 text-xs font-medium uppercase tracking-[0.15em] text-foreground">
+                    {`Explore ${p.label}`}
+                    <span
+                      aria-hidden
+                      className="text-brand transition-transform group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </ScrollDeck>
         </div>
       </section>
 
@@ -263,44 +264,46 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Mobile: the same plans as a swipe deck, opening on "Most Chosen". */}
-          <div className="mt-10 lg:hidden">
-            <SnapRail ariaLabel="Membership plans">
-              {tiers.map((t) => (
-                <Link
-                  key={t.name}
-                  href="/membership"
-                  className={cn(
-                    "flex w-[80vw] max-w-[320px] flex-col gap-4 border bg-ink-900 p-6",
-                    t.highlight ? "border-brand/40" : "border-border",
-                  )}
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="eyebrow">{t.name}</span>
-                      {t.highlight && (
-                        <span className="inline-flex items-center bg-brand px-2 py-1 text-[0.6rem] font-medium uppercase tracking-[0.15em] text-background">
-                          Most Chosen
-                        </span>
-                      )}
-                    </div>
-                    <p className="mt-3 text-lg font-light text-foreground">
-                      {t.tagline}
-                    </p>
+        </div>
+
+        {/* Mobile: plans as a scroll-driven deck (Core → Elite → Apex), each
+            sized to the screen and advanced by vertical scroll. */}
+        <div className="lg:hidden">
+          <ScrollDeck ariaLabel="Membership plans">
+            {tiers.map((t) => (
+              <Link
+                key={t.name}
+                href="/membership"
+                className={cn(
+                  "flex w-[82vw] max-w-[340px] flex-col gap-5 border bg-ink-900 p-7",
+                  t.highlight ? "border-brand/40" : "border-border",
+                )}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="eyebrow">{t.name}</span>
+                    {t.highlight && (
+                      <span className="inline-flex items-center bg-brand px-2 py-1 text-[0.6rem] font-medium uppercase tracking-[0.15em] text-background">
+                        Most Chosen
+                      </span>
+                    )}
                   </div>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {t.summary}
+                  <p className="mt-3 text-xl font-light text-foreground">
+                    {t.tagline}
                   </p>
-                  <span className="mt-auto inline-flex items-center gap-2 pt-2 text-xs font-medium uppercase tracking-[0.15em] text-foreground">
-                    See what&rsquo;s included
-                    <span aria-hidden className="text-brand">
-                      →
-                    </span>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {t.summary}
+                </p>
+                <span className="mt-2 inline-flex items-center gap-2 border-t border-border pt-4 text-xs font-medium uppercase tracking-[0.15em] text-foreground">
+                  See what&rsquo;s included
+                  <span aria-hidden className="text-brand">
+                    →
                   </span>
-                </Link>
-              ))}
-            </SnapRail>
-          </div>
+                </span>
+              </Link>
+            ))}
+          </ScrollDeck>
         </div>
       </section>
 
