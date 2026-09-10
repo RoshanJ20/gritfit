@@ -12,7 +12,7 @@ import {
 } from "motion/react";
 import { Menu } from "lucide-react";
 
-import { navGroups, primaryCta, type NavGroup } from "@/content/nav";
+import { navGroups, primaryCta, secondaryCta, type NavGroup } from "@/content/nav";
 import { site } from "@/content/site";
 import { whatsappUrl } from "@/lib/utils";
 
@@ -81,10 +81,11 @@ export function Header() {
             </SheetTrigger>
             <SheetContent
               side="left"
-              className="w-full border-border bg-ink-900 sm:max-w-sm"
+              className="w-full border-border bg-ink-900 data-[side=left]:w-full sm:max-w-sm"
             >
               <SheetTitle className="sr-only">Navigation</SheetTitle>
-              <div className="flex h-full flex-col overflow-y-auto px-6 pb-10 pt-12">
+              <div className="flex h-full flex-col overflow-y-auto px-6 pb-[calc(2.5rem+env(safe-area-inset-bottom))] pt-14">
+                <p className="eyebrow mb-6">Menu</p>
                 <nav className="w-full">
                   {/* Every group is a direct link to its page — no accordions on
                       mobile; sub-pages are reached from the section page itself. */}
@@ -93,21 +94,38 @@ export function Header() {
                       key={group.label}
                       href={group.href}
                       onClick={() => setMobileOpen(false)}
-                      className="display flex border-b border-border py-4 text-2xl text-foreground transition-colors hover:text-brand"
+                      className="display group flex items-center justify-between border-b border-border py-4 text-2xl text-foreground transition-colors hover:text-brand"
                     >
-                      {group.label}
+                      <span>{group.label}</span>
+                      <span
+                        aria-hidden
+                        className="-translate-x-1 text-base text-brand opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                      >
+                        →
+                      </span>
                     </Link>
                   ))}
                 </nav>
-                <a
-                  href={joinHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileOpen(false)}
-                  className="btn btn-solid mt-8 w-full px-5 py-3.5"
-                >
-                  {primaryCta.label}
-                </a>
+                {/* Pinned to the foot: the primary WhatsApp join, with the
+                    assessment as a quieter second option. */}
+                <div className="mt-auto pt-8">
+                  <a
+                    href={joinHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileOpen(false)}
+                    className="btn btn-solid w-full px-5 py-4"
+                  >
+                    {primaryCta.label}
+                  </a>
+                  <Link
+                    href={secondaryCta.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="mt-4 block text-center text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {`Or ${secondaryCta.label.toLowerCase()}`}
+                  </Link>
+                </div>
               </div>
             </SheetContent>
           </Sheet>

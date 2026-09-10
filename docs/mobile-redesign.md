@@ -26,7 +26,7 @@ Branch: `mobile-native-redesign`.
 | 1 | Foundation: mobile globals, touch targets, edge-to-edge helper, condensed app header that hides on scroll-down | ✅ |
 | 2 | Sticky Join + WhatsApp CTA bar (folds in the FAB) | ✅ |
 | 3 | Snap carousels — home pillars & membership teaser (mobile only) | ✅ |
-| 4 | Full-screen nav sheet refinement, interior polish, mobile perf pass, QA | ⏳ |
+| 4 | Full-screen nav sheet refinement, interior polish, mobile perf pass, QA | ✅ |
 
 ---
 
@@ -87,4 +87,47 @@ peeks, content flows straight into the next section. Desktop (1440px) — mobile
 rails `display:none`; editorial pillar rows and the 3-col membership grid render
 exactly as before. `eslint` clean.
 
-_(updated per phase)_
+### Phase 4 — Nav, polish & perf ✅
+
+- **`components/layout/header.tsx`** — mobile nav sheet reworked into a
+  full-screen takeover (`data-[side=left]:w-full`): "Menu" eyebrow, oversized
+  display links with a brand arrow that slides in, and a pinned foot — primary
+  "Join Club" (WhatsApp) plus a quieter "Or book an assessment" (`secondaryCta`).
+  Safe-area padding at the foot.
+- **`app/globals.css`** — mobile perf: the fixed full-viewport film-grain blend
+  layer is dropped below `lg` (invisible at 0.04 opacity, but it composites over
+  the page on every scroll frame). Desktop grain unchanged.
+- **Interior pages** — reviewed on mobile (Strength Club as representative): the
+  immersive PageHero, step list, "we do / we don't" grid, centred CTA close and
+  FAQ accordion (48px touch targets) already flow cleanly top-to-bottom; no
+  markup changes were needed — the flow carries over intact.
+- **Left as-is on purpose:** Lenis smooth-scroll (already `smoothWheel:false`,
+  reduced-motion gated, and the team documents why it stays) and the Ken-Burns
+  hero (a compositor-only transform — cheap). Touching either risked desktop.
+
+**Verified:** mobile — full-screen nav opens/closes, arrows + pinned CTAs render;
+interior hero + FAQ flow intact. Whole-project `tsc --noEmit` passes (0 errors);
+`eslint` clean on all changed files.
+
+---
+
+## Testing & verification summary
+
+All phases verified at **390px** (mobile) and **1440px** (desktop) via Playwright
+against the running dev server:
+
+- **Mobile gains:** retracting app header; sticky Join/WhatsApp bar (hides at
+  footer); pillars & membership swipe decks with dots; full-screen nav; grain
+  dropped for perf. Page height on the home route drops substantially as the two
+  stacked sections become single-screen decks.
+- **Desktop guarantee:** header (nav, centred logo, height, always-visible),
+  editorial pillar rows, 3-col membership grid, grain, and all interior pages
+  render **identically** — every change is gated below `lg` or is additive
+  mobile-only markup. Confirmed mobile-only wrappers report `display:none` at
+  1440px.
+- **Performance:** no new dependencies; carousels are native CSS scroll-snap;
+  all added motion is transform/opacity; one passive scroll flag + two
+  IntersectionObservers total; grain blend removed on mobile.
+
+_Note:_ a full `next build` was intentionally not run so it wouldn't clobber the
+active dev server's `.next` on Windows; `tsc --noEmit` (whole project) is green.
