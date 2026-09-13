@@ -76,7 +76,7 @@ export default function TrainingPage() {
 
       {/* Explore statement */}
       <section className="container-grit section">
-        <div className="mx-auto max-w-4xl space-y-6">
+        <div className="space-y-6 text-center">
           <LedeStatement lines={training.explore} />
           <Reveal delay={0.2}>
             <p className="display pt-4 text-display-2 text-foreground">

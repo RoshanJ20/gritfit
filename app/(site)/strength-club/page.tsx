@@ -33,7 +33,7 @@ export default function StrengthClubPage() {
       {/* Concise about — creed. Same block as the RUSH writeup: one container,
           one type scale, closing on a shiny statement line. */}
       <section className="container-grit section">
-        <div className="mx-auto max-w-4xl space-y-6">
+        <div className="space-y-6 text-center">
           <Reveal>
             <p className="lede">
               {about.detail}
