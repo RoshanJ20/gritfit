@@ -13,9 +13,10 @@ export const training = {
   subtitle: "Elite coaches. Clear intent. Better performance.",
   membershipNote:
     "Grit Fit membership is required for all personal training clients.",
+  // One flowing statement (like the RUSH writeup). The "\n" starts the closing
+  // beat on its own line without a paragraph gap — see `LedeStatement`.
   explore: [
-    "We’re an elite team of trainers from diverse disciplines, united by one mission: helping you achieve more.",
-    "Each trainer brings their own expertise, but every programme is built around your goals, pace and potential. Whether it’s 1-on-1 coaching or small group training, we’re here to guide, challenge and elevate you at every step.",
+    "We’re an elite team of trainers from diverse disciplines, united by one mission: helping you achieve more. Each trainer brings their own expertise, but every programme is built around your goals, pace and potential.\nWhether it’s 1-on-1 coaching or small group training, we’re here to guide, challenge and elevate you at every step.",
   ],
   // Bold closing statement — carries the animated brand sheen (ShinyText).
   closer: "Push limits. Build discipline. Become stronger.",

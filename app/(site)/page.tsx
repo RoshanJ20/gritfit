@@ -211,7 +211,7 @@ export default function Home() {
 
       {/* ============== MEMBERSHIP TEASER ============== */}
       <section className="border-y border-border bg-ink-800/40">
-        <div className="container-grit section">
+        <div className="container-grit section pb-0 lg:pb-16">
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
             <Reveal>
               <p className="eyebrow">Membership</p>
@@ -266,8 +266,9 @@ export default function Home() {
 
         </div>
 
-        {/* Mobile: plans as a scroll-driven deck (Core → Elite → Apex), each
-            sized to the screen and advanced by vertical scroll. */}
+        {/* Mobile: plans as a scroll-driven deck (Core → Elite → Apex), pinned
+            so the cards advance horizontally as the reader scrolls vertically.
+            Cards are sized to fill the deck so there's no empty vertical gap. */}
         <div className="lg:hidden">
           <ScrollDeck ariaLabel="Membership plans">
             {tiers.map((t) => (
@@ -275,7 +276,7 @@ export default function Home() {
                 key={t.name}
                 href="/membership"
                 className={cn(
-                  "flex w-[82vw] max-w-[340px] flex-col gap-5 border bg-ink-900 p-7",
+                  "flex h-[70svh] max-h-[560px] w-[82vw] max-w-[340px] flex-col gap-5 border bg-ink-900 p-7",
                   t.highlight ? "border-brand/40" : "border-border",
                 )}
               >
@@ -295,7 +296,7 @@ export default function Home() {
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {t.summary}
                 </p>
-                <span className="mt-2 inline-flex items-center gap-2 border-t border-border pt-4 text-xs font-medium uppercase tracking-[0.15em] text-foreground">
+                <span className="mt-auto inline-flex items-center gap-2 border-t border-border pt-4 text-xs font-medium uppercase tracking-[0.15em] text-foreground">
                   See what&rsquo;s included
                   <span aria-hidden className="text-brand">
                     →

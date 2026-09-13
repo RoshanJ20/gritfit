@@ -26,10 +26,7 @@ export const rush = {
   signature: "Move with Meaning",
   writeup: [
     "RUSH is our signature training system.",
-    "One day you’re chasing pace and fighting fatigue. The next you’re under the bar, building strength.",
-    "Then you’re learning a new skill, finding range through movement or slowing down long enough to recover and come back stronger.",
-    "Every class has a purpose. Every session fits the bigger picture.",
-    "Push hard. Move freely. Recover well. Come back better.",
+    "One day you’re chasing pace and fighting fatigue. The next you’re under the bar, building strength. Then you’re learning a new skill, finding range through movement or slowing down long enough to recover and come back stronger.\nEvery class has a purpose. Every session fits the bigger picture.",
   ],
   closer: "This is RUSH.",
   models: [

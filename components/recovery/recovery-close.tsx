@@ -2,7 +2,12 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { recovery } from "@/content/recovery";
+import { site } from "@/content/site";
+import { whatsappUrl } from "@/lib/utils";
 import { Reveal } from "@/components/motion/reveal";
+
+// Same WhatsApp join link as the navbar "Join Club" CTA.
+const joinHref = whatsappUrl(site.whatsapp.joinMessage);
 
 /**
  * The shared bottom of every Essential Recovery page — one card that says what
@@ -70,9 +75,14 @@ export function RecoveryClose({ children }: { children?: ReactNode }) {
           </p>
         </Reveal>
         <Reveal delay={0.24} className="mt-10 flex justify-center">
-          <Link href="/contact" className="btn btn-solid px-9 py-4">
+          <a
+            href={joinHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-solid px-9 py-4"
+          >
             Book a Recovery Session
-          </Link>
+          </a>
         </Reveal>
         {children}
       </section>

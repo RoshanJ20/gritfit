@@ -6,6 +6,7 @@ import { PageHero } from "@/components/sections/page-hero";
 import { CardEdge } from "@/components/sections/card-edge";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { RecoveryClose } from "@/components/recovery/recovery-close";
+import { LedeStatement } from "@/components/sections/lede-statement";
 import { Reveal } from "@/components/motion/reveal";
 import { ShinyText } from "@/components/reactbits/shiny-text";
 
@@ -30,13 +31,7 @@ export default function RecoveryPage() {
       {/* Opening statement */}
       <section className="container-grit section">
         <div className="mx-auto max-w-4xl space-y-6">
-          {recovery.intro.lines.map((line, i) => (
-            <Reveal key={i} delay={i * 0.05}>
-              <p className="lede">
-                {line}
-              </p>
-            </Reveal>
-          ))}
+          <LedeStatement lines={recovery.intro.lines} />
           <Reveal delay={0.2}>
             <p className="display pt-4 text-display-2 text-foreground">
               <ShinyText speed={5}>{recovery.intro.closer}</ShinyText>

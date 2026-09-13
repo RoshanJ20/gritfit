@@ -5,6 +5,7 @@ import { programs } from "@/content/programs";
 import { PageHero } from "@/components/sections/page-hero";
 import { LinkList } from "@/components/sections/link-list";
 import { TrainingPrograms } from "@/components/sections/training-programs";
+import { LedeStatement } from "@/components/sections/lede-statement";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { TrainingCta } from "@/components/sections/training-cta";
 import { Callout } from "@/components/sections/callout";
@@ -76,13 +77,7 @@ export default function TrainingPage() {
       {/* Explore statement */}
       <section className="container-grit section">
         <div className="mx-auto max-w-4xl space-y-6">
-          {training.explore.map((line, i) => (
-            <Reveal key={i} delay={i * 0.05}>
-              <p className="lede">
-                {line}
-              </p>
-            </Reveal>
-          ))}
+          <LedeStatement lines={training.explore} />
           <Reveal delay={0.2}>
             <p className="display pt-4 text-display-2 text-foreground">
               <ShinyText speed={5}>{training.closer}</ShinyText>

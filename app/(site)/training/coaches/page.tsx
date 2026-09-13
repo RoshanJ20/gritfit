@@ -30,11 +30,6 @@ export default function CoachesPage() {
         <Reveal>
           <p className="eyebrow">The coaches</p>
           <h2 className="display mt-4 text-display-2">Who you&apos;ll train with</h2>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Hover a coach to preview their philosophy, areas of expertise and
-            coaching style. Click or tap to keep a card open — hold several
-            open at once to compare, and click again to close.
-          </p>
         </Reveal>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -24,11 +24,11 @@ export const recovery = {
   subtitle: "Move between heat, cold and manual therapy.",
 
   // Opening statement — closes on a glowing line (like RUSH's "This is RUSH.").
+  // One flowing statement (like the RUSH writeup). The "\n" starts the closing
+  // beat on its own line without a paragraph gap — see `LedeStatement`.
   intro: {
     lines: [
-      "Recovery at Grit Fit is not separate from training—it is part of the system that helps you perform better, recover faster and stay consistent.",
-      "Our recovery services are designed to support training load, reduce muscle soreness, improve movement quality and help you return to training ready.",
-      "Recovery is not relaxation alone. It is preparation for your next session.",
+      "Recovery at Grit Fit is not separate from training—it is part of the system that helps you perform better, recover faster and stay consistent. Our recovery services are designed to support training load, reduce muscle soreness, improve movement quality and help you return to training ready.\nRecovery is not relaxation alone. It is preparation for your next session.",
     ],
     closer: "RESET. RESTORE. REPEAT.",
   },
@@ -197,7 +197,7 @@ export const coldPlunge = {
   intro: "Cool down with purpose.",
   tagline: "Cold Exposure",
   paras: [
-    "Deliberate Cold Exposure (DCE) is the intentional practice of exposing the body to cold through methods like cold plunging or cold showers. It is used as a controlled stressor the body adapts to over time.",
+    "Deliberate Cold Exposure (DCE) is the intentional practice of exposing the body to cold plunging or cold showers. It is used as a controlled stressor the body adapts to over time.",
     "Research suggests regular cold exposure may be associated with improved stress tolerance, enhanced alertness, better sleep quality and short-term increases in catecholamines linked to focus and energy. It may also contribute to metabolic activation through thermogenic response.",
     "Discomfort is expected—shivering is part of the adaptation process.",
   ],

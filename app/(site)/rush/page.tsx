@@ -6,6 +6,7 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { PageHero } from "@/components/sections/page-hero";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { CardEdge } from "@/components/sections/card-edge";
+import { LedeStatement } from "@/components/sections/lede-statement";
 import { Reveal } from "@/components/motion/reveal";
 import { SquaresBackground } from "@/components/reactbits/squares-bg";
 import { ScrambleText } from "@/components/reactbits/scramble-text";
@@ -34,13 +35,7 @@ export default function RushPage() {
       {/* Writeup statement */}
       <section className="container-grit section">
         <div className="mx-auto max-w-4xl space-y-6">
-          {rush.writeup.slice(1).map((line, i) => (
-            <Reveal key={i} delay={i * 0.05}>
-              <p className="lede">
-                {line}
-              </p>
-            </Reveal>
-          ))}
+          <LedeStatement lines={rush.writeup.slice(1)} />
           <Reveal delay={0.2}>
             <p className="display pt-4 text-display-2 text-foreground">
               <ShinyText speed={5}>{rush.closer}</ShinyText>

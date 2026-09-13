@@ -48,10 +48,7 @@ export const navGroups: NavGroup[] = [
     label: "Trainings",
     href: "/training",
     side: "right",
-    links: [
-      { label: "Meet the coaches", href: "/training/coaches" },
-      { label: "Testimonials", href: "/training/testimonials" },
-    ],
+    links: [],
   },
   {
     label: "Amenities",

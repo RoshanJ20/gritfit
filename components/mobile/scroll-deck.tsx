@@ -30,15 +30,24 @@ export function ScrollDeck({
   children,
   className,
   ariaLabel,
+  pinned = true,
 }: {
   children: React.ReactNode;
   className?: string;
   ariaLabel?: string;
+  /**
+   * When true (default) the deck pins full-screen and scrubs horizontally.
+   * When false it flows inline as a compact horizontal swipe rail sized to its
+   * content — no full-height block, so short cards sit directly under the
+   * preceding heading with no empty vertical gap.
+   */
+  pinned?: boolean;
 }) {
   const section = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!pinned) return;
     const sectionEl = section.current;
     const trackEl = track.current;
     if (!sectionEl || !trackEl) return;
@@ -74,22 +83,27 @@ export function ScrollDeck({
     );
 
     return () => mm.revert();
-  }, []);
+  }, [pinned]);
 
   return (
     <section
       ref={section}
       aria-label={ariaLabel}
       className={cn(
-        // Base (fallback): a full-height horizontal swipe rail.
-        "relative flex h-[100svh] snap-x snap-mandatory items-center overflow-x-auto",
+        "relative flex snap-x snap-mandatory items-center overflow-x-auto",
+        // Pinned: a full-height rail that GSAP pins and scrubs horizontally.
+        // Compact: sized to its content, flowing inline under the heading.
+        pinned ? "h-[100svh]" : "py-6",
         "[-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         className,
       )}
     >
       <div
         ref={track}
-        className="flex h-full items-center gap-[4vw] px-[7vw] [&>*]:snap-center"
+        className={cn(
+          "flex items-stretch gap-[4vw] px-[7vw] [&>*]:snap-center",
+          pinned && "h-full items-center",
+        )}
       >
         {children}
       </div>
