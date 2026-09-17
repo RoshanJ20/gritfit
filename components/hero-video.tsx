@@ -2,6 +2,7 @@
 
 import { useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 import { heroMediaVersion } from "@/lib/media-version";
 
 /**
@@ -29,7 +30,7 @@ export function HeroVideo({
   className?: string;
 }) {
   const reduced = useReducedMotion();
-  const stamp = (url: string) => `${url}?v=${heroMediaVersion}`;
+  const stamp = (url: string) => `${asset(url)}?v=${heroMediaVersion}`;
   const mediaClass =
     "h-full w-full object-cover grayscale contrast-105 brightness-135";
 

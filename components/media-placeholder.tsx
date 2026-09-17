@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 import { ImageIcon, Film } from "lucide-react";
 import { TiltedCard } from "@/components/reactbits/tilted-card";
 
@@ -61,7 +62,7 @@ export function MediaPlaceholder({
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={src}
+            src={asset(src)}
             alt={label}
             loading="lazy"
             className={cn(

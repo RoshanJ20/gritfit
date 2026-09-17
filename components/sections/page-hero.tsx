@@ -1,6 +1,7 @@
 import { Reveal, Curtain, SplitText } from "@/components/motion/reveal";
 import { MediaPlaceholder } from "@/components/media-placeholder";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 
 type TextPosition = "left-center" | "bottom-left" | "center";
 
@@ -212,7 +213,7 @@ function ImmersiveHero({
       {/* Photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={backgroundImage}
+        src={asset(backgroundImage)}
         alt=""
         aria-hidden
         className="absolute inset-0 -z-10 h-full w-full object-cover grayscale"

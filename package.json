@@ -7,9 +7,10 @@
     "dev": "next dev",
     "prebuild": "node scripts/gen-media-version.mjs",
     "build": "next build",
+    "postbuild": "node scripts/assemble-takeover.mjs",
     "start": "next start",
     "lint": "eslint",
-    "pages:deploy": "next build && wrangler pages deploy out --project-name=gritfit",
+    "pages:deploy": "npm run build && wrangler pages deploy out --project-name=gritfit",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"

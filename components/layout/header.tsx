@@ -12,6 +12,8 @@ import {
 } from "motion/react";
 import { Menu } from "lucide-react";
 
+import { asset } from "@/lib/asset";
+
 import { navGroups, primaryCta, secondaryCta, type NavGroup } from "@/content/nav";
 import { site } from "@/content/site";
 import { whatsappUrl } from "@/lib/utils";
@@ -143,7 +145,7 @@ export function Header() {
               aspect ratio the browser reserves before the image loads, so they
               have to match or the header shifts on first paint. */}
           <Image
-            src="/images/finalgritfitlogo.png"
+            src={asset("/images/finalgritfitlogo.png")}
             alt="Grit Fit — Luxe Health Club"
             width={913}
             height={238}

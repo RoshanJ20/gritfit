@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
 import { CountUp } from "@/components/reactbits/count-up";
+import { asset } from "@/lib/asset";
 
 /** A single program revealed inside a category card. */
 export type ProgramLink = {
@@ -71,7 +72,7 @@ function CategoryCard({
         {category.image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={category.image}
+            src={asset(category.image)}
             alt=""
             aria-hidden
             loading="lazy"
@@ -146,7 +147,7 @@ function ProgramSubCard({ program }: { program: ProgramLink }) {
         {program.image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={program.image}
+            src={asset(program.image)}
             alt=""
             aria-hidden
             loading="lazy"
