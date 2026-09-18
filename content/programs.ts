@@ -35,7 +35,6 @@ export const programs: Program[] = [
     paras: [
       "Strong Performance is built for athletes, hybrid racers, competitive individuals and those who want to move with purpose and efficiency. Training focuses on movement quality, strength under fatigue, conditioning and mindset under pressure.",
       "This is not basic fitness — this is structured development for output, performance and control.",
-      "Available in 1-on-1 coaching for precision development or semi-private training for competitive energy and push.",
       "This is where you stop training casually — and start training with intent.",
     ],
   },

@@ -10,7 +10,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { asset } from "@/lib/asset";
 
@@ -27,6 +27,7 @@ import {
   SheetContent,
   SheetTrigger,
   SheetTitle,
+  SheetClose,
 } from "@/components/ui/sheet";
 
 export function Header() {
@@ -83,11 +84,22 @@ export function Header() {
             </SheetTrigger>
             <SheetContent
               side="left"
+              showCloseButton={false}
               className="w-full border-border bg-ink-900 data-[side=left]:w-full sm:max-w-sm"
             >
               <SheetTitle className="sr-only">Navigation</SheetTitle>
-              <div className="flex h-full flex-col overflow-y-auto px-6 pb-[calc(2.5rem+env(safe-area-inset-bottom))] pt-14">
-                <p className="eyebrow mb-6">Menu</p>
+              <div className="flex h-full flex-col overflow-y-auto px-6 pb-[calc(2.5rem+env(safe-area-inset-bottom))] pt-[calc(1.5rem+env(safe-area-inset-top))]">
+                {/* MENU eyebrow and the close control share one row, aligned to
+                    the same left/right insets as the links below. */}
+                <div className="mb-6 flex items-center justify-between">
+                  <p className="eyebrow">Menu</p>
+                  <SheetClose
+                    aria-label="Close menu"
+                    className="-mr-2 inline-flex size-11 items-center justify-center rounded-md text-foreground transition-colors hover:text-brand"
+                  >
+                    <X className="size-6" />
+                  </SheetClose>
+                </div>
                 <nav className="w-full">
                   {/* Every group is a direct link to its page — no accordions on
                       mobile; sub-pages are reached from the section page itself. */}
