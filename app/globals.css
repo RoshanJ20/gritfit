@@ -280,7 +280,18 @@
     font-weight: 400;
     letter-spacing: 0.01em;
     line-height: 1;
-    font-size: clamp(3rem, 22vw, 21rem);
+    /* Dialed back from clamp(3rem, 22vw, 21rem): smaller so it stops blocking
+       the hero footage. */
+    font-size: clamp(2.5rem, 15vw, 14rem);
+    /* Outlined "ghost" treatment: the fill is barely-there so the footage
+       reads through the letters, while a solid dark stroke keeps each glyph
+       crisp against the video. `paint-order: stroke` draws the outline first so
+       the translucent fill doesn't eat into it, and the shadow lifts the letters
+       off darker parts of the footage where a dark stroke alone wouldn't. */
+    color: rgb(255 255 255 / 0.16);
+    -webkit-text-stroke: 3px rgb(7 7 7 / 0.92);
+    paint-order: stroke fill;
+    text-shadow: 0 2px 12px rgb(7 7 7 / 0.5);
   }
 
   /* Opening statement / lede — the paragraph block that follows a PageHero on

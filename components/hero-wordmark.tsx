@@ -44,7 +44,7 @@ export function HeroWordmark() {
   return (
     <h1
       aria-label="Grit Fit"
-      className="wordmark hero-exit-wordmark flex items-end justify-center gap-[0.07em] text-foreground"
+      className="wordmark hero-exit-wordmark flex items-end justify-center gap-[0.07em]"
     >
       <Rise play={play} duration={1.1}>
         Grit

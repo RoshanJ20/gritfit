@@ -240,14 +240,16 @@ export const skillab = {
         "Expect intensity, focus and high output. Leave stronger, faster and built for performance.",
       ],
     },
-    {
-      name: "Running Division",
-      paras: [
-        "Whether you’re just starting out or already chasing PBs, the Running Division is built for every level. We train pace. We build endurance. We sharpen on the track and progress through structured sessions that make every run count.",
-        "We start together at the club. We warm up as one. But once we hit the road—that’s where work happens.",
-        "Run smarter. Run stronger. Run together.",
-      ],
-    },
+    // Running Division — temporarily hidden. Uncomment to restore (it renumbers
+    // automatically, since the card number is derived from array position).
+    // {
+    //   name: "Running Division",
+    //   paras: [
+    //     "Whether you’re just starting out or already chasing PBs, the Running Division is built for every level. We train pace. We build endurance. We sharpen on the track and progress through structured sessions that make every run count.",
+    //     "We start together at the club. We warm up as one. But once we hit the road—that’s where work happens.",
+    //     "Run smarter. Run stronger. Run together.",
+    //   ],
+    // },
     {
       name: "Taekwondo",
       paras: [

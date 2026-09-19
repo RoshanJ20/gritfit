@@ -43,7 +43,7 @@ export default function ManualTherapyPage() {
           <Reveal>
             <p className="eyebrow">The sessions</p>
             <h2 className="display mt-4 text-display-2 max-w-[20ch]">
-              Three ways to recover.
+              Ways to recover.
             </h2>
           </Reveal>
         </div>

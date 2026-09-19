@@ -265,10 +265,11 @@ export const manualTherapy = {
     // programs" rows on Trainings are: the session name leads, and the note
     // beside it describes the member it is for.
     matches: [
-      {
-        name: "Sports Massage",
-        note: "You have trained hard this week and want to be ready for the next one.",
-      },
+      // Sports Massage — temporarily hidden alongside its session card above.
+      // {
+      //   name: "Sports Massage",
+      //   note: "You have trained hard this week and want to be ready for the next one.",
+      // },
       {
         name: "Deep Tissue Massage",
         note: "One area stays tight, session after session, and will not let go.",
@@ -292,15 +293,17 @@ export const manualTherapy = {
  * are the keys used to look up imagery in the page's image map.
  */
 export const massageFormats = [
-  {
-    name: "Sports Massage",
-    tagline: manualTherapy.services[0].tagline,
-    paras: [
-      "A performance recovery session designed to reduce muscle soreness, support fatigue management and improve how your body feels after training.",
-      "Built for people who train regularly and want to stay consistent without breakdown, it keeps post-training soreness in check, supports recovery between sessions and helps you manage the fatigue that accumulates across a training week.",
-      "The result is a body that shows up ready for the next workout, session after session. Ideal for athletes, lifters, runners and HYROX or CrossFit members who train often.",
-    ],
-  },
+  // Sports Massage — temporarily hidden. Uncomment to restore (the following
+  // cards renumber automatically, since card numbers derive from array position).
+  // {
+  //   name: "Sports Massage",
+  //   tagline: manualTherapy.services[0].tagline,
+  //   paras: [
+  //     "A performance recovery session designed to reduce muscle soreness, support fatigue management and improve how your body feels after training.",
+  //     "Built for people who train regularly and want to stay consistent without breakdown, it keeps post-training soreness in check, supports recovery between sessions and helps you manage the fatigue that accumulates across a training week.",
+  //     "The result is a body that shows up ready for the next workout, session after session. Ideal for athletes, lifters, runners and HYROX or CrossFit members who train often.",
+  //   ],
+  // },
   {
     name: "Deep Tissue Massage",
     tagline: manualTherapy.services[1].tagline,
