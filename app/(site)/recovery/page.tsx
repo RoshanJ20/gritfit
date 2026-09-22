@@ -11,9 +11,9 @@ import { Reveal } from "@/components/motion/reveal";
 import { ShinyText } from "@/components/reactbits/shiny-text";
 
 export const metadata: Metadata = {
-  title: "Essential Recovery — Move between heat, cold and manual therapy",
+  title: "Essential Recovery — Move between heat, cold and massage therapy",
   description:
-    "Recovery at Grit Fit is part of the system. Sauna, cold plunge, contrast therapy and manual therapy — designed to help you perform better, recover faster and stay consistent.",
+    "Recovery at Grit Fit is part of the system. Sauna, cold plunge, contrast therapy and massage therapy — designed to help you perform better, recover faster and stay consistent.",
 };
 
 export default function RecoveryPage() {

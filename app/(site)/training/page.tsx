@@ -23,11 +23,18 @@ export const metadata: Metadata = {
 //  1. Core Programs — Strong Start, Strong Performance.
 //  2. Nutrition — a single program linking to its own page.
 //  3. Specialised Coaching — Athletic Youth, Injury Return, Postnatal.
+// Preview thumbnails match each program's own page hero. Most follow the
+// /images/programs/<slug>.jpg convention; overrides here mirror the exceptions
+// in program-detail.tsx (e.g. Strong Performance's hero is rush/forcex.jpg).
+const heroImageOverrides: Record<string, string> = {
+  "strong-performance": "/images/rush/forcex.jpg",
+};
+
 const toLink = (p: (typeof programs)[number]) => ({
   name: p.name,
   href: p.href,
   note: p.lead,
-  image: `/images/programs/${p.slug}.jpg`,
+  image: heroImageOverrides[p.slug] ?? `/images/programs/${p.slug}.jpg`,
 });
 
 const programCategories = [
@@ -49,6 +56,7 @@ const programCategories = [
         name: "Nutrition Coaching",
         href: "/nutrition",
         note: "Personalised nutrition to fuel your training, recovery and results.",
+        image: "/images/nutrition.jpg",
       },
     ],
   },

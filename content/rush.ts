@@ -62,15 +62,16 @@ export const rush = {
   difference: {
     eyebrow: "The difference",
     get: [
-      "Every class has a purpose. Every session fits the bigger picture.",
-      "Structured sessions designed to build strength, conditioning, movement and skill.",
-      "Coach-led classes you can scale to your level, whatever your experience.",
-      "Strength, hybrid, endurance, skill work and movement flow in one method.",
+      "Build strength that carries into everyday life and performance.",
+      "Improve your fitness, endurance and ability to handle fatigue.",
+      "Move with more control, confidence and freedom.",
+      "Develop skills that make you stronger, more capable and more adaptable.",
+      "Train efficiently, recover well and keep getting better.",
     ],
     dont: [
-      "No random workouts with no place in a bigger plan.",
-      "No keeping up with anyone else — you train at your level.",
-      "No experience needed before you start.",
+      "No workouts designed just to make you sweat.",
+      "No random training with no purpose or progression.",
+      "No pressure to train at someone else’s pace.",
     ],
   },
   faqs: [

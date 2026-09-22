@@ -41,9 +41,9 @@ export const programs: Program[] = [
   {
     slug: "youth",
     href: "/programs/youth",
-    name: "Athletic Youth Development",
+    name: "Athletic Development",
     group: "specialised",
-    lead: "Built for young athletes aged 8–18, this program develops the physical foundations for long-term athletic success.",
+    lead: "Built for athletes, this program develops the physical foundations for long-term athletic success.",
     paras: [
       "Training focuses on speed, strength, coordination, balance, movement quality and injury resilience while creating confidence, discipline and strong movement habits that support performance across all sports.",
       "Whether preparing for school sport, club competition or elite pathways, we help young athletes build the skills that matter most.",

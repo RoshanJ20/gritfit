@@ -21,7 +21,7 @@ export type RecoveryOffering = {
 export const recovery = {
   eyebrow: "Essential Recovery",
   signature: "Where recovery hits different",
-  subtitle: "Move between heat, cold and manual therapy.",
+  subtitle: "Move between heat, cold and massage therapy.",
 
   // Opening statement — closes on a glowing line (like RUSH's "This is RUSH.").
   // One flowing statement (like the RUSH writeup). The "\n" starts the closing
@@ -45,7 +45,7 @@ export const recovery = {
       href: "/recovery/exposure",
     },
     {
-      name: "Manual Therapy",
+      name: "Massage Therapy",
       tagline: "Hands-on recovery. Release tension. Restore how you move.",
       href: "/recovery/massage",
     },
@@ -68,15 +68,18 @@ export const recovery = {
   },
 
   // Closing band, shared by every Essential Recovery page via `RecoveryClose`.
-  // What recovery is for and what it costs are one statement here, not two:
-  // the heading frames it as support rather than a substitute, and the body
-  // says where the numbers live. Pricing is enquiry-only, so none are listed.
-  packages: {
-    eyebrow: "Packages & Pricing",
-    heading: "Recovery supports your training. It does not replace it.",
-    body: "Sleep, nutrition and programming still do the work — recovery keeps you training consistently around them. Sessions are available singly or as packs, and our team will walk you through the options and current pricing at the club — just ask.",
-    cta: "Enquire about pricing",
-  },
+  // Two side-by-side notes: where the pricing lives, and what recovery is for.
+  // Pricing is enquiry-only, so no numbers are listed.
+  packages: [
+    {
+      label: "Packages & Pricing",
+      body: "Recovery sessions are available individually or as packs, depending on what your training requires. Our team will walk you through the available options and current pricing at the club.",
+    },
+    {
+      label: "Please Note",
+      body: "Recovery supports your training. It doesn’t replace it. Sleep, nutrition and programming do the foundational work. Recovery helps you manage training load, stay consistent and come back ready for more.",
+    },
+  ],
   faqNote: "Still unsure?",
 
   contrast: {
@@ -207,8 +210,8 @@ export const coldPlunge = {
 };
 
 export const manualTherapy = {
-  eyebrow: "Essential Recovery · Manual Therapy",
-  name: "Manual Therapy",
+  eyebrow: "Essential Recovery · Massage Therapy",
+  name: "Massage Therapy",
   lead: "Hands-on massage-based recovery designed to release tension, restore movement and bring the body back to a state where training feels easier, smoother and more controlled.",
 
   services: [
@@ -246,7 +249,7 @@ export const manualTherapy = {
       name: "Mobility Reset",
       tagline: "Move Better. Perform Better.",
       paras: [
-        "A hybrid recovery session combining manual therapy, assisted stretching and mobility work.",
+        "A hybrid recovery session combining massage therapy, assisted stretching and mobility work.",
         "Designed to improve flexibility, restore movement quality and help you train with better control.",
       ],
       benefits: [
@@ -286,7 +289,7 @@ export const manualTherapy = {
 };
 
 /**
- * Manual Therapy sessions as alternating editorial rows (same `FormatList`
+ * Massage Therapy sessions as alternating editorial rows (same `FormatList`
  * rhythm as Exposure Therapy). Unlike the verbatim source copy above, the
  * `paras` here are written for the wider two-column layout: each one folds the
  * session's benefits and "best for" audience into flowing prose. Format `name`s
@@ -317,7 +320,7 @@ export const massageFormats = [
     name: "Mobility Reset",
     tagline: manualTherapy.services[2].tagline,
     paras: [
-      "A hybrid recovery session that combines manual therapy, assisted stretching and mobility work in one focused block.",
+      "A hybrid recovery session that combines massage therapy, assisted stretching and mobility work in one focused block.",
       "Designed to improve flexibility, restore movement quality and help you train with better control, it opens up range of motion and reduces the stiffness that builds from hard training or long hours at a desk.",
       "The payoff is movement that feels free and controlled, supporting better lifting and athletic performance. Ideal if you're dealing with stiffness, mobility restrictions or the movement limitations of a sedentary day.",
     ],

@@ -94,7 +94,7 @@ export const firstTimers = {
           {
             text: [
               "Recovery is training.",
-              "For sauna, cold plunge, contrast therapy or manual therapy, arrive 10 minutes early.",
+              "For sauna, cold plunge, contrast therapy or massage therapy, arrive 10 minutes early.",
             ],
           },
           {
@@ -118,7 +118,7 @@ export const firstTimers = {
             label: "What to do",
             text: [
               "Keep it simple.",
-              "You’ll be guided through the experience so you can move through heat, cold or manual therapy safely and confidently.",
+              "You’ll be guided through the experience so you can move through heat, cold or massage therapy safely and confidently.",
               "Leave feeling clear, reset and ready.",
             ],
           },

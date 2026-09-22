@@ -8,7 +8,7 @@ import { RecoveryClose } from "@/components/recovery/recovery-close";
 import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
-  title: "Manual Therapy — Essential Recovery",
+  title: "Massage Therapy — Essential Recovery",
   description:
     "Hands-on massage-based recovery designed to release tension, restore movement and help training feel easier. Sports Massage, Deep Tissue and Mobility Reset.",
 };
@@ -31,7 +31,7 @@ export default function ManualTherapyPage() {
         eyebrow={manualTherapy.eyebrow}
         title={manualTherapy.name}
         lead={[manualTherapy.lead]}
-        mediaLabel="Manual Therapy"
+        mediaLabel="Massage Therapy"
         // Distinct from the Sports Massage row below, which uses massage.jpg.
         mediaSrc="/images/recovery/manual-therapy.jpg"
         mediaImagePosition="center 30%"
