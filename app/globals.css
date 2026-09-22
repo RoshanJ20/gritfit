@@ -280,18 +280,18 @@
     font-weight: 400;
     letter-spacing: 0.01em;
     line-height: 1;
-    /* Dialed back from clamp(3rem, 22vw, 21rem): smaller so it stops blocking
-       the hero footage. */
-    font-size: clamp(2.5rem, 15vw, 14rem);
-    /* Outlined "ghost" treatment: the fill is barely-there so the footage
-       reads through the letters, while a solid dark stroke keeps each glyph
-       crisp against the video. `paint-order: stroke` draws the outline first so
-       the translucent fill doesn't eat into it, and the shadow lifts the letters
-       off darker parts of the footage where a dark stroke alone wouldn't. */
-    color: rgb(255 255 255 / 0.16);
-    -webkit-text-stroke: 3px rgb(7 7 7 / 0.92);
+    /* Large centered mark — close to the original oversized wordmark but
+       pulled back a step (was clamp(2.5rem, 15vw, 14rem) / 224px cap). */
+    font-size: clamp(2.5rem, 13vw, 12rem);
+    /* Ghost mark: barely there, so the footage reads straight through it. The
+       fill is almost nothing and the only ink is a thin brand-lime outline that
+       traces each glyph and carries the accent. No dark stroke and no heavy
+       shadow — those were darkening the video behind the letters. A whisper of
+       shadow stays only so the lime holds against the brightest frames. */
+    color: rgb(255 255 255 / 0.04);
+    -webkit-text-stroke: 1.5px rgb(174 217 35 / 0.8);
     paint-order: stroke fill;
-    text-shadow: 0 2px 12px rgb(7 7 7 / 0.5);
+    text-shadow: 0 0 3px rgb(7 7 7 / 0.5), 0 1px 5px rgb(7 7 7 / 0.3);
   }
 
   /* Opening statement / lede — the paragraph block that follows a PageHero on
@@ -739,6 +739,30 @@
       animation-timeline: scroll(root block);
       animation-range: 0 100vh;
     }
+  }
+}
+/* Mobile hero: the footage is fit to width and letterboxed (see HeroVideo),
+   which would leave a hard seam where the sharp video meets the blurred
+   ambient bands. Feather its top and bottom edges to transparent so the sharp
+   frame dissolves into the blurred backdrop behind it — a seamless join rather
+   than a cut. Scoped to < sm; from `sm` up the video is full-bleed with no band
+   and no mask. Both -webkit- and standard properties for iOS Safari. */
+@media (max-width: 639px) {
+  .hero-fg-fade {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 24%,
+      #000 76%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 24%,
+      #000 76%,
+      transparent 100%
+    );
   }
 }
 @keyframes hero-wordmark-exit {

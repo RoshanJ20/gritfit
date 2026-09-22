@@ -55,15 +55,15 @@ export default function Home() {
       <IntroSequence />
 
       {/* ============== HERO — the video, with the wordmark anchored ============== */}
-      <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
+      <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden">
         <HeroVideo />
 
-        {/* Wordmark rests on the bottom edge, lifted clear of the mobile
-            browser UI. The statement lives in its own section below, so the
-            first screen stays a clean edge-resting wordmark at every size.
-            The wordmark itself is semi-transparent (see HeroWordmark) so the
-            footage shows through the letters rather than being blocked. */}
-        <div className="relative z-10 flex flex-col items-center px-5 pb-20 text-center sm:pb-8 lg:px-4 lg:pb-12">
+        {/* Wordmark is centered on the first screen. The statement lives in
+            its own section below, so the hero stays a clean centered mark at
+            every size. The wordmark itself is semi-transparent (see
+            HeroWordmark) so the footage shows through the letters rather than
+            being blocked. */}
+        <div className="relative z-10 flex flex-col items-center px-5 text-center lg:px-4">
           <HeroWordmark />
         </div>
       </section>
