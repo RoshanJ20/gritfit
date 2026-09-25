@@ -22,7 +22,7 @@ export function CtaActions({
       delay={delay}
       className={cn("flex flex-wrap items-center justify-center gap-3", className)}
     >
-      <Link href="/contact" className="btn btn-solid px-8 py-4">
+      <Link href="https://forms.gritfit.club" className="btn btn-solid px-8 py-4">
         Start with Assessment
       </Link>
       <Link href="/membership" className="btn btn-outline px-8 py-4">
