@@ -43,12 +43,12 @@ export function hasBackContent(c: Coach): boolean {
 /**
  * Leadership. Rendered beneath the coaches on /training/coaches — a member
  * meets who they train with first. Array order is the display order, set by
- * the club: Abhishek, then Taarika, then Bharath.
+ * the club: Abishek, then Taarika, then Bharath.
  */
 export const leadership: Coach[] = [
   {
     slug: "abhishek-raju",
-    name: "Abhishek Raju",
+    name: "Abishek Raju",
     role: "Director",
     identity: "",
     philosophy: "",
@@ -58,7 +58,7 @@ export const leadership: Coach[] = [
   },
   {
     slug: "taarika-abhishek",
-    name: "Taarika Abhishek",
+    name: "Taarika Abishek",
     role: "Director",
     identity: "",
     philosophy: "",
