@@ -48,7 +48,7 @@ export function hasBackContent(c: Coach): boolean {
 export const leadership: Coach[] = [
   {
     slug: "abhishek-raju",
-    name: "Abishek Raju",
+    name: "Abishek",
     role: "Director",
     identity: "",
     philosophy: "",
