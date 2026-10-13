@@ -5,8 +5,7 @@ import { motion, type Variants } from "motion/react";
 import { Check, Minus } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import type { MembershipTier, BillingDuration } from "@/content/membership";
-import { Placeholder } from "@/components/placeholder";
+import type { MembershipTier } from "@/content/membership";
 import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 
 /** A small access pill — "on" = included (brand), otherwise a neutral choice. */
@@ -38,7 +37,7 @@ function Pill({
  * unmistakable.
  */
 function AccessLadder({ access }: { access: MembershipTier["access"] }) {
-  const labels = ["One pillar", "Both pillars", "+ Recovery"];
+  const labels = ["Strength Club or RUSH", "Strength Club & RUSH", "+ Recovery"];
   return (
     <div className="rounded-md border border-border/70 bg-background/40 p-4">
       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -47,7 +46,7 @@ function AccessLadder({ access }: { access: MembershipTier["access"] }) {
 
       {/* Three-rung meter */}
       <motion.div
-        className="mt-3 flex items-end gap-1.5"
+        className="mt-3 flex items-start gap-1.5"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-10% 0px" }}
@@ -143,20 +142,13 @@ const featureRow: Variants = {
  * cell so the card is always as tall as the taller side and nothing jumps when
  * it turns.
  */
-export function PlanCard({
-  tier,
-  duration,
-}: {
-  tier: MembershipTier;
-  duration: BillingDuration;
-}) {
+export function PlanCard({ tier }: { tier: MembershipTier }) {
   const [flipped, setFlipped] = useState(false);
   // The 3D context is only switched on while the card is actually turning or
   // showing its back. See the comment on the wrapper below for why.
   const [turning, setTurning] = useState(false);
   const threeD = flipped || turning;
   const backId = useId();
-  const price = tier.prices?.[duration];
 
   const flip = (next: boolean) => {
     setTurning(true);
@@ -231,26 +223,6 @@ export function PlanCard({
               <p className="mt-3 text-sm text-muted-foreground">
                 {tier.tagline}
               </p>
-              <motion.p
-                key={duration}
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-5 flex items-baseline gap-2 text-xl font-light text-foreground"
-              >
-                {price ? (
-                  <>
-                    <span className="text-3xl font-semibold">{price}</span>
-                    <span className="text-sm text-muted-foreground">
-                      / {duration} months
-                    </span>
-                  </>
-                ) : (
-                  <Placeholder label="Price">
-                    {duration}-month pricing at the club
-                  </Placeholder>
-                )}
-              </motion.p>
             </div>
 
             <AccessLadder access={tier.access} />
