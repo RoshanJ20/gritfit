@@ -7,7 +7,6 @@
     "dev": "next dev",
     "prebuild": "node scripts/gen-media-version.mjs",
     "build": "next build",
-    "postbuild": "node scripts/assemble-takeover.mjs",
     "start": "next start",
     "lint": "eslint",
     "pages:deploy": "npm run build && wrangler pages deploy out --project-name=gritfit",
