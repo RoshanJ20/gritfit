@@ -8,114 +8,109 @@ import { cn } from "@/lib/utils";
 import type { MembershipTier } from "@/content/membership";
 import { SpotlightOverlay } from "@/components/reactbits/spotlight-overlay";
 
-/** A small access pill — "on" = included (brand), otherwise a neutral choice. */
-function Pill({
-  children,
-  on = false,
-}: {
-  children: React.ReactNode;
-  on?: boolean;
-}) {
+/** How a single pillar reads in the meter. */
+type BarState = "included" | "optional" | "excluded";
+
+/**
+ * One access bar. `included` fills solid; `optional` fills with a dashed brand
+ * pattern (a "pick one" option, not a guarantee); `excluded` stays an empty
+ * grey track. The fill springs in from the left as the card scrolls into view;
+ * `index` staggers the three bars so they fill in sequence.
+ */
+function AccessBar({ state, index }: { state: BarState; index: number }) {
   return (
-    <span
-      className={cn(
-        "inline-flex items-center rounded-sm border px-2 py-0.5 text-xs font-medium",
-        on
-          ? "border-brand/60 bg-brand/10 text-foreground"
-          : "border-border text-muted-foreground",
+    <span className="relative block h-2.5 flex-1 overflow-hidden rounded-full bg-border">
+      {state !== "excluded" && (
+        <motion.span
+          className={cn(
+            "block h-full origin-left rounded-full",
+            state === "included" && "bg-brand",
+          )}
+          style={
+            state === "optional"
+              ? {
+                  backgroundImage:
+                    "repeating-linear-gradient(90deg, var(--brand) 0 7px, transparent 7px 12px)",
+                }
+              : undefined
+          }
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 140,
+            damping: 18,
+            delay: index * 0.12,
+          }}
+        />
       )}
-    >
-      {children}
     </span>
   );
 }
 
 /**
- * Cumulative access "ladder": three rungs that spring-fill from the left as the
- * card scrolls into view (the page's signature moment). The summary line spells
- * out RUSH/Strength Club access so the choose-one vs both distinction is
- * unmistakable.
+ * Access meter: three bars, one per pillar — Strength Club, RUSH, Essential
+ * Recovery — that spring-fill from the left as the card scrolls into view (the
+ * page's signature moment). Each bar reads three ways:
+ *   - solid brand fill  → included in this tier
+ *   - dashed brand fill → optional, part of a "pick one" pair (Core)
+ *   - empty grey        → not in this tier
+ * On the choose-one tier the first two bars are dashed and bridged by an "OR"
+ * badge, so "access to EITHER one" is unmistakable on its own — no second row.
  */
 function AccessLadder({ access }: { access: MembershipTier["access"] }) {
-  const labels = ["Strength Club or RUSH", "Strength Club & RUSH", "+ Recovery"];
+  const chooseOne = access.pillars === "choose-one";
+  const pillars: { label: string; state: BarState }[] = [
+    { label: "Strength Club", state: chooseOne ? "optional" : "included" },
+    { label: "RUSH", state: chooseOne ? "optional" : "included" },
+    {
+      label: "Essential Recovery",
+      state: access.recovery ? "included" : "excluded",
+    },
+  ];
+
   return (
-    <div className="rounded-md border border-border/70 bg-background/40 p-4">
-      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+    <div className="flex flex-1 flex-col justify-center rounded-md border border-border/70 bg-background/40 p-6 lg:p-8">
+      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
         Your access
       </p>
 
-      {/* Three-rung meter */}
-      <motion.div
-        className="mt-3 flex items-start gap-1.5"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-10% 0px" }}
-        transition={{ staggerChildren: 0.12 }}
-      >
-        {labels.map((label, r) => {
-          const unlocked = r < access.filled;
-          return (
-            <div key={label} className="flex-1">
-              <span className="block h-1.5 overflow-hidden rounded-full bg-border">
-                {unlocked && (
-                  <motion.span
-                    className="block h-full origin-left rounded-full bg-brand"
-                    variants={
-                      {
-                        hidden: { scaleX: 0 },
-                        show: {
-                          scaleX: 1,
-                          transition: {
-                            type: "spring",
-                            stiffness: 140,
-                            damping: 18,
-                          },
-                        },
-                      } as Variants
-                    }
-                  />
-                )}
-              </span>
-              <span
-                className={cn(
-                  "mt-2 block text-[0.6rem] uppercase tracking-[0.12em]",
-                  unlocked ? "text-foreground" : "text-muted-foreground/50",
-                )}
-              >
-                {label}
-              </span>
-            </div>
-          );
-        })}
-      </motion.div>
-
-      {/* Plain-language breakdown */}
-      <div className="mt-4 flex flex-wrap items-center gap-1.5">
-        {access.pillars === "choose-one" ? (
-          <>
-            <Pill>Classes</Pill>
-            <span className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-brand">
+      <div className="mt-6">
+        {/* Bars row — the "OR" badge straddles the dashed pair on Core. */}
+        <div className="relative flex items-center gap-2">
+          {pillars.map((pillar, i) => (
+            <AccessBar key={pillar.label} state={pillar.state} index={i} />
+          ))}
+          {chooseOne && (
+            <span className="absolute left-1/3 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand/60 bg-ink-900 px-2 py-0.5 text-[0.7rem] font-bold uppercase leading-none tracking-[0.1em] text-brand">
               or
             </span>
-            <Pill>Strength Club</Pill>
-            <span className="ml-0.5 inline-flex items-center rounded-sm bg-brand px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-background">
-              Choose 1
+          )}
+        </div>
+
+        {/* Labels row, aligned under their bars. */}
+        <div className="mt-4 flex gap-2">
+          {pillars.map((pillar) => (
+            <span
+              key={pillar.label}
+              className={cn(
+                "flex-1 text-[0.8rem] font-semibold uppercase leading-tight tracking-[0.12em]",
+                pillar.state === "excluded"
+                  ? "text-muted-foreground/50"
+                  : "text-foreground",
+              )}
+            >
+              {pillar.label}
             </span>
-          </>
-        ) : (
-          <>
-            <Pill on>Classes</Pill>
-            <span className="text-xs text-muted-foreground">+</span>
-            <Pill on>Strength Club</Pill>
-            {access.recovery && (
-              <>
-                <span className="text-xs text-muted-foreground">+</span>
-                <Pill on>Essential Recovery</Pill>
-              </>
-            )}
-          </>
-        )}
+          ))}
+        </div>
       </div>
+
+      {chooseOne && (
+        <p className="mt-6 text-sm font-semibold uppercase tracking-[0.12em] text-brand">
+          Choose either one
+        </p>
+      )}
     </div>
   );
 }
@@ -220,7 +215,7 @@ export function PlanCard({ tier }: { tier: MembershipTier }) {
                   </span>
                 )}
               </div>
-              <p className="mt-3 text-sm text-muted-foreground">
+              <p className="mt-4 text-base text-muted-foreground lg:text-lg">
                 {tier.tagline}
               </p>
             </div>
