@@ -60,4 +60,4 @@ export const navGroups: NavGroup[] = [
 
 // "Join Club" CTA — verbatim label from the old header.
 export const primaryCta = { label: "Join Club", href: "/membership" };
-export const secondaryCta = { label: "Book an Assessment", href: "https://forms.gritfit.club" };
+export const secondaryCta = { label: "Book an Assessment", href: "https://forms.gritfit.club/enquiry/" };

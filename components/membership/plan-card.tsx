@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { motion, type Variants } from "motion/react";
 import { Check, Minus } from "lucide-react";
 
@@ -145,9 +145,30 @@ export function PlanCard({ tier }: { tier: MembershipTier }) {
   const threeD = flipped || turning;
   const backId = useId();
 
+  // `onAnimationComplete` is what normally clears `turning`, but it can be
+  // skipped — e.g. a quick flip-then-flip-back where the rotateY target ends up
+  // unchanged (0 → 0), so motion runs no animation and fires no completion. If
+  // `turning` strands `true`, the 3D context stays live while the card sits at
+  // rest, leaving the back face to `backface-visibility:hidden` alone — which
+  // does not reliably cull on mobile WebKit, so the mirrored back bleeds through
+  // the front. This timer guarantees `turning` resets regardless.
+  const turnTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const settle = () => {
+    if (turnTimer.current) clearTimeout(turnTimer.current);
+    turnTimer.current = null;
+    setTurning(false);
+  };
+  useEffect(() => () => {
+    if (turnTimer.current) clearTimeout(turnTimer.current);
+  }, []);
+
   const flip = (next: boolean) => {
     setTurning(true);
     setFlipped(next);
+    if (turnTimer.current) clearTimeout(turnTimer.current);
+    // Slightly longer than the 0.7s turn so a real animation still settles via
+    // onAnimationComplete first; this only catches the strand case.
+    turnTimer.current = setTimeout(settle, 750);
   };
 
   const faceClass = cn(
@@ -195,7 +216,7 @@ export function PlanCard({ tier }: { tier: MembershipTier }) {
         className={cn("grid h-full", threeD && "[transform-style:preserve-3d]")}
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        onAnimationComplete={() => setTurning(false)}
+        onAnimationComplete={settle}
       >
         {/* ---------------- FRONT ---------------- */}
         <div
